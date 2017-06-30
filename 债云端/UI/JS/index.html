@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>中金债事</title>
+		<style>
+	*{margin:0;padding:0;}
+	</style>
+	</head>
+	<body>
+		<!-- 代码部分begin -->
+	<div id="main" style="height:600px"></div>
+	<script src="echarts.min.js"></script>
+  <script src="china.js"></script>
+	<script>
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('main'));  
+    option = {
+        geo: {
+            map: 'china',
+            roam: true,
+            label: {
+                normal: {
+                    show: true,
+                    textStyle: {
+                        color: 'rgba(0,0,0,0.4)'
+                    }
+                }
+            },
+            itemStyle: {
+                normal:{
+                    borderColor: 'rgba(0, 0, 0, 0.2)'
+                },
+                emphasis:{
+                    areaColor: null,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    shadowBlur: 20,
+                    borderWidth: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            regions: [{
+              name: '广东',
+              itemStyle: {
+                  normal: {
+                      areaColor: 'red',
+                      color: 'red'
+                  }
+              }
+          },{
+              name: '北京',
+              itemStyle: {
+                  normal: {
+                      areaColor: 'red',
+                      color: 'red'
+                  }
+              }
+          }]
+        }
+       
+    };
+		myChart.on('click', function (param){
+	    var p = param.name;
+       if(p=='新疆'){
+       window.location.href='http://www.zhongjin.xinjiang.com';
+       }else if(p=='西藏'){
+       window.location.href='http://www.zhongjin.xizang.com';
+       }else if(p=='北京'){
+       window.location.href='http://www.zhongjin.beijing.com';
+       }else if(p=='天津'){
+       window.location.href='http://www.zhongjin.tianjin.com';
+       }else if(p=='黑龙江'){
+       window.location.href='http://www.zhongjin.heilongjiang.com';
+       }else if(p=='吉林'){
+       window.location.href='http://www.zhongjin.jilin.com';
+       }else if(p=='辽宁'){
+       window.location.href='http://www.zhongjin.liaoning.com';
+       }else if(p=='内蒙古'){
+       window.location.href='http://www.zhongjin.neimenggu.com';
+       }else if(p=='河北'){
+       window.location.href='http://www.zhongjin.hebei.com';
+       }else if(p=='河南'){
+       window.location.href='http://www.zhongjin.henan.com';
+       }else if(p=='山东'){
+       window.location.href='http://www.zhongjin.shandong.com';
+       }else if(p=='山西'){
+       window.location.href='http://www.zhongjin.shanxitaiyuan.com';
+       }else if(p=='陕西'){
+       window.location.href='http://www.zhongjin.shanxixian.com';
+       }else if(p=='宁夏'){
+       window.location.href='http://www.zhongjin.ningxia.com';
+       }else if(p=='甘肃'){
+       window.location.href='http://www.zhongjin.gansu.com';
+       }else if(p=='青海'){
+       window.location.href='http://www.zhongjin.qinghai.com';
+       }else if(p=='四川'){
+       window.location.href='http://www.zhongjin.sichuan.com';
+       }else if(p=='云南'){
+       window.location.href='http://www.zhongjin.yunnan.com';
+       }else if(p=='重庆'){
+       window.location.href='http://www.zhongjin.chongqing.com';
+       }else if(p=='湖北'){
+       window.location.href='http://www.zhongjin.hubei.com';
+       }else if(p=='湖南'){
+       window.location.href='http://www.zhongjin.hunan.com';
+       }else if(p=='贵州'){
+       window.location.href='http://www.zhongjin.guizhou.com';
+       }else if(p=='江苏'){
+       window.location.href='http://www.zhongjin.jiangsu.com';
+       }else if(p=='安徽'){
+       window.location.href='http://www.zhongjin.anhui.com';
+       }else if(p=='上海'){
+       window.location.href='http://www.zhongjin.shanghai.com';
+       }else if(p=='浙江'){
+       window.location.href='http://www.zhongjin.zhejiang.com';
+       }else if(p=='江西'){
+       window.location.href='http://www.zhongjin.jiangxi.com';
+       }else if(p=='福建'){
+       window.location.href='http://www.zhongjin.fujian.com';
+       }else if(p=='广东'){
+       window.location.href='http://www.zhongjin.guangdong.com';
+       }else if(p=='广西'){
+       window.location.href='http://www.zhongjin.guangxi.com';
+       }else if(p=='海南'){
+       window.location.href='http://www.zhongjin.hainan.com';
+       }else if(p=='香港'){
+       window.location.href='http://www.zhongjin.xianggang.com';
+       }else if(p=='澳门'){
+       window.location.href='http://www.zhongjin.aomen.com';
+       }else if(p=='台湾'){
+       window.location.href='http://www.zhongjin.taiwan.com';
+       }
+		    
+		})
+    // 为echarts对象加载数据 
+    myChart.setOption(option);
+    </script>
+    <!-- 代码部分end -->
+	</body>
+</html>

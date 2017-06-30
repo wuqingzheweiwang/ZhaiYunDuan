@@ -1,0 +1,160 @@
+//
+//  ZJPrefixHeader.pch
+//  债云端
+//
+//  Created by apple on 2017/4/20.
+//  Copyright © 2017年 ZhongJinZhaiShi. All rights reserved.
+//
+
+#ifndef ZJPrefixHeader_pch
+#define ZJPrefixHeader_pch
+
+
+#import <UIKit/UIKit.h>
+#import "ZJUtil.h"
+#import "ZJUserInfo.h"
+#import "UIColor+HexColor.h"
+#import "UIView+NP.h"
+#import "UIWebView+UserAgent.h"
+#import "UIImage+ColorAtPixel.h"
+#import "ZJNavigationPublic.h"
+#import <SDWebImageManager.h>
+#import <UIImageView+WebCache.h>
+#import <SDImageCache.h>
+#import <SDCycleScrollView.h>
+#import <MJRefresh.h>
+#import "ANAlert.h"
+#import <MBProgressHUD.h>
+#import <AlipaySDK/AlipaySDK.h>
+#import "ZJDataRequest.h"
+#import "AFNetworking.h"
+// 五个大模块的网络请求
+#import "ZJHomeRequest.h"
+#import "ZJLoginRegistRequest.h"
+#import "ZJDeBtManageRequest.h"
+#import "ZJDebtPersonRequest.h"
+#import "ZJMyPageRequest.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+// 本地持久化
+#define UserDeafult [NSUserDefaults standardUserDefaults]
+
+//左侧视图的宽度
+#define kMenuDisplayedWidth ZJAPPWidth*0.8
+//RGB
+#define HexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+//16进制转换
+#define colorLong(string_16) strtoul([string_16 cStringUsingEncoding:NSUTF8StringEncoding], 0, 16)
+// 屏幕宽高
+#define ZJAPPWidth [UIScreen mainScreen].bounds.size.width
+#define ZJAPPHeight [UIScreen mainScreen].bounds.size.height
+
+// 屏幕适配比
+#define TRUE_1(v) (([UIScreen mainScreen].scale >= 3.0)?v*1.15:v)
+#define TRUE_(v)                 (v*1.0*(ZJAPPWidth)/320)
+#define scaleScrren [UIScreen mainScreen].scale
+#define ZJAPP_STATUS_HEIGHT      [[UIApplication sharedApplication] statusBarFrame].size.height
+#define ZJAPP_NAV_STATUS_HEIGHT  ZJAPP_STATUS_HEIGHT+44
+
+//RGB
+#define RGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+
+// 缩放比
+#define kScale ([UIScreen mainScreen].bounds.size.width) / 375
+
+#define hScale ([UIScreen mainScreen].bounds.size.height) / 667
+
+//字体大小
+#define kfont 15
+
+
+//颜色
+#define kPLRGB_16(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00)>>8))/255.0 blue:((float)(rgbValue&0xFF))/255.0 alpha:1.0]
+
+#define ZJColor(r, g, b)    [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+
+/////  黑色
+//000000
+#define ZJColor_000000     ZJColor(0,0,0)
+//333333
+#define ZJColor_333333     ZJColor(51,51,51)
+//666666
+#define ZJColor_666666     ZJColor(102,102,102)
+//999999
+#define ZJColor_999999     ZJColor(153,153,153)
+//cccccc
+#define ZJColor_cccccc     ZJColor(204,204,204)
+//背景色
+#define ZJColor_efefef     ZJColor(239,239,239)
+//背景色上的线条色
+#define ZJColor_dddddd     ZJColor(221,221,221)
+//c1110e 红色
+#define ZJColor_red     ZJColor(193,17,14)
+
+//字体
+//#define ZJ_FONT(num)   [UIFont fontWithName:@"迷你简细圆" size:(num)]
+#define ZJ_FONT(num)           [UIFont systemFontOfSize:(num)]
+
+#define ZJ_TRUE_FONT(num)               [UIFont systemFontOfSize:(TRUE_1(num))]
+
+#define ZJ_TRUE_FONT_1(num)  [UIFont fontWithName:@"Helvetica-Bold" size:(TRUE_1(num))]
+#define NavigationTitleFont    17  //导航栏字体
+
+
+//默认图片
+#define ZJHEADDEFAULT [UIImage imageNamed:@"headedefault"]
+#define ZJbackgroundDEFAULT  [UIImage imageNamed:@"big_deafult"]
+
+
+//图片高度
+#define kScale_Image
+
+//计算行数
+#define ROWS(y)           y%3>0
+#define COLUMS(y)         y
+
+#define ZJ_BASE_URL     @"http://www.napai.cn/im/api.php?action=%@"
+
+#define ZJ_RONGYUN_APP_KEY_text     @""
+
+#define ZJ_RONGYUN_APP_KEY          @""
+
+
+#define ZJ_QQ_LANDING_SECRET        @""
+
+#define ZJ_WEIBO_LANDING_KEY        @""
+
+#define kRedirectURI                @"http://www.napai.cn"
+
+#define kZJ_NOTIF_LOCATION          @"notif_location"
+
+// 判断系统是否为iOS7
+#define ZJIOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+// 判断系统是否为iOS8
+#define ZJIOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+
+#define kWeiXin_appSecret           @""
+/**
+ *  微信key
+ */
+#define kWeiXin_appKey              @""
+
+/**
+ *  qq登录key
+ */
+#define ZJ_QQ_LANDING_KEY           @""
+
+
+/**
+ *  友盟key
+ */
+#define UMAnalytics_key     @""
+
+
+
+
+#endif /* ZJPrefixHeader_pch */
