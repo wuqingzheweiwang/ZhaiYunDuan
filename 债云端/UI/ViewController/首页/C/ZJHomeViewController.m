@@ -464,9 +464,6 @@ static NSString *identifierId=@"zz";
                 [alertcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                    
                 }]];
-                [alertcon addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-
-                }]];
                 
                 [self presentViewController:alertcon animated:YES completion:nil];
                 

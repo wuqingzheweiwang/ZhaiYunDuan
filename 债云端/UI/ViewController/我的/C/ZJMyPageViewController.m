@@ -68,10 +68,11 @@
     NSLog(@"token2:%@",[ZJUserInfo getUserIDForUserToken]);
     NSLog(@"login2:%d",[ZJUtil getUserLogin]);
 
-    [NSThread detachNewThreadSelector:@selector(getMyPageData) toTarget:self withObject:nil];
+   
     self.navigationController.navigationBarHidden = YES;
     // 判断登录状态
     if ([ZJUtil getUserLogin]) {
+         [self getMyPageData];
         [_quitBut setTitle:@"退出" forState:UIControlStateNormal];
         
         _userName.hidden = NO;
@@ -323,27 +324,19 @@
                         [self.headerImage sd_setImageWithURL: self.imageUrl placeholderImage:[UIImage imageNamed:@"head-portrait"]];
 
                     }
-                    
-                    [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
+                    [self.tableView reloadData];
                 }else{
                     
                     [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
                 }
-            }
-            // 请求失败
-            else{
+            }else{
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请登录"]];
             }
         }];
         
     
 }
-// 刷新UI
--(void)reloadUI
-{
-    
-    
-}
+
 
 // 个人资料
 -(void)gotoOwnerDataVC

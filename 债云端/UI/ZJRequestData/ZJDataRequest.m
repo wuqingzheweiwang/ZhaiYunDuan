@@ -69,7 +69,6 @@
     [ma GET:requestHTTP parameters:parameter progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
         app.networkActivityIndicatorVisible = NO;
         if (isResultSecret) {
             _finishBlock(YES,responseObject);
@@ -127,11 +126,9 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         app.networkActivityIndicatorVisible = NO;
         if (isResultSecret) {
-            NSLog(@"%@",responseObject);
             _finishBlock(YES,responseObject);
         }else _finishBlock(YES,responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
         _finishBlock(NO,@"网络请求数据错误");
     }];
 }
@@ -184,10 +181,8 @@
         }
         
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
         _finishBlock(YES,responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
         _finishBlock(NO,@"网络请求数据错误");
     }];
     
@@ -198,7 +193,7 @@
 #pragma 拼接http
 - (NSString *)requestHttpURL:(NSString *)action
 {
-    return [NSString stringWithFormat:@"http://192.168.2.14:8056/%@",action];
+    return [NSString stringWithFormat:@"http://192.168.10.55:8056/%@",action];
 }
 
 
@@ -216,8 +211,6 @@
 
 + (NSDictionary*)dictionaryWithEncodingData:(NSData*)data {
     NSString* base64Str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    NSString* str = [DESEncryptFile textFromBase64String:base64Str withKey:@"napai505"];
-    
     NSError *error = nil;
     NSMutableDictionary* dic = [[NSJSONSerialization JSONObjectWithData:[base64Str dataUsingEncoding:NSUTF8StringEncoding]
                                                                 options:NSJSONReadingAllowFragments

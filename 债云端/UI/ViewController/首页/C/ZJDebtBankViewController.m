@@ -64,7 +64,6 @@
 @implementation ZJDebtBankViewController
 {
     ZJProtocolAlterView * protoAlterview;
-    ZJPayMoneyViewController *payViewController;
     NSString *_type;
 }
 
@@ -318,12 +317,10 @@
 //        return;
 //    }
     
-    [NSThread detachNewThreadSelector:@selector(getDebtDataRequest) toTarget:self withObject:nil];
+    [self getDebtDataRequest];
     
     
-    payViewController = [[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
     
-    [self.navigationController pushViewController:payViewController animated:YES];
 }
 
 
@@ -345,15 +342,15 @@
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
-               self.orderString =[responseData objectForKey:@"data"];
-                NSLog(@"%@",self.orderString);
+               
+                self.orderString =[responseData objectForKey:@"data"];
+                ZJPayMoneyViewController * payViewController = [[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 payViewController.orderid = self.orderString;
                 payViewController.type = @"2";
-                NSLog(@"%@",payViewController.orderid);
-                // 后台设定失败
-            }else if ([[responseData objectForKey:@"state"]isEqualToString:@"warn"]) {
+                [self.navigationController pushViewController:payViewController animated:YES];
                 
+            }else{
+               
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
             
@@ -367,13 +364,6 @@
 
 }
 
-
-// 刷新UI
--(void)reloadUI
-{
-    
-    
-}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 

@@ -357,6 +357,7 @@
     RefereeTF.layer.borderColor=ZJColor_cccccc.CGColor;
     RefereeTF.layer.masksToBounds=YES;
     RefereeTF.layer.cornerRadius=5;
+    RefereeTF.placeholder=@"如未填写编码，默认隶属于总行";
     RefereeTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, RefereeTF.frame.size.height)];
     RefereeTF.leftViewMode = UITextFieldViewModeAlways;
     
