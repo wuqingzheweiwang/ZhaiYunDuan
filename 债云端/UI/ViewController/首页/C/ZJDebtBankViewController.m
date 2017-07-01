@@ -42,11 +42,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *telePhoneTextField;
 @property (weak, nonatomic) IBOutlet UILabel *workDressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *shengprovinceBut;
-@property (weak, nonatomic) IBOutlet UILabel *shengLabel;
-@property (weak, nonatomic) IBOutlet UIButton *cityBut;
-@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
-@property (weak, nonatomic) IBOutlet UIButton *xiancountyBut;
-@property (weak, nonatomic) IBOutlet UILabel *xianLabel;
 @property (weak, nonatomic) IBOutlet UILabel *recommendPersonLabel;
 @property (weak, nonatomic) IBOutlet UITextField *recommendPersonTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitSendBut;
@@ -154,58 +149,16 @@
     // 输入省
     _shengprovinceBut.top = _workDressLabel.top;
     _shengprovinceBut.left = _telePhoneTextField.left;
-    _shengprovinceBut.width = (ZJAPPWidth- _workDressLabel.right-_shengLabel.width-_cityLabel.width-_xianLabel.width-(42/2))/3;
+    _shengprovinceBut.width = _telePhoneTextField.width;
     _shengprovinceBut.height = _telePhoneTextField.height;
     [_shengprovinceBut setTitleColor:ZJColor_333333 forState:UIControlStateNormal];
     _shengprovinceBut.layer.borderWidth=1;
     _shengprovinceBut.layer.borderColor =[UIColor lightGrayColor].CGColor;
     _shengprovinceBut.layer.masksToBounds = YES;
     _shengprovinceBut.layer.cornerRadius = 5;
-    _shengprovinceBut.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _shengprovinceBut.titleLabel.textAlignment = NSTextAlignmentLeft;
+    _shengprovinceBut.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
     [_shengprovinceBut addTarget:self action:@selector(enterAddress) forControlEvents:UIControlEventTouchUpInside];
-    
-    // 省Label
-    _shengLabel.top = _shengprovinceBut.top+(10);
-    _shengLabel.left = _shengprovinceBut.right+(10/2);
-    _shengLabel.width = (30/2);
-    _shengLabel.height = (30/2);
-    // 输入市
-    _cityBut.top = _shengprovinceBut.top;
-    _cityBut.left = _shengLabel.right+(10/2);
-    _cityBut.width = _shengprovinceBut.width;
-    _cityBut.height = _shengprovinceBut.height;
-    [_cityBut setTitleColor:ZJColor_333333 forState:UIControlStateNormal];
-    _cityBut.layer.borderWidth=1;
-    _cityBut.layer.borderColor =[UIColor lightGrayColor].CGColor;
-    _cityBut.layer.masksToBounds = YES;
-    _cityBut.layer.cornerRadius = 5;
-    _cityBut.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [_cityBut addTarget:self action:@selector(enterAddress) forControlEvents:UIControlEventTouchUpInside];
-
-    // 市
-    _cityLabel.top = _shengLabel.top;
-    _cityLabel.left = _cityBut.right+(10/2);
-    _cityLabel.width = _shengLabel.width;
-    _cityLabel.height = _shengLabel.height;
-
-    // 输入县(区)
-    _xiancountyBut.top = _cityBut.top;
-    _xiancountyBut.left = _cityLabel.right+(10/2);
-    _xiancountyBut.width = _cityBut.width;
-    _xiancountyBut.height = _cityBut.height;
-    [_xiancountyBut setTitleColor:ZJColor_333333 forState:UIControlStateNormal];
-    _xiancountyBut.layer.borderWidth=1;
-    _xiancountyBut.layer.borderColor =[UIColor lightGrayColor].CGColor;
-    _xiancountyBut.layer.masksToBounds = YES;
-    _xiancountyBut.layer.cornerRadius = 5;
-    _xiancountyBut.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [_xiancountyBut addTarget:self action:@selector(enterAddress) forControlEvents:UIControlEventTouchUpInside];
-
-    // 县
-    _xianLabel.top = _cityLabel.top;
-    _xianLabel.left = _xiancountyBut.right+(10/2);
-    _xianLabel.width = (93/2);
-    _xianLabel.height = (30/2);
     
     // 推荐人Label
     _recommendPersonLabel.top = _workDressLabel.bottom+(40/2);
@@ -239,6 +192,11 @@
 // 选择地址
 - (void)enterAddress {
     
+    for (UITextField* textFieldsubView in self.view.subviews)
+    {
+        [textFieldsubView resignFirstResponder];
+    }
+
     // 弹出视图
     JHPickView *picker = [[JHPickView alloc]initWithFrame:self.view.bounds];
     picker.delegate = self;
@@ -255,9 +213,8 @@
     _distristId = areaId;
 
     NSLog(@"%@ %@ %@",_provinceId,_cityId,_distristId);
-    [self.shengprovinceBut setTitle:[allArea objectForKey:prvoinceId] forState:UIControlStateNormal];
-    [self.cityBut setTitle:[allArea objectForKey:cityId] forState:UIControlStateNormal];
-    [self.xiancountyBut setTitle:[allArea objectForKey:areaId] forState:UIControlStateNormal];
+    NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
+    [self.shengprovinceBut setTitle:cityArea forState:UIControlStateNormal];
 
 }
 

@@ -65,8 +65,6 @@ static NSString *identifierId=@"zz";
     // 设置头视图
     [self setTableHeaderView];
     
-    
-    [NSThread detachNewThreadSelector:@selector(loadNewsRequestData) toTarget:self withObject:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -77,6 +75,8 @@ static NSString *identifierId=@"zz";
         rightBtn.hidden=YES;
     }else rightBtn.hidden=NO;
     
+    [NSThread detachNewThreadSelector:@selector(loadNewsRequestData) toTarget:self withObject:nil];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated

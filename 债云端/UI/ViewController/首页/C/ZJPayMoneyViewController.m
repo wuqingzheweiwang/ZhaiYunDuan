@@ -111,8 +111,7 @@
 {
     if (_tableViewdataSource == nil) {
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
-        @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",],
-        @[@"Union-Pay",@"银联支付",@"flagimaggray",]]
+        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",]]
                                ,nil];
         
     }
@@ -189,15 +188,13 @@
 {
     if (sender.tag == 1001) {
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
-        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",],
-        @[@"Union-Pay",@"银联支付",@"flagimaggray",]]
+        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",]]
                                ,nil];
         [_tableView reloadData];
         
     }else if (sender.tag == 1002){
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
-        @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",],
-        @[@"Union-Pay",@"银联支付",@"flagimagred",]]
+        @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",]]
                                ,nil];
         [_tableView reloadData];
     }

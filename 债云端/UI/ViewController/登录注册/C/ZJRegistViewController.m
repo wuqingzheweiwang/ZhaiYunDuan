@@ -34,7 +34,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *commandTextLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *yesBut;
-@property (weak, nonatomic) IBOutlet UILabel *readAndagreeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *readAndagreeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *protorclBut;
 @property (weak, nonatomic) IBOutlet UIButton *registerBut;
 
@@ -215,9 +215,10 @@
     
     // 阅读协议
     _readAndagreeLabel.top = _yesBut.top;
-    _readAndagreeLabel.left = _yesBut.right+TRUE_1(14/2);
+    _readAndagreeLabel.left = _yesBut.right;
     _readAndagreeLabel.width = TRUE_1(135/2);
     _readAndagreeLabel.height = _yesBut.height;
+    [_readAndagreeLabel addTarget:self action:@selector(clickAgree:) forControlEvents:UIControlEventTouchUpInside];
     
     // 弹出协议
     _protorclBut.top = _readAndagreeLabel.top;
