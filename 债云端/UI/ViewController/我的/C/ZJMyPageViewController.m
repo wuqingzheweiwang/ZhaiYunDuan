@@ -479,6 +479,7 @@ static id _publishContent;
 
             //为了在债事人请求那里用
             [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtPersonRequest"];
+            [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtMangerRequest"];
             //清除缓存
             [ZJUtil clearCachesWithFilePath:[ZJUtil CachesDirectory]];
 //            [ZJUserInfo removeUserInfoWithUserToken];

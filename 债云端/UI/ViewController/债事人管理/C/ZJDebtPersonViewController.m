@@ -53,7 +53,7 @@
     [self createUI];
     [self createSerach];
     [self createNodataView];
-    [self requestDebtPersonMangeListInfo];
+    
 }
 - (void)createSerach
 {
@@ -76,11 +76,14 @@
    
 }
 //请求债事人列表
+- (void)requestInfo
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self requestDebtPersonMangeListInfo];
+}
 - (void)requestDebtPersonMangeListInfo
 {
-    
     NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=%ld",(long)_page];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [ZJDebtPersonRequest GetDebtPersonManageListRequestWithActions:action result:^(BOOL success, id responseData) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (success) {
@@ -147,7 +150,7 @@
         seachview.hidden=YES;
         _page=1;
         [_dataSource removeAllObjects];
-        [self requestDebtPersonMangeListInfo];
+        [self requestInfo];
     }
 }
 
@@ -182,7 +185,7 @@
     searchBar.text=@"";
     _page=1;
     [_dataSource removeAllObjects];
-    [self requestDebtPersonMangeListInfo];
+    [self requestInfo];
     
 }
 //新增债事人
@@ -225,12 +228,12 @@
     //@weakify(self) 防止循环引用
     //@strongify(self) 防止指针消失
     _page=1;
-    [self requestDebtPersonMangeListInfo];
+    [self requestInfo];
 }
 -(void)loadMoreData
 {
     _page+=1;
-    [self requestDebtPersonMangeListInfo];
+    [self requestInfo];
 }
 #pragma mark  tableView的代理方法
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
