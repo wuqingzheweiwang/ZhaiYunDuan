@@ -17,6 +17,9 @@
 #import "ZJMyMemberViewController.h"
 #import "ZJRecommendBankVC.h"
 #import "ZJShareAlertView.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+static id _publishContent;
 
 @interface ZJMyPageViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UITextViewDelegate,UIScrollViewDelegate,ZJShareAlterViewDelegate>
 {
@@ -29,6 +32,9 @@
     ZJMyMemberTableViewCell *zjMyMembercell;
     
     ZJShareAlertView *zjShareView;
+    
+    NSMutableArray *_shareTypeArr;
+    
 }
 
 @property (nonatomic , strong) NSMutableArray *tableViewdataSource;
@@ -48,7 +54,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *recommandCode;
 
 @property (nonatomic ,strong) NSString *phoneNmber;
+
 @property (nonatomic ,strong) NSURL *imageUrl;
+// 我的推荐个数
+@property (nonatomic ,strong) NSString *recommand_1;
+@property (nonatomic ,strong) NSString *recommand_2;
+@property (nonatomic ,strong) NSString *recommand_3;
+@property (nonatomic ,strong) NSString *recommand_4;
+
 @end
 
 @implementation ZJMyPageViewController
@@ -95,19 +108,19 @@
         }
         
         // 推荐备案数
-        [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d个",10000]];
+        [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@个",self.recommand_1]];
         [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
         // 推荐行长
-        [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d个",1000]];
+        [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@个",self.recommand_2]];
         
         [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
         // 解债数
-        [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d个",100]];
+        [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@个",self.recommand_3]];
         
         [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
         
         // 推荐行长数
-        [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d个",10]];
+        [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@个",self.recommand_4]];
         
         [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
         
@@ -262,8 +275,8 @@
 -(void)showMyQRtoShare
 {
     [self setProtrolAlert];
-    
 }
+
 
 -(void)setProtrolAlert
 {
@@ -273,26 +286,72 @@
     zjShareView = [[ZJShareAlertView alloc]initWithHeaderImage:self.imageUrl withPersonName:self.userName.text withCommandCode:self.codeLabel.text withQRUrl:self.imageUrl];
     zjShareView.delegate=self;
     [zjShareView show];
-    
+    _shareTypeArr = [NSMutableArray arrayWithObjects:
+                     @(SSDKPlatformSubTypeWechatTimeline),
+                     @(SSDKPlatformSubTypeWechatSession),
+                     @(SSDKPlatformTypeSinaWeibo), nil];
+
 }
 
 #pragma mark ZJShareAlterViewDelegate
 -(void)zjProtocolAlertClikButtonIndex:(NSInteger)index alert:(ZJShareAlertView *)alert
 {
-    
-    if (index == 2000) {
-        
-        NSLog(@"000");
-        
-    }else if (index== 2001){
-        
-        NSLog(@"111");
-        
-    }else{
-        
-        NSLog(@"222");
-        
-    }
+    NSUInteger typeUI = 0;
+    typeUI = [_shareTypeArr[index] unsignedIntegerValue];
+    NSLog(@"%lu",(unsigned long)typeUI);
+    //built share parames
+    NSDictionary *shareContent = (NSDictionary *)_publishContent;
+    NSString *text = shareContent[@"text"];
+    NSArray *image = shareContent[@"image"];
+    NSString *url  = shareContent[@"url"];
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    [shareParams SSDKSetupShareParamsByText:text
+                                     images:image
+                                        url:[NSURL URLWithString:url]
+                                      title:text
+                                       type:SSDKContentTypeAuto];
+    [ShareSDK share:typeUI
+         parameters:shareParams
+     onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+         
+         switch (state) {
+             case SSDKResponseStateSuccess:
+             {
+                 if (typeUI == SSDKPlatformTypeCopy) {
+                     NSLog(@"复制成功~");
+                 } else {
+                     NSLog(@"分享成功~");
+                 }
+             }
+                 break;
+             case SSDKResponseStateFail:
+             {
+                 NSLog(@"分享失败~");
+             }
+                 break;
+             case SSDKResponseStateCancel:
+             {
+                 NSLog(@"分享取消~");
+             }
+                 break;
+             default:
+                 break;
+         }
+     }];
+
+//    if (index == 0) {
+//        
+//        NSLog(@"000");
+//        
+//    }else if (index== 1){
+//        
+//        NSLog(@"111");
+//        
+//    }else{
+//        
+//        NSLog(@"222");
+//        
+//    }
 
 }
 
@@ -312,7 +371,11 @@
                     self.phoneNmber = [[responseData objectForKey:@"data"] objectForKey:@"phone"];
                     self.userName.text =[[responseData objectForKey:@"data"] objectForKey:@"username"];
                     self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
-                    
+                    self.recommand_1 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"zhaishi"]];
+                    self.recommand_2 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"kaihang"]];
+                    self.recommand_3 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"jiezhai"]];
+                    self.recommand_4 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"huiyuan"]];
+
                     if ([[[responseData objectForKey:@"data"] objectForKey:@"image"] isEqualToString:@""]) {
                         
                         self.headerImage.image = [UIImage imageNamed:@"head-portrait"];
@@ -570,19 +633,19 @@
         
         if ([ZJUtil getUserLogin]) {
             // 推荐备案数
-            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d个",10000]];
+            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@个",self.recommand_1]];
             [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
             // 推荐行长
-            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d个",1000]];
+            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@个",self.recommand_2]];
             
             [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
             // 解债数
-            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d个",100]];
+            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@个",self.recommand_3]];
             
             [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
             
-            // 推荐行长数
-            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d个",10]];
+            // 推荐会员数
+            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@个",self.recommand_4]];
             
             [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
             

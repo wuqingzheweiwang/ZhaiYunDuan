@@ -88,6 +88,7 @@
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                NSLog(@"%@",responseData);
                 if ([[responseData objectForKey:@"message"]isEqualToString:@"没有权限"]) {
                     backview.hidden=NO;
                     DebtMangerRersonTable.hidden=YES;

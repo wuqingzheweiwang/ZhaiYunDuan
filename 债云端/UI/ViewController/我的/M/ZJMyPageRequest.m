@@ -27,7 +27,7 @@
 /*
  * 推荐行长列表
  */
-+(void)GetRecommandBankRequestWithActions:(NSString *)action result:(result)result
++(void)GETRecommandBankRequestWithActions:(NSString *)action result:(result)result
 {
     [[ZJDataRequest shareInstance]getDataWithURLString:action
                                          andParameters:nil
@@ -40,7 +40,7 @@
 /*
  * 我的会员列表
  */
-+(void)GetMyMemberListRequestWithActions:(NSString *)action result:(result)result
++(void)GETMyMemberListRequestWithActions:(NSString *)action result:(result)result
 {
     [[ZJDataRequest shareInstance]getDataWithURLString:action
                                          andParameters:nil

@@ -62,28 +62,28 @@
     self.NameTextLabel.width=Kwidth2;
     self.NameTextLabel.height=Kheight;
     self.NameTextLabel.font = ZJ_TRUE_FONT(15);
-    //    self.NameTextLabel.text=item.deptname;
+    self.NameTextLabel.text=item.realName;
     
     self.phoneNumTextLabel.top=self.phoneNumberLabel.top;
     self.phoneNumTextLabel.left=self.phoneNumberLabel.right;
     self.phoneNumTextLabel.width=Kwidth2;
     self.phoneNumTextLabel.height=Kheight;
     self.phoneNumTextLabel.font = ZJ_TRUE_FONT(15);
-    //    self.phoneNumTextLabel.text=item.deptidCode;
-    
+    self.phoneNumTextLabel.text=item.phoneNumber;
+
     self.adressTextLabel.top=self.adressLabel.top;
     self.adressTextLabel.left=self.adressLabel.right;
     self.adressTextLabel.width=Kwidth2;
     self.adressTextLabel.height=Kheight;
     self.adressTextLabel.font = ZJ_TRUE_FONT(15);
-    //    self.phoneNumTextLabel.text=item.deptidCode;
+    self.adressTextLabel.text=item.address;
     
     self.debtTextTypeLabel.top=self.debtTypeLabel.top;
     self.debtTextTypeLabel.left=self.debtTypeLabel.right;
     self.debtTextTypeLabel.width=Kwidth2;
     self.debtTextTypeLabel.height=Kheight;
     self.debtTextTypeLabel.font = ZJ_TRUE_FONT(15);
-    //    self.phoneNumTextLabel.text=item.deptidCode;
+    self.debtTextTypeLabel.text=item.type;
     
     self.lineView.top= self.debtTextTypeLabel.bottom+TRUE_1(10);
     self.lineView.left=0;

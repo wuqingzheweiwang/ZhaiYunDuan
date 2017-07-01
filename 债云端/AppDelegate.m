@@ -12,6 +12,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "WXApi.h"
 #import "WXApiManager.h"
+#import "ZJShareManager.h"
 #define USHARE_DEMO_APPKEY  @""
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -102,7 +103,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     /************** 支付 *****************/
     [WXApi registerApp:@"wx92b0f09429075038" withDescription:@"demo 2.0"];
-    
+    /************** 分享 *****************/
+    ZJShareManager *registerManager = [[ZJShareManager alloc] init];
+    [registerManager finishLaunchOption:launchOptions];
     
 
     

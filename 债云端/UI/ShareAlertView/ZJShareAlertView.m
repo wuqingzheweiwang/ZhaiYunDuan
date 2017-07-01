@@ -7,11 +7,12 @@
 //
 
 #import "ZJShareAlertView.h"
-
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 @implementation ZJShareAlertView
 {
-    NSMutableArray *imageArr;
-    NSMutableArray *titleArr;
+    NSMutableArray *_imageArr;
+    NSMutableArray *_titleArr;
     UIImageView *QRImageView;
 }
 - (id)initWithHeaderImage:(NSURL *)imageUrl withPersonName:(NSString *)name withCommandCode:(NSString *)recommandecode withQRUrl:(NSURL *)QRurl
@@ -178,13 +179,14 @@
     bottomScrollView.left = 0;
     bottomScrollView.width = sammallView.width;
     bottomScrollView.height = sammallView.height - shareLabel.bottom;
-    imageArr = [NSMutableArray arrayWithObjects:@"wechat-moments",@"wechat-friends",@"sina", nil];
-    titleArr = [NSMutableArray arrayWithObjects:@"微信朋友圈",@"微信好友",@"新浪微博", nil];
-    for (int a = 0; a <imageArr.count; a++) {
+    _imageArr = [NSMutableArray arrayWithObjects:@"wechat-moments",@"wechat-friends",@"sina", nil];
+    _titleArr = [NSMutableArray arrayWithObjects:@"微信朋友圈",@"微信好友",@"新浪微博", nil];
+    
+    for (int a = 0; a <_imageArr.count; a++) {
         
         UIButton *scorllShareView = [UIButton buttonWithType:UIButtonTypeCustom];
         scorllShareView.frame = CGRectMake((sammallView.width/3) * a, 0, sammallView.width/3, bottomScrollView.height);
-        scorllShareView.tag = a+2000;
+        scorllShareView.tag = a;
         [scorllShareView addTarget:self action:@selector(touchShareToBut:) forControlEvents:UIControlEventTouchUpInside];
         [bottomScrollView addSubview:scorllShareView];
         
@@ -195,8 +197,8 @@
         shareToBut.left = scorllShareView.width/2 - shareToBut.width/2;
         shareToBut.layer.masksToBounds = YES;
         shareToBut.layer.cornerRadius = shareToBut.width/2;
-        [shareToBut setImage:[UIImage imageNamed:imageArr[a]] forState:UIControlStateNormal];
-        shareToBut.tag = a+2000;
+        [shareToBut setImage:[UIImage imageNamed:_imageArr[a]] forState:UIControlStateNormal];
+        shareToBut.tag = a;
         [shareToBut addTarget:self action:@selector(touchShareToBut:) forControlEvents:UIControlEventTouchUpInside];
         [scorllShareView addSubview:shareToBut];
 
@@ -207,9 +209,9 @@
         shareToLabel.height = TRUE_1(12);
         shareToLabel.titleLabel.font = ZJ_TRUE_FONT(12);
         shareToLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [shareToLabel setTitle:titleArr[a] forState:UIControlStateNormal];
+        [shareToLabel setTitle:_titleArr[a] forState:UIControlStateNormal];
         [shareToLabel setTitleColor:ZJColor_666666 forState:UIControlStateNormal];
-        shareToLabel.tag = a+2000;
+        shareToLabel.tag = a;
         [shareToLabel addTarget:self action:@selector(touchShareToBut:) forControlEvents:UIControlEventTouchUpInside];
 
         [scorllShareView addSubview:shareToLabel];
@@ -219,7 +221,7 @@
 
     bottomScrollView.bounces = NO;
     bottomScrollView.pagingEnabled = NO;
-    bottomScrollView.contentSize = CGSizeMake(bottomScrollView.width *(imageArr.count/3), 0);
+    bottomScrollView.contentSize = CGSizeMake(bottomScrollView.width *(_imageArr.count/3), 0);
 
     [sammallView addSubview:bottomScrollView];
 
