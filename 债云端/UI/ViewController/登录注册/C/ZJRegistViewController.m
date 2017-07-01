@@ -29,6 +29,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *passWordTextField;
 @property (weak, nonatomic) IBOutlet UILabel *confirmPassWordLabel;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPassWordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *commandLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *commandTextLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *yesBut;
 @property (weak, nonatomic) IBOutlet UILabel *readAndagreeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *protorclBut;
@@ -181,8 +185,26 @@
     // 密文输入
     _confirmPassWordTextField.secureTextEntry = YES;
 
+    // 推荐码Label
+    _commandLabel.top = _confirmPassWordLabel.bottom+TRUE_1(20);
+    _commandLabel.left = _confirmPassWordLabel.left;
+    _commandLabel.width = _confirmPassWordLabel.width;
+    _commandLabel.height = _confirmPassWordLabel.height;
+    _commandLabel.font = ZJ_TRUE_FONT(15);
+
+    // 推荐码
+    _commandTextLabel.top = _commandLabel.top;
+    _commandTextLabel.left = _confirmPassWordTextField.left;
+    _commandTextLabel.width = _confirmPassWordTextField.width;
+    _commandTextLabel.height = _confirmPassWordTextField.height;
+    _commandTextLabel.delegate = self;
+    _commandTextLabel.layer.borderWidth=1;
+    _commandTextLabel.layer.borderColor =[UIColor lightGrayColor].CGColor;
+    _commandTextLabel.layer.masksToBounds = YES;
+    _commandTextLabel.layer.cornerRadius = 5;
+    
     // 同意协议
-    _yesBut.top = _confirmPassWordLabel.bottom+TRUE_1(52/2);
+    _yesBut.top = _commandTextLabel.bottom+TRUE_1(52/2);
     _yesBut.left = _confirmPassWordLabel.left;
     _yesBut.width = TRUE_1(25/2);
     _yesBut.height = _yesBut.width;

@@ -12,44 +12,50 @@
 
 
 @end
-@implementation ZJMyMemberHomeItem
-
-+ (ZJMyMemberHomeItem *)itemForDictionary:(NSDictionary *)dic{
-    
-    
-    ZJMyMemberHomeItem *item = [[ZJMyMemberHomeItem alloc] init];
-    if ([dic objectForKey:@"id"]) {
-        item.deptid=[NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
-    }
-    if ([dic objectForKey:@"idCode"]) {
-        item.deptidCode=[NSString stringWithFormat:@"%@",[dic objectForKey:@"idCode"]];
-    }
-    if ([dic objectForKey:@"name"]) {
-        item.deptname=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
-    }
-    return item;
-}
-
-
-@end
 
 @implementation ZJRecomBankHomeItem
 
 + (ZJRecomBankHomeItem *)itemForDictionary:(NSDictionary *)dic{
     
-    
     ZJRecomBankHomeItem *item = [[ZJRecomBankHomeItem alloc] init];
-    if ([dic objectForKey:@"id"]) {
-        item.deptid=[NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
-    }
-    if ([dic objectForKey:@"idCode"]) {
-        item.deptidCode=[NSString stringWithFormat:@"%@",[dic objectForKey:@"idCode"]];
-    }
     if ([dic objectForKey:@"name"]) {
-        item.deptname=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
+        item.realName=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
     }
+    if ([dic objectForKey:@"phonenumber"]) {
+        item.phoneNumber=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonenumber"]];
+    }
+    if ([dic objectForKey:@"address"]) {
+        item.address=[NSString stringWithFormat:@"%@",[dic objectForKey:@"address"]];
+    }
+    if ([dic objectForKey:@"type"]) {
+        item.type=[NSString stringWithFormat:@"%@",[dic objectForKey:@"type"]];
+    }
+    
+    return item;
+}
+
+@end
+
+
+@implementation ZJReMyMemberHomeItem
+
++ (ZJReMyMemberHomeItem *)itemForDictionary:(NSDictionary *)dic{
+    
+    
+    ZJReMyMemberHomeItem *item = [[ZJReMyMemberHomeItem alloc] init];
+    if ([dic objectForKey:@"name"]) {
+        item.realName=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
+    }
+    if ([dic objectForKey:@"phonenumber"]) {
+        item.phoneNumber=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonenumber"]];
+    }
+    
     return item;
 }
 
 
 @end
+
+
+
+

@@ -17,11 +17,11 @@ typedef void(^result)(BOOL success, id responseData);
 /*
  * 推荐行长列表
  */
-+(void)GetRecommandBankRequestWithActions:(NSString *)action result:(result)result;
++(void)GETRecommandBankRequestWithActions:(NSString *)action result:(result)result;
 /*
  * 我的会员列表
  */
-+(void)GetMyMemberListRequestWithActions:(NSString *)action result:(result)result;
++(void)GETMyMemberListRequestWithActions:(NSString *)action result:(result)result;
 /*
  * 我的钱包POST
  */

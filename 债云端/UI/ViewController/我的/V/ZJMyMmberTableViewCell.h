@@ -10,7 +10,7 @@
 #import "ZJMyPageItem.h"
 
 @interface ZJMyMmberTableViewCell : UITableViewCell
-@property (nonatomic, strong) ZJMyMemberHomeItem *item;
+@property (nonatomic, strong) ZJReMyMemberHomeItem *item;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ImageFlag;
 @property (weak, nonatomic) IBOutlet UILabel *ImageFlagLabel;
@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
 
--(void)setitem:(ZJMyMemberHomeItem *)item;
+-(void)setitem:(ZJReMyMemberHomeItem *)item;
 + (CGFloat)getCellHeight;
 
 @end

@@ -17,7 +17,7 @@
    
 
 }
--(void)setitem:(ZJMyMemberHomeItem *)item
+-(void)setitem:(ZJReMyMemberHomeItem *)item
 {
     _item = item;
     //标志
@@ -50,14 +50,14 @@
     self.NameTextLabel.width=Kwidth2;
     self.NameTextLabel.height=Kheight;
     self.NameTextLabel.font = ZJ_TRUE_FONT(15);
-//    self.NameTextLabel.text=item.deptname;
+    self.NameTextLabel.text=item.realName;
     
     self.phoneNumTextLabel.top=self.phoneNumberLabel.top;
     self.phoneNumTextLabel.left=self.phoneNumberLabel.right;
     self.phoneNumTextLabel.width=Kwidth2;
     self.phoneNumTextLabel.height=Kheight;
     self.phoneNumTextLabel.font = ZJ_TRUE_FONT(15);
-//    self.phoneNumTextLabel.text=item.deptidCode;
+    self.phoneNumTextLabel.text=item.phoneNumber;
     
     
     self.lineView.top= self.phoneNumTextLabel.bottom +TRUE_1(5);

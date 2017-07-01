@@ -76,32 +76,37 @@
     [self requestRecommandBankPersonDataRequest];
 }
 
-// 我的会员网络请求
+// 推荐行长网络请求
 - (void)requestRecommandBankPersonDataRequest
 {
-    
-    NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=%ld",(long)_page];
-    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ZJMyPageRequest GetMyMemberListRequestWithActions:action result:^(BOOL success, id responseData) {
-        //        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    NSString * action=[NSString stringWithFormat:@"api/my/tuijianhangzhang?ps=10&pn=%ld",(long)_page];
+
+    [ZJMyPageRequest GETRecommandBankRequestWithActions:action result:^(BOOL success, id responseData) {
+        
+        [self performSelectorOnMainThread:@selector(showProgress) withObject:self waitUntilDone:YES];
+        
         if (success) {
+            
+            [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
+            
             if (_page==1) {
+                
                 [self.tabledataSource removeAllObjects];
+                
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                if ([[responseData objectForKey:@"message"]isEqualToString:@"没有权限"]) {
-                    [self.tableView reloadData];
-                }else{
-                    
-                    NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                    for (int i=0; i<itemarray.count; i++) {
-                        ZJRecomBankHomeItem * item=[ZJRecomBankHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
-                        
-                        [self.tabledataSource addObject:item];
-                    }
-                    [self.tableView reloadData];
+                
+                NSLog(@"%@",responseData);
+                
+                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                for (int i=0; i<itemarray.count; i++) {
+                    ZJRecomBankHomeItem * item=[ZJRecomBankHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
+                    [self.tabledataSource addObject:item];
                 }
+                [self.tableView reloadData];
+                
             }else{
+                
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
             
@@ -111,7 +116,10 @@
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
+
+        
 }
+
 
 -(NSMutableArray *)tabledataSource
 {

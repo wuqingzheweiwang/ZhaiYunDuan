@@ -76,27 +76,33 @@
 // 我的会员网络请求
 - (void)requestMyMemberListInfo
 {
+    NSString * action=[NSString stringWithFormat:@"api/my/tuijianhuiyuan?ps=10&pn=%ld",(long)_page];
     
-    NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=%ld",(long)_page];
-    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ZJMyPageRequest GetMyMemberListRequestWithActions:action result:^(BOOL success, id responseData) {
-        //        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [ZJMyPageRequest GETMyMemberListRequestWithActions:action result:^(BOOL success, id responseData) {
+     
+        [self performSelectorOnMainThread:@selector(showProgress) withObject:self waitUntilDone:YES];
+        
         if (success) {
+            
+            [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
+            
             if (_page==1) {
+                
                 [self.tabledataSource removeAllObjects];
+                
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                if ([[responseData objectForKey:@"message"]isEqualToString:@"没有权限"]) {
-                    [self.tableView reloadData];
-                }else{
-
-                    NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                    for (int i=0; i<itemarray.count; i++) {
-                        ZJMyMemberHomeItem * item=[ZJMyMemberHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
-                        [self.tabledataSource addObject:item];
-                    }
-                    [self.tableView reloadData];
+                
+                NSLog(@"%@",responseData);
+                
+                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                for (int i=0; i<itemarray.count; i++) {
+                    ZJReMyMemberHomeItem * item=[ZJReMyMemberHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
+                    
+                    [self.tabledataSource addObject:item];
                 }
+                [self.tableView reloadData];
+                
             }else{
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
@@ -106,8 +112,11 @@
         }
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-    }];
-}
+       
+          }];
+    
+    }
+     
 
 -(NSMutableArray *)tabledataSource
 {

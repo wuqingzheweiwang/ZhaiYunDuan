@@ -95,9 +95,6 @@
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
-                
-                
-                
                 [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
                 
 //                self.accountBlance = [[responseData objectForKey:@"data"]objectForKey:@"balance"];
