@@ -24,7 +24,7 @@
                 <outlet property="passWordLabel" destination="5j5-Xn-8YB" id="Yv0-d5-m3b"/>
                 <outlet property="passWordTextField" destination="Z6Q-6I-REd" id="7Gg-5j-KGR"/>
                 <outlet property="protorclBut" destination="QJo-Vt-6Yh" id="EOr-C5-rRK"/>
-                <outlet property="readAndagreeLabel" destination="Zzb-b4-Zd1" id="yn4-Qo-Y8j"/>
+                <outlet property="readAndagreeLabel" destination="QNL-AV-eBE" id="Bwk-QX-Xc2"/>
                 <outlet property="registerBut" destination="U9r-4m-N42" id="DhI-6w-oHU"/>
                 <outlet property="sendVerification" destination="BSO-2a-Sl8" id="HqU-0Z-qMH"/>
                 <outlet property="telePhoneNumberLabel" destination="MB1-R5-SrD" id="Wbg-jF-gdk"/>
@@ -108,13 +108,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="阅读并同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-b4-Zd1">
-                    <rect key="frame" x="64" y="285" width="65" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9r-4m-N42">
                     <rect key="frame" x="39" y="323" width="296" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -175,6 +168,14 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNL-AV-eBE">
+                    <rect key="frame" x="64" y="289" width="65" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="阅读并同意">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <point key="canvasLocation" x="-133.5" y="78.5"/>

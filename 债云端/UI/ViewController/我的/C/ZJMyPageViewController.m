@@ -371,6 +371,13 @@ static id _publishContent;
                     self.phoneNmber = [[responseData objectForKey:@"data"] objectForKey:@"phone"];
                     self.userName.text =[[responseData objectForKey:@"data"] objectForKey:@"username"];
                     self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
+                    if ([self.recommand_1 isEqualToString:@""]) {
+                        self.recommand_1 = [NSString stringWithFormat:@"%d个",0];
+                        self.recommand_2 = self.recommand_1;
+                        self.recommand_3 =  self.recommand_2;
+                        self.recommand_4 = self.recommand_3;
+
+                    }
                     self.recommand_1 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"zhaishi"]];
                     self.recommand_2 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"kaihang"]];
                     self.recommand_3 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"jiezhai"]];
@@ -871,7 +878,6 @@ static id _publishContent;
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
 
                 
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
             }else{
                 
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
