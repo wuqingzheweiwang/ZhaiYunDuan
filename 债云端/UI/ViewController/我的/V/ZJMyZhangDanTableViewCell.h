@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJMyPageItem.h"
 
 @interface ZJMyZhangDanTableViewCell : UITableViewCell
 
@@ -22,4 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *speratyView;
 
+@property (nonatomic, strong) ZJMyZhangDanHomeItem *item;
+
+-(void)setitem:(ZJMyZhangDanHomeItem *)item;
++ (CGFloat)getCellHeight;
 @end

@@ -67,15 +67,12 @@ static id _publishContent;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.recommand_1=@"0";
-    self.recommand_2=@"0";
-    self.recommand_3=@"0";
-    self.recommand_4=@"0";
-
+   
     
     [self setMineUI];
     [self resesmallProtrolView];
 
+    NSLog(@"%@",[ZJUserInfo getUserIDForUserToken]);
 
 }
 
@@ -152,6 +149,11 @@ static id _publishContent;
 }
 -(void)setMineUI
 {
+    self.recommand_1=@"0";
+    self.recommand_2=self.recommand_1;
+    self.recommand_3=self.recommand_2;
+    self.recommand_4=self.recommand_3;
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
     

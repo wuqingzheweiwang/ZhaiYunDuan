@@ -8,15 +8,20 @@
 
 #import "ZJMyZhangDanViewController.h"
 #import "ZJMyZhangDanTableViewCell.h"
+#import "ZJMyPageItem.h"
+
 @interface ZJMyZhangDanViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) NSMutableArray *tableViewdataSource;
-@property (nonatomic , strong) NSArray *tableViewSectionHeader;
+@property (nonatomic , strong) NSMutableArray *tableViewSectionHeader;
 @property (nonatomic , strong) UITableView *tableView;
 
 @end
 
 @implementation ZJMyZhangDanViewController
+{
+        NSInteger  _page;
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -27,7 +32,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [NSThread detachNewThreadSelector:@selector(postMyZahngDanDataRequest) toTarget:self withObject:nil];
+    [self postMyZahngDanDataRequest];
 }
 -(void)setNavcaition
 {
@@ -42,9 +47,33 @@
 -(void)setMyZhangDanUI
 {
     [self.view addSubview:self.tableView];
+        //刷新
+        __weak ZJMyZhangDanViewController *weakSelf = self;
+        self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [weakSelf reloadFirstData];
+        }];
     
-    
+        //加载
+        self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf loadMoreData];
+        }];
+
 }
+
+
+-(void)reloadFirstData
+{
+    //@weakify(self) 防止循环引用
+    //@strongify(self) 防止指针消失
+    _page=1;
+    [self postMyZahngDanDataRequest];
+}
+-(void)loadMoreData
+{
+    _page+=1;
+    [self postMyZahngDanDataRequest];
+}
+
 
 // 我的账单数据请求
 -(void)postMyZahngDanDataRequest
@@ -55,72 +84,62 @@
     // 网络请求
     [ZJMyPageRequest zjPOSTMyZhangDanRequestWithParams:dic result:^(BOOL success, id responseData) {
         
-        [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
-        
-        // 成功
         if (success) {
             
-            NSLog(@"1111111%@",responseData);
-            // 后台设定成功
-            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+            [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
+            
+        if (_page==1) {
+            
+                [self.tableViewdataSource removeAllObjects];
+            
+                        }
+        if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+            
+                NSLog(@"%@",responseData);
+            
+            NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+            for (int i=0; i<itemarray.count; i++) {
+                ZJMyZhangDanHomeItem * item=[ZJMyZhangDanHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
+            
+                [self.tableViewdataSource addObject:item];
                 
-                
-                
-                
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
-                
-                
-                // 后台设定失败
-            }else if ([[responseData objectForKey:@"state"]isEqualToString:@"warn"]) {
-                
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
+                [self.tableView reloadData];
             
-        }else{
-            
-            [ZJUtil showBottomToastWithMsg:@"请求失败"];
-        }
-        
-    }];
-    
+            }else{
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                        }
+                        
+            }else{
+                [ZJUtil showBottomToastWithMsg:@"请求失败"];
+                    }
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
+                    
+                }];
 
     
 }
 
 
-// 刷新UI
--(void)reloadUI
-{
-    
-    
-}
 
 -(NSMutableArray *)tableViewdataSource
 {
     
     if (_tableViewdataSource == nil) {
         
-        _tableViewdataSource = [NSMutableArray arrayWithObjects:
-    @[
-  @[@"今天",@"05-01",@"head",@"+350.00",@"呵呵哈哈哈"],                                 @[@"昨天",@"05-01",@"head",@"+350.00",@"吼吼"],                                  @[@"周二",@"05-02",@"head",@"+350.00",@"十三反反复复所"],                                  ],
-    @[
-  @[@"周三",@"04-11",@"head-portrait",@"+1250.00",@"方式的的"],
-  @[@"周五",@"04-11",@"head-portrait",@"+1350.00",@"大葱"],
-  @[@"周六",@"04-12",@"head",@"+1350.00",@"讲课我V领是我去问问"],
-  ],
-                                nil];
+        _tableViewdataSource = [NSMutableArray array];
     }
     return _tableViewdataSource;
 }
 
--(NSArray *)tableViewSectionHeader
+-(NSMutableArray *)tableViewSectionHeader
 {
     if (_tableViewSectionHeader == nil) {
         
-        _tableViewSectionHeader =@[@"05/2017",@"04/2017"];
+        _tableViewSectionHeader =[NSMutableArray array];
     }
     return _tableViewSectionHeader;
-
 }
 
 -(UITableView *)tableView
@@ -159,11 +178,8 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.weekLabel.text = self.tableViewdataSource[indexPath.section][indexPath.row][0];
-    cell.monthLabel.text = self.tableViewdataSource[indexPath.section][indexPath.row][1];
-    cell.imageViewH.image = [UIImage imageNamed:self.tableViewdataSource[indexPath.section][indexPath.row][2]];
-    cell.textLabelH.text = self.tableViewdataSource[indexPath.section][indexPath.row][3];
-    cell.detialTextLabel.text = self.tableViewdataSource[indexPath.section][indexPath.row][4];
+    [cell setitem:[self.tableViewdataSource objectAtIndex:indexPath.row]];
+
     
     return cell;
 }
@@ -172,7 +188,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return TRUE_1(100/2);
+    return [ZJMyZhangDanTableViewCell getCellHeight];
     
 }
 

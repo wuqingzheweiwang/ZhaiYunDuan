@@ -38,6 +38,17 @@
 
 @end
 
+/**
+ *  我的账单主界面cell的model
+ */
+@interface ZJMyZhangDanHomeItem : NSObject
+@property (nonatomic, strong) NSString *amount;
+@property (nonatomic, strong) NSString *phoneNumber;
+
++ (ZJMyZhangDanHomeItem *)itemForDictionary:(NSDictionary *)dic;
+
+@end
+
 
 
 

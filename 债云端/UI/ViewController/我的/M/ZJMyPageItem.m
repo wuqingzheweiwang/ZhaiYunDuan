@@ -56,6 +56,25 @@
 
 @end
 
+@implementation ZJMyZhangDanHomeItem
+
++ (ZJMyZhangDanHomeItem *)itemForDictionary:(NSDictionary *)dic{
+    
+    
+    ZJMyZhangDanHomeItem *item = [[ZJMyZhangDanHomeItem alloc] init];
+    if ([dic objectForKey:@"name"]) {
+        item.amount=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
+    }
+    if ([dic objectForKey:@"phonenumber"]) {
+        item.phoneNumber=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonenumber"]];
+    }
+    
+    return item;
+}
+
+
+@end
+
 
 
 
