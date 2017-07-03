@@ -34,7 +34,6 @@ static id _publishContent;
     ZJShareAlertView *zjShareView;
     
     NSMutableArray *_shareTypeArr;
-    
 }
 
 @property (nonatomic , strong) NSMutableArray *tableViewdataSource;
@@ -68,6 +67,11 @@ static id _publishContent;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.recommand_1=@"0";
+    self.recommand_2=@"0";
+    self.recommand_3=@"0";
+    self.recommand_4=@"0";
+
     
     [self setMineUI];
     [self resesmallProtrolView];
@@ -77,10 +81,6 @@ static id _publishContent;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    // 个人页网络请求
-    NSLog(@"token2:%@",[ZJUserInfo getUserIDForUserToken]);
-    NSLog(@"login2:%d",[ZJUtil getUserLogin]);
-
    
     self.navigationController.navigationBarHidden = YES;
     // 判断登录状态
@@ -226,7 +226,6 @@ static id _publishContent;
     _isVIPLabel.left = _isVIPImageView.left+TRUE_1(5);
     _isVIPLabel.width = _isVIPImageView.width - TRUE_1(5)*2;
     _isVIPLabel.height = _isVIPImageView.height;
-    _isVIPLabel.text = @"普通会员";
     [_isVIPLabel setFont:ZJ_TRUE_FONT_1(10)];
     
     //推荐编码Label
@@ -371,13 +370,14 @@ static id _publishContent;
                     self.phoneNmber = [[responseData objectForKey:@"data"] objectForKey:@"phone"];
                     self.userName.text =[[responseData objectForKey:@"data"] objectForKey:@"username"];
                     self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
-                    if ([self.recommand_1 isEqualToString:@""]) {
-                        self.recommand_1 = [NSString stringWithFormat:@"%d个",0];
-                        self.recommand_2 = self.recommand_1;
-                        self.recommand_3 =  self.recommand_2;
-                        self.recommand_4 = self.recommand_3;
-
+                    
+                   
+                    if ([ZJUtil getUserIsDebtBank]) {
+                        self.isVIPLabel.text = [[responseData objectForKey:@"data"] objectForKey:@"hangzhang"];
+                    }else{
+                        self.isVIPLabel.text = @"普通会员";
                     }
+                   
                     self.recommand_1 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"zhaishi"]];
                     self.recommand_2 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"kaihang"]];
                     self.recommand_3 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"jiezhai"]];

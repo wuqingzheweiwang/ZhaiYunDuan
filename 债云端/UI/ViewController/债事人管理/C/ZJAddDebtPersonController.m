@@ -475,17 +475,16 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     if (textField.tag==2005){
         //债事企业
-        
-            for (UITextField* textFieldsubView in self.view.subviews)
-            {
-                [textFieldsubView resignFirstResponder];
-            }
+     for (UITextField* textFieldsubView in self.view.subviews)
+     {
+        [textFieldsubView resignFirstResponder];
+     }
             
-            // 弹出视图
-            JHPickView *picker = [[JHPickView alloc]initWithFrame:self.view.bounds];
-            picker.delegate = self;
-            picker.arrayType = AreaArray;
-            [self.view addSubview:picker];
+        // 弹出视图
+        JHPickView *picker = [[JHPickView alloc]initWithFrame:self.view.bounds];
+        picker.delegate = self;
+        picker.arrayType = AreaArray;
+        [self.view addSubview:picker];
 
         
 
