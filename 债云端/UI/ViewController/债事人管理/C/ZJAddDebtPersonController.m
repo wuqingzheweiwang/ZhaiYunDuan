@@ -10,7 +10,8 @@
 #import "ZJDebtPersonInfoTableViewCell.h"
 #import "ZJAddPhotosViewController.h"
 #import <objc/runtime.h>
-@interface ZJAddDebtPersonController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+#import "JHPickView.h"
+@interface ZJAddDebtPersonController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,JHPickerDelegate>
 
 @end
 
@@ -474,7 +475,21 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     if (textField.tag==2005){
         //债事企业
-    
+        
+            for (UITextField* textFieldsubView in self.view.subviews)
+            {
+                [textFieldsubView resignFirstResponder];
+            }
+            
+            // 弹出视图
+            JHPickView *picker = [[JHPickView alloc]initWithFrame:self.view.bounds];
+            picker.delegate = self;
+            picker.arrayType = AreaArray;
+            [self.view addSubview:picker];
+
+        
+
+
     }else if (textField.tag==3003){
        //债事人
         
@@ -510,6 +525,18 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - JHPickerDelegate
+
+-(void)PickerSelectorInAllAreaDic:(NSDictionary *)allArea provinceID:(NSString *)prvoinceId cityID:(NSString *)cityId areaID:(NSString *)areaId{
+    
+    provinceCode1 = prvoinceId;
+    cityCode1 = cityId;
+    prCode1 = areaId;
+    
+    NSLog(@"%@ %@ %@",provinceCode1,cityCode1,prCode1);
+    NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
+    NSLog(@"%@",cityArea);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
