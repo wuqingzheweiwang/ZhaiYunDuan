@@ -40,11 +40,26 @@
     
     NSMutableDictionary * debtPersonDic;   //债事个人
     NSMutableDictionary * debtCompanyDic;    //债事公司
+    
+    NSString * provinceCode1;   //企业
+    NSString * cityCode1;
+    NSString * prCode1;
+    
+    NSString * provinceCode2;  //自然人
+    NSString * cityCode2;
+    NSString * prCode2;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     debtPersonDic=[NSMutableDictionary dictionary];
     debtCompanyDic=[NSMutableDictionary dictionary];
+    provinceCode1=@"";
+    cityCode1=@"";
+    prCode1=@"";
+    provinceCode2=@"";
+    cityCode2=@"";
+    prCode2=@"";
+    
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"添加债事人"];
     keyArray1=[NSMutableArray arrayWithObjects:@"组织机构代码：",@"债事企业名称：",@"企业法人姓名：",@"法人身份证号：",@"所属省：",@"所属行业：",@"联系电话：",@"注册资本：",@"电子邮箱：",@"QQ：",@"微信：", nil];
     valueArray1=[NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"", nil];
@@ -125,9 +140,9 @@
         
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:0] forKey:@"organCode"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:1] forKey:@"debtCompanyName"];
-        [debtCompanyDic setObject:@"" forKey:@"provinceCode"];
-        [debtCompanyDic setObject:@"" forKey:@"cityCode"];
-        [debtCompanyDic setObject:@"" forKey:@"prCode"];
+        [debtCompanyDic setObject:provinceCode1 forKey:@"provinceCode"];
+        [debtCompanyDic setObject:cityCode1 forKey:@"cityCode"];
+        [debtCompanyDic setObject:prCode1 forKey:@"prCode"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:2] forKey:@"legalPersonName"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:3] forKey:@"legalPersonId"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:5] forKey:@"category"];
@@ -141,9 +156,9 @@
         
         [debtPersonDic setObject:[valueArray2 objectAtIndex:0] forKey:@"idCode"];
         [debtPersonDic setObject:[valueArray2 objectAtIndex:1] forKey:@"name"];
-        [debtPersonDic setObject:@"" forKey:@"provinceCode"];
-        [debtPersonDic setObject:@"" forKey:@"cityCode"];
-        [debtPersonDic setObject:@"" forKey:@"prCode"];
+        [debtPersonDic setObject:provinceCode2 forKey:@"provinceCode"];
+        [debtPersonDic setObject:cityCode2 forKey:@"cityCode"];
+        [debtPersonDic setObject:prCode2 forKey:@"prCode"];
         [debtPersonDic setObject:[valueArray2 objectAtIndex:3] forKey:@"phoneNumber"];
         [debtPersonDic setObject:[valueArray2 objectAtIndex:4] forKey:@"contactAddress"];
         [debtPersonDic setObject:[valueArray2 objectAtIndex:5] forKey:@"email"];
@@ -398,8 +413,8 @@
         [valueArray1 removeObjectAtIndex:3];
         [valueArray1 insertObject:textField.text atIndex:3];
     }else if (textField.tag==2005){   //所属省
-        [valueArray1 removeObjectAtIndex:4];
-        [valueArray1 insertObject:textField.text atIndex:4];
+//        [valueArray1 removeObjectAtIndex:4];
+//        [valueArray1 insertObject:textField.text atIndex:4];
     }else if (textField.tag==2006){   //所属行业
         [valueArray1 removeObjectAtIndex:5];
         [valueArray1 insertObject:textField.text atIndex:5];
@@ -425,8 +440,8 @@
         [valueArray2 removeObjectAtIndex:1];
         [valueArray2 insertObject:textField.text atIndex:1];
     }else if (textField.tag==3003){   //所属省
-        [valueArray2 removeObjectAtIndex:2];
-        [valueArray2 insertObject:textField.text atIndex:2];
+//        [valueArray2 removeObjectAtIndex:2];
+//        [valueArray2 insertObject:textField.text atIndex:2];
     }else if (textField.tag==3004){   //联系电话
         [valueArray2 removeObjectAtIndex:3];
         [valueArray2 insertObject:textField.text atIndex:3];
@@ -457,27 +472,37 @@
     
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    /* 获取当前cell的位置*/
-    /* 我们进行层次分析
-     * textView 是添加在cell上面的。所以 A =textView.superview 是cellcontentView.
-     * A.superview 则是 cell
-     */
-    CGFloat Hieght = textField.superview.superview.frame.origin.y;
-    /* 获取当前点击Cell的位置*/
-    CGFloat CurrentCellY = Hieght - scrollViewOffSetY;
-    /* 获取剩余高度*/
-    CGFloat lastHeight = ZJAPPHeight-64 - CurrentCellY-44-64;
+    if (textField.tag==2005){
+        //债事企业
     
-    remainingDistanceY = lastHeight;
-    
-    /* 获取键盘的开始高度*/
-    CGFloat keyBoardStart = 271;
-    if (remainingDistanceY<keyBoardStart) {
-        /* 获取差值*/
-        CGFloat differenceValue = keyBoardStart -remainingDistanceY;
-        beforeMigrationY = differenceValue;
-        [DebtPersonTable setContentOffset:CGPointMake(0, differenceValue + scrollViewOffSetY) animated:YES];
+    }else if (textField.tag==3003){
+       //债事人
+        
+        
+    }else{
+        /* 获取当前cell的位置*/
+        /* 我们进行层次分析
+         * textView 是添加在cell上面的。所以 A =textView.superview 是cellcontentView.
+         * A.superview 则是 cell
+         */
+        CGFloat Hieght = textField.superview.superview.frame.origin.y;
+        /* 获取当前点击Cell的位置*/
+        CGFloat CurrentCellY = Hieght - scrollViewOffSetY;
+        /* 获取剩余高度*/
+        CGFloat lastHeight = ZJAPPHeight-64 - CurrentCellY-44-64;
+        
+        remainingDistanceY = lastHeight;
+        
+        /* 获取键盘的开始高度*/
+        CGFloat keyBoardStart = 271;
+        if (remainingDistanceY<keyBoardStart) {
+            /* 获取差值*/
+            CGFloat differenceValue = keyBoardStart -remainingDistanceY;
+            beforeMigrationY = differenceValue;
+            [DebtPersonTable setContentOffset:CGPointMake(0, differenceValue + scrollViewOffSetY) animated:YES];
+        }
     }
+    
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
