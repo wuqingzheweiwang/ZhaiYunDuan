@@ -11,5 +11,6 @@
 @interface ZJDebtPersonInfoTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *InfotextFiled;
+@property (weak, nonatomic) IBOutlet UIButton *addressBtn;
 
 @end

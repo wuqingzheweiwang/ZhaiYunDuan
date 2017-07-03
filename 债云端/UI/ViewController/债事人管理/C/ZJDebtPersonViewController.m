@@ -85,7 +85,7 @@
 {
     NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=%ld",(long)_page];
     [ZJDebtPersonRequest GetDebtPersonManageListRequestWithActions:action result:^(BOOL success, id responseData) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         if (success) {
             if (_page==1) {
                 [_dataSource removeAllObjects];
@@ -109,10 +109,12 @@
             }else{
                  [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }else{
             [ZJUtil showBottomToastWithMsg:@"请求失败"];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [DebtMangerRersonTable.mj_header endRefreshing];
         [DebtMangerRersonTable.mj_footer endRefreshing];
     }];

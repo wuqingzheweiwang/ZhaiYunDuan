@@ -28,6 +28,11 @@
     self.InfotextFiled.textColor=ZJColor_333333;
     self.InfotextFiled.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, self.InfotextFiled.frame.size.height)];
     self.InfotextFiled.leftViewMode = UITextFieldViewModeAlways;
+    
+    self.addressBtn.top= self.titleLabel.top;
+    self.addressBtn.left=15+110+5;
+    self.addressBtn.height=33;
+    self.addressBtn.width=ZJAPPWidth-15-110-5-15;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
