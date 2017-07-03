@@ -62,9 +62,9 @@
     prCode2=@"";
     
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"添加债事人"];
-    keyArray1=[NSMutableArray arrayWithObjects:@"组织机构代码：",@"债事企业名称：",@"企业法人姓名：",@"法人身份证号：",@"所属省：",@"所属行业：",@"联系电话：",@"注册资本：",@"电子邮箱：",@"QQ：",@"微信：", nil];
+    keyArray1=[NSMutableArray arrayWithObjects:@"组织机构代码：",@"债事企业名称：",@"企业法人姓名：",@"法人身份证号：",@"所属地区：",@"所属行业：",@"联系电话：",@"注册资本：",@"电子邮箱：",@"QQ：",@"微信：", nil];
     valueArray1=[NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"", nil];
-    keyArray2=[NSMutableArray arrayWithObjects:@"身份证件号：",@"债事人名称：",@"所属省：",@"联系电话：",@"联系地址：",@"电子邮箱：",@"QQ：",@"微信：", nil];
+    keyArray2=[NSMutableArray arrayWithObjects:@"身份证件号：",@"债事人名称：",@"所属地区：",@"联系电话：",@"联系地址：",@"电子邮箱：",@"QQ：",@"微信：", nil];
     valueArray2=[NSMutableArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"",@"", nil];
     _Btntype=ZJDebtPersonCompany;
     _page=1;
@@ -98,7 +98,7 @@
             [ZJUtil showBottomToastWithMsg:@"请输入法人身份证号"];
             return;
         }else if ([[valueArray1 objectAtIndex:4]isEqualToString:@""]){
-            [ZJUtil showBottomToastWithMsg:@"请输入所属省"];
+            [ZJUtil showBottomToastWithMsg:@"请输入所属地区"];
             return;
         }else if ([[valueArray1 objectAtIndex:5]isEqualToString:@""]){
             [ZJUtil showBottomToastWithMsg:@"请输入所属行业"];
@@ -122,7 +122,7 @@
             [ZJUtil showBottomToastWithMsg:@"请输入债事人名称"];
             return;
         }else if ([[valueArray2 objectAtIndex:2]isEqualToString:@""]){
-            [ZJUtil showBottomToastWithMsg:@"请输入所属省"];
+            [ZJUtil showBottomToastWithMsg:@"请输入所属地区"];
             return;
         }else if ([[valueArray2 objectAtIndex:3]isEqualToString:@""]){
             [ZJUtil showBottomToastWithMsg:@"请输入联系电话"];
@@ -297,11 +297,13 @@
             cell.InfotextFiled.delegate=self;
             cell.InfotextFiled.placeholder=@"请输入法人身份证号";
             cell.InfotextFiled.tag=2004;
-        }else if ([cell.titleLabel.text isEqualToString:@"所属省："]){
+        }else if ([cell.titleLabel.text isEqualToString:@"所属地区："]){
             cell.InfotextFiled.userInteractionEnabled=YES;
             cell.InfotextFiled.delegate=self;
-            cell.InfotextFiled.placeholder=@"请输入公司所在省份";
+            cell.InfotextFiled.placeholder=@"请输入公司所属地区";
             cell.InfotextFiled.tag=2005;
+            cell.addressBtn.hidden=NO;
+            [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([cell.titleLabel.text isEqualToString:@"所属行业："]){
             cell.InfotextFiled.userInteractionEnabled=YES;
             cell.InfotextFiled.delegate=self;
@@ -352,11 +354,13 @@
             cell.InfotextFiled.delegate=self;
             cell.InfotextFiled.placeholder=@"请输入真实姓名";
             cell.InfotextFiled.tag=3002;
-        }else if ([cell.titleLabel.text isEqualToString:@"所属省："]){
+        }else if ([cell.titleLabel.text isEqualToString:@"所属地区："]){
             cell.InfotextFiled.userInteractionEnabled=YES;
             cell.InfotextFiled.delegate=self;
-            cell.InfotextFiled.placeholder=@"请输入户籍所在省份";
+            cell.InfotextFiled.placeholder=@"请输入户籍所属地区";
             cell.InfotextFiled.tag=3003;
+            cell.addressBtn.hidden=NO;
+            [cell.addressBtn addTarget:self action:@selector(addressBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([cell.titleLabel.text isEqualToString:@"联系电话："]){
             cell.InfotextFiled.userInteractionEnabled=YES;
             cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
@@ -413,7 +417,7 @@
     }else if (textField.tag==2004){   //法人身份证号
         [valueArray1 removeObjectAtIndex:3];
         [valueArray1 insertObject:textField.text atIndex:3];
-    }else if (textField.tag==2005){   //所属省
+    }else if (textField.tag==2005){   //所属地区
 //        [valueArray1 removeObjectAtIndex:4];
 //        [valueArray1 insertObject:textField.text atIndex:4];
     }else if (textField.tag==2006){   //所属行业
@@ -440,7 +444,7 @@
     }else if (textField.tag==3002){   //债事人名称
         [valueArray2 removeObjectAtIndex:1];
         [valueArray2 insertObject:textField.text atIndex:1];
-    }else if (textField.tag==3003){   //所属省
+    }else if (textField.tag==3003){   //所属地区
 //        [valueArray2 removeObjectAtIndex:2];
 //        [valueArray2 insertObject:textField.text atIndex:2];
     }else if (textField.tag==3004){   //联系电话
@@ -473,49 +477,29 @@
     
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (textField.tag==2005){
-        //债事企业
-     for (UITextField* textFieldsubView in self.view.subviews)
-     {
-        [textFieldsubView resignFirstResponder];
-     }
-            
-        // 弹出视图
-        JHPickView *picker = [[JHPickView alloc]initWithFrame:self.view.bounds];
-        picker.delegate = self;
-        picker.arrayType = AreaArray;
-        [self.view addSubview:picker];
-
-        
-
-
-    }else if (textField.tag==3003){
-       //债事人
-        
-        
-    }else{
-        /* 获取当前cell的位置*/
-        /* 我们进行层次分析
-         * textView 是添加在cell上面的。所以 A =textView.superview 是cellcontentView.
-         * A.superview 则是 cell
-         */
-        CGFloat Hieght = textField.superview.superview.frame.origin.y;
-        /* 获取当前点击Cell的位置*/
-        CGFloat CurrentCellY = Hieght - scrollViewOffSetY;
-        /* 获取剩余高度*/
-        CGFloat lastHeight = ZJAPPHeight-64 - CurrentCellY-44-64;
-        
-        remainingDistanceY = lastHeight;
-        
-        /* 获取键盘的开始高度*/
-        CGFloat keyBoardStart = 271;
-        if (remainingDistanceY<keyBoardStart) {
-            /* 获取差值*/
-            CGFloat differenceValue = keyBoardStart -remainingDistanceY;
-            beforeMigrationY = differenceValue;
-            [DebtPersonTable setContentOffset:CGPointMake(0, differenceValue + scrollViewOffSetY) animated:YES];
-        }
+    
+    /* 获取当前cell的位置*/
+    /* 我们进行层次分析
+     * textView 是添加在cell上面的。所以 A =textView.superview 是cellcontentView.
+     * A.superview 则是 cell
+     */
+    CGFloat Hieght = textField.superview.superview.frame.origin.y;
+    /* 获取当前点击Cell的位置*/
+    CGFloat CurrentCellY = Hieght - scrollViewOffSetY;
+    /* 获取剩余高度*/
+    CGFloat lastHeight = ZJAPPHeight-64 - CurrentCellY-44-64;
+    
+    remainingDistanceY = lastHeight;
+    
+    /* 获取键盘的开始高度*/
+    CGFloat keyBoardStart = 271;
+    if (remainingDistanceY<keyBoardStart) {
+        /* 获取差值*/
+        CGFloat differenceValue = keyBoardStart -remainingDistanceY;
+        beforeMigrationY = differenceValue;
+        [DebtPersonTable setContentOffset:CGPointMake(0, differenceValue + scrollViewOffSetY) animated:YES];
     }
+  
     
 }
 
@@ -524,17 +508,43 @@
     [self.view endEditing:YES];
 }
 
+- (void)addressBtnAction:(UIButton * )sender
+{
+    for (UITextField* textFieldsubView in self.view.subviews)
+    {
+        [textFieldsubView resignFirstResponder];
+    }
+    
+    // 弹出视图
+    JHPickView *picker = [[JHPickView alloc]initWithFrame:self.view.bounds];
+    picker.delegate = self;
+    picker.arrayType = AreaArray;
+    [self.view addSubview:picker];
+}
 #pragma mark - JHPickerDelegate
 
 -(void)PickerSelectorInAllAreaDic:(NSDictionary *)allArea provinceID:(NSString *)prvoinceId cityID:(NSString *)cityId areaID:(NSString *)areaId{
     
-    provinceCode1 = prvoinceId;
-    cityCode1 = cityId;
-    prCode1 = areaId;
+    if (_Btntype==1) {  //企业
+        provinceCode1 = prvoinceId;
+        cityCode1 = cityId;
+        prCode1 = areaId;
+        NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
+        [valueArray1 removeObjectAtIndex:4];
+        [valueArray1 insertObject:cityArea atIndex:4];
+        [DebtPersonTable reloadData];
+    }else if(_Btntype==2){
+        provinceCode2 = prvoinceId;
+        cityCode2 = cityId;
+        prCode2 = areaId;
+        NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
+        [valueArray2 removeObjectAtIndex:2];
+        [valueArray2 insertObject:cityArea atIndex:2];
+        [DebtPersonTable reloadData];
+    }
     
-    NSLog(@"%@ %@ %@",provinceCode1,cityCode1,prCode1);
-    NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
-    NSLog(@"%@",cityArea);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

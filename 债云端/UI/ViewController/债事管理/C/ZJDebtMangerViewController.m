@@ -74,7 +74,7 @@
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         NSLog(@"%@",responseData);
         if (success) {
             if (_page==1) {
@@ -90,9 +90,12 @@
             }else{
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [ZJUtil showBottomToastWithMsg:@"请求失败"];
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [DebtMangerTable.mj_header endRefreshing];
         [DebtMangerTable.mj_footer endRefreshing];
     }];
