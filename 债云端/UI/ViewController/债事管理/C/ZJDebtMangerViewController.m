@@ -37,6 +37,17 @@
     
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //为了 切换用户 后的不刷新数据
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"DebtMangerRequest"]isEqualToString:@"0"]) {
+        _page=1;
+        [_dataSource removeAllObjects];
+        [self requestDebtMangeListInfo];
+        [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"DebtMangerRequest"];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //初始化
