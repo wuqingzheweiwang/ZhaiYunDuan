@@ -250,6 +250,7 @@
          [self showProgress];
          [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
              [self dismissProgress];
+             NSLog(@"%@",responseData);
              if (success) {
                  if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
                      urlimages=[responseData objectForKey:@"data"];
@@ -429,7 +430,8 @@
     [self showProgress];
     [ZJDeBtManageRequest postAddDebtInfoRequestWithParms:debtRelationVoDic result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",[responseData objectForKey:@"message"]);
+        NSLog(@"%@",responseData);
+//        NSLog(@"%@",[responseData objectForKey:@"message"]);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSString * relationorderid=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"orderId"]];

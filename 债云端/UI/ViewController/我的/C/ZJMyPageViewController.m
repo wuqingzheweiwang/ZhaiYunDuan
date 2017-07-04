@@ -542,16 +542,16 @@ static id _publishContent;
     if (_tableViewdataSource == nil) {
         
         _tableViewdataSource = [NSMutableArray arrayWithObjects:@[
-                               @[@"myvip",@"我的推荐"],
+                               @[@"myvip",@"我的推荐",@""],
                               ],
                              @[
-                               @[@"bill",@"我的账单"],
-                               @[@"purse",@"我的钱包"],
+                               @[@"bill",@"我的账单",@""],
+                               @[@"purse",@"我的钱包",@""],
                               ],
                              @[
-                                @[@"update",@"版本更新"],
-                                @[@"opinion",@"意见反馈"],
-                                @[@"contact",@"联系我们"],
+                                @[@"update",@"版本更新",ZJAPP_VERSION],
+                                @[@"opinion",@"意见反馈",@""],
+                                @[@"contact",@"联系我们",@"400 068 9588"],
                               ],
                                 nil];
     }
@@ -616,9 +616,18 @@ static id _publishContent;
     label.height = imahe.height;
     label.font = ZJ_TRUE_FONT(28/2);
     label.text = self.tableViewdataSource[indexPath.section][indexPath.row][1];
-    label.font=ZJ_TRUE_FONT(14);
+    label.textColor=ZJColor_333333;
 
-   
+    UILabel *detianllabel = [[UILabel alloc]init];
+    detianllabel.top = imahe.top;
+    detianllabel.left = ZJAPPWidth-TRUE_1(170);
+    detianllabel.width = TRUE_1(150);
+    detianllabel.height = imahe.height;
+    detianllabel.font = ZJ_TRUE_FONT(26/2);
+    detianllabel.text = self.tableViewdataSource[indexPath.section][indexPath.row][2];
+    detianllabel.textAlignment=NSTextAlignmentRight;
+    detianllabel.textColor=ZJColor_999999;
+    
     UIImageView *bottomLine = [[UIImageView alloc]init];
     bottomLine.top = TRUE_1(100/2);
     bottomLine.left = label.left;
@@ -628,8 +637,9 @@ static id _publishContent;
     
     [cell.contentView addSubview:imahe];
     [cell.contentView addSubview:label];
+    [cell.contentView addSubview:detianllabel];
     [cell.contentView addSubview:bottomLine];
-
+    
     
     if (indexPath.section == 0) {
     
@@ -850,18 +860,32 @@ static id _publishContent;
 //  确定  （需要将smallProtrolView的文字上传到后台）网络请求
 - (void)touchAgree:(UIButton *)button
 {
-    
-    [NSThread detachNewThreadSelector:@selector(postMyIdearData) toTarget:self withObject:nil];
-    
-    
-    [self showSuccessfulView:writeTextView.text];
-    if ([writeTextView.text isEqualToString:@""]) {
+    if ( [ZJUtil isKGEmpty:writeTextView.text]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请给我们留下您宝贵的意见" preferredStyle:UIAlertControllerStyleAlert];
         
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+            writeTextView.text = nil;
+            [smallProtrolView removeFromSuperview];
+            
+        }];
+        
+        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            writeTextView.text = nil;
+            
+        }];
+        
+        // Add the actions.
+        [alertController addAction:cancelAction];
+        [alertController addAction:otherAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }else{
-        
-    [smallProtrolView removeFromSuperview];
+         [self postMyIdearData];
+       
         
     }
+    
 }
 
 // 意见反馈请求
@@ -877,12 +901,24 @@ static id _publishContent;
             NSLog(@"1111%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
-                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的意见已提交,会尽快处理" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    
+                    writeTextView.text = nil;
+                    [smallProtrolView removeFromSuperview];
+                    
+                }];
+                
+                // Add the actions.
+                [alertController addAction:otherAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+                
 
                 
             }else{
                 
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                [smallProtrolView removeFromSuperview];
             }
         }
         // 请求失败
@@ -918,54 +954,6 @@ static id _publishContent;
     [alertController addAction:otherAction];
     [self presentViewController:alertController animated:YES completion:nil];
     
-}
-
-//  成功
--(void)showSuccessfulView:(NSString *)text
-{
-    if ([text isEqualToString:@""]) {
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请给我们留下您宝贵的意见" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            
-            writeTextView.text = nil;
-            
-        }];
-        
-        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-            writeTextView.text = nil;
-            
-        }];
-        
-        // Add the actions.
-        [alertController addAction:cancelAction];
-        [alertController addAction:otherAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-    }else{
-        
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的意见已提交,会尽快处理" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            
-            writeTextView.text = nil;
-            
-        }];
-        
-        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-            writeTextView.text = nil;
-            
-        }];
-        
-        // Add the actions.
-        [alertController addAction:cancelAction];
-        [alertController addAction:otherAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
 }
 
 

@@ -41,6 +41,7 @@
 // 本地持久化
 #define UserDeafult [NSUserDefaults standardUserDefaults]
 
+#define ZJAPP_VERSION                  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
 //左侧视图的宽度
 #define kMenuDisplayedWidth ZJAPPWidth*0.8
 //RGB
