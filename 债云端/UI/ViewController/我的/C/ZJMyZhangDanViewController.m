@@ -19,8 +19,7 @@
 
 @implementation ZJMyZhangDanViewController
 {
-        NSInteger  _page;
-
+    NSInteger  _page;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -97,13 +96,13 @@
             
                 NSLog(@"%@",responseData);
             
-            NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-            for (int i=0; i<itemarray.count; i++) {
-                ZJMyZhangDanHomeItem * item=[ZJMyZhangDanHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
-            
-                [self.tableViewdataSource addObject:item];
-                
-            }
+//            NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+//            for (int i=0; i<itemarray.count; i++) {
+//                ZJMyZhangDanHomeItem * item=[ZJMyZhangDanHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
+//            
+//                [self.tableViewdataSource addObject:item];
+//                
+//            }
                 [self.tableView reloadData];
             
             }else{
@@ -116,9 +115,8 @@
                 [self.tableView.mj_header endRefreshing];
                 [self.tableView.mj_footer endRefreshing];
                     
-                }];
+            }];
 
-    
 }
 
 

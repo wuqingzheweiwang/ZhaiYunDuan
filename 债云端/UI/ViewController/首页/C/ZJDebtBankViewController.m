@@ -146,6 +146,7 @@
     _workDressLabel.left = _telePhoneNumberLabel.left;
     _workDressLabel.width = _telePhoneNumberLabel.width;
     _workDressLabel.height = _telePhoneNumberLabel.height;
+    
     // 输入省
     _shengprovinceBut.top = _workDressLabel.top;
     _shengprovinceBut.left = _telePhoneTextField.left;
