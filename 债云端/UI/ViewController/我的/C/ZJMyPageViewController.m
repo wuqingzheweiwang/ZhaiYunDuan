@@ -373,13 +373,14 @@ static id _publishContent;
                     self.userName.text =[[responseData objectForKey:@"data"] objectForKey:@"username"];
                     self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
                     
-                   
                     if ([ZJUtil getUserIsDebtBank]) {
                         self.isVIPLabel.text = [[responseData objectForKey:@"data"] objectForKey:@"hangzhang"];
                     }else{
                         self.isVIPLabel.text = @"普通会员";
                     }
                    
+                 
+                    
                     self.recommand_1 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"zhaishi"]];
                     self.recommand_2 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"kaihang"]];
                     self.recommand_3 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"jiezhai"]];
@@ -679,7 +680,6 @@ static id _publishContent;
         return cell;
     }
     else{
-        
         
         return cell;
     }
