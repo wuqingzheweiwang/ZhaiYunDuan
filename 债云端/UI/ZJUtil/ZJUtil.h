@@ -84,7 +84,8 @@ typedef void(^finish)(NSString * userid);
  */
 + (NSString *)somethingID:(NSString *)webURL importing:(NSString *)importSting;
 
-
+//判断是否全是空格
++ (BOOL)isKGEmpty:(NSString *) str;
 // 判断登录
 +(BOOL)getUserLogin;
 //退出
