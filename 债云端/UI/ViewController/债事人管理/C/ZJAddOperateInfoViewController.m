@@ -189,27 +189,18 @@
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2006;
     }else if ([cell.titleLabel.text isEqualToString:@"年度电费："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2007;
     }else if ([cell.titleLabel.text isEqualToString:@"年度人均总值："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2008;
     }else if ([cell.titleLabel.text isEqualToString:@"现有人员总数："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
@@ -221,27 +212,18 @@
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"%";
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2010;
     }else if ([cell.titleLabel.text isEqualToString:@"总收入："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2011;
     }else if ([cell.titleLabel.text isEqualToString:@"总投资："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2012;
     }
     

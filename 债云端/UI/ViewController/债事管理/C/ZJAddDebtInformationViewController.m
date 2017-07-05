@@ -325,8 +325,8 @@
     MainMoneyTF.layer.borderColor=ZJColor_cccccc.CGColor;
     MainMoneyTF.layer.masksToBounds=YES;
     MainMoneyTF.layer.cornerRadius=5;
-    MainMoneyTF.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, MainMoneyTF.frame.size.height)];
-    MainMoneyTF.rightViewMode = UITextFieldViewModeAlways;
+    MainMoneyTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, MainMoneyTF.frame.size.height)];
+    MainMoneyTF.leftViewMode = UITextFieldViewModeAlways;
     
     Nineview.top=Eightview.bottom;
     Nineview.left=0;
