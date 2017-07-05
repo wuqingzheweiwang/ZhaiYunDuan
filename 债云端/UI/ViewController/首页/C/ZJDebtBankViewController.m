@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *recommendPersonLabel;
 @property (weak, nonatomic) IBOutlet UITextField *recommendPersonTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitSendBut;
-@property (nonatomic , strong) NSString *orderString;
+@property (nonatomic , strong) NSString *orderId;
 @property (nonatomic , strong)  NSMutableArray *province_nameArrM;
 @property (nonatomic , strong)  NSMutableArray *city_nameArrM;
 @property (nonatomic , strong)  NSMutableArray *county_nameArrM;
@@ -301,15 +301,16 @@
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                
-                self.orderString =[responseData objectForKey:@"data"];
+                self.orderId =[responseData objectForKey:@"data"];
                 ZJPayMoneyViewController * payViewController = [[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
-                payViewController.orderid = self.orderString;
+                payViewController.orderid = self.orderId;
                 payViewController.type = @"2";
                 [self.navigationController pushViewController:payViewController animated:YES];
                 
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+
             }else{
                
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
             
         }else{

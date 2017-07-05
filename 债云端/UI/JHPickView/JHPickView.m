@@ -198,10 +198,10 @@
     if (self.arrayType == AreaArray) {
         
         Province *province=self.allProvince[self.selectRowWithProvince];
-        City *city=province.sonAddressList[self.selectRowWithCity];
+        City *city=province.child[self.selectRowWithCity];
         if (component==0) return self.allProvince.count;
-        if (component==1) return province.sonAddressList.count;
-        if (component==2) return city.sonAddressList.count;
+        if (component==1) return province.child.count;
+        if (component==2) return city.child.count;
         return 0;
 
     }
@@ -249,18 +249,18 @@
         NSString *showTitleValue=@"";
         if (component==0){
             Province *province=self.allProvince[row];
-            showTitleValue=province.name;
+            showTitleValue=province.value;
         }
         if (component==1){
             Province *province=self.allProvince[self.selectRowWithProvince];
-            City *city=province.sonAddressList[row];
-            showTitleValue=city.name;
+            City *city=province.child[row];
+            showTitleValue=city.value;
         }
         if (component==2) {
             Province *province=self.allProvince[self.selectRowWithProvince];
-            City *city=province.sonAddressList[self.selectRowWithCity];
-            District *dictrictObj=city.sonAddressList[row];
-            showTitleValue=dictrictObj.name;
+            City *city=province.child[self.selectRowWithCity];
+            District *dictrictObj=city.child[row];
+            showTitleValue=dictrictObj.value;
         }
         return showTitleValue;
 
@@ -308,21 +308,21 @@
             
             provinceValue=self.allProvince[self.selectRowWithProvince];
               
-            if (self.selectRowWithCity<provinceValue.sonAddressList.count)
+            if (self.selectRowWithCity<provinceValue.child.count)
             {
                 
-              cityValue=provinceValue.sonAddressList[self.selectRowWithCity];
+              cityValue=provinceValue.child[self.selectRowWithCity];
                 
-                if (self.selectRowWithTown<cityValue.sonAddressList.count)
+                if (self.selectRowWithTown<cityValue.child.count)
                 {
                 
-                dictrict=cityValue.sonAddressList[self.selectRowWithTown];
+                dictrict=cityValue.child[self.selectRowWithTown];
                     
 
                     if (_allAreaNameAndId == nil) {
-                        _allAreaNameAndId = [[NSDictionary alloc]initWithObjectsAndKeys:provinceValue.name,provinceValue.ID,
-                                             cityValue.name,cityValue.ID,
-                                             dictrict.name,dictrict.ID,nil];
+                        _allAreaNameAndId = [[NSDictionary alloc]initWithObjectsAndKeys:provinceValue.value,provinceValue.ID,
+                                             cityValue.value,cityValue.ID,
+                                             dictrict.value,dictrict.ID,nil];
                     }
                     
                 }

@@ -21,7 +21,7 @@
 /**
  *  省份名字
  */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *value;
 /**
  *  省ID
  */
@@ -30,7 +30,7 @@
 /**
  *  城市模型数组
  */
-@property (nonatomic, strong) NSArray<City *> *sonAddressList;
+@property (nonatomic, strong) NSArray<City *> *child;
 
 
 @end
@@ -39,20 +39,16 @@
 /**
  *  城市名字
  */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *value;
 /**
  *  市ID
  */
 @property (nonatomic, copy) NSString *ID;
-/**
- *  省ID
- */
-@property (nonatomic, copy) NSString *pId;
 
 /**
  *  县级模型数组
  */
-@property (nonatomic, strong) NSArray<District *> *sonAddressList;
+@property (nonatomic, strong) NSArray<District *> *child;
 
 @end
 
@@ -60,15 +56,12 @@
 /**
  *  县级名字
  */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *value;
 /**
  *  县ID
  */
 @property (nonatomic, copy) NSString *ID;
-/**
- *  市ID
- */
-@property (nonatomic, copy) NSString *pId;
+
 
 @end
 

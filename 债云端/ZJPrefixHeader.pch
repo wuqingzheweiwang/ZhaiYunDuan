@@ -117,7 +117,6 @@
 #define ROWS(y)           y%3>0
 #define COLUMS(y)         y
 
-#define ZJ_BASE_URL     @"http://www.napai.cn/im/api.php?action=%@"
 
 #define ZJ_RONGYUN_APP_KEY_text     @""
 

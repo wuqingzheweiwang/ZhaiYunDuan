@@ -206,12 +206,12 @@
 		5223362F1EFB771C00D05447 /* CityModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 522336291EFB771C00D05447 /* CityModelData.m */; };
 		522336301EFB771C00D05447 /* JHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223362B1EFB771C00D05447 /* JHPickView.m */; };
 		522336311EFB771C00D05447 /* MySingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223362D1EFB771C00D05447 /* MySingleton.m */; };
-		522336321EFB771C00D05447 /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 5223362E1EFB771C00D05447 /* province_data.json */; };
 		52233BA51EB2009B003D6BC0 /* ZJRegistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 52233BA41EB2009B003D6BC0 /* ZJRegistItem.m */; };
 		52233BB41EB2DD7D003D6BC0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 52233BB31EB2DD7D003D6BC0 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52233BC01EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52233BBE1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m */; };
 		52233BC11EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */; };
 		522514C61ECE8F5A00047E68 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 522514C51ECE8F5A00047E68 /* WXApiManager.m */; };
+		523EB7B11F0CBA7400479BC0 /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 523EB7B01F0CBA7400479BC0 /* province_data.json */; };
 		524E5F991ECEACE400356B0B /* ZJChangeTelNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */; };
 		524E5F9A1ECEACE400356B0B /* ZJChangeTelNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */; };
 		524E5F9E1ECEE55B00356B0B /* ZJHomeNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F9C1ECEE55B00356B0B /* ZJHomeNewsViewCell.m */; };
@@ -622,7 +622,6 @@
 		5223362B1EFB771C00D05447 /* JHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPickView.m; sourceTree = "<group>"; };
 		5223362C1EFB771C00D05447 /* MySingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySingleton.h; sourceTree = "<group>"; };
 		5223362D1EFB771C00D05447 /* MySingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySingleton.m; sourceTree = "<group>"; };
-		5223362E1EFB771C00D05447 /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
 		52233BA31EB2009B003D6BC0 /* ZJRegistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJRegistItem.h; sourceTree = "<group>"; };
 		52233BA41EB2009B003D6BC0 /* ZJRegistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJRegistItem.m; sourceTree = "<group>"; };
 		52233BB21EB2DD7D003D6BC0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -632,6 +631,7 @@
 		52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJPayWayTableViewCell.xib; sourceTree = "<group>"; };
 		522514C41ECE8F5A00047E68 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		522514C51ECE8F5A00047E68 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		523EB7B01F0CBA7400479BC0 /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
 		524E5F961ECEACE400356B0B /* ZJChangeTelNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJChangeTelNumberController.h; sourceTree = "<group>"; };
 		524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJChangeTelNumberController.m; sourceTree = "<group>"; };
 		524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJChangeTelNumberController.xib; sourceTree = "<group>"; };
@@ -1860,7 +1860,7 @@
 				5223362B1EFB771C00D05447 /* JHPickView.m */,
 				5223362C1EFB771C00D05447 /* MySingleton.h */,
 				5223362D1EFB771C00D05447 /* MySingleton.m */,
-				5223362E1EFB771C00D05447 /* province_data.json */,
+				523EB7B01F0CBA7400479BC0 /* province_data.json */,
 			);
 			path = JHPickView;
 			sourceTree = "<group>";
@@ -2443,6 +2443,7 @@
 				182DF3A01EA9DD920086B9FC /* ZJMyPageViewController.xib in Resources */,
 				18971B0E1EC0826000A3E4A1 /* ZJAddDemandTableViewCell.xib in Resources */,
 				527B7AF71EBC924F0099763E /* ZJPayMoneyViewController.xib in Resources */,
+				523EB7B11F0CBA7400479BC0 /* province_data.json in Resources */,
 				520C47341EFE24CC00ADA007 /* ZJReCommandBankCell.xib in Resources */,
 				1854637A1EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.xib in Resources */,
 				181AFA401EB1F75C00B3FC7E /* ZJMemberCenterViewController.xib in Resources */,
@@ -2457,7 +2458,6 @@
 				527B7B091EBF1DF90099763E /* ZJaddBankCardController.xib in Resources */,
 				52233BC11EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib in Resources */,
 				18971B081EC0802200A3E4A1 /* ZJAddDemandViewController.xib in Resources */,
-				522336321EFB771C00D05447 /* province_data.json in Resources */,
 				527B7B031EBEF79B0099763E /* ZJBankCardTableViewCell.xib in Resources */,
 				180234591EBC1DD800DFA3F8 /* china.js in Resources */,
 				1854637F1EB35CD600AF025B /* ZJDebtMangerViewController.xib in Resources */,

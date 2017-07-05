@@ -21,7 +21,7 @@
 @implementation Province
 
 + (NSDictionary *)mj_objectClassInArray{
-    return @{@"sonAddressList" : [City class]};
+    return @{@"child" : [City class]};
 }
 
 + (NSDictionary *)replacedKeyFromPropertyName
@@ -37,7 +37,7 @@
 
 + (NSDictionary *)mj_objectClassInArray{
     
-    return @{@"sonAddressList" : [District class]};
+    return @{@"child" : [District class]};
     
 }
 

@@ -90,7 +90,7 @@ static id _publishContent;
         _vipImageView.hidden = NO;
         _isVIPImageView.hidden = NO;
         _isVIPLabel.hidden = NO;
-        _QRcodeView.hidden = NO;
+        _QRcodeView.hidden = YES;
         
         if ([ZJUtil getUserIsDebtBank]) {
             _vipImageView.image = [UIImage imageNamed:@"viplogo"];
@@ -551,7 +551,7 @@ static id _publishContent;
                              @[
                                 @[@"update",@"版本更新",ZJAPP_VERSION],
                                 @[@"opinion",@"意见反馈",@""],
-                                @[@"contact",@"联系我们",@"400 068 9588"],
+                                @[@"contact",@"联系我们",@"400-068-9588"],
                               ],
                                 nil];
     }
@@ -723,14 +723,19 @@ static id _publishContent;
         
         if (indexPath.row == 0) {
             
-            ZJMyZhangDanViewController *zhangdanVC = [[ZJMyZhangDanViewController alloc]initWithNibName:@"ZJMyZhangDanViewController" bundle:nil];
-            [zhangdanVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:zhangdanVC animated:YES];
+//            ZJMyZhangDanViewController *zhangdanVC = [[ZJMyZhangDanViewController alloc]initWithNibName:@"ZJMyZhangDanViewController" bundle:nil];
+//            [zhangdanVC setHidesBottomBarWhenPushed:YES];
+//            [self.navigationController pushViewController:zhangdanVC animated:YES];
+            
+            [ZJUtil showBottomToastWithMsg:@"该功能正在开发中"];
         }else if (indexPath.row == 1){
             
-            ZJMyBillViewController *billVC  = [[ZJMyBillViewController alloc]initWithNibName:@"ZJMyBillViewController" bundle:nil];
-            [billVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:billVC animated:YES];
+//            ZJMyBillViewController *billVC  = [[ZJMyBillViewController alloc]initWithNibName:@"ZJMyBillViewController" bundle:nil];
+//            [billVC setHidesBottomBarWhenPushed:YES];
+//            [self.navigationController pushViewController:billVC animated:YES];
+            
+            [ZJUtil showBottomToastWithMsg:@"该功能正在开发中"];
+
          }
 
         
