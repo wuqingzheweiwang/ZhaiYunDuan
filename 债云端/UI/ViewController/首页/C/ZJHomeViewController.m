@@ -103,6 +103,7 @@ static NSString *identifierId=@"zz";
            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                
                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+               [_tableViewdataSource removeAllObjects];
                for (int i=0; i<newArray.count; i++) {
                    NSDictionary * dict=[newArray objectAtIndex:i];
                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
@@ -110,6 +111,8 @@ static NSString *identifierId=@"zz";
                }
                
                NSArray * sliderArray=[[responseData objectForKey:@"data"]objectForKey:@"slider"];
+               [self.silderArray removeAllObjects];
+               [self.imageArray removeAllObjects];
                for (int i = 0; i<sliderArray.count; i++) {
                    
                    ZJHomeScrollerModel *item = [ZJHomeScrollerModel itemForDictionary:[sliderArray objectAtIndex:i]];
