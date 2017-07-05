@@ -510,16 +510,9 @@ static NSString *identifierId=@"zz";
         
     }else if (indexPath.row==5){  //商学院
         
-        ZJNewsDetailsViewController *zjNewsVC = [[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
-        NSString *url = @"http://v.youku.com/v_show/id_XMjYxMDU3NzI2MA==.html";
-        zjNewsVC.newsurl = url;
-        zjNewsVC.newstitle = @"商学院";
-        [zjNewsVC setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:zjNewsVC animated:YES];
-
-//        ZJBusinesscollegeViewController *addDebtVC = [[ZJBusinesscollegeViewController alloc]init];
-//        [addDebtVC setHidesBottomBarWhenPushed:YES];
-//        [self.navigationController pushViewController:addDebtVC animated:YES];
+        ZJBusinesscollegeViewController *addDebtVC = [[ZJBusinesscollegeViewController alloc]init];
+        [addDebtVC setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:addDebtVC animated:YES];
         
     }else if (indexPath.row==6){  //债事百科
         if (isOpen) {

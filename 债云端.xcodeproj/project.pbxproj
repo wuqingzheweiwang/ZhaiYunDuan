@@ -80,6 +80,8 @@
 		182544EE1EA8AB0600A29FB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182544EC1EA8AB0600A29FB6 /* LaunchScreen.storyboard */; };
 		182544F91EA8AB0600A29FB6 /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 182544F81EA8AB0600A29FB6 /* ___Tests.m */; };
 		182545041EA8AB0600A29FB6 /* ___UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 182545031EA8AB0600A29FB6 /* ___UITests.m */; };
+		18263D001F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */; };
+		18263D011F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */; };
 		182DF3851EA9DC1F0086B9FC /* ZJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DF3831EA9DC1F0086B9FC /* ZJBaseViewController.m */; };
 		182DF3861EA9DC1F0086B9FC /* ZJBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182DF3841EA9DC1F0086B9FC /* ZJBaseViewController.xib */; };
 		182DF39A1EA9DD7C0086B9FC /* ZJDebtPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DF3981EA9DD7C0086B9FC /* ZJDebtPersonViewController.m */; };
@@ -403,6 +405,9 @@
 		182544FF1EA8AB0600A29FB6 /* 债云端UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "债云端UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		182545031EA8AB0600A29FB6 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___UITests.m"; sourceTree = "<group>"; };
 		182545051EA8AB0600A29FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18263CFD1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBusinesscolledgTableViewCell.h; sourceTree = "<group>"; };
+		18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJBusinesscolledgTableViewCell.m; sourceTree = "<group>"; };
+		18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJBusinesscolledgTableViewCell.xib; sourceTree = "<group>"; };
 		182DF3821EA9DC1F0086B9FC /* ZJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBaseViewController.h; sourceTree = "<group>"; };
 		182DF3831EA9DC1F0086B9FC /* ZJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJBaseViewController.m; sourceTree = "<group>"; };
 		182DF3841EA9DC1F0086B9FC /* ZJBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJBaseViewController.xib; sourceTree = "<group>"; };
@@ -1037,6 +1042,7 @@
 				524E5F9C1ECEE55B00356B0B /* ZJHomeNewsViewCell.m */,
 				524E5F9D1ECEE55B00356B0B /* ZJHomeNewsViewCell.xib */,
 				52233BBB1EB2FA68003D6BC0 /* 开通债行 */,
+				18263CFC1F0CE5F500C6A98C /* 商学院 */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1304,6 +1310,16 @@
 				18238E741EBAD7A50018C179 /* ZJWebview */,
 			);
 			path = C;
+			sourceTree = "<group>";
+		};
+		18263CFC1F0CE5F500C6A98C /* 商学院 */ = {
+			isa = PBXGroup;
+			children = (
+				18263CFD1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.h */,
+				18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */,
+				18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */,
+			);
+			name = "商学院";
 			sourceTree = "<group>";
 		};
 		182DF38F1EA9DD2A0086B9FC /* 我的 */ = {
@@ -2501,6 +2517,7 @@
 				180234631EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.xib in Resources */,
 				52F6F2C21EFD1BA000623DA6 /* ZJMyMmberTableViewCell.xib in Resources */,
 				182544E61EA8AB0600A29FB6 /* Main.storyboard in Resources */,
+				18263D011F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib in Resources */,
 				181AFA641EB1F86B00B3FC7E /* ZJRegistViewController.xib in Resources */,
 				5217AC411EB85C7000A1A39F /* ZJMakeToPAYViewController.xib in Resources */,
 				5214A7A61ECAEFBC00860133 /* ZJOwnerDataController.xib in Resources */,
@@ -2718,6 +2735,7 @@
 				1844E0101EADD0550013E54A /* ZJDebtMangerItem.m in Sources */,
 				185463791EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.m in Sources */,
 				522514C61ECE8F5A00047E68 /* WXApiManager.m in Sources */,
+				18263D001F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m in Sources */,
 				52D2A74D1EB3551900C43247 /* NSDataEx.m in Sources */,
 				18238E7F1EBB2E4B0018C179 /* ZJCompanyDebtInfomationViewController.m in Sources */,
 				180234731EBC58F600DFA3F8 /* ZJPersonBaseInfoTableViewCell.m in Sources */,
