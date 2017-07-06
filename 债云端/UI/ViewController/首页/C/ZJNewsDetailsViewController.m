@@ -24,6 +24,7 @@
     [ZJNavigationPublic setTitleOnTargetNav:self title:self.newstitle];
     newsWebview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, ZJAPPHeight)];
     newsWebview.scalesPageToFit = YES;
+    newsWebview.backgroundColor = [UIColor whiteColor];
     newsWebview.delegate=self;
     [self.view addSubview:newsWebview];
     

@@ -144,6 +144,8 @@ static id _publishContent;
         [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d个",0]];
         zjMyMembercell.recommandLabel_4.enabled = YES;
 
+        [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请登录"]];
+
     }
 
 }
@@ -403,7 +405,8 @@ static id _publishContent;
                     [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
                 }
             }else{
-                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请登录"]];
+                [ZJUtil showBottomToastWithMsg:@"系统异常"];
+
             }
         }];
         
@@ -928,7 +931,7 @@ static id _publishContent;
         }
         // 请求失败
         else{
-            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请求失败"]];
+            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];
         }
     }];
     

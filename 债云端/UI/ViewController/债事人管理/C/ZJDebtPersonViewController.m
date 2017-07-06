@@ -46,7 +46,9 @@
     _page=1;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"债事人管理"];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isfreshData) name:@"AddDebtPerson" object:nil];
+    
     if (_isPopVc) {
         [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(backToVc) With:[UIImage imageNamed:@"back"]];
     }
@@ -90,12 +92,14 @@
     seachview.hidden=YES;
    
 }
+
 //请求债事人列表
 - (void)requestInfo
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self requestDebtPersonMangeListInfo];
 }
+
 - (void)requestDebtPersonMangeListInfo
 {
     NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=%ld",(long)_page];
