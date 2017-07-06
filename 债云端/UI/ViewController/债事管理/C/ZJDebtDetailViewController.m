@@ -8,6 +8,7 @@
 
 #import "ZJDebtDetailViewController.h"
 #import "ZJPayMoneyViewController.h"
+#import "NPPicPreviewController.h"
 #define LineWidth  (ZJAPPWidth-25*6)/3
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
@@ -33,12 +34,15 @@
     __weak IBOutlet UILabel *DebtinfoLabel;
     __weak IBOutlet UIView *twoLineview;
     NSString *debtorderid;
+    
+    NSMutableArray * imagePlistl;//存放图片地址
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     debtorderid=[NSString string];
+    imagePlistl=[NSMutableArray array];
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"债事详情"];
     
     [self requestData];
@@ -337,12 +341,26 @@
     [DebtInfomationView addSubview:electronview];
     //图片
     NSArray * picListarray=[infoDic objectForKey:@"picList"];
-    UIView * imagebackview=[self createNineImageView:picListarray];
-    imagebackview.top=electronview.bottom;
-    [DebtInfomationView addSubview:imagebackview];
-    DebtInfomationView.height=imagebackview.bottom;
-    [DebtBackScrollview setContentSize:CGSizeMake(0, DebtInfomationView.bottom+15)];
-    
+    if (picListarray.count>12) {
+        NSString * compendString=[NSString string];
+        for (int i=0; i<picListarray.count; i++) {
+            compendString=[compendString stringByAppendingString:[NSString stringWithFormat:@"%@",[picListarray objectAtIndex:i]]];
+        }
+        NSArray * imageplist=[compendString componentsSeparatedByString:@","];
+        [imagePlistl addObjectsFromArray:imageplist];
+        UIView * imagebackview=[self createNineImageView:imageplist];
+        imagebackview.top=electronview.bottom;
+        [DebtInfomationView addSubview:imagebackview];
+        DebtInfomationView.height=imagebackview.bottom;
+        [DebtBackScrollview setContentSize:CGSizeMake(0, DebtInfomationView.bottom+15)];
+    }else{
+        [imagePlistl addObjectsFromArray:picListarray];
+        UIView * imagebackview=[self createNineImageView:picListarray];
+        imagebackview.top=electronview.bottom;
+        [DebtInfomationView addSubview:imagebackview];
+        DebtInfomationView.height=imagebackview.bottom;
+        [DebtBackScrollview setContentSize:CGSizeMake(0, DebtInfomationView.bottom+15)];
+    }
 }
 //创建进度view
 -(void)createProgressView
@@ -486,6 +504,12 @@
         imageView.clipsToBounds = YES;
         [imageBackView addSubview:imageView];
         imageBackView.bottom=imageView.bottom+20;
+        
+        UIButton *imageButton = [[UIButton alloc] initWithFrame:CGRectMake(15 + (i % 3) * (kImageView_W + kImageToImageWidth), 20 + (i / 3) * (kImageView_W + kImageToImageWidth), kImageView_W, kImageView_W)];
+        [imageButton addTarget:self action:@selector(imageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        imageButton.backgroundColor=[UIColor clearColor];
+        imageButton.tag = 250 + i;
+        [imageBackView addSubview:imageButton];
     }
     return imageBackView;
 }
@@ -504,7 +528,16 @@
     [self.navigationController pushViewController:zjDdVC animated:YES];
 }
 
-
+/**
+ *  图片点击事件
+ */
+- (void)imageButtonAction:(UIButton *)button
+{
+    NPPicPreviewController *picPreviewVC = [[NPPicPreviewController alloc] init];
+    picPreviewVC.urlimages = imagePlistl;
+    picPreviewVC.offsetX = ZJAPPWidth*(button.tag-250);
+    [self.navigationController pushViewController:picPreviewVC animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

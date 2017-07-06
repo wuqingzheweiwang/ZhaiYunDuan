@@ -15,6 +15,7 @@
 #import "ZJAddDebtPersonController.h"
 #import "ZJPersonDebtInfomationViewController.h"
 #import "ZJCompanyDebtInfomationViewController.h"
+#import "ZJAddDebtInformationViewController.h"
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
 @interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate,UIAlertViewDelegate>
@@ -412,7 +413,12 @@
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
                 if ([self.fromWhereto isEqualToString:@"addDebtInfo"]) {
                    [ZJUtil showBottomToastWithMsg:@"创建债事人成功，请返回到债事备案"];
-                   [self.navigationController popViewControllerAnimated:YES];
+                    ZJAddDebtInformationViewController * homeVC=[[ZJAddDebtInformationViewController alloc]init];
+                    for (ZJBaseViewController * controller in self.navigationController.viewControllers) { //遍历
+                        if ([controller isKindOfClass:[homeVC class]]) { //这里判断是否为你想要跳转的页面
+                            [self.navigationController popToViewController:controller animated:YES]; //跳转
+                        }
+                    }
                 }else{
                      [self.navigationController popToRootViewControllerAnimated:YES];
                 }

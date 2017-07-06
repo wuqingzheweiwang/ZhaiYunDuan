@@ -63,18 +63,33 @@
     [self.view addGestureRecognizer:tap];
    
     NSUInteger i = 0;
-    for (UIImage *imageName in self.images) {
-        i = [self.images indexOfObject:imageName];
-        DDPhotoScrollView *scrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ZJAPPWidth * i, 0, ZJAPPWidth, ZJAPPHeight) urlString:nil image:imageName showInVC:self];
-        scrollView.singleTapBlock = ^{
-            
-            [self.navigationController popViewControllerAnimated:NO];
-            
-        };
-        [self.scrollView addSubview:scrollView];
+    if (self.images.count>0) {
+        for (UIImage *imageName in self.images) {
+            i = [self.images indexOfObject:imageName];
+            DDPhotoScrollView *scrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ZJAPPWidth * i, 0, ZJAPPWidth, ZJAPPHeight) urlString:nil image:imageName showInVC:self];
+            scrollView.singleTapBlock = ^{
+                
+                [self.navigationController popViewControllerAnimated:NO];
+                
+            };
+            [self.scrollView addSubview:scrollView];
+        }
+        self.scrollView.contentSize = CGSizeMake(ZJAPPWidth * self.images.count, ZJAPPHeight/2);
     }
-
-    self.scrollView.contentSize = CGSizeMake(ZJAPPWidth * self.images.count, ZJAPPHeight/2);
+    if (self.urlimages.count>0) {
+        for (NSString * imageName in self.urlimages) {
+            i = [self.urlimages indexOfObject:imageName];
+            DDPhotoScrollView *scrollView = [[DDPhotoScrollView alloc] initWithFrame:CGRectMake(ZJAPPWidth * i, 0, ZJAPPWidth, ZJAPPHeight) urlString:imageName image:nil showInVC:self];
+            scrollView.singleTapBlock = ^{
+                
+                [self.navigationController popViewControllerAnimated:NO];
+                
+            };
+            [self.scrollView addSubview:scrollView];
+        }
+        self.scrollView.contentSize = CGSizeMake(ZJAPPWidth * self.urlimages.count, ZJAPPHeight/2);
+    }
+    
     self.scrollView.contentOffset = CGPointMake(self.offsetX, self.scrollView.contentOffset.y);
  
 }
@@ -91,7 +106,12 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.indexx=self.scrollView.contentOffset.x/ZJAPPWidth;
-    self.label.text=[NSString stringWithFormat:@"%ld/%ld",(unsigned long)(self.indexx+1),(unsigned long)self.images.count];
+    if (self.images.count>0) {
+        self.label.text=[NSString stringWithFormat:@"%ld/%ld",(unsigned long)(self.indexx+1),(unsigned long)self.images.count];
+    }
+    if (self.urlimages.count>0) {
+        self.label.text=[NSString stringWithFormat:@"%ld/%ld",(unsigned long)(self.indexx+1),(unsigned long)self.urlimages.count];
+    }
 }
 - (void)tapAction {
     [self.navigationController popViewControllerAnimated:NO];
