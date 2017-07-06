@@ -9,7 +9,8 @@
 
 @interface NPPicPreviewController : UIViewController
 
-@property (nonatomic, strong) NSMutableArray *images;
+@property (nonatomic, strong) NSMutableArray *images;  //存放uiimage
+@property (nonatomic, strong) NSMutableArray *urlimages;//存放imageurl地址
 @property (nonatomic, unsafe_unretained) CGFloat offsetX;
 
 @end
