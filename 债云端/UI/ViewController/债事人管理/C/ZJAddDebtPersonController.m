@@ -144,8 +144,8 @@
         [debtCompanyDic setObject:provinceCode1 forKey:@"provinceCode"];
         [debtCompanyDic setObject:cityCode1 forKey:@"cityCode"];
         [debtCompanyDic setObject:prCode1 forKey:@"prCode"];
-        [debtCompanyDic setObject:[valueArray1 objectAtIndex:2] forKey:@"legalPersonName"];
-        [debtCompanyDic setObject:[valueArray1 objectAtIndex:3] forKey:@"legalPersonId"];
+        [debtCompanyDic setObject:[valueArray1 objectAtIndex:2] forKey:@"name"];
+        [debtCompanyDic setObject:[valueArray1 objectAtIndex:3] forKey:@"idCode"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:5] forKey:@"category"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:6] forKey:@"phoneNumber"];
         [debtCompanyDic setObject:[valueArray1 objectAtIndex:7] forKey:@"registeredCapital"];
@@ -319,10 +319,7 @@
             cell.InfotextFiled.userInteractionEnabled=YES;
             cell.InfotextFiled.delegate=self;
             cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
-            cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-            cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
             cell.InfotextFiled.placeholder=@"元";
-            cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
             cell.InfotextFiled.tag=2008;
         }else if ([cell.titleLabel.text isEqualToString:@"电子邮箱："]){
             cell.InfotextFiled.userInteractionEnabled=YES;

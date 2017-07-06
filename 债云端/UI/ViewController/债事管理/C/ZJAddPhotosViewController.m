@@ -405,6 +405,10 @@
         if (success) {
             NSLog(@"%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                //刷新债事人管理列表
+                NSNotification *notication=[NSNotification notificationWithName:@"AddDebtPerson" object:nil];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notication];
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
                 if ([self.fromWhereto isEqualToString:@"addDebtInfo"]) {
                    [ZJUtil showBottomToastWithMsg:@"创建债事人成功，请返回到债事备案"];
@@ -431,9 +435,13 @@
     [ZJDeBtManageRequest postAddDebtInfoRequestWithParms:debtRelationVoDic result:^(BOOL success, id responseData) {
         [self dismissProgress];
         NSLog(@"%@",responseData);
-//        NSLog(@"%@",[responseData objectForKey:@"message"]);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                //刷新债事管理列表
+                NSNotification *notication1=[NSNotification notificationWithName:@"DebtManger" object:nil];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notication1];
+                
                 NSString * relationorderid=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"orderId"]];
                 ZJPayMoneyViewController * zjDdVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 zjDdVC.isManager=ZJisBankManegerYes;

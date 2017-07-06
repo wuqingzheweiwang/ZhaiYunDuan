@@ -160,18 +160,12 @@
     }else if ([cell.titleLabel.text isEqualToString:@"投资金额："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.delegate=self;
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
         cell.InfotextFiled.placeholder=@"元";
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2004;
     }else if ([cell.titleLabel.text isEqualToString:@"投资比例："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.delegate=self;
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.placeholder=@"%";
         cell.InfotextFiled.tag=2005;
     }else if ([cell.titleLabel.text isEqualToString:@"注册资本："]){
@@ -179,18 +173,12 @@
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2006;
     }else if ([cell.titleLabel.text isEqualToString:@"实到资本："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
         cell.InfotextFiled.delegate=self;
         cell.InfotextFiled.placeholder=@"元";
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2007;
     }
     

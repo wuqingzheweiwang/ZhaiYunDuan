@@ -288,11 +288,8 @@
     }else if ([cell.titleLabel.text isEqualToString:@"总价值："]){
         cell.InfotextFiled.userInteractionEnabled=YES;
         cell.InfotextFiled.delegate=self;
-        cell.InfotextFiled.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, cell.InfotextFiled.frame.size.height)];
-        cell.InfotextFiled.rightViewMode = UITextFieldViewModeAlways;
         cell.InfotextFiled.placeholder=@"元";
         cell.InfotextFiled.keyboardType=UIKeyboardTypeNumberPad;
-        cell.InfotextFiled.textAlignment=NSTextAlignmentRight;
         cell.InfotextFiled.tag=2003;
     }else if ([cell.titleLabel.text isEqualToString:@"资产数量："]){
         cell.InfotextFiled.userInteractionEnabled=YES;

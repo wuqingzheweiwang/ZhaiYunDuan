@@ -44,6 +44,7 @@
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"DebtMangerRequest"]isEqualToString:@"0"]) {
         _page=1;
         [_dataSource removeAllObjects];
+        [DebtMangerTable reloadData];
         [self requestDebtMangeListInfo];
         [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"DebtMangerRequest"];
     }
@@ -55,16 +56,27 @@
     _page=1;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"债事管理"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isfreshData) name:@"DebtManger" object:nil];
     if (_isPopVc) {
         [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(backToVc) With:[UIImage imageNamed:@"back"]];
     }
     [ZJNavigationPublic setRightButtonOnTargetNav:self action:@selector(AddDebtManagerAction) image:[UIImage imageNamed:@"DebtMangerAddPerson"] HighImage:[UIImage imageNamed:@"DebtMangerAddPerson"]];
     [self createUI];
     
-//    [self requestDebtMangeListInfo];
-    
 }
-
+//刷新数据
+-(void)dealloc
+{
+    //移除通知
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"DebtManger" object:nil];
+}
+- (void)isfreshData
+{
+    _page=1;
+    [_dataSource removeAllObjects];
+    [DebtMangerTable reloadData];
+    [self requestDebtMangeListInfo];
+}
 - (void)requestDebtMangeListInfo
 {
     if (_Btntype==ZJDebtMangerUnsolved) {

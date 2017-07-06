@@ -33,6 +33,7 @@
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"DebtPersonRequest"]isEqualToString:@"0"]) {
         _page=1;
         [_dataSource removeAllObjects];
+        [DebtMangerRersonTable reloadData];
         [self requestDebtPersonMangeListInfo];
         [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"DebtPersonRequest"];
     }
@@ -45,6 +46,7 @@
     _page=1;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"债事人管理"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isfreshData) name:@"AddDebtPerson" object:nil];
     if (_isPopVc) {
         [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(backToVc) With:[UIImage imageNamed:@"back"]];
     }
@@ -53,7 +55,20 @@
     [self createUI];
     [self createSerach];
     [self createNodataView];
+    [self requestInfo];
     
+}
+-(void)dealloc
+{
+    //移除通知
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"AddDebtPerson" object:nil];
+}
+- (void)isfreshData
+{
+    _page=1;
+    [_dataSource removeAllObjects];
+    [DebtMangerRersonTable reloadData];
+    [self requestDebtPersonMangeListInfo];
 }
 - (void)createSerach
 {
@@ -158,8 +173,11 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [self.view endEditing:YES];
     NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
-    [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:action result:^(BOOL success, id responseData) {
+    NSString *utf = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
+        NSLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 backview.hidden=YES;
@@ -182,6 +200,7 @@
 }
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    [self.view endEditing:YES];
     SearchYES=NO;
     seachview.hidden=YES;
     searchBar.text=@"";
