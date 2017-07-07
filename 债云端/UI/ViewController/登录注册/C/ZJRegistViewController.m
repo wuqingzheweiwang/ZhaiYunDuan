@@ -287,7 +287,7 @@
 //注册请求
 -(void)registRequestData{
     
-    NSMutableDictionary * dic=[NSMutableDictionary dictionaryWithObjectsAndKeys:_NameTextField.text,@"realname",_cardIdTextField.text,@"idNumber",_telePhoneNumberTextField.text,@"mobile",_VerificationTextField.text,@"validcode",_passWordTextField.text,@"password",_confirmPassWordTextField.text,@"repassword", nil];
+    NSMutableDictionary * dic=[NSMutableDictionary dictionaryWithObjectsAndKeys:_NameTextField.text,@"realname",_cardIdTextField.text,@"idNumber",_telePhoneNumberTextField.text,@"mobile",_VerificationTextField.text,@"validcode",_passWordTextField.text,@"password",_confirmPassWordTextField.text,@"repassword",_commandTextLabel.text,@"recommendCode", nil];
     [self performSelectorOnMainThread:@selector(showProgress) withObject:nil waitUntilDone:YES];
     // 网络请求
     [ZJLoginRegistRequest zjRegistWithParams:dic result:^(BOOL success, id responseData) {

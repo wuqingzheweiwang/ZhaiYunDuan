@@ -213,7 +213,6 @@
 		52233BC01EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52233BBE1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m */; };
 		52233BC11EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */; };
 		522514C61ECE8F5A00047E68 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 522514C51ECE8F5A00047E68 /* WXApiManager.m */; };
-		523EB7B11F0CBA7400479BC0 /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 523EB7B01F0CBA7400479BC0 /* province_data.json */; };
 		524E5F991ECEACE400356B0B /* ZJChangeTelNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */; };
 		524E5F9A1ECEACE400356B0B /* ZJChangeTelNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */; };
 		524E5F9E1ECEE55B00356B0B /* ZJHomeNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F9C1ECEE55B00356B0B /* ZJHomeNewsViewCell.m */; };
@@ -256,6 +255,7 @@
 		52D2A74E1EB3551900C43247 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A7441EB3551900C43247 /* openssl_wrapper.m */; };
 		52D2A74F1EB3551900C43247 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A7461EB3551900C43247 /* RSADataSigner.m */; };
 		52D2A7501EB3551900C43247 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A7481EB3551900C43247 /* RSADataVerifier.m */; };
+		52EBCC201F0E1DC2007C8F7F /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 52EBCC1F1F0E1DC2007C8F7F /* province_data.json */; };
 		52F6F2BB1EFD18A200623DA6 /* ZJMyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F2B91EFD18A200623DA6 /* ZJMyMemberViewController.m */; };
 		52F6F2BC1EFD18A200623DA6 /* ZJMyMemberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F6F2BA1EFD18A200623DA6 /* ZJMyMemberViewController.xib */; };
 		52F6F2C11EFD1BA000623DA6 /* ZJMyMmberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F2BF1EFD1BA000623DA6 /* ZJMyMmberTableViewCell.m */; };
@@ -636,7 +636,6 @@
 		52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJPayWayTableViewCell.xib; sourceTree = "<group>"; };
 		522514C41ECE8F5A00047E68 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		522514C51ECE8F5A00047E68 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
-		523EB7B01F0CBA7400479BC0 /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
 		524E5F961ECEACE400356B0B /* ZJChangeTelNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJChangeTelNumberController.h; sourceTree = "<group>"; };
 		524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJChangeTelNumberController.m; sourceTree = "<group>"; };
 		524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJChangeTelNumberController.xib; sourceTree = "<group>"; };
@@ -766,6 +765,7 @@
 		52D2A7461EB3551900C43247 /* RSADataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataSigner.m; sourceTree = "<group>"; };
 		52D2A7471EB3551900C43247 /* RSADataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataVerifier.h; sourceTree = "<group>"; };
 		52D2A7481EB3551900C43247 /* RSADataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataVerifier.m; sourceTree = "<group>"; };
+		52EBCC1F1F0E1DC2007C8F7F /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
 		52F6F2B81EFD18A200623DA6 /* ZJMyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMyMemberViewController.h; sourceTree = "<group>"; };
 		52F6F2B91EFD18A200623DA6 /* ZJMyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMyMemberViewController.m; sourceTree = "<group>"; };
 		52F6F2BA1EFD18A200623DA6 /* ZJMyMemberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJMyMemberViewController.xib; sourceTree = "<group>"; };
@@ -1876,7 +1876,7 @@
 				5223362B1EFB771C00D05447 /* JHPickView.m */,
 				5223362C1EFB771C00D05447 /* MySingleton.h */,
 				5223362D1EFB771C00D05447 /* MySingleton.m */,
-				523EB7B01F0CBA7400479BC0 /* province_data.json */,
+				52EBCC1F1F0E1DC2007C8F7F /* province_data.json */,
 			);
 			path = JHPickView;
 			sourceTree = "<group>";
@@ -2459,7 +2459,6 @@
 				182DF3A01EA9DD920086B9FC /* ZJMyPageViewController.xib in Resources */,
 				18971B0E1EC0826000A3E4A1 /* ZJAddDemandTableViewCell.xib in Resources */,
 				527B7AF71EBC924F0099763E /* ZJPayMoneyViewController.xib in Resources */,
-				523EB7B11F0CBA7400479BC0 /* province_data.json in Resources */,
 				520C47341EFE24CC00ADA007 /* ZJReCommandBankCell.xib in Resources */,
 				1854637A1EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.xib in Resources */,
 				181AFA401EB1F75C00B3FC7E /* ZJMemberCenterViewController.xib in Resources */,
@@ -2505,6 +2504,7 @@
 				181AFA321EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.xib in Resources */,
 				18971AF01EC059D400A3E4A1 /* ZJAddOperateTableViewCell.xib in Resources */,
 				18971AEA1EC04F8D00A3E4A1 /* ZJAddStockTableViewCell.xib in Resources */,
+				52EBCC201F0E1DC2007C8F7F /* province_data.json in Resources */,
 				18238EA61EBB44420018C179 /* ZJchongMoneyViewController.xib in Resources */,
 				18238E791EBAD82C0018C179 /* ZJBranchOfficeViewController.xib in Resources */,
 				182F69D11EB9DDFD004A175B /* ZJWebViewController.xib in Resources */,
