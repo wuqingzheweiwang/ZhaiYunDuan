@@ -193,7 +193,7 @@
 #pragma 拼接http
 - (NSString *)requestHttpURL:(NSString *)action
 {
-    return [NSString stringWithFormat:@"http://192.168.10.55:8056/%@",action];
+    return [NSString stringWithFormat:@"http://59.110.223.224:8080/%@",action];
 }
 
 
