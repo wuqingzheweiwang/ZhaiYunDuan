@@ -121,7 +121,6 @@
     _idCardNumeberTextField.layer.masksToBounds = YES;
     _idCardNumeberTextField.layer.cornerRadius = 5;
     _idCardNumeberTextField.delegate = self;
-    _idCardNumeberTextField.keyboardType = UIKeyboardTypeNumberPad;
 
     // 手机号
     _telePhoneNumberLabel.top =_idCardNumberLabel.bottom+(40/2);;
