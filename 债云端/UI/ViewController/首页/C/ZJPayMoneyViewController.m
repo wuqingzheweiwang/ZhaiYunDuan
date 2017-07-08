@@ -254,7 +254,7 @@
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"msg"]]];
             }
         }else{
-            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请求失败"]];
+            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];
         }
     }];
 

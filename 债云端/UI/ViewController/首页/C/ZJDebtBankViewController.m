@@ -302,12 +302,13 @@
                 
                
                 self.orderId =[responseData objectForKey:@"data"];
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+
                 ZJPayMoneyViewController * payViewController = [[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 payViewController.orderid = self.orderId;
                 payViewController.type = @"2";
                 [self.navigationController pushViewController:payViewController animated:YES];
                 
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
 
             }else{
                
@@ -315,7 +316,7 @@
             
         }else{
             
-            [ZJUtil showBottomToastWithMsg:@"请求失败"];
+            [ZJUtil showBottomToastWithMsg:@"系统异常"];
         }
         
     }];
