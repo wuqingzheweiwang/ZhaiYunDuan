@@ -301,7 +301,7 @@
                 
                
                 self.orderId =[responseData objectForKey:@"data"];
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+//                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
 
                 ZJPayMoneyViewController * payViewController = [[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 payViewController.orderid = self.orderId;
@@ -310,9 +310,8 @@
                 
 
             }else{
-               
+               [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
-            
         }else{
             
             [ZJUtil showBottomToastWithMsg:@"系统异常"];
