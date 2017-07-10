@@ -13,6 +13,7 @@
 #import "WXApi.h"
 #import "WXApiManager.h"
 #import "ZJShareManager.h"
+#import "UMMobClick/MobClick.h"
 #define USHARE_DEMO_APPKEY  @""
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -106,8 +107,12 @@
     /************** 分享 *****************/
     ZJShareManager *registerManager = [[ZJShareManager alloc] init];
     [registerManager finishLaunchOption:launchOptions];
-    
-
+    /************** 友盟统计 *****************/
+    UMConfigInstance.appKey = @"5963012575ca356ae700088d";
+    UMConfigInstance.channelId = @"App Store";
+    //配置以上参数后调用此方法初始化SDK！
+    [MobClick startWithConfigure:UMConfigInstance];
+    [MobClick setLogEnabled:YES];
     
     return YES;
 }
@@ -308,5 +313,6 @@
     return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     
 }
+
 
 @end

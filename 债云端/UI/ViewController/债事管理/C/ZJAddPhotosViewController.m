@@ -449,7 +449,7 @@
                 [[NSNotificationCenter defaultCenter] postNotification:notication1];
                 
                 NSString * relationorderid=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"orderId"]];
-                NSString * payAmount=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"payAmount"]];
+                NSString * payAmount=[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"qianshu"]];
                 ZJPayMoneyViewController * zjDdVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 zjDdVC.isManager=ZJisBankManegerYes;
                 zjDdVC.orderid=relationorderid;

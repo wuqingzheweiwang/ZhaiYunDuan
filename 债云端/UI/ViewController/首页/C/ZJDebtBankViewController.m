@@ -211,7 +211,8 @@
     _provinceId = prvoinceId;
     _cityId = cityId;
     _distristId = areaId;
-
+ 
+    NSLog(@"%@",allArea);
     NSLog(@"%@ %@ %@",_provinceId,_cityId,_distristId);
     NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
     [self.shengprovinceBut setTitle:cityArea forState:UIControlStateNormal];

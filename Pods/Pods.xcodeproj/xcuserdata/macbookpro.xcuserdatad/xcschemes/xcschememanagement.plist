@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Masonry.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-债云端.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CD412DA6AB2710BEAD396EF92B4B4C1</key>
+		<key>50DBA0890831017D0EBE93D3BC08F50E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,22 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6130657D555C06A6130177FFEA5C35AF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>63A35E87C8D4C80A541CA9DAA0033700</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94F4F83EA5E2AF941D89C2F51A2591A9</key>
+		<key>7031E5DB7134C02FDD76C17330A6A62E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DC8D9E02903E93BD0B2FEC9D846EA20</key>
+		<key>784071943655F163FA8D7057257524CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9C7BE920BD16B0DCD35B4624B8B22BA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,11 +113,6 @@
 			<true/>
 		</dict>
 		<key>A5FA1EE8112498565B66505B01C60494</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A8206E26C65CC7EAEB32A764A5DF8AF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

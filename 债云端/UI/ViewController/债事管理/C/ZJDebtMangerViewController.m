@@ -271,6 +271,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+
 #pragma mark--DebtMangerHomeDelegate
 //支付
 - (void)DebtMangerHomePayActionWithItem:(ZJDebtMangerHomeItem *)item
@@ -279,6 +280,7 @@
     zjDdVC.isManager=ZJisBankManegerYes;
     zjDdVC.orderid=item.debtorderid;
     zjDdVC.type=@"1";
+    zjDdVC.payAmount = item.qianshu;
     [zjDdVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:zjDdVC animated:YES];
 }
