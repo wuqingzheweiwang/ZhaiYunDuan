@@ -34,11 +34,6 @@
 @implementation ZJPayMoneyViewController
 {
     //支付宝
-    NSString * _rsa2PrivateKey;
-    NSString * _body;
-    NSString * _subject;
-    NSString * _notify_url;
-    NSString * _total_amount;
     NSString * _orderId;
 }
 
@@ -55,7 +50,7 @@
 {
     if (self.isManager == ZJisBankManegerYes) {
         
-        alertcon = [UIAlertController alertControllerWithTitle:@"备案" message:@"支付500元完成备案!" preferredStyle:UIAlertControllerStyleAlert];
+        alertcon = [UIAlertController alertControllerWithTitle:@"备案" message:[NSString stringWithFormat:@"   支付%@元完成备案!",self.payAmount] preferredStyle:UIAlertControllerStyleAlert];
         // 添加按钮
         __weak typeof(alertcon) weakAlert = alertcon;
         [alertcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -66,7 +61,8 @@
         
     }else{
         
-    alertcon = [UIAlertController alertControllerWithTitle:@"行长" message:@"支付39800元成为云债行行长,享受行长福利待遇!" preferredStyle:UIAlertControllerStyleAlert];
+    alertcon = [UIAlertController alertControllerWithTitle:@"行长" message:[NSString stringWithFormat:@"   支付%@元成为云债行行长,享受行长福利待遇!",self.payAmount] preferredStyle:UIAlertControllerStyleAlert];
+        
     // 添加按钮
     __weak typeof(alertcon) weakAlert = alertcon;
     [alertcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -90,13 +86,7 @@
     _allPayLabel.width = ZJAPPWidth-ZJAPPWidth/3;
     _allPayLabel.height = TRUE_1(110/2);
     [_allPayLabel setFont:ZJ_TRUE_FONT(15)];
-    if (self.isManager == ZJisBankManegerYes) {
-        
-        _allPayLabel.text = @"   共计500元";
-    }else {
-        
-        _allPayLabel.text = @"   共计39800元";
-    }
+    _allPayLabel.text = [NSString stringWithFormat:@"   共计%@元",self.payAmount];
     
     //  支付
     _gogoPayBut.bottom = ZJAPPHeight;

@@ -18,4 +18,6 @@ typedef NS_ENUM(NSInteger, ZJisBankManeger) {
 @property (nonatomic , assign) ZJisBankManeger isManager;
 @property (nonatomic , strong) NSString * orderid;
 @property (nonatomic , strong) NSString * type;
+@property (nonatomic , strong) NSString * payAmount;
+
 @end
