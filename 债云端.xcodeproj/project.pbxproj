@@ -3050,7 +3050,7 @@
 					"-ObjC",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zhongjinzhaishi.zhongjin.---";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongjin.zhaiwu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -3122,7 +3122,7 @@
 					"-ObjC",
 					"-licucore",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zhongjinzhaishi.zhongjin.---";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhongjin.zhaiwu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
