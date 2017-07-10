@@ -29,7 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //为了 切换用户 后的不刷新数据
+    //为了 切换用户 后的刷新数据
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"DebtPersonRequest"]isEqualToString:@"0"]) {
         _page=1;
         [_dataSource removeAllObjects];
@@ -113,7 +113,7 @@
                 NSLog(@"%@",responseData);
                 if ([[responseData objectForKey:@"message"]isEqualToString:@"没有权限"]) {
                     backview.hidden=NO;
-                    DebtMangerRersonTable.hidden=YES;
+//                    DebtMangerRersonTable.hidden=YES;
                     [DebtMangerRersonTable reloadData];
                 }else{
                     backview.hidden=YES;
