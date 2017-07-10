@@ -40,6 +40,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self getUserRoleWithToken];
     //为了 切换用户 后的不刷新数据
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"DebtMangerRequest"]isEqualToString:@"0"]) {
         _page=1;
@@ -48,6 +49,17 @@
         [self requestDebtMangeListInfo];
         [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"DebtMangerRequest"];
     }
+}
+//获取用户角色
+- (void)getUserRoleWithToken
+{
+    [ZJHomeRequest zjGetUserRoleRequestresult:^(BOOL success, id responseData) {
+        if (success) {
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]]];
+            }
+        }
+    }];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

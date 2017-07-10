@@ -72,6 +72,7 @@ static NSString *identifierId=@"zz";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
+    [self getUserRoleWithToken];
     _sdCyScroll.autoScroll = YES;
     if ([ZJUtil getUserLogin]) {
         rightBtn.hidden=YES;
@@ -86,7 +87,18 @@ static NSString *identifierId=@"zz";
     _sdCyScroll.autoScroll = NO;
     
 }
-
+//获取用户角色
+- (void)getUserRoleWithToken
+{
+     [ZJHomeRequest zjGetUserRoleRequestresult:^(BOOL success, id responseData) {
+         NSLog(@"%@",responseData);
+         if (success) {
+             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                 [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]]];
+             }
+         }
+     }];
+}
 // 新闻页网络请求
 -(void)loadNewsRequestData
 {
