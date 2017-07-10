@@ -82,6 +82,7 @@ static id _publishContent;
     self.navigationController.navigationBarHidden = YES;
     // 判断登录状态
     if ([ZJUtil getUserLogin]) {
+        
          [self getMyPageData];
        
     }else{   //未登录
