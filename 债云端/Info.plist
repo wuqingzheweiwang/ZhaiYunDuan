@@ -47,6 +47,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MOBAppKey</key>
+	<string></string>
+	<key>MOBAppSecret</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -99,9 +103,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>MOBAppKey</key>
-	<string></string>
-	<key>MOBAppSecret</key>
-	<string></string>
 </dict>
 </plist>
