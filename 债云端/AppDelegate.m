@@ -112,7 +112,8 @@
     UMConfigInstance.channelId = @"App Store";
     //配置以上参数后调用此方法初始化SDK！
     [MobClick startWithConfigure:UMConfigInstance];
-    [MobClick setLogEnabled:YES];
+    [MobClick setAppVersion:ZJAPP_VERSION];
+    [MobClick setLogEnabled:YES]; //发布为NO
     
     return YES;
 }
