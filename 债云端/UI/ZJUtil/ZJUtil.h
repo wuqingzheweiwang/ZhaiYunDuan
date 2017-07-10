@@ -94,8 +94,6 @@ typedef void(^finish)(NSString * userid);
 +(void)forinAllFont;
 // 判断是否为债行
 +(BOOL)getUserIsDebtBank;
-// 判断是否为会员
-+(BOOL)getUserIsVip;
 /*
  * 菊花+提示框相关
  */

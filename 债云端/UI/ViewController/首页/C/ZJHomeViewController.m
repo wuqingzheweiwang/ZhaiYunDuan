@@ -101,7 +101,7 @@ static NSString *identifierId=@"zz";
        if (success) {
            NSLog(@"%@",responseData);
            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-               
+        
                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
                [_tableViewdataSource removeAllObjects];
                for (int i=0; i<newArray.count; i++) {

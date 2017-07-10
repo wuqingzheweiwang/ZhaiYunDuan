@@ -93,6 +93,7 @@
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+            
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {
                     ZJDebtMangerHomeItem * item=[ZJDebtMangerHomeItem itemForDictionary:[itemarray objectAtIndex:i]];

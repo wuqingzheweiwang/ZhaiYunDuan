@@ -317,28 +317,16 @@
 // 判断是否为债行
 +(BOOL)getUserIsDebtBank
 {
-    if ([[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"2"]||[[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"3"]) {
-        NSLog(@"非债行");
-        return NO;
-    }else{
+    if ([[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"1"]) {
         NSLog(@"债行");
         return YES;
+    }else{
+        NSLog(@"非债行");
+        return NO;
     }
     return YES;
 }
 
-// 判断是否为会员
-+(BOOL)getUserIsVip
-{
-    if ([[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"3"]) {
-        NSLog(@"非会员");
-        return NO;
-    }else{
-        NSLog(@"会员");
-        return YES;
-    }
-    return YES;
-}
 /**
  * Detect whether an account is a Chinese mobile No.
  *  1、手机号限制
