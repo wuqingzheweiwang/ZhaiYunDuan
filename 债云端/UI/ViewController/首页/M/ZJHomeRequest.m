@@ -78,4 +78,16 @@
                                           resultSecret:YES
                                        resultWithBlock:result];
 }
+/*
+ * 获取用户角色
+ */
++(void)zjGetUserRoleRequestresult:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"/api/usertype"
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
 @end

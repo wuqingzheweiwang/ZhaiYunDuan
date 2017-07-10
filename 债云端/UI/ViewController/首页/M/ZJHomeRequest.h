@@ -34,4 +34,10 @@ typedef void(^result)(BOOL success, id responseData);
  */
 +(void)zjPostAlipayDebtRequestWithParams:(NSDictionary *)params result:(result)result;
 
+/*
+ * 获取用户角色
+ */
++(void)zjGetUserRoleRequestresult:(result)result;
+
+
 @end

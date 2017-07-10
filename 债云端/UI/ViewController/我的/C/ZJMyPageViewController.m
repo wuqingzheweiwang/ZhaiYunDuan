@@ -78,8 +78,9 @@ static id _publishContent;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-   
+    [self viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self getUserRoleWithToken];
     // 判断登录状态
     if ([ZJUtil getUserLogin]) {
         
@@ -111,6 +112,17 @@ static id _publishContent;
 
     }
 
+}
+//获取用户角色
+- (void)getUserRoleWithToken
+{
+    [ZJHomeRequest zjGetUserRoleRequestresult:^(BOOL success, id responseData) {
+        if (success) {
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]]];
+            }
+        }
+    }];
 }
 -(void)setMineUI
 {
