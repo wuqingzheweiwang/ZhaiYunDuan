@@ -45,14 +45,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *recommendPersonLabel;
 @property (weak, nonatomic) IBOutlet UITextField *recommendPersonTextField;
 @property (weak, nonatomic) IBOutlet UIButton *submitSendBut;
+@property (nonatomic , strong) NSString *orderId;
 @property (nonatomic , strong)  NSMutableArray *province_nameArrM;
 @property (nonatomic , strong)  NSMutableArray *city_nameArrM;
 @property (nonatomic , strong)  NSMutableArray *county_nameArrM;
 @property (nonatomic , strong)  NSMutableArray *province_idArrM;
 @property (nonatomic , strong)  NSMutableArray *city_idArrM;
 @property (nonatomic , strong)  NSMutableArray *county_idArrM;
-@property (nonatomic , strong) NSString *orderId;
-@property (nonatomic , strong) NSString *payAmount;
 
 
 @end
@@ -301,21 +300,18 @@
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                
-                self.orderId =[[responseData objectForKey:@"data"]objectForKey:@"openOrderId"];
-                self.payAmount = [[responseData objectForKey:@"data"]objectForKey:@"payAmount"];
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                self.orderId =[responseData objectForKey:@"data"];
+//                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
 
                 ZJPayMoneyViewController * payViewController = [[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 payViewController.orderid = self.orderId;
                 payViewController.type = @"2";
-                payViewController.payAmount = self.payAmount;
                 [self.navigationController pushViewController:payViewController animated:YES];
                 
 
             }else{
-               
+               [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
-            
         }else{
             
             [ZJUtil showBottomToastWithMsg:@"系统异常"];
