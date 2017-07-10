@@ -25,5 +25,7 @@
 @property (nonatomic, strong) NSString *debtdebtid;
 @property (nonatomic, strong) NSString *debtorderid;
 @property (nonatomic, strong) NSString *otherPerson;
+@property (nonatomic, strong) NSString *qianshu;
+
 + (ZJDebtMangerHomeItem *)itemForDictionary:(NSDictionary *)dic;
 @end

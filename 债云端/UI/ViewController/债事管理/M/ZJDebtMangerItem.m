@@ -46,9 +46,9 @@
     if ([dic objectForKey:@"otherPerson"]) {
         item.otherPerson=[NSString stringWithFormat:@"%@",[dic objectForKey:@"otherPerson"]];
     }
-    
-    
-
+    if ([dic objectForKey:@"qianshu"]) {
+        item.qianshu=[NSString stringWithFormat:@"%@",[dic objectForKey:@"qianshu"]];
+    }
     return item;
 }
 @end

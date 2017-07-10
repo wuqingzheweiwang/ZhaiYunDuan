@@ -13,7 +13,6 @@ target '债云端' do
    pod 'YYModel', '~> 1.0.4'
    pod 'Base64', '~> 1.1.2'
    pod 'MJRefresh', '~> 3.1.12'
-   pod 'Masonry', '~> 1.0.2'
 
 
 

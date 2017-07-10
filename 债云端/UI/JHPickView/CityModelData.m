@@ -26,10 +26,9 @@
 
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{
-             @"ID" : @"id"
-             };
+    return @{@"ID" : @"id"};
 }
+
 @end
 
 
@@ -43,9 +42,7 @@
 
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{
-             @"ID" : @"id"
-             };
+    return @{@"ID" : @"id"};
 }
 
 @end
@@ -55,9 +52,7 @@
 
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{
-             @"ID" : @"id"
-             };
+    return @{@"ID" : @"id"};
 }
 
 @end

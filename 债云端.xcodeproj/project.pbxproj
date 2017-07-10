@@ -225,6 +225,9 @@
 		527B7B031EBEF79B0099763E /* ZJBankCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527B7B011EBEF79B0099763E /* ZJBankCardTableViewCell.xib */; };
 		527B7B081EBF1DF90099763E /* ZJaddBankCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 527B7B061EBF1DF90099763E /* ZJaddBankCardController.m */; };
 		527B7B091EBF1DF90099763E /* ZJaddBankCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527B7B071EBF1DF90099763E /* ZJaddBankCardController.xib */; };
+		528C97B91F13452B00C60743 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528C97B81F13452B00C60743 /* UMMobClick.framework */; };
+		528C97BB1F13457900C60743 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528C97BA1F13457900C60743 /* Security.framework */; };
+		528C97C11F138C4000C60743 /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 528C97C01F138C4000C60743 /* province_data.json */; };
 		52A78A561EAC6073005BABF7 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4C1EAC6073005BABF7 /* libAFNetworking.a */; };
 		52A78A571EAC6073005BABF7 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4D1EAC6073005BABF7 /* libBase64.a */; };
 		52A78A581EAC6073005BABF7 /* libFileMD5Hash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4E1EAC6073005BABF7 /* libFileMD5Hash.a */; };
@@ -255,7 +258,6 @@
 		52D2A74E1EB3551900C43247 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A7441EB3551900C43247 /* openssl_wrapper.m */; };
 		52D2A74F1EB3551900C43247 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A7461EB3551900C43247 /* RSADataSigner.m */; };
 		52D2A7501EB3551900C43247 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A7481EB3551900C43247 /* RSADataVerifier.m */; };
-		52EBCC201F0E1DC2007C8F7F /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 52EBCC1F1F0E1DC2007C8F7F /* province_data.json */; };
 		52F6F2BB1EFD18A200623DA6 /* ZJMyMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F2B91EFD18A200623DA6 /* ZJMyMemberViewController.m */; };
 		52F6F2BC1EFD18A200623DA6 /* ZJMyMemberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F6F2BA1EFD18A200623DA6 /* ZJMyMemberViewController.xib */; };
 		52F6F2C11EFD1BA000623DA6 /* ZJMyMmberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F6F2BF1EFD1BA000623DA6 /* ZJMyMmberTableViewCell.m */; };
@@ -654,6 +656,9 @@
 		527B7B051EBF1DF90099763E /* ZJaddBankCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJaddBankCardController.h; sourceTree = "<group>"; };
 		527B7B061EBF1DF90099763E /* ZJaddBankCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJaddBankCardController.m; sourceTree = "<group>"; };
 		527B7B071EBF1DF90099763E /* ZJaddBankCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJaddBankCardController.xib; sourceTree = "<group>"; };
+		528C97B81F13452B00C60743 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
+		528C97BA1F13457900C60743 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		528C97C01F138C4000C60743 /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
 		52A78A4C1EAC6073005BABF7 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		52A78A4D1EAC6073005BABF7 /* libBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBase64.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/Base64/libBase64.a"; sourceTree = "<group>"; };
 		52A78A4E1EAC6073005BABF7 /* libFileMD5Hash.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFileMD5Hash.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/FileMD5Hash/libFileMD5Hash.a"; sourceTree = "<group>"; };
@@ -765,7 +770,6 @@
 		52D2A7461EB3551900C43247 /* RSADataSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataSigner.m; sourceTree = "<group>"; };
 		52D2A7471EB3551900C43247 /* RSADataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADataVerifier.h; sourceTree = "<group>"; };
 		52D2A7481EB3551900C43247 /* RSADataVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADataVerifier.m; sourceTree = "<group>"; };
-		52EBCC1F1F0E1DC2007C8F7F /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
 		52F6F2B81EFD18A200623DA6 /* ZJMyMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMyMemberViewController.h; sourceTree = "<group>"; };
 		52F6F2B91EFD18A200623DA6 /* ZJMyMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMyMemberViewController.m; sourceTree = "<group>"; };
 		52F6F2BA1EFD18A200623DA6 /* ZJMyMemberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJMyMemberViewController.xib; sourceTree = "<group>"; };
@@ -791,12 +795,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528C97BB1F13457900C60743 /* Security.framework in Frameworks */,
+				52CDA4941EB33EC600F64AE9 /* libz.tbd in Frameworks */,
 				52155A281F075632001F24D4 /* libsqlite3.tbd in Frameworks */,
 				52155A261F075628001F24D4 /* ImageIO.framework in Frameworks */,
 				52155A241F07561B001F24D4 /* JavaScriptCore.framework in Frameworks */,
 				52155A221F07560E001F24D4 /* libstdc++.tbd in Frameworks */,
 				52155A201F075602001F24D4 /* libicucore.tbd in Frameworks */,
-				52CDA4941EB33EC600F64AE9 /* libz.tbd in Frameworks */,
+				528C97B91F13452B00C60743 /* UMMobClick.framework in Frameworks */,
 				520A11471ECDAE1F009903AE /* libsqlite3.0.tbd in Frameworks */,
 				52D2A6EB1EB3538E00C43247 /* CoreMotion.framework in Frameworks */,
 				52D2A6E91EB3538000C43247 /* CFNetwork.framework in Frameworks */,
@@ -1876,7 +1882,7 @@
 				5223362B1EFB771C00D05447 /* JHPickView.m */,
 				5223362C1EFB771C00D05447 /* MySingleton.h */,
 				5223362D1EFB771C00D05447 /* MySingleton.m */,
-				52EBCC1F1F0E1DC2007C8F7F /* province_data.json */,
+				528C97C01F138C4000C60743 /* province_data.json */,
 			);
 			path = JHPickView;
 			sourceTree = "<group>";
@@ -2126,9 +2132,18 @@
 			name = "添加银行卡";
 			sourceTree = "<group>";
 		};
+		528C97B71F13452B00C60743 /* UMengMobClick */ = {
+			isa = PBXGroup;
+			children = (
+				528C97B81F13452B00C60743 /* UMMobClick.framework */,
+			);
+			path = UMengMobClick;
+			sourceTree = "<group>";
+		};
 		52A78A7A1EADCE0E005BABF7 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				528C97B71F13452B00C60743 /* UMengMobClick */,
 				521559DE1F07547B001F24D4 /* ShareSDK */,
 				18D9D2D71EC9694600E882FD /* ZJPrograssView */,
 				1831499A1EC17DF100759D1A /* EncryptUtil */,
@@ -2289,6 +2304,7 @@
 		7F275B85C2679F58AF06B59A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				528C97BA1F13457900C60743 /* Security.framework */,
 				52155A271F075632001F24D4 /* libsqlite3.tbd */,
 				52155A251F075628001F24D4 /* ImageIO.framework */,
 				52155A231F07561B001F24D4 /* JavaScriptCore.framework */,
@@ -2504,7 +2520,7 @@
 				181AFA321EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.xib in Resources */,
 				18971AF01EC059D400A3E4A1 /* ZJAddOperateTableViewCell.xib in Resources */,
 				18971AEA1EC04F8D00A3E4A1 /* ZJAddStockTableViewCell.xib in Resources */,
-				52EBCC201F0E1DC2007C8F7F /* province_data.json in Resources */,
+				528C97C11F138C4000C60743 /* province_data.json in Resources */,
 				18238EA61EBB44420018C179 /* ZJchongMoneyViewController.xib in Resources */,
 				18238E791EBAD82C0018C179 /* ZJBranchOfficeViewController.xib in Resources */,
 				182F69D11EB9DDFD004A175B /* ZJWebViewController.xib in Resources */,
@@ -3006,6 +3022,7 @@
 					"$(PROJECT_DIR)/债云端/Lib/Libs/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/债云端/Lib",
 					"$(PROJECT_DIR)/债云端/Lib/linkBinary",
+					"$(PROJECT_DIR)/债云端/Lib/UMengMobClick",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3078,6 +3095,7 @@
 					"$(PROJECT_DIR)/债云端/Lib/Libs/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/债云端/Lib",
 					"$(PROJECT_DIR)/债云端/Lib/linkBinary",
+					"$(PROJECT_DIR)/债云端/Lib/UMengMobClick",
 				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
