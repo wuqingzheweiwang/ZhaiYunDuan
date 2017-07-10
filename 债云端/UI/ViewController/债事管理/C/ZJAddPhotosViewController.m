@@ -212,8 +212,8 @@
         CGImageRef imgRef = [assetRep fullResolutionImage];   //获取高清图片
         UIImage *img = [UIImage imageWithCGImage:imgRef  scale:assetRep.scale                        orientation:(UIImageOrientation)assetRep.orientation];
         // 压缩图片
-        UIImage * newiamge=[ZJUtil uploadStandardImage:img];
-        [images addObject:newiamge];
+//        UIImage * newiamge=[ZJUtil uploadStandardImage:img];
+        [images addObject:img];
     }
     [self createNineImageView:images];
     [self dismissImagePickerController];

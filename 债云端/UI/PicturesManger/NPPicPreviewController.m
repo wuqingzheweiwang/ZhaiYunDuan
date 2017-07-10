@@ -22,6 +22,21 @@
     CGFloat lastScale;
     UIImageView *imageViewww;
 }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)viewDidLoad {
     
 //            for (int i = 0;i<self.images.count;i++) {
@@ -39,7 +54,6 @@
 //
 
     [super viewDidLoad];
-
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ZJAPPWidth, ZJAPPHeight)];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -94,15 +108,7 @@
  
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.indexx=self.scrollView.contentOffset.x/ZJAPPWidth;
