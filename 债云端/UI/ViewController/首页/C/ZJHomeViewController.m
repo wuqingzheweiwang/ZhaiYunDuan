@@ -77,7 +77,6 @@ static NSString *identifierId=@"zz";
     if ([ZJUtil getUserLogin]) {
         rightBtn.hidden=YES;
     }else rightBtn.hidden=NO;
-    
 
 }
 
