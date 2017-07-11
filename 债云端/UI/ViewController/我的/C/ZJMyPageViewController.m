@@ -349,12 +349,13 @@ static id _publishContent;
                     
                     self.phoneNmber = [[responseData objectForKey:@"data"] objectForKey:@"phone"];
                     self.userName.text =[[responseData objectForKey:@"data"] objectForKey:@"username"];
-                    self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
+                    
                     
                     if ([[responseData objectForKey:@"data"] objectForKey:@"hangzhang"]) {
                         NSString * hangzhang=[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"hangzhang"]];
                         if (![hangzhang isEqualToString:@""]) {
                             self.isVIPLabel.text = hangzhang;
+                            self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
                             _vipImageView.image = [UIImage imageNamed:@"viplogo"];
                             _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
                             [_isVIPLabel setTextColor:ZJColor_red];
