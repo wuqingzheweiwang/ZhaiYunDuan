@@ -22,7 +22,6 @@
     UIView * backview;
     NSMutableArray * _dataSource;
     NSInteger  _page;
-    
     BOOL SearchYES;
     UIView * seachview;
 }
