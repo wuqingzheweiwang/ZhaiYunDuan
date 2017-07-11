@@ -78,11 +78,13 @@ static id _publishContent;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self viewWillAppear:animated];
+    [super viewWillAppear:YES];
     self.navigationController.navigationBarHidden = YES;
+    // 判断是否为行长
     [self getUserRoleWithToken];
     // 判断登录状态
     if ([ZJUtil getUserLogin]) {
+        
          [self getMyPageData];
        
     }else{   //未登录
@@ -275,7 +277,6 @@ static id _publishContent;
 {
     NSUInteger typeUI = 0;
     typeUI = [_shareTypeArr[index] unsignedIntegerValue];
-    NSLog(@"%lu",(unsigned long)typeUI);
     //built share parames
     NSDictionary *shareContent = (NSDictionary *)_publishContent;
     NSString *text = shareContent[@"text"];
@@ -352,7 +353,7 @@ static id _publishContent;
                     
                     if ([[responseData objectForKey:@"data"] objectForKey:@"hangzhang"]) {
                         NSString * hangzhang=[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"hangzhang"]];
-                        if (hangzhang.length>0) {
+                        if (![hangzhang isEqualToString:@""]) {
                             self.isVIPLabel.text = hangzhang;
                             _vipImageView.image = [UIImage imageNamed:@"viplogo"];
                             _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
@@ -400,6 +401,7 @@ static id _publishContent;
                     
                     // 推荐备案数
                     [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@个",self.recommand_1]];
+
                     [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
                     // 推荐行长
                     [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@个",self.recommand_2]];
@@ -446,7 +448,6 @@ static id _publishContent;
             ownerVC.image = [UIImage imageNamed:@"head-portrait"];
         }else{
             ownerVC.imageUrl = self.imageUrl;
-            NSLog(@"%@",ownerVC.image);
         }
         
         if (!self.phoneNmber) {
@@ -476,9 +477,7 @@ static id _publishContent;
     }else if ([sender.titleLabel.text isEqualToString:@"退出"]){
         alertcon = [UIAlertController alertControllerWithTitle:@"确定要退出吗" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         // 添加按钮
-        __weak typeof(alertcon) weakAlert = alertcon;
         [alertcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            NSLog(@"点击了确定按钮--%@-%@", [weakAlert.textFields.firstObject text], [weakAlert.textFields.lastObject text]);
             
             // 退出
             [ZJUserInfo removeUserInfoWithUserToken];
@@ -516,7 +515,7 @@ static id _publishContent;
             //            text = [NSString stringWithFormat:@"%0.2fMB",caches];    //计算缓存大小
         }]];
         [alertcon addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            NSLog(@"点击了取消按钮");
+
         }]];
         
         [self presentViewController:alertcon animated:YES completion:nil];
@@ -676,7 +675,7 @@ static id _publishContent;
             [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
             // 推荐行长
             [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@个",self.recommand_2]];
-            
+
             [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
             // 解债数
             [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@个",self.recommand_3]];
@@ -766,7 +765,6 @@ static id _publishContent;
             
             // 弹出意见反馈页面
             [self.view addSubview:smallProtrolView];
-            
             
             
         }else if (indexPath.row == 2){
