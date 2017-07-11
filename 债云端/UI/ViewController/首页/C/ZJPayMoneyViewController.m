@@ -234,14 +234,14 @@
             
             NSLog(@"%@",responseData);
             
-            if ([[responseData objectForKey:@"code"]isEqualToString:@"ok"]) {
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
 
                 _orderId=[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]];
                 
                 [self AlipayAction];
                 
             }else{
-                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"msg"]]];
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
         }else{
             [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];

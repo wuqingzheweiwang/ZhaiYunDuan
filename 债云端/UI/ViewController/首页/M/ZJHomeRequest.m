@@ -70,7 +70,7 @@
  */
 +(void)zjPostAlipayDebtRequestWithParams:(NSDictionary *)params result:(result)result
 {
-    [[ZJDataRequest shareInstance]postDataWithURLString:@"api/alipay/pay"
+    [[ZJDataRequest shareInstance]postDataWithURLString:@"/api/alipay/pay/createpay"
                                          andParameters:params
                                              andIsJson:NO
                                                timeOut:20
