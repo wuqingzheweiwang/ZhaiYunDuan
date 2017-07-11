@@ -247,6 +247,9 @@
 		52CDA4921EB33DC500F64AE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CDA4911EB33DC500F64AE9 /* Foundation.framework */; };
 		52CDA4941EB33EC600F64AE9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CDA4931EB33EC600F64AE9 /* libz.tbd */; };
 		52CDA4961EB33ED300F64AE9 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CDA4951EB33ED300F64AE9 /* libc++.tbd */; };
+		52CE8B4A1F14C26900C383EA /* UITextField+BXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CE8B451F14C26900C383EA /* UITextField+BXExtension.m */; };
+		52CE8B4B1F14C26900C383EA /* UIView+BXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CE8B471F14C26900C383EA /* UIView+BXExtension.m */; };
+		52CE8B4C1F14C26900C383EA /* ZJCardTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CE8B491F14C26900C383EA /* ZJCardTextField.m */; };
 		52D2A6E61EB3534700C43247 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 52D2A6E41EB3534700C43247 /* AlipaySDK.bundle */; };
 		52D2A6E91EB3538000C43247 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D2A6E81EB3538000C43247 /* CFNetwork.framework */; };
 		52D2A6EB1EB3538E00C43247 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D2A6EA1EB3538E00C43247 /* CoreMotion.framework */; };
@@ -678,6 +681,12 @@
 		52CDA4911EB33DC500F64AE9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52CDA4931EB33EC600F64AE9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		52CDA4951EB33ED300F64AE9 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		52CE8B441F14C26900C383EA /* UITextField+BXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BXExtension.h"; sourceTree = "<group>"; };
+		52CE8B451F14C26900C383EA /* UITextField+BXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BXExtension.m"; sourceTree = "<group>"; };
+		52CE8B461F14C26900C383EA /* UIView+BXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BXExtension.h"; sourceTree = "<group>"; };
+		52CE8B471F14C26900C383EA /* UIView+BXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BXExtension.m"; sourceTree = "<group>"; };
+		52CE8B481F14C26900C383EA /* ZJCardTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJCardTextField.h; sourceTree = "<group>"; };
+		52CE8B491F14C26900C383EA /* ZJCardTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJCardTextField.m; sourceTree = "<group>"; };
 		52D2A6E41EB3534700C43247 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		52D2A6E51EB3534700C43247 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		52D2A6E81EB3538000C43247 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1232,6 +1241,7 @@
 		1825451E1EA8AE0B00A29FB6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				52CE8B431F14C26900C383EA /* ZJCardNumKeyBoard */,
 				52155A2D1F0782BA001F24D4 /* ShareAlertView */,
 				520413061EF8B67E00B32537 /* MJExtension */,
 				52108D941EF7BFCD00CF6DDB /* JHPickView */,
@@ -2156,6 +2166,19 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		52CE8B431F14C26900C383EA /* ZJCardNumKeyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				52CE8B481F14C26900C383EA /* ZJCardTextField.h */,
+				52CE8B491F14C26900C383EA /* ZJCardTextField.m */,
+				52CE8B441F14C26900C383EA /* UITextField+BXExtension.h */,
+				52CE8B451F14C26900C383EA /* UITextField+BXExtension.m */,
+				52CE8B461F14C26900C383EA /* UIView+BXExtension.h */,
+				52CE8B471F14C26900C383EA /* UIView+BXExtension.m */,
+			);
+			path = ZJCardNumKeyBoard;
+			sourceTree = "<group>";
+		};
 		52D2A6E31EB3534700C43247 /* AliPay */ = {
 			isa = PBXGroup;
 			children = (
@@ -2712,6 +2735,7 @@
 				182544E91EA8AB0600A29FB6 /* ___.xcdatamodeld in Sources */,
 				183802D31EFA264800C74D05 /* ZJAddEditDemandViewController.m in Sources */,
 				5223362F1EFB771C00D05447 /* CityModelData.m in Sources */,
+				52CE8B4C1F14C26900C383EA /* ZJCardTextField.m in Sources */,
 				18238EA51EBB44420018C179 /* ZJchongMoneyViewController.m in Sources */,
 				1804B00B1EB0B2660071329A /* DDPhotoScrollView.m in Sources */,
 				524E5F991ECEACE400356B0B /* ZJChangeTelNumberController.m in Sources */,
@@ -2764,6 +2788,7 @@
 				522336311EFB771C00D05447 /* MySingleton.m in Sources */,
 				181AFA331EB1F75C00B3FC7E /* ZJDebtAllsubjectsViewController.m in Sources */,
 				1844E0221EAE02910013E54A /* ANAlert.m in Sources */,
+				52CE8B4A1F14C26900C383EA /* UITextField+BXExtension.m in Sources */,
 				181AFA3B1EB1F75C00B3FC7E /* ZJHomeViewController.m in Sources */,
 				520413221EF8B67E00B32537 /* MJPropertyType.m in Sources */,
 				5214A7A51ECAEFBC00860133 /* ZJOwnerDataController.m in Sources */,
@@ -2814,6 +2839,7 @@
 				181013AE1EAF5CAD009C1DAD /* TakePhoto.m in Sources */,
 				5204131E1EF8B67E00B32537 /* MJExtensionConst.m in Sources */,
 				1844E01F1EADDF400013E54A /* ZJProtocolAlterView.m in Sources */,
+				52CE8B4B1F14C26900C383EA /* UIView+BXExtension.m in Sources */,
 				182DF39F1EA9DD920086B9FC /* ZJMyPageViewController.m in Sources */,
 				520413231EF8B67E00B32537 /* NSObject+MJClass.m in Sources */,
 				5214A86D1ECC254600860133 /* Order.m in Sources */,
