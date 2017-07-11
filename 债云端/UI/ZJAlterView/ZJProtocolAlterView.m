@@ -41,7 +41,7 @@
     
     UILabel * Onelabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, backView.width, TRUE_1(40))];
     Onelabel.textAlignment=NSTextAlignmentCenter;
-    Onelabel.text=@"用户协议";
+    Onelabel.text=type;
     Onelabel.textColor=ZJColor_333333;
     Onelabel.font=ZJ_FONT(TRUE_1(15));
     [backView addSubview:Onelabel];
@@ -82,7 +82,7 @@
     agreeBtn.tag=2000;
     agreeBtn.titleLabel.font=ZJ_FONT(TRUE_1(12));
      [agreeBtn setTitleColor:ZJColor_666666 forState:UIControlStateNormal];;
-    [agreeBtn setTitle:[NSString stringWithFormat:@"阅读并同意《%@用户协议》",type] forState:UIControlStateNormal];
+    [agreeBtn setTitle:[NSString stringWithFormat:@"阅读并同意《%@》",type] forState:UIControlStateNormal];
     [agreeBtn setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,5)];
     [agreeBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,5,0,0)];
     [threeView addSubview:agreeBtn];
