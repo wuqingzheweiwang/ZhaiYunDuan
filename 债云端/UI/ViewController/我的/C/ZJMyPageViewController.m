@@ -422,6 +422,7 @@ static id _publishContent;
                     [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
                 }
             }else{
+                
                 [ZJUtil showBottomToastWithMsg:@"系统异常"];
 
             }
