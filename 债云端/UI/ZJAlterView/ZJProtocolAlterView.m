@@ -53,13 +53,13 @@
     UITextView * textView=[[UITextView alloc]initWithFrame:CGRectMake(TRUE_1(20),TRUE_1(50), backView.width-TRUE_1(40), TRUE_1(305))];
     textView.textColor=ZJColor_666666;
     textView.backgroundColor=HexRGB(colorLong(@"efefef"));
-    textView.font=ZJ_FONT(TRUE_1(10));
+    textView.font=ZJ_FONT(TRUE_1(12));
     textView.showsVerticalScrollIndicator=NO;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 2.5;// 字体的行间距
     
     NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont systemFontOfSize:10],
+                                 NSFontAttributeName:[UIFont systemFontOfSize:12],
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     textView.attributedText = [[NSAttributedString alloc] initWithString:title attributes:attributes];
