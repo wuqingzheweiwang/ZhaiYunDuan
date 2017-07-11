@@ -108,12 +108,12 @@
     ZJShareManager *registerManager = [[ZJShareManager alloc] init];
     [registerManager finishLaunchOption:launchOptions];
     /************** 友盟统计 *****************/
-    UMConfigInstance.appKey = @"5963012575ca356ae700088d";
-    UMConfigInstance.channelId = @"App Store";
-    //配置以上参数后调用此方法初始化SDK！
-    [MobClick startWithConfigure:UMConfigInstance];
-    [MobClick setAppVersion:ZJAPP_VERSION];
-    [MobClick setLogEnabled:NO]; //发布为NO
+//    UMConfigInstance.appKey = @"5963012575ca356ae700088d";
+//    UMConfigInstance.channelId = @"App Store";
+//    //配置以上参数后调用此方法初始化SDK！
+//    [MobClick startWithConfigure:UMConfigInstance];
+//    [MobClick setAppVersion:ZJAPP_VERSION];
+//    [MobClick setLogEnabled:NO]; //发布为NO
     
     return YES;
 }
