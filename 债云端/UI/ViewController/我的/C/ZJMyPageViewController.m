@@ -220,13 +220,14 @@ static id _publishContent;
     _codeLabel.left = _userName.left;
     _codeLabel.width = TRUE_1(200);
     _codeLabel.height = _vipImageView.height;
+    
     // >
     _pushIcon.height = TRUE_1(25/2);
     _pushIcon.top = _vipImageView.top+TRUE_1(5);
-    _pushIcon.width = TRUE_1(13/2);
-    _pushIcon.left = ZJAPPWidth - TRUE_1(45/2)-_pushIcon.width;
+    _pushIcon.width = TRUE_1(70/2);
+    _pushIcon.left = ZJAPPWidth - TRUE_1(20/2)-_pushIcon.width;
     [_pushIcon addTarget:self action:@selector(gotoOwnerDataVC) forControlEvents:UIControlEventTouchUpInside];
-    
+
     
     // 二维码图片
     _QRcodeView.top = _recommandCode.top;
@@ -242,10 +243,10 @@ static id _publishContent;
 //    [_onQRcodeBut addTarget:self action:@selector(showMyQRtoShare) forControlEvents:UIControlEventTouchUpInside];
     
     // 个人资料
-    _personalData.top =_pushIcon.top ;
+    _personalData.top =_pushIcon.top;
     _personalData.width = TRUE_1(120/2);
     _personalData.height = TRUE_1(25/2);
-    _personalData.left =ZJAPPWidth - TRUE_1(45/2)-_pushIcon.width-_personalData.width-TRUE_1(10);
+    _personalData.left =ZJAPPWidth-_pushIcon.width-_personalData.width-TRUE_1(10);
     _personalData.titleLabel.textAlignment=NSTextAlignmentRight;
     _personalData.titleLabel.font=ZJ_TRUE_FONT(12);
     [_personalData addTarget:self action:@selector(gotoOwnerDataVC) forControlEvents:UIControlEventTouchUpInside];
