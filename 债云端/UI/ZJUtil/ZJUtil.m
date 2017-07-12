@@ -326,7 +326,18 @@
     }
     return YES;
 }
-
+// 判断是否为会员
++(BOOL)getUserIsDebtVip
+{
+    if ([[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"2"]) {
+        NSLog(@"会员");
+        return YES;
+    }else{
+        NSLog(@"非会员");
+        return NO;
+    }
+    return YES;
+}
 /**
  * Detect whether an account is a Chinese mobile No.
  *  1、手机号限制
