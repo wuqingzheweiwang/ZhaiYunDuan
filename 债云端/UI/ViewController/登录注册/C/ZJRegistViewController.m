@@ -329,7 +329,7 @@
     }else if (index==2002){
         if (alert.isAgree) {
             [protoAlterview dismiss];
-            
+            isAgree=YES;
             [_yesBut setImage:[UIImage imageNamed:@"agreeyes"] forState:UIControlStateNormal];
 
         }else{
