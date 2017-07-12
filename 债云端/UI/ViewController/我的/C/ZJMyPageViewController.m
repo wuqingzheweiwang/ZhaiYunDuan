@@ -83,6 +83,7 @@ static id _publishContent;
     // 判断是否为行长
     [self getUserRoleWithToken];
     // 判断登录状态
+    [_quitBut setTitle:@"登录" forState:UIControlStateNormal];
     if ([ZJUtil getUserLogin]) {
         
          [self getMyPageData];
