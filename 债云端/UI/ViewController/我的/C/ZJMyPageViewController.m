@@ -349,49 +349,50 @@ static id _publishContent;
                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                     
                     NSDictionary *allDic = [responseData objectForKey:@"data"];
-                    self.phoneNmber = [allDic objectForKey:@"phone"];
-                    self.userName.text =[allDic objectForKey:@"username"];
+                    self.phoneNmber = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"phone"]];
+                    self.userName.text =[NSString stringWithFormat:@"%@",[allDic objectForKey:@"username"]];
                     //按type来
-//                    if ([[allDic objectForKey:@"type"]isEqualToString:@"1"]) {
-//                        NSString * hangzhang=[NSString stringWithFormat:@"%@",[allDic objectForKey:@"hangzhang"]];
-//                        self.isVIPLabel.text = hangzhang;
-//                        self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
-//                        _vipImageView.image = [UIImage imageNamed:@"viplogo"];
-//                        _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
-//                        [_isVIPLabel setTextColor:ZJColor_red];
-//                    }else if ([[allDic objectForKey:@"type"]isEqualToString:@"2"]){
-//                        self.isVIPLabel.text = @"会员";
-//                        _vipImageView.image = [UIImage imageNamed:@"user"];
-//                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
-//                        [_isVIPLabel setTextColor:ZJColor_666666];
-//                    }else{
-//                        self.isVIPLabel.text = @"普通用户";
-//                        _vipImageView.image = [UIImage imageNamed:@"user"];
-//                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
-//                        [_isVIPLabel setTextColor:ZJColor_666666];
-//                    }
-//                    
-                    if ([allDic objectForKey:@"hangzhang"]) {
+                    NSString * userRole= [NSString stringWithFormat:@"%@",[allDic objectForKey:@"type"]];
+                    if ([userRole isEqualToString:@"1"]) {
                         NSString * hangzhang=[NSString stringWithFormat:@"%@",[allDic objectForKey:@"hangzhang"]];
-                        if (![hangzhang isEqualToString:@""]) {
-                            self.isVIPLabel.text = hangzhang;
-                            self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
-                            _vipImageView.image = [UIImage imageNamed:@"viplogo"];
-                            _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
-                            [_isVIPLabel setTextColor:ZJColor_red];
-                        }else{
-                            
-                            self.isVIPLabel.text = @"普通用户";
-                            _vipImageView.image = [UIImage imageNamed:@"user"];
-                            _isVIPImageView.image = [UIImage imageNamed:@"grey"];
-                            [_isVIPLabel setTextColor:ZJColor_666666];
-                        }
+                        self.isVIPLabel.text = hangzhang;
+                        self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
+                        _vipImageView.image = [UIImage imageNamed:@"viplogo"];
+                        _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
+                        [_isVIPLabel setTextColor:ZJColor_red];
+                    }else if ([userRole isEqualToString:@"2"]){
+                        self.isVIPLabel.text = @"会员";
+                        _vipImageView.image = [UIImage imageNamed:@"user"];
+                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
+                        [_isVIPLabel setTextColor:ZJColor_666666];
                     }else{
                         self.isVIPLabel.text = @"普通用户";
                         _vipImageView.image = [UIImage imageNamed:@"user"];
                         _isVIPImageView.image = [UIImage imageNamed:@"grey"];
                         [_isVIPLabel setTextColor:ZJColor_666666];
                     }
+
+//                    if ([allDic objectForKey:@"hangzhang"]) {
+//                        NSString * hangzhang=[NSString stringWithFormat:@"%@",[allDic objectForKey:@"hangzhang"]];
+//                        if (![hangzhang isEqualToString:@""]) {
+//                            self.isVIPLabel.text = hangzhang;
+//                            self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
+//                            _vipImageView.image = [UIImage imageNamed:@"viplogo"];
+//                            _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
+//                            [_isVIPLabel setTextColor:ZJColor_red];
+//                        }else{
+//                            
+//                            self.isVIPLabel.text = @"普通用户";
+//                            _vipImageView.image = [UIImage imageNamed:@"user"];
+//                            _isVIPImageView.image = [UIImage imageNamed:@"grey"];
+//                            [_isVIPLabel setTextColor:ZJColor_666666];
+//                        }
+//                    }else{
+//                        self.isVIPLabel.text = @"普通用户";
+//                        _vipImageView.image = [UIImage imageNamed:@"user"];
+//                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
+//                        [_isVIPLabel setTextColor:ZJColor_666666];
+//                    }
             
                     
                     self.recommand_1 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"zhaishi"]];
