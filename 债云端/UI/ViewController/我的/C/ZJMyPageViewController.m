@@ -347,45 +347,63 @@ static id _publishContent;
                 NSLog(@"1111%@",responseData);
                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                     
-                    
-                    self.phoneNmber = [[responseData objectForKey:@"data"] objectForKey:@"phone"];
-                    self.userName.text =[[responseData objectForKey:@"data"] objectForKey:@"username"];
-                    
-                    
-                    if ([[responseData objectForKey:@"data"] objectForKey:@"hangzhang"]) {
-                        NSString * hangzhang=[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"hangzhang"]];
+                    NSDictionary *allDic = [responseData objectForKey:@"data"];
+                    self.phoneNmber = [allDic objectForKey:@"phone"];
+                    self.userName.text =[allDic objectForKey:@"username"];
+                    //按type来
+//                    if ([[allDic objectForKey:@"type"]isEqualToString:@"1"]) {
+//                        NSString * hangzhang=[NSString stringWithFormat:@"%@",[allDic objectForKey:@"hangzhang"]];
+//                        self.isVIPLabel.text = hangzhang;
+//                        self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
+//                        _vipImageView.image = [UIImage imageNamed:@"viplogo"];
+//                        _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
+//                        [_isVIPLabel setTextColor:ZJColor_red];
+//                    }else if ([[allDic objectForKey:@"type"]isEqualToString:@"2"]){
+//                        self.isVIPLabel.text = @"会员";
+//                        _vipImageView.image = [UIImage imageNamed:@"user"];
+//                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
+//                        [_isVIPLabel setTextColor:ZJColor_666666];
+//                    }else{
+//                        self.isVIPLabel.text = @"普通用户";
+//                        _vipImageView.image = [UIImage imageNamed:@"user"];
+//                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
+//                        [_isVIPLabel setTextColor:ZJColor_666666];
+//                    }
+//                    
+                    if ([allDic objectForKey:@"hangzhang"]) {
+                        NSString * hangzhang=[NSString stringWithFormat:@"%@",[allDic objectForKey:@"hangzhang"]];
                         if (![hangzhang isEqualToString:@""]) {
                             self.isVIPLabel.text = hangzhang;
-                            self.codeLabel.text =[[responseData objectForKey:@"data"] objectForKey:@"recommendCode"];
+                            self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
                             _vipImageView.image = [UIImage imageNamed:@"viplogo"];
                             _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
                             [_isVIPLabel setTextColor:ZJColor_red];
                         }else{
-                            self.isVIPLabel.text = @"普通会员";
+                            
+                            self.isVIPLabel.text = @"普通用户";
                             _vipImageView.image = [UIImage imageNamed:@"user"];
                             _isVIPImageView.image = [UIImage imageNamed:@"grey"];
                             [_isVIPLabel setTextColor:ZJColor_666666];
                         }
                     }else{
-                        self.isVIPLabel.text = @"普通会员";
+                        self.isVIPLabel.text = @"普通用户";
                         _vipImageView.image = [UIImage imageNamed:@"user"];
                         _isVIPImageView.image = [UIImage imageNamed:@"grey"];
                         [_isVIPLabel setTextColor:ZJColor_666666];
                     }
             
                     
-                    self.recommand_1 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"zhaishi"]];
-                    self.recommand_2 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"kaihang"]];
-                    self.recommand_3 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"jiezhai"]];
-                    self.recommand_4 = [NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"huiyuan"]];
+                    self.recommand_1 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"zhaishi"]];
+                    self.recommand_2 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"kaihang"]];
+                    self.recommand_3 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"jiezhai"]];
+                    self.recommand_4 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"huiyuan"]];
 
-                    if ([[[responseData objectForKey:@"data"] objectForKey:@"image"] isEqualToString:@""]) {
+                    if ([[allDic objectForKey:@"image"] isEqualToString:@""]) {
                         
                         self.headerImage.image = [UIImage imageNamed:@"head-portrait"];
                     }else{
-                        
 
-                        self.imageUrl = [[responseData objectForKey:@"data"] objectForKey:@"image"];
+                        self.imageUrl = [allDic objectForKey:@"image"];
                         
                         [self.headerImage sd_setImageWithURL: self.imageUrl placeholderImage:[UIImage imageNamed:@"head-portrait"]];
 
