@@ -234,7 +234,7 @@
             
             NSLog(@"%@",responseData);
             
-            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+            if ([[responseData objectForKey:@"code"]isEqualToString:@"ok"]) {
 
                 _orderId=[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]];
                 
