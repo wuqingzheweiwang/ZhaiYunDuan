@@ -17,4 +17,6 @@ typedef NS_ENUM(NSInteger, ZJDebtDetailType) {
 @interface ZJDebtDetailViewController : ZJBaseViewController
 @property (nonatomic, assign)ZJDebtDetailType Btntype;
 @property (nonatomic, strong)NSString * DetailID;
+@property (nonatomic, strong)NSString * payAmount;
+
 @end

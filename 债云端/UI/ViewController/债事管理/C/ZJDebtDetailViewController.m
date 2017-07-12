@@ -524,6 +524,7 @@
     zjDdVC.isManager=ZJisBankManegerYes;
     zjDdVC.orderid=debtorderid;
     zjDdVC.type=@"1";
+    zjDdVC.payAmount = self.payAmount;
     [zjDdVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:zjDdVC animated:YES];
 }
