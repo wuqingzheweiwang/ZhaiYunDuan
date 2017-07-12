@@ -63,7 +63,7 @@
     
     _telePhoneLabel.top = _firstBackgroundView.bottom;
     _telePhoneLabel.left = TRUE_1(40/2);
-    _telePhoneLabel.width = TRUE_1(100/2);
+    _telePhoneLabel.width = TRUE_1(120/2);
     _telePhoneLabel.height = TRUE_1(100/2);
     _telePhoneLabel.font = ZJ_TRUE_FONT(15);
 

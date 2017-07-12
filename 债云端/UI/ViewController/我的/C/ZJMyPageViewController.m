@@ -239,7 +239,7 @@ static id _publishContent;
     _onQRcodeBut.centerX = _pushIcon.centerX;
     _onQRcodeBut.width = TRUE_1(50);
     _onQRcodeBut.height = _onQRcodeBut.width;
-    [_onQRcodeBut addTarget:self action:@selector(showMyQRtoShare) forControlEvents:UIControlEventTouchUpInside];
+//    [_onQRcodeBut addTarget:self action:@selector(showMyQRtoShare) forControlEvents:UIControlEventTouchUpInside];
     
     // 个人资料
     _personalData.top =_pushIcon.top ;

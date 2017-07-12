@@ -118,7 +118,7 @@
     _leftLine.left = _LoginBut.left;
     _leftLine.width = (ZJAPPWidth-TRUE_1(92))/3;
     _leftLine.height = 1;
-    
+    _leftLine.hidden = YES;
     // 第三方登录Line
     _otherSourceLoginLabrl.top = _registeBut.top+_registeBut.height+TRUE_1(60/2);
     _otherSourceLoginLabrl.left=(ZJAPPWidth-TRUE_1(92))/3+ _LoginBut.left;
@@ -126,31 +126,35 @@
     _otherSourceLoginLabrl.width = (ZJAPPWidth-TRUE_1(92))/3;
     _otherSourceLoginLabrl.height = TRUE_1(28/2);
     _otherSourceLoginLabrl.font = ZJ_TRUE_FONT(14);
-
+    _otherSourceLoginLabrl.hidden = YES;
     // 右线Line
     _rightLine.top =_registeBut.bottom+TRUE_1(70/2);
     _rightLine.left =(ZJAPPWidth-TRUE_1(92))/3*2+ _LoginBut.left;
     _rightLine.width = _leftLine.width;
     _rightLine.height = 1;
-    
+    _rightLine.hidden = YES;
     // QQ
     _QQBut.top = TRUE_1(693/2);
     _QQBut.left = TRUE_1(118/2);
     _QQBut.width = TRUE_1(60);
     _QQBut.height = TRUE_1(60);
     [_QQBut setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
+    _QQBut.hidden = YES;
     // 微信
     _WechatBut.top = _QQBut.top;
     _WechatBut.left = _QQBut.right+((ZJAPPWidth-TRUE_1(180))-TRUE_1(118))/2;
     _WechatBut.width = _QQBut.width;
     _WechatBut.height = _QQBut.height;
     [_WechatBut setBackgroundImage:[UIImage imageNamed:@"wechat"] forState:UIControlStateNormal];
+    _WechatBut.hidden = YES;
+
     // 新浪微博
     _SinaBut.top = _WechatBut.top;
     _SinaBut.left = _WechatBut.right+((ZJAPPWidth-TRUE_1(180))-TRUE_1(118))/2;
     _SinaBut.width = _WechatBut.width;
     _SinaBut.height = _WechatBut.height;
     [_SinaBut setBackgroundImage:[UIImage imageNamed:@"weibo"] forState:UIControlStateNormal];
+    _SinaBut.hidden = YES;
 
 
 }
