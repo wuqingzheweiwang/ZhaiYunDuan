@@ -64,22 +64,21 @@
             NSLog(@"1111%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 //
+                NSDictionary *allDic = [responseData objectForKey:@"data"];
                 
-                self.phoneNmber = [[responseData objectForKey:@"data"] objectForKey:@"phone"];
+                self.phoneNmber = [allDic objectForKey:@"phone"];
                 
-                self.userName =[[responseData objectForKey:@"data"] objectForKey:@"username"];
+                self.userName =[allDic objectForKey:@"username"];
                 
-                if ([[[responseData objectForKey:@"data"] objectForKey:@"image"] isEqualToString:@""]) {
+                 self.careNumberText = [allDic objectForKey:@"cardNumber"];
+                
+                if ([[allDic objectForKey:@"image"] isEqualToString:@""]) {
                     
                     self.image = [UIImage imageNamed:@"head-portrait"];
                 }else{
-                    
-                    
-                    self.imageUrl = [[responseData objectForKey:@"data"] objectForKey:@"image"];
-                    
+                    self.imageUrl = [allDic objectForKey:@"image"];
                 }
                 
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
             }else{
                 
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
@@ -95,16 +94,14 @@
     
 }
 
--(void)reloadUI
-{
-}
 
 -(NSMutableArray *)tableViewdataSource
 {
     if (_tableViewdataSource == nil) {
         _tableViewdataSource = [NSMutableArray arrayWithObjects:@[@[@"头像",self.imageUrl],
                                @[@"姓名",self.userName],
-                               @[@"手机",self.phoneNmber]],nil];
+                               @[@"手机",self.phoneNmber],
+                               @[@"身份证号",self.careNumberText]],nil];
     }
     return _tableViewdataSource;
 }
