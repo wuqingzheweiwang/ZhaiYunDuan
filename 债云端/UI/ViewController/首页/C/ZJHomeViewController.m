@@ -72,7 +72,9 @@ static NSString *identifierId=@"zz";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self getUserRoleWithToken];
+    if ([ZJUserInfo getUserIDForUserToken].length>0) {
+        [self getUserRoleWithToken];
+    }
     _sdCyScroll.autoScroll = YES;
     if ([ZJUtil getUserLogin]) {
         rightBtn.hidden=YES;

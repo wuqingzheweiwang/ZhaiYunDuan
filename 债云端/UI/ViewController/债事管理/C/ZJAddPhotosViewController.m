@@ -247,54 +247,67 @@
 - (void)savePhotosAction
 {
      if (_Phototype==1) {//债事备案
-        
-         [self showProgress];
-         [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
-             [self dismissProgress];
-             NSLog(@"%@",responseData);
-             if (success) {
-                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
-                     urlimages=[responseData objectForKey:@"data"];
-                     [self postInfoToSevise];
+         if (images.count>0) {
+             [self showProgress];
+             [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
+                 [self dismissProgress];
+                 NSLog(@"%@",responseData);
+                 if (success) {
+                     if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
+                         urlimages=[responseData objectForKey:@"data"];
+                         [self postInfoToSevise];
+                     }else{
+                         [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                     }
                  }else{
-                     [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                     [ZJUtil showBottomToastWithMsg:@"上传失败"];
                  }
-             }else{
-                 [ZJUtil showBottomToastWithMsg:@"上传失败"];
-             }
-         }];
+             }];
+         }else{
+              [self postInfoToSevise];
+         }
+         
          
     }else if (_Phototype==2||_Phototype==3){
-        [self showProgress];
-        [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
-            [self dismissProgress];
-            if (success) {
-                if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
-                    urlimages=[responseData objectForKey:@"data"];
-                    [self postinfoDebtPerson];
+        if (images.count>0) {
+            [self showProgress];
+            [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
+                [self dismissProgress];
+                if (success) {
+                    if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
+                        urlimages=[responseData objectForKey:@"data"];
+                        [self postinfoDebtPerson];
+                    }else{
+                        [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                    }
                 }else{
-                    [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                    [ZJUtil showBottomToastWithMsg:@"上传失败"];
                 }
-            }else{
-                [ZJUtil showBottomToastWithMsg:@"上传失败"];
-            }
-        }];
+            }];
+        }else{
+            [self postinfoDebtPerson];
+        }
+        
     }else if (_Phototype==4){
-     
-        [self showProgress];
-        [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
-            [self dismissProgress];
-            if (success) {
-                if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
-                    urlimages=[responseData objectForKey:@"data"];
-                    [self postinfoDebtCapital];
+        if (images.count>0) {
+            [self showProgress];
+            [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
+                [self dismissProgress];
+                if (success) {
+                    if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
+                        urlimages=[responseData objectForKey:@"data"];
+                        [self postinfoDebtCapital];
+                    }else{
+                        [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                    }
                 }else{
-                    [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                    [ZJUtil showBottomToastWithMsg:@"上传失败"];
                 }
-            }else{
-                [ZJUtil showBottomToastWithMsg:@"上传失败"];
-            }
-        }];
+            }];
+        }else{
+            [self postinfoDebtCapital];
+        }
+        
         
     }
 }

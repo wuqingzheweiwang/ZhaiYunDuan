@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    _page=1;
     [self setNavcaition];
     [self.view addSubview:self.tableView];
 
