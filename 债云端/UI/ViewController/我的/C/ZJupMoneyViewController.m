@@ -203,12 +203,8 @@
         // 成功
         if (success) {
             
-            NSLog(@"1111111%@",responseData);
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                
-                
-                
                 
                 [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
                 
@@ -241,9 +237,9 @@
 {
     // 银行卡
     if (index==0) {
-        NSLog(@"0000");
+       
     }else if (index==1){
-        NSLog(@"1111");
+       
     }
 }
 
@@ -260,7 +256,7 @@
 
     }else if (index==2001){
         
-        NSLog(@"111");
+       
     }
 }
 
@@ -287,8 +283,6 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 
 {
-    
-    NSLog(@"textFieldDidBeginEditing");
     
     CGRect frame = textField.frame;
     
@@ -335,9 +329,6 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-    
-    NSLog(@"touchesBegan");
-    
     [self.view endEditing:YES];
     
     NSTimeInterval animationDuration = 0.30f;

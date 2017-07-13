@@ -121,7 +121,7 @@
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSLog(@"%@",responseData);
+                DLog(@"%@",responseData);
                 
                 if ([[responseData objectForKey:@"message"]isEqualToString:@"没有权限"]) {
                     backview.hidden=NO;
@@ -193,7 +193,7 @@
     NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
     NSString *utf = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 backview.hidden=YES;

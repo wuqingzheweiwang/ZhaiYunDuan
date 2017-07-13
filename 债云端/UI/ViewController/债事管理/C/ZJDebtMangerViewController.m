@@ -99,7 +99,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
         
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             if (_page==1) {
                 [_dataSource removeAllObjects];

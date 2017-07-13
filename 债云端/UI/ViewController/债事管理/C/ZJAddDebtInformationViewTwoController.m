@@ -253,8 +253,6 @@
     [debtRelation2VoDic setObject:buttonKeyArray3 forKey:@"electron"];
 
     
-    NSLog(@"%@",debtRelation2VoDic);
-    
     
     ZJAddPhotosViewController * addphotosVC=[[ZJAddPhotosViewController alloc]initWithNibName:@"ZJAddPhotosViewController" bundle:nil];
     addphotosVC.Phototype=ZJAddPhotosDebtRecord;

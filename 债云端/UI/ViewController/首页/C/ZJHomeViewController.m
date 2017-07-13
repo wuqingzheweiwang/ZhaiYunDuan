@@ -95,7 +95,7 @@ static NSString *identifierId=@"zz";
 - (void)getUserRoleWithToken
 {
      [ZJHomeRequest zjGetUserRoleRequestresult:^(BOOL success, id responseData) {
-         NSLog(@"%@",responseData);
+         DLog(@"%@",responseData);
          if (success) {
              if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                  [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]]];
@@ -115,7 +115,7 @@ static NSString *identifierId=@"zz";
         
        // 请求成功
        if (success) {
-           NSLog(@"%@",responseData);
+           DLog(@"%@",responseData);
            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
         
                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];

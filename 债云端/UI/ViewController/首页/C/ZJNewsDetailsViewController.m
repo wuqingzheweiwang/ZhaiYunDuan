@@ -64,7 +64,6 @@
     [_progressLayer closeTimer];
     [_progressLayer removeFromSuperlayer];
     _progressLayer = nil;
-    NSLog(@"i am dealloc");
 }
 
 - (void)didReceiveMemoryWarning {

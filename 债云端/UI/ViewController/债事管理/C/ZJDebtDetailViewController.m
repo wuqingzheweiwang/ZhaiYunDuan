@@ -55,7 +55,6 @@
     [self showProgress];
     [ZJDeBtManageRequest GetDebtManageDetailInfoRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 [self createUIWith:[responseData objectForKey:@"data"]];

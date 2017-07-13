@@ -78,7 +78,7 @@
         }
     }
     else
-        NSLog(@"Not a valid JSON object: %@", dic);
+        DLog(@"Not a valid JSON object: %@", dic);
     return json;
 }
 
@@ -117,8 +117,8 @@
     }
     
     [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-        NSLog(@"%s, line = %d", __FUNCTION__, __LINE__);
-        NSLog(@"清除完成");
+        DLog(@"%s, line = %d", __FUNCTION__, __LINE__);
+        DLog(@"清除完成");
     }];
     
 }
@@ -318,10 +318,10 @@
 +(BOOL)getUserIsDebtBank
 {
     if ([[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"1"]) {
-        NSLog(@"债行");
+        DLog(@"债行");
         return YES;
     }else{
-        NSLog(@"非债行");
+        DLog(@"非债行");
         return NO;
     }
     return YES;
@@ -330,10 +330,10 @@
 +(BOOL)getUserIsDebtVip
 {
     if ([[ZJUserInfo getUserRoleForUserRole] isEqualToString:@"2"]) {
-        NSLog(@"会员");
+        DLog(@"会员");
         return YES;
     }else{
-        NSLog(@"非会员");
+        DLog(@"非会员");
         return NO;
     }
     return YES;
@@ -445,12 +445,12 @@
     // 遍历获取字体名称
     for(NSString *fontFamilyName in [UIFont familyNames])
     {
-        NSLog(@"family:'%@'",fontFamilyName);
+        DLog(@"family:'%@'",fontFamilyName);
         for(NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName])
         {
-            NSLog(@"\tfont:'%@'",fontName);
+            DLog(@"\tfont:'%@'",fontName);
         }
-        NSLog(@"-------------");
+        DLog(@"-------------");
     }
     
 }

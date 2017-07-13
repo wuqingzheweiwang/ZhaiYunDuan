@@ -97,7 +97,6 @@
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
-                NSLog(@"%@",responseData);
                 
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {

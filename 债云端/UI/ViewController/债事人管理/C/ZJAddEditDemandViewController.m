@@ -49,7 +49,7 @@
   NSString * action=[NSString stringWithFormat:@"api/demand/detail?demandid=%@",self.demandId];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalDetailRequestWithActions:action result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -104,11 +104,10 @@
         [dict setValue:[valueArray objectAtIndex:2] forKey:@"totalAmout"];//总价值
         [dict setValue:[valueArray objectAtIndex:3] forKey:@"assetNum"];//资产数量
         
-        NSLog(@"%@",dict);
         [self showProgress];
         [ZJDebtPersonRequest postAddDebtPersonDemandInfoRequestWithParms:dict result:^(BOOL success, id responseData) {
             [self dismissProgress];
-            NSLog(@"%@",responseData);
+            DLog(@"%@",responseData);
             if (success) {
                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                     self.block(@"fresh");
@@ -128,11 +127,10 @@
         [dict setValue:[valueArray objectAtIndex:2] forKey:@"totalAmout"];//总价值
         [dict setValue:[valueArray objectAtIndex:3] forKey:@"assetNum"];//资产数量
         
-        NSLog(@"%@",dict);
         [self showProgress];
         [ZJDebtPersonRequest postEditDebtPersonDemandInfoRequestWithParms:dict result:^(BOOL success, id responseData) {
             [self dismissProgress];
-            NSLog(@"%@",responseData);
+            DLog(@"%@",responseData);
             if (success) {
                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                     self.block(@"fresh");

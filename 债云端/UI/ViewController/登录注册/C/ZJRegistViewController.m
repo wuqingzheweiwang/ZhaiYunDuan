@@ -367,7 +367,6 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                //NSLog(@"____%@",strTime);
                 [UIView beginAnimations:nil context:nil];
                 [UIView setAnimationDuration:0.1];
                 [_sendVerification setBackgroundColor:ZJColor_999999];
@@ -444,8 +443,6 @@
 
 {
     
-    NSLog(@"textFieldDidBeginEditing");
-    
     CGRect frame = textField.frame;
     
     CGFloat heights = self.view.frame.size.height;
@@ -491,8 +488,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-    
-    NSLog(@"touchesBegan");
+
     
     [self.view endEditing:YES];
     

@@ -91,7 +91,7 @@
         // 成功
         if (success) {
             
-            NSLog(@"1111111%@",responseData);
+            DLog(@"1111111%@",responseData);
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
