@@ -69,9 +69,11 @@
                 self.phoneNmber = [allDic objectForKey:@"phone"];
                 
                 self.userName =[allDic objectForKey:@"username"];
-                
+                if ([self.careNumberText isEqualToString:@""]) {
+                    self.careNumberText = @"未填写";
+                }else{
                 self.careNumberText = [allDic objectForKey:@"cardNumber"];
-                
+                }
                 if ([[allDic objectForKey:@"image"] isEqualToString:@""]) {
                     
                     self.image = [UIImage imageNamed:@"head-portrait"];
