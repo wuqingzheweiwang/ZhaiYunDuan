@@ -16,9 +16,12 @@
 #import "ZJPersonDebtInfomationViewController.h"
 #import "ZJCompanyDebtInfomationViewController.h"
 #import "ZJAddDebtInformationViewController.h"
+#import <AVFoundation/AVCaptureDevice.h>
+#import <AVFoundation/AVMediaFormat.h>
+#import <Photos/Photos.h>
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
-@interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate,UIAlertViewDelegate>
+@interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *BigScrollview;
 
 
@@ -181,6 +184,11 @@
 //添加照片
 -(void)selectPicForShineButtonAction
 {
+    if (![self isCanUsePhotos]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册权限受限" message:@"请在iPhone的\"设置->隐私->相册\"选项中,允许\"债云端\"访问您的相册." delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     QBImagePickerController *imagePickerController = [[QBImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsMultipleSelection =YES;
@@ -189,7 +197,25 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
     [self presentViewController:navigationController animated:YES completion:NULL];
 }
-
+- (BOOL)isCanUsePhotos {
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+        ALAuthorizationStatus author =[ALAssetsLibrary authorizationStatus];
+        if (author == kCLAuthorizationStatusRestricted || author == kCLAuthorizationStatusDenied) {
+            //无权限
+            return NO;
+        }
+    }
+    else {
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusRestricted ||
+            status == PHAuthorizationStatusDenied) {
+            //无权限
+            return NO;
+        }
+    }
+    return YES;
+}
 #pragma mark - QBImagePickerControllerDelegate
 //单张选取图片调用
 - (void)imagePickerController:(QBImagePickerController *)imagePickerController didSelectAsset:(ALAsset *)asset

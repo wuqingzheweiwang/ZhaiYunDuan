@@ -17,6 +17,7 @@
 #import "WXApiObject.h"
 #import "WXApi.h"
 #import "ZJHomeRequest.h"
+#import "ZJPaySuccessViewController.h"
 @interface ZJPayMoneyViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSString *payWay;
@@ -263,7 +264,8 @@
             if ([resultDic[@"resultStatus"] intValue]==9000) {
                 
                 [ZJUtil showBottomToastWithMsg:@"支付成功"];
-                
+                ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
+                [self.navigationController pushViewController:paySuccVC animated:YES];
                 
             }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
                 [ZJUtil showBottomToastWithMsg:@"正在处理中"];

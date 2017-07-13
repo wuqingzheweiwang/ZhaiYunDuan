@@ -14,6 +14,7 @@
 #import "WXApiManager.h"
 #import "ZJShareManager.h"
 #import "UMMobClick/MobClick.h"
+#import "ZJPaySuccessViewController.h"
 #define USHARE_DEMO_APPKEY  @""
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -242,7 +243,8 @@
         if ([resultDic[@"resultStatus"] intValue]==9000) {
             
             [ZJUtil showBottomToastWithMsg:@"支付成功"];
-            
+            ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
+            [self.window.rootViewController presentViewController:paySuccVC animated:YES completion:nil];
             
         }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
             [ZJUtil showBottomToastWithMsg:@"正在处理中"];
@@ -278,7 +280,8 @@
         if ([resultDic[@"resultStatus"] intValue]==9000) {
             
             [ZJUtil showBottomToastWithMsg:@"支付成功"];
-            
+            ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
+            [self.window.rootViewController presentViewController:paySuccVC animated:YES completion:nil];
             
         }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
             [ZJUtil showBottomToastWithMsg:@"正在处理中"];
