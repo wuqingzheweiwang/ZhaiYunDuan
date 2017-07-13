@@ -16,9 +16,12 @@
 #import "ZJPersonDebtInfomationViewController.h"
 #import "ZJCompanyDebtInfomationViewController.h"
 #import "ZJAddDebtInformationViewController.h"
+#import <AVFoundation/AVCaptureDevice.h>
+#import <AVFoundation/AVMediaFormat.h>
+
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
-@interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate,UIAlertViewDelegate>
+@interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *BigScrollview;
 
 
@@ -181,6 +184,14 @@
 //添加照片
 -(void)selectPicForShineButtonAction
 {
+    NSString *mediaType = AVMediaTypeVideo;
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    if(authStatus == AVAuthorizationStatusNotDetermined || authStatus == AVAuthorizationStatusDenied){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相机权限受限" message:@"请在iPhone的\"设置->隐私->相机\"选项中,允许\"债云端\"访问您的相机." delegate:self cancelButtonTitle:@"好的" otherButtonTitles:@"取消",nil];
+        alert.tag=503;
+        [alert show];
+        return;
+    }
     QBImagePickerController *imagePickerController = [[QBImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsMultipleSelection =YES;
@@ -496,6 +507,10 @@
             addDebtVC.isOwer=@"1";
             [addDebtVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:addDebtVC animated:YES];
+        }
+    }else if(alertView.tag==503){
+        if (buttonIndex==0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Privacy&path=PHOTOS"]];
         }
     }else{
         if (buttonIndex==0) {

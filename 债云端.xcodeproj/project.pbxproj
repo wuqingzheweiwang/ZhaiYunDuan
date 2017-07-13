@@ -82,6 +82,8 @@
 		182545041EA8AB0600A29FB6 /* ___UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 182545031EA8AB0600A29FB6 /* ___UITests.m */; };
 		18263D001F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */; };
 		18263D011F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */; };
+		182B529F1F1718810058A37F /* ZJPaySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B529D1F1718810058A37F /* ZJPaySuccessViewController.m */; };
+		182B52A01F1718810058A37F /* ZJPaySuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182B529E1F1718810058A37F /* ZJPaySuccessViewController.xib */; };
 		182DF3851EA9DC1F0086B9FC /* ZJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DF3831EA9DC1F0086B9FC /* ZJBaseViewController.m */; };
 		182DF3861EA9DC1F0086B9FC /* ZJBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182DF3841EA9DC1F0086B9FC /* ZJBaseViewController.xib */; };
 		182DF39A1EA9DD7C0086B9FC /* ZJDebtPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182DF3981EA9DD7C0086B9FC /* ZJDebtPersonViewController.m */; };
@@ -413,6 +415,9 @@
 		18263CFD1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBusinesscolledgTableViewCell.h; sourceTree = "<group>"; };
 		18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJBusinesscolledgTableViewCell.m; sourceTree = "<group>"; };
 		18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJBusinesscolledgTableViewCell.xib; sourceTree = "<group>"; };
+		182B529C1F1718810058A37F /* ZJPaySuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJPaySuccessViewController.h; sourceTree = "<group>"; };
+		182B529D1F1718810058A37F /* ZJPaySuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJPaySuccessViewController.m; sourceTree = "<group>"; };
+		182B529E1F1718810058A37F /* ZJPaySuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJPaySuccessViewController.xib; sourceTree = "<group>"; };
 		182DF3821EA9DC1F0086B9FC /* ZJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJBaseViewController.h; sourceTree = "<group>"; };
 		182DF3831EA9DC1F0086B9FC /* ZJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJBaseViewController.m; sourceTree = "<group>"; };
 		182DF3841EA9DC1F0086B9FC /* ZJBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJBaseViewController.xib; sourceTree = "<group>"; };
@@ -1322,6 +1327,7 @@
 				1844E0231EAE0EBC0013E54A /* 债事备案1 */,
 				1854636F1EB35BF100AF025B /* 债事备案2 */,
 				181013A51EAF5ACE009C1DAD /* 添加照片 */,
+				182B529B1F1718400058A37F /* 支付成功 */,
 				185463701EB35C3600AF025B /* 债事详情 */,
 				18238E741EBAD7A50018C179 /* ZJWebview */,
 			);
@@ -1336,6 +1342,16 @@
 				18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */,
 			);
 			name = "商学院";
+			sourceTree = "<group>";
+		};
+		182B529B1F1718400058A37F /* 支付成功 */ = {
+			isa = PBXGroup;
+			children = (
+				182B529C1F1718810058A37F /* ZJPaySuccessViewController.h */,
+				182B529D1F1718810058A37F /* ZJPaySuccessViewController.m */,
+				182B529E1F1718810058A37F /* ZJPaySuccessViewController.xib */,
+			);
+			name = "支付成功";
 			sourceTree = "<group>";
 		};
 		182DF38F1EA9DD2A0086B9FC /* 我的 */ = {
@@ -2546,6 +2562,7 @@
 				528C97C11F138C4000C60743 /* province_data.json in Resources */,
 				18238EA61EBB44420018C179 /* ZJchongMoneyViewController.xib in Resources */,
 				18238E791EBAD82C0018C179 /* ZJBranchOfficeViewController.xib in Resources */,
+				182B52A01F1718810058A37F /* ZJPaySuccessViewController.xib in Resources */,
 				182F69D11EB9DDFD004A175B /* ZJWebViewController.xib in Resources */,
 				18971AD81EC0420800A3E4A1 /* ZJAddEditCapitalViewController.xib in Resources */,
 				185C70C91EB88EF300BE9D17 /* QBImagePickerController.strings in Resources */,
@@ -2761,6 +2778,7 @@
 				1854638E1EB364BB00AF025B /* ZJAddDebtPersonController.m in Sources */,
 				18592B221EC1D4E7000CB4AD /* ZJMyPageRequest.m in Sources */,
 				181AFA611EB1F86B00B3FC7E /* ZJLoginViewController.m in Sources */,
+				182B529F1F1718810058A37F /* ZJPaySuccessViewController.m in Sources */,
 				181AFA551EB1F7BC00B3FC7E /* ZJDebtPersonMangerTableViewCell.m in Sources */,
 				5214A8641ECBF8D000860133 /* ZJBankCardTool.m in Sources */,
 				181AFA4C1EB1F7A800B3FC7E /* ZJMyPageItem.m in Sources */,
