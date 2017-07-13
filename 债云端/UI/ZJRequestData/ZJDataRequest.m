@@ -194,7 +194,7 @@
 - (NSString *)requestHttpURL:(NSString *)action
 {
     return [NSString stringWithFormat:@"http://test.api.zhongjinzhaishi.com/%@",action];
-//    return [NSString stringWithFormat:@"http://192.168.2.14:8056/%@",action];
+//    return [NSString stringWithFormat:@"http://192.168.2.22:8001/%@",action];
 }
 
 
