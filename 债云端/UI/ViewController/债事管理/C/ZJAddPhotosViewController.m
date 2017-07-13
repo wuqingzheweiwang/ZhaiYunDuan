@@ -18,7 +18,7 @@
 #import "ZJAddDebtInformationViewController.h"
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
-
+#import <Photos/Photos.h>
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
 @interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate>
@@ -184,11 +184,8 @@
 //添加照片
 -(void)selectPicForShineButtonAction
 {
-    NSString *mediaType = AVMediaTypeVideo;
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    if(authStatus == AVAuthorizationStatusNotDetermined || authStatus == AVAuthorizationStatusDenied){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相机权限受限" message:@"请在iPhone的\"设置->隐私->相机\"选项中,允许\"债云端\"访问您的相机." delegate:self cancelButtonTitle:@"好的" otherButtonTitles:@"取消",nil];
-        alert.tag=503;
+    if (![self isCanUsePhotos]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册权限受限" message:@"请在iPhone的\"设置->隐私->相册\"选项中,允许\"债云端\"访问您的相册." delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
         [alert show];
         return;
     }
@@ -200,7 +197,25 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
     [self presentViewController:navigationController animated:YES completion:NULL];
 }
-
+- (BOOL)isCanUsePhotos {
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+        ALAuthorizationStatus author =[ALAssetsLibrary authorizationStatus];
+        if (author == kCLAuthorizationStatusRestricted || author == kCLAuthorizationStatusDenied) {
+            //无权限
+            return NO;
+        }
+    }
+    else {
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusRestricted ||
+            status == PHAuthorizationStatusDenied) {
+            //无权限
+            return NO;
+        }
+    }
+    return YES;
+}
 #pragma mark - QBImagePickerControllerDelegate
 //单张选取图片调用
 - (void)imagePickerController:(QBImagePickerController *)imagePickerController didSelectAsset:(ALAsset *)asset
@@ -507,10 +522,6 @@
             addDebtVC.isOwer=@"1";
             [addDebtVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:addDebtVC animated:YES];
-        }
-    }else if(alertView.tag==503){
-        if (buttonIndex==0) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Privacy&path=PHOTOS"]];
         }
     }else{
         if (buttonIndex==0) {
