@@ -70,7 +70,7 @@
                 
                 self.userName =[allDic objectForKey:@"username"];
                 
-                 self.careNumberText = [allDic objectForKey:@"cardNumber"];
+                self.careNumberText = [allDic objectForKey:@"cardNumber"];
                 
                 if ([[allDic objectForKey:@"image"] isEqualToString:@""]) {
                     
@@ -173,10 +173,11 @@
 
         zjOwnerheadercell.nextbut_1.hidden = YES;
     }
-    if (indexPath.row == 1) {
+    if (indexPath.row == 1||indexPath.row == 3) {
         
         zjOwnerheadercell.nextbut_2.hidden = YES;
     }
+    
     return zjOwnerheadercell;
 
 }
@@ -197,11 +198,13 @@
     else if (indexPath.row == 1){
         
         
-    }else{
+    }else if (indexPath.row == 1){
         
         [self gotoTelephoneNumberView];
     }
-    
+    else if (indexPath.row == 3){
+        
+    }
 }
 
 

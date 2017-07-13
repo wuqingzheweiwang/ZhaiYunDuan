@@ -21,7 +21,7 @@
     
     _imageLabel_2.top = TRUE_1(30/2);
     _imageLabel_2.left = TRUE_1(30/2);
-    _imageLabel_2.width = TRUE_1(70/2);
+    _imageLabel_2.width = TRUE_1(150/2);
     _imageLabel_2.height = TRUE_1(90/2) - _imageLabel_2.top*2;
     _imageLabel_2.font = ZJ_TRUE_FONT(15);
 
@@ -40,10 +40,9 @@
     
     // 姓名
     _namedetialLab.top = TRUE_1(35/2);
-    _namedetialLab.width = TRUE_1(80);
+    _namedetialLab.width = TRUE_1(150);
     _namedetialLab.right = _headerimageV.right -_namedetialLab.width;
     _namedetialLab.height = TRUE_1(90/2) - _namedetialLab.top*2;
-    
     _namedetialLab.textAlignment = NSTextAlignmentRight;
     _namedetialLab.font = ZJ_TRUE_FONT(12);
     
