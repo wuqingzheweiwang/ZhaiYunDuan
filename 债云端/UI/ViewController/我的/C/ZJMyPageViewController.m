@@ -44,8 +44,6 @@ static id _publishContent;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *quitBut;
 
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-
 @property (weak, nonatomic) IBOutlet UIButton *personalData;
 
 @property (weak, nonatomic) IBOutlet UIButton *pushIcon;
@@ -83,7 +81,8 @@ static id _publishContent;
     // 判断是否为行长
     [self getUserRoleWithToken];
     // 判断登录状态
-    [_quitBut setTitle:@"登录" forState:UIControlStateNormal];
+    _QRcodeView.hidden = YES;
+
     if ([ZJUtil getUserLogin]) {
         
          [self getMyPageData];
@@ -91,8 +90,7 @@ static id _publishContent;
     }else{   //未登录
         
         [_quitBut setTitle:@"登录" forState:UIControlStateNormal];
-        
-        _userName.hidden = YES;
+        self.userName.text = @"用户名";
         _codeLabel.hidden = YES;
         _headerImage.image=[UIImage imageNamed:@"head-portrait"];
         _vipImageView.hidden = YES;
@@ -173,26 +171,19 @@ static id _publishContent;
     _headerImage.contentMode=UIViewContentModeScaleAspectFill;
     _headerImage.layer.masksToBounds = YES;
     _headerImage.layer.cornerRadius = TRUE_1(70/2);
-  
     //    添加手势
     [self setheaderImageGesture];
     
-    // 用户名Label
-    _userNameLabel.top = _headerImage.top;
-    _userNameLabel.left = _headerImage.right+TRUE_1(10);
-    _userNameLabel.width = TRUE_1(94/2);
-    _userNameLabel.height = TRUE_1(30/2);
-    _userNameLabel.font=ZJ_TRUE_FONT(15);
     // 用户名
-    _userName.top = _userNameLabel.top;
-    _userName.left = _userNameLabel.right+TRUE_1(5);
-    _userName.width =  TRUE_1(200/2);
-    _userName.height = _userNameLabel.height;
-    _userName.font= ZJ_TRUE_FONT(12);
+    _userName.top = _headerImage.top;
+    _userName.left = _headerImage.right+TRUE_1(10);
+    _userName.width =  TRUE_1(94/2);
+    _userName.height = TRUE_1(30/2);
+    _userName.font= ZJ_TRUE_FONT(15);
 
     // vip  vip图片的hideen与是否是行长有关
     _vipImageView.centerY = _headerImage.centerY;
-    _vipImageView.left = _userNameLabel.left;
+    _vipImageView.left = _userName.left;
     _vipImageView.width = TRUE_1(40/2);
     _vipImageView.height = TRUE_1(40/2);
     
@@ -212,15 +203,15 @@ static id _publishContent;
     //推荐编码Label
     _recommandCode.top = _vipImageView.bottom+TRUE_1(10);
     _recommandCode.left = _vipImageView.left;
-    _recommandCode.width = TRUE_1(100);
+    _recommandCode.width = TRUE_1(55);
     _recommandCode.height = TRUE_1(20);
     _recommandCode.font = ZJ_TRUE_FONT(12);
     // 推荐编码
     _codeLabel.top = _recommandCode.top;
-    _codeLabel.left = _userName.left;
+    _codeLabel.left = _recommandCode.right;
     _codeLabel.width = TRUE_1(200);
     _codeLabel.height = _vipImageView.height;
-    
+    _codeLabel.textAlignment = NSTextAlignmentLeft;
     // >
     _pushIcon.height = TRUE_1(25/2);
     _pushIcon.top = _vipImageView.top+TRUE_1(5);
@@ -351,6 +342,7 @@ static id _publishContent;
                     NSDictionary *allDic = [responseData objectForKey:@"data"];
                     self.phoneNmber = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"phone"]];
                     self.userName.text =[NSString stringWithFormat:@"%@",[allDic objectForKey:@"username"]];
+                    self.userName.text =[NSString stringWithFormat:@"%@",[allDic objectForKey:@"username"]];
                     //按type来
                     NSString * userRole= [NSString stringWithFormat:@"%@",[allDic objectForKey:@"type"]];
                     if ([userRole isEqualToString:@"1"]) {
@@ -371,29 +363,6 @@ static id _publishContent;
                         _isVIPImageView.image = [UIImage imageNamed:@"grey"];
                         [_isVIPLabel setTextColor:ZJColor_666666];
                     }
-
-//                    if ([allDic objectForKey:@"hangzhang"]) {
-//                        NSString * hangzhang=[NSString stringWithFormat:@"%@",[allDic objectForKey:@"hangzhang"]];
-//                        if (![hangzhang isEqualToString:@""]) {
-//                            self.isVIPLabel.text = hangzhang;
-//                            self.codeLabel.text =[allDic objectForKey:@"recommendCode"];
-//                            _vipImageView.image = [UIImage imageNamed:@"viplogo"];
-//                            _isVIPImageView.image = [UIImage imageNamed:@"yellow"];
-//                            [_isVIPLabel setTextColor:ZJColor_red];
-//                        }else{
-//                            
-//                            self.isVIPLabel.text = @"普通用户";
-//                            _vipImageView.image = [UIImage imageNamed:@"user"];
-//                            _isVIPImageView.image = [UIImage imageNamed:@"grey"];
-//                            [_isVIPLabel setTextColor:ZJColor_666666];
-//                        }
-//                    }else{
-//                        self.isVIPLabel.text = @"普通用户";
-//                        _vipImageView.image = [UIImage imageNamed:@"user"];
-//                        _isVIPImageView.image = [UIImage imageNamed:@"grey"];
-//                        [_isVIPLabel setTextColor:ZJColor_666666];
-//                    }
-            
                     
                     self.recommand_1 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"zhaishi"]];
                     self.recommand_2 = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"kaihang"]];
@@ -413,7 +382,6 @@ static id _publishContent;
                    
                     [_quitBut setTitle:@"退出" forState:UIControlStateNormal];
                     
-                    _userName.hidden = NO;
                     _codeLabel.hidden = NO;
                     _vipImageView.hidden = NO;
                     _isVIPImageView.hidden = NO;
@@ -422,20 +390,20 @@ static id _publishContent;
                     
                     
                     // 推荐备案数
-                    [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@个",self.recommand_1]];
+                    [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
 
                     [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
                     // 推荐行长
-                    [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@个",self.recommand_2]];
+                    [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
                     
                     [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
                     // 解债数
-                    [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@个",self.recommand_3]];
+                    [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
                     
                     [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
                     
                     // 推荐行长数
-                    [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@个",self.recommand_4]];
+                    [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
                     
                     [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
                     [self.tableView reloadData];
@@ -510,20 +478,20 @@ static id _publishContent;
             _quitBut.titleLabel.font = [UIFont systemFontOfSize:14];
         
             self.headerImage.image = [UIImage imageNamed:@"head-portrait"];
-            self.userName.hidden = YES;
+            self.userName.text = @"用户名";
             self.vipImageView.hidden = YES;
             self.isVIPImageView.hidden = YES;
             self.isVIPLabel.hidden = YES;
             self.codeLabel.hidden = YES;
             self.QRcodeView.hidden = YES;
             
-            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d个",0]];
+            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d",0]];
             zjMyMembercell.recommandLabel_1.enabled = YES;
-            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d个",0]];
+            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d",0]];
             zjMyMembercell.recommandLabel_2.enabled = YES;
-            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d个",0]];
+            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d",0]];
             zjMyMembercell.recommandLabel_3.enabled = YES;
-            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d个",0]];
+            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
             zjMyMembercell.recommandLabel_4.enabled = YES;
 
 
@@ -694,28 +662,28 @@ static id _publishContent;
         
         if ([ZJUtil getUserLogin]) {
             // 推荐备案数
-            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@个",self.recommand_1]];
+            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
             [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
             // 推荐行长
-            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@个",self.recommand_2]];
+            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
 
             [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
             // 解债数
-            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@个",self.recommand_3]];
+            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
             
             [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
             
             // 推荐会员数
-            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@个",self.recommand_4]];
+            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
             
             [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
             
         }else{
             
-            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d个",0]];
-            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d个",0]];
-            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d个",0]];
-            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d个",0]];
+            [zjMyMembercell.recommandLabel_1 setText:0];
+            [zjMyMembercell.recommandLabel_2 setText:0];
+            [zjMyMembercell.recommandLabel_3 setText:0];
+            [zjMyMembercell.recommandLabel_4 setText:0];
 
         }
         

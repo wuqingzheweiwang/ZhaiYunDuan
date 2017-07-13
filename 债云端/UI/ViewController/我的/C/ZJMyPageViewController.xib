@@ -25,7 +25,6 @@
                 <outlet property="tableHeaderView" destination="0ST-gm-723" id="l4O-z3-RdW"/>
                 <outlet property="titleLabel" destination="Dd2-Ve-RwU" id="U0V-ME-Abl"/>
                 <outlet property="userName" destination="htb-vd-6tb" id="8I5-LU-Ag4"/>
-                <outlet property="userNameLabel" destination="a0n-Qo-Pv3" id="Xrc-hk-gan"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vipImageView" destination="3II-TD-Whc" id="aON-Rw-TlM"/>
             </connections>
@@ -59,13 +58,6 @@
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用户名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0n-Qo-Pv3">
-                            <rect key="frame" x="105" y="71" width="52" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="vip" translatesAutoresizingMaskIntoConstraints="NO" id="3II-TD-Whc">
                             <rect key="frame" x="105" y="100" width="18" height="18"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
