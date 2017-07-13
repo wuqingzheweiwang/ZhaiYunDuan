@@ -37,11 +37,15 @@ static id _publishContent;
 }
 
 @property (nonatomic , strong) NSMutableArray *tableViewdataSource;
+
 @property (nonatomic , strong) UITableView *tableView;
 // 头视图
 @property (weak, nonatomic) IBOutlet UIView *tableHeaderView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *headerBackGroundImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *quitBut;
 
 @property (weak, nonatomic) IBOutlet UIButton *personalData;
@@ -51,6 +55,8 @@ static id _publishContent;
 @property (weak, nonatomic) IBOutlet UILabel *recommandCode;
 
 @property (nonatomic ,strong) NSString *phoneNmber;
+
+@property (nonatomic ,strong) NSString *careNumberText;
 
 @property (nonatomic ,strong) NSURL *imageUrl;
 // 我的推荐个数
@@ -341,7 +347,7 @@ static id _publishContent;
                     NSDictionary *allDic = [responseData objectForKey:@"data"];
                     self.phoneNmber = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"phone"]];
                     self.userName.text =[NSString stringWithFormat:@"%@",[allDic objectForKey:@"username"]];
-                    self.userName.text =[NSString stringWithFormat:@"%@",[allDic objectForKey:@"username"]];
+                   self.careNumberText = [NSString stringWithFormat:@"%@",[allDic objectForKey:@"cardNumber"]];
                     //按type来
                     NSString * userRole= [NSString stringWithFormat:@"%@",[allDic objectForKey:@"type"]];
                     if ([userRole isEqualToString:@"1"]) {
@@ -445,6 +451,12 @@ static id _publishContent;
         }else{
             ownerVC.phoneNmber = self.phoneNmber;
         }
+        if (!self.careNumberText) {
+            ownerVC.careNumberText = @"370522XXXXXXXX00223";
+        }else{
+            ownerVC.careNumberText = self.careNumberText;
+        }
+        
         [ownerVC setHidesBottomBarWhenPushed:YES];
         
         [self.navigationController pushViewController:ownerVC animated:YES];
