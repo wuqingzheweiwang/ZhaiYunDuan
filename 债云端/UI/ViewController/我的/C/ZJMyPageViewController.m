@@ -98,14 +98,14 @@ static id _publishContent;
         _isVIPLabel.hidden = YES;
         _QRcodeView.hidden = YES;
         
-        [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d个",0]];
+        [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_1.enabled = YES;
-        [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d个",0]];
+        [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_2.enabled = YES;
-        [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d个",0]];
+        [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_3.enabled = YES;
         // 推荐行长数
-        [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d个",0]];
+        [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_4.enabled = YES;
 
         [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请登录"]];
@@ -500,10 +500,6 @@ static id _publishContent;
             [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtMangerRequest"];
             //清除缓存
             [ZJUtil clearCachesWithFilePath:[ZJUtil CachesDirectory]];
-//            [ZJUserInfo removeUserInfoWithUserToken];
-            
-            //            float caches = [ZJUtil  sizeWithFilePaht:[ZJUtil CachesDirectory]];
-            //            text = [NSString stringWithFormat:@"%0.2fMB",caches];    //计算缓存大小
         }]];
         [alertcon addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 
@@ -680,11 +676,14 @@ static id _publishContent;
             
         }else{
             
-            [zjMyMembercell.recommandLabel_1 setText:0];
-            [zjMyMembercell.recommandLabel_2 setText:0];
-            [zjMyMembercell.recommandLabel_3 setText:0];
-            [zjMyMembercell.recommandLabel_4 setText:0];
-
+            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d",0]];
+            zjMyMembercell.recommandLabel_1.enabled = YES;
+            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d",0]];
+            zjMyMembercell.recommandLabel_2.enabled = YES;
+            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d",0]];
+            zjMyMembercell.recommandLabel_3.enabled = YES;
+            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
+            zjMyMembercell.recommandLabel_4.enabled = YES;
         }
         
     
