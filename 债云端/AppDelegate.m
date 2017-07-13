@@ -115,7 +115,6 @@
 //    [MobClick startWithConfigure:UMConfigInstance];
 //    [MobClick setAppVersion:ZJAPP_VERSION];
 //    [MobClick setLogEnabled:NO]; //发布为NO
-    
     return YES;
 }
 
@@ -243,8 +242,10 @@
         if ([resultDic[@"resultStatus"] intValue]==9000) {
             
             [ZJUtil showBottomToastWithMsg:@"支付成功"];
-            ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
-            [self.window.rootViewController presentViewController:paySuccVC animated:YES completion:nil];
+            
+            NSString *result = @"支付成功";
+    
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
             
         }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
             [ZJUtil showBottomToastWithMsg:@"正在处理中"];

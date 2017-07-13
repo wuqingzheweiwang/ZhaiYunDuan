@@ -40,6 +40,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSNotificationCenter* notif = [NSNotificationCenter defaultCenter];
+    [notif removeObserver:self name:@"apliyPay" object:nil];
+    [notif addObserver:self selector:@selector(apliyPayNotifAction:) name:@"apliyPay" object:nil];
     
     [self setPayUI];
   
@@ -264,9 +267,6 @@
             if ([resultDic[@"resultStatus"] intValue]==9000) {
                 
                 [ZJUtil showBottomToastWithMsg:@"支付成功"];
-                ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
-                [self.navigationController pushViewController:paySuccVC animated:YES];
-                
             }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
                 [ZJUtil showBottomToastWithMsg:@"正在处理中"];
             } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
@@ -284,7 +284,15 @@
             }
         }];
 }
-
+- (void)apliyPayNotifAction:(NSNotification *)noti {
+    NSString *notiString = [noti.userInfo objectForKey:@"errCode"];
+    if (![notiString isEqualToString:@""] && notiString != nil) {
+        if ([notiString isEqualToString:@"支付成功"]) {
+            ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
+            [self.navigationController pushViewController:paySuccVC animated:YES];
+        }
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

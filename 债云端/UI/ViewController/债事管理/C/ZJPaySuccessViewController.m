@@ -27,7 +27,7 @@
 {
     UIView * backview=[[UIView alloc]initWithFrame:CGRectMake(0, (ZJAPPHeight-64-TRUE_1(105))/2, ZJAPPWidth, TRUE_1(105))];
     [self.view addSubview:backview];
-    UIImageView * imageview=[[UIImageView alloc]initWithFrame:CGRectMake((ZJAPPWidth-TRUE_1(70))/2, 0, TRUE_1(70/2), TRUE_1(70/2))];
+    UIImageView * imageview=[[UIImageView alloc]initWithFrame:CGRectMake((ZJAPPWidth-TRUE_1(70))/2, 0, TRUE_1(70), TRUE_1(70))];
     imageview.image=[UIImage imageNamed:@"paySuccess"];
     [backview addSubview:imageview];
     UILabel * textlabel=[[UILabel alloc]initWithFrame:CGRectMake(0, TRUE_1(90), ZJAPPWidth, TRUE_1(15))];

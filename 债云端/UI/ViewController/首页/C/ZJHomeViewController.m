@@ -22,6 +22,9 @@
 #import "ZJHomeItem.h"
 #import "ZJHomeNewsViewCell.h"
 #import "ZJNewsDetailsViewController.h"
+
+
+#import "ZJPaySuccessViewController.h"
 @interface ZJHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UIScrollViewDelegate>
 {
     UIView *titleView;
@@ -537,6 +540,7 @@ static NSString *identifierId=@"zz";
             [self.navigationController pushViewController:addDebtVC animated:YES];
         }else{
             [ZJUtil showBottomToastWithMsg:@"该功能正在开发中，敬请期待"];
+            
         }
     }else if (indexPath.row==7){  //中金天眼
         if (isOpen) {
