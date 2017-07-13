@@ -185,7 +185,8 @@
 -(void)selectPicForShineButtonAction
 {
     if (![self isCanUsePhotos]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册权限受限" message:@"请在iPhone的\"设置->隐私->相册\"选项中,允许\"债云端\"访问您的相册." delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册权限受限" message:@"请在iPhone的\"设置->隐私->相册\"选项中,允许\"债云端\"访问您的相册." delegate:self cancelButtonTitle:@"好的" otherButtonTitles:@"取消",nil];
+        alert.tag=503;
         [alert show];
         return;
     }
@@ -522,6 +523,13 @@
             addDebtVC.isOwer=@"1";
             [addDebtVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:addDebtVC animated:YES];
+        }
+    }else if(alertView.tag==503){
+        if (buttonIndex==0) {
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
         }
     }else{
         if (buttonIndex==0) {
