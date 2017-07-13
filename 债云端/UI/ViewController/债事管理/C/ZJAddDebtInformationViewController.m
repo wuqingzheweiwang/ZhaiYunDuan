@@ -450,7 +450,7 @@
         [ZJUtil showBottomToastWithMsg:@"请输入债事发生时间"];
         return;
     }
-    NSLog(@"%@",debtRelation1VoDic);
+    DLog(@"%@",debtRelation1VoDic);
     ZJAddDebtInformationViewTwoController * addinfo=[[ZJAddDebtInformationViewTwoController alloc]initWithNibName:@"ZJAddDebtInformationViewTwoController" bundle:nil];
     addinfo.debtRelation1Vo=debtRelation1VoDic;
     [self.navigationController pushViewController:addinfo animated:YES];

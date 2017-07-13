@@ -61,7 +61,7 @@
         // 请求成功
         if (success) {
             
-            NSLog(@"1111%@",responseData);
+            DLog(@"1111%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 //
                 
@@ -261,11 +261,11 @@
 
     [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/regist/changeimage" andParameters:nil imageArray:imageArr timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
         if (success) {
-            NSLog(@"成功");
-            NSLog(@"%@",[responseData objectForKey:@"data"]);
+            DLog(@"成功");
+            DLog(@"%@",[responseData objectForKey:@"data"]);
         }else
         {
-            NSLog(@"失败");
+            DLog(@"失败");
         }
     }];
 

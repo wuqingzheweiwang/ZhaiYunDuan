@@ -45,7 +45,6 @@
          [self performSelectorOnMainThread:@selector(dismissProgress) withObject:nil waitUntilDone:YES];
         // 请求成功
         if (success) {
-            NSLog(@"%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
                 for (int i=0; i<newArray.count; i++) {

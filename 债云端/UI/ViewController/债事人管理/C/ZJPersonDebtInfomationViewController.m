@@ -434,11 +434,11 @@
 #pragma mark--请求资产信息
 - (void)requestCapitalInfo
 {
-    NSString * action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",self.personId,_page2];
+    NSString * action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",self.personId,(long)_page2];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -466,11 +466,11 @@
 #pragma mark--请求需求信息
 - (void)requestDemandInfo
 {
-    NSString * action=[NSString stringWithFormat:@"api/demand?debtid=%@&pn=%ld&ps=8",self.personId,_page3];
+    NSString * action=[NSString stringWithFormat:@"api/demand?debtid=%@&pn=%ld&ps=8",self.personId,(long)_page3];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -503,7 +503,7 @@
     NSString * action=[NSString stringWithFormat:@"api/debtrelation/debtinfo?debtId=%@&ps=8&pn=%ld",self.personId,(long)_page4];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersondebtInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             

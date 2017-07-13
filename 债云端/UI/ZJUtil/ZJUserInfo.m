@@ -50,14 +50,14 @@
         [[NSFileManager defaultManager] removeItemAtPath:[ZJUserInfo filePath: filePath] error:&error];
         
         if (error) {
-            NSLog(@"移除文件失败，错误信息：%@", error);
+            DLog(@"移除文件失败，错误信息：%@", error);
         }
         else {
-            NSLog(@"成功移除文件");
+            DLog(@"成功移除文件");
         }
     }
     else {
-        NSLog(@"文件不存在");
+        DLog(@"文件不存在");
     }
 }
 

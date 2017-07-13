@@ -203,8 +203,7 @@
     _cityId = cityId;
     _distristId = areaId;
  
-    NSLog(@"%@",allArea);
-    NSLog(@"%@ %@ %@",_provinceId,_cityId,_distristId);
+    DLog(@"%@ %@ %@",_provinceId,_cityId,_distristId);
     NSString *cityArea = [NSString stringWithFormat:@"%@%@%@",[allArea objectForKey:prvoinceId],[allArea objectForKey:cityId],[allArea objectForKey:areaId]];
     [self.shengprovinceBut setTitle:cityArea forState:UIControlStateNormal];
 
@@ -287,7 +286,6 @@
         // 成功
         if (success) {
             
-            NSLog(@"1111111%@",responseData);
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
@@ -320,8 +318,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 
 {
-    
-    NSLog(@"textFieldDidBeginEditing");
+
     
     CGRect frame = textField.frame;
     
@@ -369,8 +366,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-    
-    NSLog(@"touchesBegan");
+
     
     [self.view endEditing:YES];
     

@@ -78,7 +78,7 @@
     }
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalDetailRequestWithActions:action result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {

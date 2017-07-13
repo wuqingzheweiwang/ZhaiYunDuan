@@ -204,7 +204,7 @@
     // 网络请求
     [ZJLoginRegistRequest zjLoginWithParams:dic result:^(BOOL success, id responseData) {
         [self performSelectorOnMainThread:@selector(dismissProgress) withObject:nil waitUntilDone:YES];
-          NSLog(@"%@",responseData);
+          DLog(@"%@",responseData);
 //         请求成功
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -298,8 +298,6 @@
 
 {
     
-    NSLog(@"textFieldDidBeginEditing");
-    
     CGRect frame = textField.frame;
     
     CGFloat heights = self.view.frame.size.height;
@@ -345,8 +343,6 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-    
-    NSLog(@"touchesBegan");
     
     [self.view endEditing:YES];
     

@@ -70,7 +70,6 @@ static id _publishContent;
     [self setMineUI];
     [self resesmallProtrolView];
 
-    NSLog(@"%@",[ZJUserInfo getUserIDForUserToken]);
 
 }
 
@@ -289,20 +288,20 @@ static id _publishContent;
              case SSDKResponseStateSuccess:
              {
                  if (typeUI == SSDKPlatformTypeCopy) {
-                     NSLog(@"复制成功~");
+                     DLog(@"复制成功~");
                  } else {
-                     NSLog(@"分享成功~");
+                     DLog(@"分享成功~");
                  }
              }
                  break;
              case SSDKResponseStateFail:
              {
-                 NSLog(@"分享失败~");
+                 DLog(@"分享失败~");
              }
                  break;
              case SSDKResponseStateCancel:
              {
-                 NSLog(@"分享取消~");
+                 DLog(@"分享取消~");
              }
                  break;
              default:
@@ -336,7 +335,7 @@ static id _publishContent;
             // 请求成功
             if (success) {
                 
-                NSLog(@"1111%@",responseData);
+                DLog(@"1111%@",responseData);
                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                     
                     NSDictionary *allDic = [responseData objectForKey:@"data"];
@@ -909,7 +908,6 @@ static id _publishContent;
         // 请求成功
         if (success) {
             
-            NSLog(@"1111%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您的意见已提交,会尽快处理" preferredStyle:UIAlertControllerStyleAlert];

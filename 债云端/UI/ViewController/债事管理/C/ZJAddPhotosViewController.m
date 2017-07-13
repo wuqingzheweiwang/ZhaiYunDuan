@@ -226,7 +226,7 @@
 //多张选取图片回调
 - (void)imagePickerController:(QBImagePickerController *)imagePickerController didSelectAssets:(NSArray *)assets
 {
-    NSLog(@"%@",assets);
+    DLog(@"%@",assets);
     if (assets.count+images.count>9) {
         UIAlertView * alteview=[[UIAlertView alloc]initWithTitle:@"提示" message:@"最多只能添加九张图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alteview show];
@@ -278,7 +278,7 @@
              [self showProgress];
              [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
                  [self dismissProgress];
-                 NSLog(@"%@",responseData);
+                 DLog(@"%@",responseData);
                  if (success) {
                      if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
                          urlimages=[responseData objectForKey:@"data"];
@@ -444,7 +444,7 @@
     [ZJDebtPersonRequest postAddDebtPersonInfoRequestWithParms:addDebtVoDic result:^(BOOL success, id responseData) {
         [self dismissProgress];
         if (success) {
-            NSLog(@"%@",responseData);
+            DLog(@"%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 //刷新债事人管理列表
                 NSNotification *notication=[NSNotification notificationWithName:@"AddDebtPerson" object:nil];
@@ -480,7 +480,7 @@
     [self showProgress];
     [ZJDeBtManageRequest postAddDebtInfoRequestWithParms:debtRelationVoDic result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 //刷新债事管理列表

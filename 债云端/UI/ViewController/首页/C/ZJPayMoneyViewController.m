@@ -58,7 +58,7 @@
         // 添加按钮
         __weak typeof(alertcon) weakAlert = alertcon;
         [alertcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            NSLog(@"点击了确定按钮--%@-%@", [weakAlert.textFields.firstObject text], [weakAlert.textFields.lastObject text]);
+            DLog(@"点击了确定按钮--%@-%@", [weakAlert.textFields.firstObject text], [weakAlert.textFields.lastObject text]);
             
         }]];
 
@@ -70,7 +70,7 @@
     // 添加按钮
     __weak typeof(alertcon) weakAlert = alertcon;
     [alertcon addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        NSLog(@"点击了确定按钮--%@-%@", [weakAlert.textFields.firstObject text], [weakAlert.textFields.lastObject text]);
+        DLog(@"点击了确定按钮--%@-%@", [weakAlert.textFields.firstObject text], [weakAlert.textFields.lastObject text]);
         
     }]];
         
@@ -230,13 +230,12 @@
     
 #pragma mark 支付宝支付
     [self showProgress];
-    NSLog(@"%@",self.orderid);
     NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:self.orderid,@"orderId",self.type,@"type",nil];
     [ZJHomeRequest zjPostAlipayDebtRequestWithParams:dict result:^(BOOL success, id responseData) {
         [self dismissProgress];
         if (success) {
             
-            NSLog(@"%@",responseData);
+            DLog(@"%@",responseData);
             
             if ([[responseData objectForKey:@"code"]isEqualToString:@"ok"]) {
 
@@ -263,7 +262,7 @@
         // NOTE: 调用支付结果开始支付
         [[AlipaySDK defaultService] payOrder:_orderId fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             
-            NSLog(@"%@",resultDic);
+            DLog(@"%@",resultDic);
             if ([resultDic[@"resultStatus"] intValue]==9000) {
                 
                 [ZJUtil showBottomToastWithMsg:@"支付成功"];

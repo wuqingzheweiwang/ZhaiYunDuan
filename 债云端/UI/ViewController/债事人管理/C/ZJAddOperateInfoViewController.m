@@ -98,7 +98,6 @@
     [dict setObject:[valueArray objectAtIndex:11] forKey:@"totalInvestment"];
     [dict setObject:self.companyId forKey:@"debtId"];
     [ZJDebtPersonRequest postAddDebtCompanyOperateInfoRequestWithParms:dict result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {

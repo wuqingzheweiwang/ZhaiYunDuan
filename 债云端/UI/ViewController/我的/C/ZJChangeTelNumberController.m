@@ -137,7 +137,7 @@
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
-                //NSLog(@"____%@",strTime);
+        
                 [UIView beginAnimations:nil context:nil];
                 [UIView setAnimationDuration:0.1];
                 [_verifyBut setBackgroundColor:ZJColor_999999];
@@ -161,7 +161,7 @@
     [ZJMyPageRequest zjRegistVerifyWithActions:action result:^(BOOL success, id responseData) {
         // 成功
         if (success) {
-            NSLog(@"%@",responseData);
+    
             //  后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
@@ -223,7 +223,6 @@
         
         // 成功
         if (success) {
-            NSLog(@"%@",responseData);
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
@@ -266,7 +265,7 @@
 
 {
     
-    NSLog(@"textFieldDidBeginEditing");
+
     
     CGRect frame = textField.frame;
     
@@ -313,8 +312,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-    
-    NSLog(@"touchesBegan");
+
     
     [self.view endEditing:YES];
     

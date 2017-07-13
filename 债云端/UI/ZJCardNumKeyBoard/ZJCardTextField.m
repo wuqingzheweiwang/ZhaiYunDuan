@@ -76,7 +76,6 @@
         self.displayingKeyboard = YES;
         return;
     }
-    NSLog(@"%zd", self.displayingKeyboard);
     [self.doneButton removeFromSuperview];
     self.doneButton = nil;
 

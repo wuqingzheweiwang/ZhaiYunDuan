@@ -82,7 +82,7 @@
     [bigDic setObject:dict forKey:@"equityVo"];
     [bigDic setObject:self.companyId forKey:@"debtid"];
     [ZJDebtPersonRequest postAddDebtCompanyStockInfoRequestWithParms:bigDic result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {

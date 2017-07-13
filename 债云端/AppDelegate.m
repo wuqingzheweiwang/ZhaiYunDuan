@@ -203,7 +203,7 @@
                      * The store could not be migrated to the current model version.
                      Check the error message to determine what the actual problem was.
                     */
-                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+                    DLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }
             }];
@@ -221,7 +221,7 @@
     if ([context hasChanges] && ![context save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        DLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
 }
@@ -232,13 +232,13 @@
 {
     
 //  微信
-    NSLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
+    DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
     
 //  支付宝
 //  跳转支付宝钱包进行支付，处理支付结果
     [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
         
-            NSLog(@"result = %@",resultDic);
+            DLog(@"result = %@",resultDic);
         if ([resultDic[@"resultStatus"] intValue]==9000) {
             
             [ZJUtil showBottomToastWithMsg:@"支付成功"];
@@ -277,7 +277,7 @@
     // 支付宝
     [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
         
-        NSLog(@"result = %@",resultDic);
+        DLog(@"result = %@",resultDic);
         if ([resultDic[@"resultStatus"] intValue]==9000) {
             
             [ZJUtil showBottomToastWithMsg:@"支付成功"];
@@ -303,7 +303,7 @@
     }];
     
     // 微信
-    NSLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
+    DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
 
     
    

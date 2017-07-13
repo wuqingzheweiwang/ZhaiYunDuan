@@ -16,7 +16,6 @@
 
 + (ZJHomeNewsModel *)itemForDictionary:(NSDictionary *)dic
 {
-    NSLog(@"%@",dic);
     ZJHomeNewsModel * item=[[ZJHomeNewsModel alloc]init];
     if ([dic objectForKey:@"img"]) {
        item.img=[NSString stringWithFormat:@"%@",[dic objectForKey:@"img"]];

@@ -595,7 +595,7 @@
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -627,7 +627,7 @@
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         if (success) {
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -659,7 +659,7 @@
     NSString * action=[NSString stringWithFormat:@"api/equity/getequity?debtid=%@&ps=8&pn=%ld",self.companyId,(long)_page4];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtCompanyequityRequestWithActions:action result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -689,7 +689,7 @@
     NSString * action=[NSString stringWithFormat:@"api/managestate/find?debtId=%@&ps=8&pn=%ld",self.companyId,(long)_page5];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtCompanyOperateRequestWithActions:action result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
@@ -719,7 +719,7 @@
     NSString * action=[NSString stringWithFormat:@"api/debtrelation/debtinfo?debtId=%@&ps=8&pn=%ld",self.companyId,(long)_page6];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersondebtInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
-        NSLog(@"%@",responseData);
+        DLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             

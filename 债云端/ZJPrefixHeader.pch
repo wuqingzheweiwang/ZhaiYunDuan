@@ -154,7 +154,12 @@
  */
 #define UMAnalytics_key     @""
 
-
+// 自定义Log
+#ifdef DEBUG
+#define DLog(...) NSLog(__VA_ARGS__)
+#else
+#define DLog(...)
+#endif
 
 
 #endif /* ZJPrefixHeader_pch */
