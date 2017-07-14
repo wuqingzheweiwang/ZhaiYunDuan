@@ -221,7 +221,7 @@
 - (void)createUI{
     
     tableFooterview.width=ZJAPPWidth;
-    tableFooterview.height=83;
+    tableFooterview.height=383;
     SaveBtn.left=45;
     SaveBtn.top=30;
     SaveBtn.width=ZJAPPWidth-90;
@@ -421,6 +421,7 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    [self.view endEditing:YES];
     [DebtTable setContentOffset:CGPointMake(0, scrollViewOffSetY-beforeMigrationY) animated:YES];
     beforeMigrationY = 0.0;
     if (textField.tag==2001) {   //股东名称
@@ -509,6 +510,7 @@
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     /* 防止错乱停止编辑*/
     [self.view endEditing:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

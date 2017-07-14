@@ -69,8 +69,8 @@
     _Btntype=ZJDebtPersonCompany;
     _page=1;
     if (self.DebtPersonNumString.length>0) {
-        [valueArray1 removeObjectAtIndex:0];
-        [valueArray1 insertObject:self.DebtPersonNumString atIndex:0];
+        [valueArray1 removeObjectAtIndex:3];
+        [valueArray1 insertObject:self.DebtPersonNumString atIndex:3];
         [valueArray2 removeObjectAtIndex:0];
         [valueArray2 insertObject:self.DebtPersonNumString atIndex:0];
     }
