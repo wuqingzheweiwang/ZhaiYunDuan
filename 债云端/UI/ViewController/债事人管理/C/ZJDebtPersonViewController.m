@@ -311,7 +311,11 @@
     ZJDebtPersonMangerHomeItem * item=[_dataSource objectAtIndex:indexPath.row];
     if ([item.deptType isEqualToString:@"企业"]) {
         ZJCompanyDebtInfomationViewController *companyVC=[[ZJCompanyDebtInfomationViewController alloc]initWithNibName:@"ZJCompanyDebtInfomationViewController" bundle:nil];
-        companyVC.companyName=item.companyName;
+        if (item.companyName.length>0) {
+            companyVC.companyName=item.companyName;
+        }else{
+            companyVC.companyName=item.deptname;
+        }
         companyVC.companyId=item.deptid;
         [companyVC setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:companyVC animated:YES];
