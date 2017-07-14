@@ -63,7 +63,7 @@ typedef void(^finish)(NSString * userid);
 //上传标准图片
 + (UIImage *)uploadStandardImage:(UIImage *)image;
 
-
++ (NSData *)reSizeImageData:(UIImage *)sourceImage maxImageSize:(CGFloat)maxImageSize maxSizeWithKB:(CGFloat) maxSize;
 /**
  *  计算带有换行的字符串
  *

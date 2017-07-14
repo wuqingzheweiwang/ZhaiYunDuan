@@ -172,7 +172,8 @@
     [manage POST:@"" parameters:parameter constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (int i=0; i<_imageArray.count; i++) {
             UIImage * _image=[_imageArray objectAtIndex:i];
-            NSData *imageData = UIImageJPEGRepresentation(_image, 1);
+            NSData *imageData = [ZJUtil reSizeImageData:_image maxImageSize:800 maxSizeWithKB:1024.0];
+//            NSData *imageData = UIImageJPEGRepresentation(_image, 1);
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"yyyyMMddHHmmss";
             NSString *str = [formatter stringFromDate:[NSDate date]];
@@ -194,7 +195,7 @@
 - (NSString *)requestHttpURL:(NSString *)action
 {
     return [NSString stringWithFormat:@"http://test.api.zhongjinzhaishi.com/%@",action];
-//    return [NSString stringWithFormat:@"http://192.168.2.11:8056/%@",action];
+//    return [NSString stringWithFormat:@"http://192.168.2.14:8056/%@",action];
 }
 
 
