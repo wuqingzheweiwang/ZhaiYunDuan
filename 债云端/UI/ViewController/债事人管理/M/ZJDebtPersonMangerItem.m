@@ -37,6 +37,9 @@
     if ([dic objectForKey:@"name"]) {
         item.deptname=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
     }
+    if ([dic objectForKey:@"companyName"]) {
+        item.companyName=[NSString stringWithFormat:@"%@",[dic objectForKey:@"companyName"]];
+    }
     return item;
 }
 @end

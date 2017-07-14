@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *deptid;
 @property (nonatomic, strong) NSString *deptidCode;
 @property (nonatomic, strong) NSString *deptname;
+@property (nonatomic, strong) NSString *companyName;
 + (ZJDebtPersonMangerHomeItem *)itemForDictionary:(NSDictionary *)dic;
 @end
 /**

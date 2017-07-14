@@ -56,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [ZJNavigationPublic setTitleOnTargetNav:self title:[NSString stringWithFormat:@"%@公司",self.companyName]];
+    [ZJNavigationPublic setTitleOnTargetNav:self title:[NSString stringWithFormat:@"%@",self.companyName]];
     _dataSource1=[NSMutableArray array];
     _dataSource2=[NSMutableArray array];
     _dataSource3=[NSMutableArray array];
@@ -554,16 +554,33 @@
     NSString * action=[NSString stringWithFormat:@"api/debt?id=%@&type=company",self.companyId];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonBaseInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
+        NSLog(@"%@",responseData);
         [self dismissProgress];
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSDictionary * dic=[responseData objectForKey:@"data"];
                 NSMutableDictionary * dic1=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"organCode"],@"text",@"组织机构代码",@"title",@"company",@"type", nil];
                 [_dataSource1 addObject:dic1];
-                NSMutableDictionary * dic2=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"legalPersonName"],@"text",@"企业法人姓名",@"title",@"company",@"type", nil];
-                [_dataSource1 addObject:dic2];
-                NSMutableDictionary * dic3=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"legalPersonId"],@"text",@"法人身份证号",@"title",@"company",@"type", nil];
-                [_dataSource1 addObject:dic3];
+            
+                NSString *legalPersonName=[NSString stringWithFormat:@"%@",[dic objectForKey:@"legalPersonName"]];
+                if ([legalPersonName length]>0) {
+                    NSMutableDictionary * dic2=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"legalPersonName"],@"text",@"企业法人姓名",@"title",@"company",@"type", nil];
+                    [_dataSource1 addObject:dic2];
+                }else{
+                    NSMutableDictionary * dic2=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"name"],@"text",@"企业法人姓名",@"title",@"company",@"type", nil];
+                    [_dataSource1 addObject:dic2];
+                }
+                
+                NSString *legalPersonId=[NSString stringWithFormat:@"%@",[dic objectForKey:@"legalPersonId"]];
+                if ([legalPersonId length]>0) {
+                    NSMutableDictionary * dic3=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"legalPersonId"],@"text",@"法人身份证号",@"title",@"company",@"type", nil];
+                    [_dataSource1 addObject:dic3];
+                }else{
+                    NSMutableDictionary * dic3=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"idCode"],@"text",@"法人身份证号",@"title",@"company",@"type", nil];
+                    [_dataSource1 addObject:dic3];
+                }
+                
+                
                 NSMutableDictionary * dic4=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"area"],@"text",@"所属地区",@"title",@"company",@"type", nil];
                 [_dataSource1 addObject:dic4];
                 NSMutableDictionary * dic5=[NSMutableDictionary dictionaryWithObjectsAndKeys:[dic objectForKey:@"phoneNumber"],@"text",@"联系电话",@"title",@"company",@"type", nil];
