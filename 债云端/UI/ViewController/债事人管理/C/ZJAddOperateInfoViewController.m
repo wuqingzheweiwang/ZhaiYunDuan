@@ -116,7 +116,7 @@
 - (void)createUI{
     
     tableFooterview.width=ZJAPPWidth;
-    tableFooterview.height=83;
+    tableFooterview.height=383;
     SaveBtn.left=45;
     SaveBtn.top=30;
     SaveBtn.width=ZJAPPWidth-90;

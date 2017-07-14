@@ -425,6 +425,8 @@
 }
 - (void)DebtMangerHomeSeeDetailActionWithItem:(ZJDebtMangerHomeItem *)item{
     ZJDebtDetailViewController * zjDdVC=[[ZJDebtDetailViewController alloc]initWithNibName:@"ZJDebtDetailViewController" bundle:nil];
+    zjDdVC.DetailID=item.debtdebtid;
+    zjDdVC.payAmount = item.qianshu;
     [self.navigationController pushViewController:zjDdVC animated:YES];
 }
 
