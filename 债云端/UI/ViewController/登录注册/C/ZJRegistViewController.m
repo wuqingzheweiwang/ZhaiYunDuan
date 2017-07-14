@@ -451,7 +451,7 @@
     
     // 在这一部 就是了一个 当前textfile的的最大Y值 和 键盘的最全高度的差值，用来计算整个view的偏移量
     
-    int offset = frame.origin.y + 42- ( heights - 216.0-35.0);//键盘高度216
+    int offset = frame.origin.y + 150- ( heights - 216.0-35.0);//键盘高度216
     
     NSTimeInterval animationDuration = 0.30f;
     
@@ -488,8 +488,6 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-
-    
     [self.view endEditing:YES];
     
     NSTimeInterval animationDuration = 0.30f;

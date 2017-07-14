@@ -75,7 +75,6 @@
                 self.careNumberText = [allDic objectForKey:@"cardNumber"];
                 }
                 if ([[allDic objectForKey:@"image"] isEqualToString:@""]) {
-                    
                     self.image = [UIImage imageNamed:@"head-portrait"];
                 }else{
                     self.imageUrl = [allDic objectForKey:@"image"];

@@ -434,7 +434,7 @@ static id _publishContent;
         
         ZJOwnerDataController *ownerVC = [[ZJOwnerDataController alloc]initWithNibName:@"ZJOwnerDataController" bundle:nil];
         
-        if (!self.userName.text) {
+        if ([self.userName.text isEqualToString:@""]) {
             ownerVC.userName = @"用户名";
         }else{
             ownerVC.userName = self.userName.text;
@@ -446,13 +446,13 @@ static id _publishContent;
             ownerVC.imageUrl = self.imageUrl;
         }
         
-        if (!self.phoneNmber) {
-            ownerVC.phoneNmber = @"18300210192";
+        if ([self.phoneNmber isEqualToString:@""]) {
+            ownerVC.phoneNmber = @"未填写";
         }else{
             ownerVC.phoneNmber = self.phoneNmber;
         }
-        if (!self.careNumberText) {
-            ownerVC.careNumberText = @"370522XXXXXXXX00223";
+        if ([self.careNumberText isEqualToString:@""]) {
+            ownerVC.careNumberText = @"未填写";
         }else{
             ownerVC.careNumberText = self.careNumberText;
         }
