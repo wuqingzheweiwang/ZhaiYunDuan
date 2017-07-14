@@ -18,8 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *NameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *NameTextField;
-@property (weak, nonatomic) IBOutlet UILabel *cardIdLabel;
-@property (weak, nonatomic) IBOutlet UITextField *cardIdTextField;
 @property (weak, nonatomic) IBOutlet UILabel *telePhoneNumberLabel;
 @property (weak, nonatomic) IBOutlet UITextField *telePhoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UILabel *VerificationCode;
@@ -74,36 +72,18 @@
     _NameTextField.layer.cornerRadius = 5;
     _NameTextField.delegate = self;
 
-    // 身份证Label
-    _cardIdLabel.top = _NameLabel.bottom+TRUE_1(20);
-    _cardIdLabel.left = _NameLabel.left;
-    _cardIdLabel.width = _NameLabel.width;
-    _cardIdLabel.height = _NameLabel.height;
-    _cardIdLabel.font = ZJ_TRUE_FONT(15);
-    
-    // 输入身份证TextField
-    _cardIdTextField.top = _cardIdLabel.top;
-    _cardIdTextField.left = _NameTextField.left;
-    _cardIdTextField.width = _NameTextField.width;
-    _cardIdTextField.height = _NameTextField.height;
-    _cardIdTextField.layer.borderWidth=1;
-    _cardIdTextField.layer.borderColor =[UIColor lightGrayColor].CGColor;
-    _cardIdTextField.layer.masksToBounds = YES;
-    _cardIdTextField.layer.cornerRadius = 5;
-    _cardIdTextField.delegate = self;
-
     // 手机号
-    _telePhoneNumberLabel.top = _cardIdLabel.bottom+TRUE_1(20);
-    _telePhoneNumberLabel.left = _cardIdLabel.left;
-    _telePhoneNumberLabel.width = _cardIdLabel.width;
-    _telePhoneNumberLabel.height = _cardIdLabel.height;
+    _telePhoneNumberLabel.top = _NameLabel.bottom+TRUE_1(20);
+    _telePhoneNumberLabel.left = _NameLabel.left;
+    _telePhoneNumberLabel.width = _NameLabel.width;
+    _telePhoneNumberLabel.height = _NameLabel.height;
     _telePhoneNumberLabel.font = ZJ_TRUE_FONT(15);
 
     // 输入手机号
     _telePhoneNumberTextField.top = _telePhoneNumberLabel.top;
-    _telePhoneNumberTextField.left = _cardIdTextField.left;
-    _telePhoneNumberTextField.width = _cardIdTextField.width;
-    _telePhoneNumberTextField.height = _cardIdTextField.height;
+    _telePhoneNumberTextField.left = _NameTextField.left;
+    _telePhoneNumberTextField.width = _NameTextField.width;
+    _telePhoneNumberTextField.height = _NameTextField.height;
     _telePhoneNumberTextField.layer.borderWidth=1;
     _telePhoneNumberTextField.layer.borderColor =[UIColor lightGrayColor].CGColor;
     _telePhoneNumberTextField.layer.masksToBounds = YES;
@@ -253,10 +233,6 @@
         [ZJUtil showBottomToastWithMsg:@"请输入真实姓名"];
         return;
     }
-    if (![ZJUtil isIDCard:_cardIdTextField.text]) {
-        [ZJUtil showBottomToastWithMsg:@"请输入身份证号"];
-        return;
-    }
     if (![ZJUtil isMobileNo:_telePhoneNumberTextField.text]) {
         [ZJUtil showBottomToastWithMsg:@"请输入正确手机号"];
         return;
@@ -286,7 +262,7 @@
 //注册请求
 -(void)registRequestData{
     
-    NSMutableDictionary * dic=[NSMutableDictionary dictionaryWithObjectsAndKeys:_NameTextField.text,@"realname",_cardIdTextField.text,@"idNumber",_telePhoneNumberTextField.text,@"mobile",_VerificationTextField.text,@"validcode",_passWordTextField.text,@"password",_confirmPassWordTextField.text,@"repassword",_commandTextLabel.text,@"recommendCode", nil];
+    NSMutableDictionary * dic=[NSMutableDictionary dictionaryWithObjectsAndKeys:_NameTextField.text,@"realname",_telePhoneNumberTextField.text,@"mobile",_VerificationTextField.text,@"validcode",_passWordTextField.text,@"password",_confirmPassWordTextField.text,@"repassword",_commandTextLabel.text,@"recommendCode", nil];
     [self performSelectorOnMainThread:@selector(showProgress) withObject:nil waitUntilDone:YES];
     // 网络请求
     [ZJLoginRegistRequest zjRegistWithParams:dic result:^(BOOL success, id responseData) {
