@@ -413,6 +413,7 @@
 
 //下一步
 - (IBAction)NextBtnAction:(id)sender {
+    [self.view endEditing:YES];
     [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
     [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
     if (self.Btntype==2) {
