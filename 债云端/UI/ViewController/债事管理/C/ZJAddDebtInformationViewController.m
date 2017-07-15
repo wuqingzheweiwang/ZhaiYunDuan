@@ -385,7 +385,7 @@
     [debtRelation1VoDic setObject:@"0" forKey:@"isLawsuit"];   //诉讼情况
     [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
     [debtRelation1VoDic setObject:DebtTimeTF.text forKey:@"recordTime"];   //债事发生时间
-    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"recordTime"];   //推荐人
+    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
     
 }
 //点个人
