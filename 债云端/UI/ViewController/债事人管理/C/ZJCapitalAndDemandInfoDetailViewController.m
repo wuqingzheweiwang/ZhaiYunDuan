@@ -8,6 +8,7 @@
 
 #import "ZJCapitalAndDemandInfoDetailViewController.h"
 #import "ZJCapitalAndDemandDetailTableViewCell.h"
+#import "NPPicPreviewController.h"
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
 @interface ZJCapitalAndDemandInfoDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -176,6 +177,12 @@
                             imageView.clipsToBounds = YES;
                             [imageBackView addSubview:imageView];
                             imageBackView.bottom=imageView.bottom+20;
+                            
+                            UIButton *imageButton = [[UIButton alloc] initWithFrame:CGRectMake(15 + (i % 3) * (kImageView_W + kImageToImageWidth), 20 + (i / 3) * (kImageView_W + kImageToImageWidth), kImageView_W, kImageView_W)];
+                            [imageButton addTarget:self action:@selector(imageButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+                            imageButton.backgroundColor=[UIColor clearColor];
+                            imageButton.tag = 250 + i;
+                            [imageBackView addSubview:imageButton];
                         }
                         DebtTableview.tableFooterView=imageBackView;
                     }
@@ -214,7 +221,16 @@
         }
     }];
 }
-
+/**
+ *  图片点击事件
+ */
+- (void)imageButtonAction:(UIButton *)button
+{
+    NPPicPreviewController *picPreviewVC = [[NPPicPreviewController alloc] init];
+    picPreviewVC.urlimages = imageArray;
+    picPreviewVC.offsetX = ZJAPPWidth*(button.tag-250);
+    [self.navigationController pushViewController:picPreviewVC animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

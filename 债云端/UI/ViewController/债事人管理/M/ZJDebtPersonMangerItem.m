@@ -40,6 +40,9 @@
     if ([dic objectForKey:@"companyName"]) {
         item.companyName=[NSString stringWithFormat:@"%@",[dic objectForKey:@"companyName"]];
     }
+    if ([dic objectForKey:@"organCode"]) {
+        item.companyidCode=[NSString stringWithFormat:@"%@",[dic objectForKey:@"organCode"]];
+    }
     return item;
 }
 @end
