@@ -385,7 +385,7 @@
     [debtRelation1VoDic setObject:@"0" forKey:@"isLawsuit"];   //诉讼情况
     [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
     [debtRelation1VoDic setObject:DebtTimeTF.text forKey:@"recordTime"];   //债事发生时间
-    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
+    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"recommend"];   //推荐人
     
 }
 //点个人
@@ -415,7 +415,7 @@
 - (IBAction)NextBtnAction:(id)sender {
     [self.view endEditing:YES];
     [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
-    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
+    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"recommend"];   //推荐人
     if (self.Btntype==2) {
         if (DebtShiPersonHaomaTF.text.length<=0) {
             [ZJUtil showBottomToastWithMsg:@"请输入债事人证件号"];
@@ -689,7 +689,7 @@
         [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
     }
     if (textField==RefereeTF) {
-        [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
+        [debtRelation1VoDic setObject:RefereeTF.text forKey:@"recommend"];   //推荐人
     }
     if (self.Btntype==1){//行长
         if (textField==DebtWuPersonHaomaTF) {
