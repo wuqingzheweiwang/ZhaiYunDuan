@@ -413,6 +413,9 @@
 
 //下一步
 - (IBAction)NextBtnAction:(id)sender {
+    [self.view endEditing:YES];
+    [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
+    [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
     if (self.Btntype==2) {
         if (DebtShiPersonHaomaTF.text.length<=0) {
             [ZJUtil showBottomToastWithMsg:@"请输入债事人证件号"];
