@@ -109,9 +109,6 @@
         }else if ([[valueArray1 objectAtIndex:7]isEqualToString:@""]){
             [ZJUtil showBottomToastWithMsg:@"请输入注册资本"];
             return;
-        }else if ([[valueArray1 objectAtIndex:8]isEqualToString:@""]){
-            [ZJUtil showBottomToastWithMsg:@"请输入电子邮箱"];
-            return;
         }
         if (![ZJUtil isMobileNo:[NSString stringWithFormat:@"%@",[valueArray1 objectAtIndex:6]]]) {
             [ZJUtil showBottomToastWithMsg:@"请输入正确的联系电话"];
@@ -132,9 +129,6 @@
             return;
         }else if ([[valueArray2 objectAtIndex:4]isEqualToString:@""]){
             [ZJUtil showBottomToastWithMsg:@"请输入联系地址"];
-            return;
-        }else if ([[valueArray2 objectAtIndex:5]isEqualToString:@""]){
-            [ZJUtil showBottomToastWithMsg:@"请输入电子邮箱"];
             return;
         }
         if (![ZJUtil isMobileNo:[NSString stringWithFormat:@"%@",[valueArray2 objectAtIndex:3]]]) {
