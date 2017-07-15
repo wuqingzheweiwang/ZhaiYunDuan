@@ -686,7 +686,7 @@
         [debtRelation1VoDic setObject:MainMoneyTF.text forKey:@"amout"];   //金额
     }
     if (textField==RefereeTF) {
-        [debtRelation1VoDic setObject:RefereeTF.text forKey:@"recordTime"];   //推荐人
+        [debtRelation1VoDic setObject:RefereeTF.text forKey:@"Recommend"];   //推荐人
     }
     if (self.Btntype==1){//行长
         if (textField==DebtWuPersonHaomaTF) {
