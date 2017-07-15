@@ -41,14 +41,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSNotificationCenter* notif = [NSNotificationCenter defaultCenter];
-    [notif removeObserver:self name:@"apliyPay" object:nil];
     [notif addObserver:self selector:@selector(apliyPayNotifAction:) name:@"apliyPay" object:nil];
     
     [self setPayUI];
   
     
 }
-
+-(void)dealloc
+{
+    //移除通知
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"apliyPay" object:nil];
+}
 
 -(void)setPayUI
 {

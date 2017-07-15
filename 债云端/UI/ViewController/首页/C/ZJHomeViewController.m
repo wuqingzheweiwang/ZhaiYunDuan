@@ -543,13 +543,12 @@ static NSString *identifierId=@"zz";
             
         }
     }else if (indexPath.row==7){  //中金天眼
-        if (isOpen) {
-            ZJGodEyesViewController *addDebtVC = [[ZJGodEyesViewController alloc]init];
-            [addDebtVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:addDebtVC animated:YES];
-        }else{
-            [ZJUtil showBottomToastWithMsg:@"该功能正在开发中，敬请期待"];
-        }
+        ZJNewsDetailsViewController *zjNewsVC = [[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
+        NSString *url = @"http://www.tianyancha.com";
+        zjNewsVC.newsurl = url;
+        zjNewsVC.newstitle = @"中金天眼";
+        [zjNewsVC setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:zjNewsVC animated:YES];
     }else if (indexPath.row==8){  //会员中心
         
         self.tabBarController.selectedIndex=3;

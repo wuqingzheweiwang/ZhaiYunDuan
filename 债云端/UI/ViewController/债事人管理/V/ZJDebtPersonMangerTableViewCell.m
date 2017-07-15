@@ -50,13 +50,26 @@
     self.DebtPersonNameTextLabel.left=self.DebtPersonNameLabel.right;
     self.DebtPersonNameTextLabel.width=Kwidth2;
     self.DebtPersonNameTextLabel.height=Kheight;
-    self.DebtPersonNameTextLabel.text=item.deptname;
     
     self.DebtPersonNumTextLabel.top=self.DebtPersonNumLabel.top;
     self.DebtPersonNumTextLabel.left=self.DebtPersonNameTextLabel.left;
     self.DebtPersonNumTextLabel.width=Kwidth2;
     self.DebtPersonNumTextLabel.height=Kheight;
-    self.DebtPersonNumTextLabel.text=item.deptidCode;
+    
+    if ([item.deptType isEqualToString:@"企业"]) {
+        if (item.companyName.length>0) {
+            self.DebtPersonNameTextLabel.text=item.companyName;
+            self.DebtPersonNumTextLabel.text=item.companyidCode;
+        }else{
+            self.DebtPersonNameTextLabel.text=item.deptname;
+            self.DebtPersonNumTextLabel.text=item.deptidCode;
+        }
+    }else{
+        self.DebtPersonNameTextLabel.text=item.deptname;
+        self.DebtPersonNumTextLabel.text=item.deptidCode;
+    }
+    
+    
     
     self.DebtPersonTypeTextLabel.top=self.DebtPersonTypeLabel.top;
     self.DebtPersonTypeTextLabel.left=self.DebtPersonNameTextLabel.left;
