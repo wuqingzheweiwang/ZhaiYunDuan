@@ -397,20 +397,20 @@ static id _publishContent;
                     // 推荐备案数
                     [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
 
-                    [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
+//                    [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
                     // 推荐行长
                     [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
                     
-                    [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
+//                    [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
                     // 解债数
                     [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
                     
-                    [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
+//                    [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
                     
                     // 推荐行长数
                     [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
                     
-                    [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
+//                    [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
                     [self.tableView reloadData];
                 }else{
                     
@@ -670,20 +670,20 @@ static id _publishContent;
         if ([ZJUtil getUserLogin]) {
             // 推荐备案数
             [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
-            [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
+//            [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
             // 推荐行长
             [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
 
-            [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
+//            [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
             // 解债数
             [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
             
-            [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
+//            [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
             
             // 推荐会员数
             [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
             
-            [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
+//            [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
             
         }else{
             
