@@ -55,3 +55,28 @@
 @implementation ZJMakePayModel
 
 @end
+
+@implementation ZJBusinessSchoolModel
+
++ (ZJBusinessSchoolModel *)itemForDictionary:(NSDictionary *)dic{
+    
+    ZJBusinessSchoolModel * item=[[ZJBusinessSchoolModel alloc]init];
+    if ([dic objectForKey:@"img"]) {
+        item.img=[NSString stringWithFormat:@"%@",[dic objectForKey:@"img"]];
+    }
+    if ([dic objectForKey:@"Title"]) {
+        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"Title"]];
+    }
+    if ([dic objectForKey:@"detailTitle"]) {
+        item.detailTitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"detailTitle"]];
+    }
+    if ([dic objectForKey:@"updateTime"]) {
+        item.updateTime=[NSString stringWithFormat:@"%@",[dic objectForKey:@"updateTime"]];
+    }
+    if ([dic objectForKey:@"url"]) {
+        item.url=[NSString stringWithFormat:@"%@",[dic objectForKey:@"url"]];
+    }
+    return item;
+}
+
+@end
