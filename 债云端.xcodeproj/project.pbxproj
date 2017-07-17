@@ -215,6 +215,10 @@
 		52233BC01EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52233BBE1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m */; };
 		52233BC11EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */; };
 		522514C61ECE8F5A00047E68 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 522514C51ECE8F5A00047E68 /* WXApiManager.m */; };
+		522C55A51F1C7963001D81E4 /* ZJVideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522C55A31F1C7963001D81E4 /* ZJVideoPlayViewController.m */; };
+		522C55A61F1C7963001D81E4 /* ZJVideoPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 522C55A41F1C7963001D81E4 /* ZJVideoPlayViewController.xib */; };
+		522C55C61F1C7B8B001D81E4 /* ZGLVideoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522C55C31F1C7B8B001D81E4 /* ZGLVideoMaskView.m */; };
+		522C55C71F1C7B8B001D81E4 /* ZGLVideoPlyer.m in Sources */ = {isa = PBXBuildFile; fileRef = 522C55C51F1C7B8B001D81E4 /* ZGLVideoPlyer.m */; };
 		524E5F991ECEACE400356B0B /* ZJChangeTelNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */; };
 		524E5F9A1ECEACE400356B0B /* ZJChangeTelNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */; };
 		524E5F9E1ECEE55B00356B0B /* ZJHomeNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F9C1ECEE55B00356B0B /* ZJHomeNewsViewCell.m */; };
@@ -646,6 +650,13 @@
 		52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJPayWayTableViewCell.xib; sourceTree = "<group>"; };
 		522514C41ECE8F5A00047E68 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
 		522514C51ECE8F5A00047E68 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		522C55A21F1C7963001D81E4 /* ZJVideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoPlayViewController.h; sourceTree = "<group>"; };
+		522C55A31F1C7963001D81E4 /* ZJVideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVideoPlayViewController.m; sourceTree = "<group>"; };
+		522C55A41F1C7963001D81E4 /* ZJVideoPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJVideoPlayViewController.xib; sourceTree = "<group>"; };
+		522C55C21F1C7B8B001D81E4 /* ZGLVideoMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGLVideoMaskView.h; sourceTree = "<group>"; };
+		522C55C31F1C7B8B001D81E4 /* ZGLVideoMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGLVideoMaskView.m; sourceTree = "<group>"; };
+		522C55C41F1C7B8B001D81E4 /* ZGLVideoPlyer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGLVideoPlyer.h; sourceTree = "<group>"; };
+		522C55C51F1C7B8B001D81E4 /* ZGLVideoPlyer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGLVideoPlyer.m; sourceTree = "<group>"; };
 		524E5F961ECEACE400356B0B /* ZJChangeTelNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJChangeTelNumberController.h; sourceTree = "<group>"; };
 		524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJChangeTelNumberController.m; sourceTree = "<group>"; };
 		524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJChangeTelNumberController.xib; sourceTree = "<group>"; };
@@ -1246,6 +1257,7 @@
 		1825451E1EA8AE0B00A29FB6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				522C55C11F1C7B8B001D81E4 /* VideoPlayer */,
 				52CE8B431F14C26900C383EA /* ZJCardNumKeyBoard */,
 				52155A2D1F0782BA001F24D4 /* ShareAlertView */,
 				520413061EF8B67E00B32537 /* MJExtension */,
@@ -1758,6 +1770,7 @@
 				181AFA0D1EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.h */,
 				181AFA0E1EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.m */,
 				181AFA0F1EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.xib */,
+				522C55A11F1C7929001D81E4 /* 视频播放 */,
 			);
 			name = "商学院";
 			sourceTree = "<group>";
@@ -2116,6 +2129,27 @@
 				52233BBF1EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.xib */,
 			);
 			name = "支付";
+			sourceTree = "<group>";
+		};
+		522C55A11F1C7929001D81E4 /* 视频播放 */ = {
+			isa = PBXGroup;
+			children = (
+				522C55A21F1C7963001D81E4 /* ZJVideoPlayViewController.h */,
+				522C55A31F1C7963001D81E4 /* ZJVideoPlayViewController.m */,
+				522C55A41F1C7963001D81E4 /* ZJVideoPlayViewController.xib */,
+			);
+			name = "视频播放";
+			sourceTree = "<group>";
+		};
+		522C55C11F1C7B8B001D81E4 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				522C55C21F1C7B8B001D81E4 /* ZGLVideoMaskView.h */,
+				522C55C31F1C7B8B001D81E4 /* ZGLVideoMaskView.m */,
+				522C55C41F1C7B8B001D81E4 /* ZGLVideoPlyer.h */,
+				522C55C51F1C7B8B001D81E4 /* ZGLVideoPlyer.m */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		524E5F951ECEAC5F00356B0B /* 更换手机号 */ = {
@@ -2567,6 +2601,7 @@
 				18971AD81EC0420800A3E4A1 /* ZJAddEditCapitalViewController.xib in Resources */,
 				185C70C91EB88EF300BE9D17 /* QBImagePickerController.strings in Resources */,
 				1802347A1EBC5C6300DFA3F8 /* ZJCapitalAndDemandInfoTableViewCell.xib in Resources */,
+				522C55A61F1C7963001D81E4 /* ZJVideoPlayViewController.xib in Resources */,
 				18971AE41EC0496F00A3E4A1 /* ZJAddOperateInfoViewController.xib in Resources */,
 				5217AC431EB86A2B00A1A39F /* Assets.xcassets in Resources */,
 				181AFA3A1EB1F75C00B3FC7E /* ZJGodEyesViewController.xib in Resources */,
@@ -2819,6 +2854,7 @@
 				181AFA391EB1F75C00B3FC7E /* ZJGodEyesViewController.m in Sources */,
 				1819C2D21EA9B101003C7C25 /* ZJTabbarViewController.m in Sources */,
 				1854637E1EB35CD600AF025B /* ZJDebtMangerViewController.m in Sources */,
+				522C55C71F1C7B8B001D81E4 /* ZGLVideoPlyer.m in Sources */,
 				18971AF51EC05F1800A3E4A1 /* ZJAddEditCapitalTableViewCell.m in Sources */,
 				181AFA2B1EB1F75C00B3FC7E /* ZJAboutViewController.m in Sources */,
 				18971AFB1EC0795C00A3E4A1 /* ZJCapitalAndDemandInfoDetailViewController.m in Sources */,
@@ -2853,6 +2889,7 @@
 				1819C2DE1EA9B8EE003C7C25 /* ZJUtil.m in Sources */,
 				5204131F1EF8B67E00B32537 /* MJFoundation.m in Sources */,
 				52233BC01EB2FAAD003D6BC0 /* ZJPayWayTableViewCell.m in Sources */,
+				522C55C61F1C7B8B001D81E4 /* ZGLVideoMaskView.m in Sources */,
 				181AFA3F1EB1F75C00B3FC7E /* ZJMemberCenterViewController.m in Sources */,
 				181013AE1EAF5CAD009C1DAD /* TakePhoto.m in Sources */,
 				5204131E1EF8B67E00B32537 /* MJExtensionConst.m in Sources */,
@@ -2886,6 +2923,7 @@
 				524E5F9E1ECEE55B00356B0B /* ZJHomeNewsViewCell.m in Sources */,
 				18238E8E1EBB437D0018C179 /* ZJMyMemberTableViewCell.m in Sources */,
 				18971B0D1EC0826000A3E4A1 /* ZJAddDemandTableViewCell.m in Sources */,
+				522C55A51F1C7963001D81E4 /* ZJVideoPlayViewController.m in Sources */,
 				185C70CE1EB8977400BE9D17 /* ZJDebtPersonInfoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

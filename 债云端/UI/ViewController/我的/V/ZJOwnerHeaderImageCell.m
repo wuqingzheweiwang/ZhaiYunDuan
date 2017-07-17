@@ -38,6 +38,16 @@
     _headerimageV.layer.borderWidth = 1.5f;
     _headerimageV.layer.borderColor = [UIColor whiteColor].CGColor;
     
+    // 头像
+    _headImageBut.top = TRUE_1(10);
+    _headImageBut.height = TRUE_1(160/2) - _headImageBut.top*2;
+    _headImageBut.width = _headImageBut.height;
+    _headImageBut.left = ZJAPPWidth -_imageLabel_1.left*2 - _headImageBut.width;
+    _headImageBut.clipsToBounds=YES;
+    _headImageBut.contentMode=UIViewContentModeScaleAspectFill;
+    _headImageBut.layer.masksToBounds = YES;
+    _headImageBut.layer.cornerRadius = _headImageBut.height/2;
+    
     // 姓名
     _namedetialLab.top = TRUE_1(35/2);
     _namedetialLab.width = TRUE_1(150);

@@ -215,8 +215,7 @@
 // 支付
 -(void)gotoPayMoney
 {
-//    ZJMakeToPAYViewController *payMoneyVC = [[ZJMakeToPAYViewController alloc]init];
-//    [self.navigationController pushViewController:payMoneyVC animated:YES];
+
     
 #pragma mark 微信支付
       

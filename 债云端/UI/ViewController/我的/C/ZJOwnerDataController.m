@@ -145,7 +145,7 @@
         
         zjOwnerheadercell.imageLabel_1.text = self.tableViewdataSource[indexPath.section][indexPath.row][0];
         zjOwnerheadercell.imageLabel_2.hidden = YES;
-        
+        [zjOwnerheadercell.headImageBut addTarget:self action:@selector(alterHeadPortrait) forControlEvents:UIControlEventTouchUpInside];
         if (headerImage == nil) {
             if (self.imageUrl == nil) {
             
@@ -165,7 +165,7 @@
         zjOwnerheadercell.nextbut_2.hidden = YES;
       
     }else{
-        
+        zjOwnerheadercell.headImageBut.hidden = YES;
         zjOwnerheadercell.imageLabel_1.hidden = YES;
         zjOwnerheadercell.imageLabel_2.text = self.tableViewdataSource[indexPath.section][indexPath.row][0];
         

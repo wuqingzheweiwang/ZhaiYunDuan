@@ -9,13 +9,13 @@
 #import "ZJBusinesscollegeViewController.h"
 #import "ZJBusinesscolledgTableViewCell.h"
 #import "ZJNewsDetailsViewController.h"
+#import "ZJVideoPlayViewController.h"
 @interface ZJBusinesscollegeViewController ()
 
 @end
 
 @implementation ZJBusinesscollegeViewController
 {
-
     __weak IBOutlet UITableView * _bussinesscollegeTable;
 }
 - (void)viewDidLoad {
@@ -57,11 +57,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row==0) {
-        ZJNewsDetailsViewController *zjNewsVC = [[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
-        NSString *url = @"http://v.youku.com/v_show/id_XMjYxMDU3NTI0NA==.html";
-        zjNewsVC.newsurl = url;
-        zjNewsVC.newstitle = @"商学院";
-        [self.navigationController pushViewController:zjNewsVC animated:YES];
+//        ZJNewsDetailsViewController *zjNewsVC = [[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
+//        
+//        NSString *url = @"http://v.youku.com/v_show/id_XMjYxMDU3NTI0NA==.html";
+//        zjNewsVC.newsurl = url;
+//        zjNewsVC.newstitle = @"商学院";
+//        [self.navigationController pushViewController:zjNewsVC animated:YES];
+        ZJVideoPlayViewController * videoPlayViewC =[[ZJVideoPlayViewController alloc]init];
+        videoPlayViewC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
+        videoPlayViewC.navgationTitle = @"视频";
+        [self.navigationController pushViewController:videoPlayViewC animated:YES];
+
     }else if (indexPath.row==1){
         ZJNewsDetailsViewController *zjNewsVC = [[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
         NSString *url = @"http://v.youku.com/v_show/id_XMjYxMDU3NTkwMA==.html";
