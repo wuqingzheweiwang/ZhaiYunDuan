@@ -17,7 +17,7 @@
 #import "ZJPaySuccessViewController.h"
 #define USHARE_DEMO_APPKEY  @""
 
-@interface AppDelegate ()<UITabBarControllerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,WXApiDelegate>
 {
     ZJTabbarViewController *tabBar;
 }
@@ -305,11 +305,7 @@
     // 微信
     DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
 
-    
-   
-   
-    
-    
+
     return YES;
 }
 
@@ -318,6 +314,61 @@
     
     return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     
+}
+
+#pragma mark WXApiDelegate
+
+//WXSuccess           = 0,    /**< 成功    */
+//WXErrCodeCommon     = -1,   /**< 普通错误类型    */
+//WXErrCodeUserCancel = -2,   /**< 用户点击取消并返回    */
+//WXErrCodeSentFail   = -3,   /**< 发送失败    */
+//WXErrCodeAuthDeny   = -4,   /**< 授权失败    */
+//WXErrCodeUnsupport  = -5,   /**< 微信不支持    */
+
+-(void)onResp:(BaseResp *)resp {
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp*response=(PayResp*)resp;  // 微信终端返回给第三方的关于支付结果的结构体
+        switch (response.errCode) {
+            case WXSuccess:
+            {// 支付成功，向后台发送消息                    0
+                DLog(@"支付成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_PaySuccess" object:nil];
+            }
+                break;
+            case WXErrCodeCommon:
+            { //签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等             -1
+                [ZJUtil showBottomToastWithMsg:@"支付失败"];
+                DLog(@"支付失败");
+            }
+                break;
+            case WXErrCodeUserCancel:
+            { //用户点击取消并返回                        -2
+                DLog(@"取消支付");
+                [ZJUtil showBottomToastWithMsg:@"取消支付"];
+            }
+                break;
+            case WXErrCodeSentFail:
+            { //发送失败                                -3
+                DLog(@"发送失败");
+                [ZJUtil showBottomToastWithMsg:@"发送失败"];
+            }
+                break;
+            case WXErrCodeUnsupport:
+            { //微信不支持                               -4
+                DLog(@"微信不支持");
+                [ZJUtil showBottomToastWithMsg:@"微信不支持"];
+            }
+                break;
+            case WXErrCodeAuthDeny:
+            { //授权失败                                -5
+                DLog(@"授权失败");
+                [ZJUtil showBottomToastWithMsg:@"授权失败"];
+            }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 

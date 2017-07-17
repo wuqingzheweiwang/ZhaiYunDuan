@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *imageLabel_2;
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerimageV;
+@property (weak, nonatomic) IBOutlet UIButton *headImageBut;
+
 @property (weak, nonatomic) IBOutlet UILabel *namedetialLab;
 @property (weak, nonatomic) IBOutlet UIButton *nextbut_1;
 @property (weak, nonatomic) IBOutlet UIButton *nextbut_2;
