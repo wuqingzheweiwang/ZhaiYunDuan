@@ -17,7 +17,7 @@
 #import "ZJPaySuccessViewController.h"
 #define USHARE_DEMO_APPKEY  @""
 
-@interface AppDelegate ()<UITabBarControllerDelegate,UIAlertViewDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,UIAlertViewDelegate,WXApiDelegate>
 {
     ZJTabbarViewController *tabBar;
     NSString * jumpUrl;
@@ -85,7 +85,7 @@
         }
     }];
 
-    
+    /************** 更新版本 *****************/
     [ZJHomeRequest zjgetAppapiVersionresult:^(BOOL success, id responseData) {
         if (success) {
             NSLog(@"%@",responseData);
@@ -144,12 +144,13 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
-    /************** 更新版本 *****************/
     
     
     
-    /************** 支付 *****************/
-    [WXApi registerApp:@"wx92b0f09429075038" withDescription:@"demo 2.0"];
+    
+    /************** 微信支付 *****************/
+    [WXApi registerApp:@"wxbc0753acdfa4e7c3"];
+    [WXApi registerApp:@"wxbc0753acdfa4e7c3" withDescription:@"demo 2.0"];
     /************** 分享 *****************/
     ZJShareManager *registerManager = [[ZJShareManager alloc] init];
     [registerManager finishLaunchOption:launchOptions];
@@ -318,45 +319,54 @@
 #pragma mark ios 9.0以前会调用此url回调
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-        
-    // 支付宝
-    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-        
-        DLog(@"result = %@",resultDic);
-        if ([resultDic[@"resultStatus"] intValue]==9000) {
+    NSLog(@"%@",url.host);
+    if ([url.host isEqualToString:@"pay"]) {
+        // 微信
+        DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
+    }else{
+        // 支付宝
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             
-            [ZJUtil showBottomToastWithMsg:@"支付成功"];
-            NSString *result = @"支付成功";
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
-            
-        }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
-            [ZJUtil showBottomToastWithMsg:@"正在处理中"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
-            [ZJUtil showBottomToastWithMsg:@"订单支付失败"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 6001) {
-            [ZJUtil showBottomToastWithMsg:@"用户中途取消"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 6002) {
-            [ZJUtil showBottomToastWithMsg:@"网络连接出错"];
-        }
-        else {
-            
-            NSString *resultMes = resultDic[@"memo"];
-            resultMes = (resultMes.length<=0?@"支付失败":resultMes);
-            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",resultMes]];
-        }
-    }];
+            DLog(@"result = %@",resultDic);
+            if ([resultDic[@"resultStatus"] intValue]==9000) {
+                
+                [ZJUtil showBottomToastWithMsg:@"支付成功"];
+                NSString *result = @"支付成功";
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
+                
+            }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
+                [ZJUtil showBottomToastWithMsg:@"正在处理中"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
+                [ZJUtil showBottomToastWithMsg:@"订单支付失败"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 6001) {
+                [ZJUtil showBottomToastWithMsg:@"用户中途取消"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 6002) {
+                [ZJUtil showBottomToastWithMsg:@"网络连接出错"];
+            }
+            else {
+                
+                NSString *resultMes = resultDic[@"memo"];
+                resultMes = (resultMes.length<=0?@"支付失败":resultMes);
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",resultMes]];
+            }
+        }];
+        return YES;
+    }
     
-    // 微信
-    DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
-
-    
-   
-   
-    
-    
-    return YES;
 }
+
+
+
+#pragma mark WXApiDelegate
+
+//WXSuccess           = 0,    /**< 成功    */
+//WXErrCodeCommon     = -1,   /**< 普通错误类型    */
+//WXErrCodeUserCancel = -2,   /**< 用户点击取消并返回    */
+//WXErrCodeSentFail   = -3,   /**< 发送失败    */
+//WXErrCodeAuthDeny   = -4,   /**< 授权失败    */
+//WXErrCodeUnsupport  = -5,   /**< 微信不支持    */
+
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -364,16 +374,48 @@
     return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     
 }
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag==8766) {
-        if (buttonIndex==0) {
-            
-        }
-    }else if (alertView.tag==8767){
-        if (buttonIndex==0) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:jumpUrl]];
+-(void)onResp:(BaseResp *)resp {
+    if ([resp isKindOfClass:[PayResp class]]) {
+        PayResp*response=(PayResp*)resp;  // 微信终端返回给第三方的关于支付结果的结构体
+        switch (response.errCode) {
+            case WXSuccess:
+            {// 支付成功，向后台发送消息                    0
+                DLog(@"支付成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_PaySuccess" object:nil];
+            }
+                break;
+            case WXErrCodeCommon:
+            { //签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等             -1
+                [ZJUtil showBottomToastWithMsg:@"支付失败"];
+                DLog(@"支付失败");
+            }
+                break;
+            case WXErrCodeUserCancel:
+            { //用户点击取消并返回                        -2
+                DLog(@"取消支付");
+                [ZJUtil showBottomToastWithMsg:@"取消支付"];
+            }
+                break;
+            case WXErrCodeSentFail:
+            { //发送失败                                -3
+                DLog(@"发送失败");
+                [ZJUtil showBottomToastWithMsg:@"发送失败"];
+            }
+                break;
+            case WXErrCodeUnsupport:
+            { //微信不支持                               -4
+                DLog(@"微信不支持");
+                [ZJUtil showBottomToastWithMsg:@"微信不支持"];
+            }
+                break;
+            case WXErrCodeAuthDeny:
+            { //授权失败                                -5
+                DLog(@"授权失败");
+                [ZJUtil showBottomToastWithMsg:@"授权失败"];
+            }
+                break;
+            default:
+                break;
         }
     }
 }
