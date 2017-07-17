@@ -17,9 +17,10 @@
 #import "ZJPaySuccessViewController.h"
 #define USHARE_DEMO_APPKEY  @""
 
-@interface AppDelegate ()<UITabBarControllerDelegate,WXApiDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,UIAlertViewDelegate,WXApiDelegate>
 {
     ZJTabbarViewController *tabBar;
+    NSString * jumpUrl;
 }
 @end
 
@@ -84,6 +85,45 @@
         }
     }];
 
+    /************** 更新版本 *****************/
+    [ZJHomeRequest zjgetAppapiVersionresult:^(BOOL success, id responseData) {
+        if (success) {
+            NSLog(@"%@",responseData);
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                NSDictionary * dataDic=[responseData objectForKey:@"data"];
+                jumpUrl = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"downUrl"]];
+                NSString *serverVersion = [dataDic objectForKey:@"versionNum"];
+                
+                if ([ZJAPP_VERSION compare:serverVersion options:NSNumericSearch] == NSOrderedAscending) {//升序  需要升级
+                    NSString * isForceString=[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForce"]];
+                    if ([isForceString isEqualToString:@"1"]) {
+
+                        UIAlertController * alertcon = [UIAlertController alertControllerWithTitle:@"升级提示" message:[dataDic objectForKey:@"updateItems"] preferredStyle:UIAlertControllerStyleAlert];
+                        // 添加按钮
+                        [alertcon addAction:[UIAlertAction actionWithTitle:@"升级" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:jumpUrl]];
+                        }]];
+                        
+                        [self.window.rootViewController presentViewController:alertcon animated:YES completion:nil];
+
+                    } else {
+                        UIAlertController * alertcon = [UIAlertController alertControllerWithTitle:@"升级提示" message:[dataDic objectForKey:@"updateItems"] preferredStyle:UIAlertControllerStyleAlert];
+                        // 添加按钮
+                        [alertcon addAction:[UIAlertAction actionWithTitle:@"马上就去" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:jumpUrl]];
+                        }]];
+                        [alertcon addAction:[UIAlertAction actionWithTitle:@"以后再说" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                            
+        
+                        }]];
+                        [self.window.rootViewController presentViewController:alertcon animated:YES completion:nil];
+                    }
+                }
+            }
+        }
+    }];
 
     sleep(1);
     
@@ -103,8 +143,14 @@
     [self.window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    /************** 支付 *****************/
-    [WXApi registerApp:@"wx92b0f09429075038" withDescription:@"demo 2.0"];
+    
+    
+    
+    
+    
+    /************** 微信支付 *****************/
+    [WXApi registerApp:@"wxbc0753acdfa4e7c3"];
+    [WXApi registerApp:@"wxbc0753acdfa4e7c3" withDescription:@"demo 2.0"];
     /************** 分享 *****************/
     ZJShareManager *registerManager = [[ZJShareManager alloc] init];
     [registerManager finishLaunchOption:launchOptions];
@@ -273,48 +319,44 @@
 #pragma mark ios 9.0以前会调用此url回调
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-        
-    // 支付宝
-    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-        
-        DLog(@"result = %@",resultDic);
-        if ([resultDic[@"resultStatus"] intValue]==9000) {
+    NSLog(@"%@",url.host);
+    if ([url.host isEqualToString:@"pay"]) {
+        // 微信
+        DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
+    }else{
+        // 支付宝
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             
-            [ZJUtil showBottomToastWithMsg:@"支付成功"];
-            NSString *result = @"支付成功";
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
-            
-        }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
-            [ZJUtil showBottomToastWithMsg:@"正在处理中"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
-            [ZJUtil showBottomToastWithMsg:@"订单支付失败"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 6001) {
-            [ZJUtil showBottomToastWithMsg:@"用户中途取消"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 6002) {
-            [ZJUtil showBottomToastWithMsg:@"网络连接出错"];
-        }
-        else {
-            
-            NSString *resultMes = resultDic[@"memo"];
-            resultMes = (resultMes.length<=0?@"支付失败":resultMes);
-            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",resultMes]];
-        }
-    }];
-    
-    // 微信
-    DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
-
-
+            DLog(@"result = %@",resultDic);
+            if ([resultDic[@"resultStatus"] intValue]==9000) {
+                
+                [ZJUtil showBottomToastWithMsg:@"支付成功"];
+                NSString *result = @"支付成功";
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
+                
+            }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
+                [ZJUtil showBottomToastWithMsg:@"正在处理中"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
+                [ZJUtil showBottomToastWithMsg:@"订单支付失败"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 6001) {
+                [ZJUtil showBottomToastWithMsg:@"用户中途取消"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 6002) {
+                [ZJUtil showBottomToastWithMsg:@"网络连接出错"];
+            }
+            else {
+                
+                NSString *resultMes = resultDic[@"memo"];
+                resultMes = (resultMes.length<=0?@"支付失败":resultMes);
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",resultMes]];
+            }
+        }];
+        return YES;
+    }
     return YES;
 }
 
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-    
-}
 
 #pragma mark WXApiDelegate
 
@@ -325,6 +367,13 @@
 //WXErrCodeAuthDeny   = -4,   /**< 授权失败    */
 //WXErrCodeUnsupport  = -5,   /**< 微信不支持    */
 
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
+}
 -(void)onResp:(BaseResp *)resp {
     if ([resp isKindOfClass:[PayResp class]]) {
         PayResp*response=(PayResp*)resp;  // 微信终端返回给第三方的关于支付结果的结构体
@@ -370,6 +419,5 @@
         }
     }
 }
-
 
 @end

@@ -38,6 +38,9 @@ typedef void(^result)(BOOL success, id responseData);
  * 获取用户角色
  */
 +(void)zjGetUserRoleRequestresult:(result)result;
-
+/*
+ * 更新版本
+ */
++(void)zjgetAppapiVersionresult:(result)result;
 
 @end

@@ -821,6 +821,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				528C97BB1F13457900C60743 /* Security.framework in Frameworks */,
+				52D2A6E91EB3538000C43247 /* CFNetwork.framework in Frameworks */,
+				52CDA4881EB33D9100F64AE9 /* CoreTelephony.framework in Frameworks */,
 				52CDA4941EB33EC600F64AE9 /* libz.tbd in Frameworks */,
 				52155A281F075632001F24D4 /* libsqlite3.tbd in Frameworks */,
 				52155A261F075628001F24D4 /* ImageIO.framework in Frameworks */,
@@ -830,7 +832,6 @@
 				528C97B91F13452B00C60743 /* UMMobClick.framework in Frameworks */,
 				520A11471ECDAE1F009903AE /* libsqlite3.0.tbd in Frameworks */,
 				52D2A6EB1EB3538E00C43247 /* CoreMotion.framework in Frameworks */,
-				52D2A6E91EB3538000C43247 /* CFNetwork.framework in Frameworks */,
 				52D2A7491EB3551900C43247 /* libcrypto.a in Frameworks */,
 				52CDA4961EB33ED300F64AE9 /* libc++.tbd in Frameworks */,
 				52155A091F07547B001F24D4 /* libWeChatSDK.a in Frameworks */,
@@ -843,7 +844,6 @@
 				52CDA48C1EB33DA700F64AE9 /* CoreText.framework in Frameworks */,
 				52CDA48A1EB33D9C00F64AE9 /* QuartzCore.framework in Frameworks */,
 				52D2A74A1EB3551900C43247 /* libssl.a in Frameworks */,
-				52CDA4881EB33D9100F64AE9 /* CoreTelephony.framework in Frameworks */,
 				52155A0D1F07547B001F24D4 /* ShareSDKConnector.framework in Frameworks */,
 				52CDA4861EB33D8300F64AE9 /* SystemConfiguration.framework in Frameworks */,
 				52D2A6EC1EB353D900C43247 /* AlipaySDK.framework in Frameworks */,
@@ -3146,6 +3146,7 @@
 					"$(PROJECT_DIR)/债云端/Lib/linkBinary",
 				);
 				OTHER_LDFLAGS = (
+					"-all_load",
 					"-ObjC",
 					"-licucore",
 				);
@@ -3220,6 +3221,7 @@
 					"$(PROJECT_DIR)/债云端/Lib/linkBinary",
 				);
 				OTHER_LDFLAGS = (
+					"-all_load",
 					"-ObjC",
 					"-licucore",
 				);
