@@ -199,7 +199,7 @@
     else if (indexPath.row == 1){
         
         
-    }else if (indexPath.row == 1){
+    }else if (indexPath.row == 2){
         
         [self gotoTelephoneNumberView];
     }
