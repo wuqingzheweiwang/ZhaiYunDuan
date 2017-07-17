@@ -219,15 +219,15 @@
     
 #pragma mark 微信支付
       
-    //调起微信支付
-//    PayReq* req = [[PayReq alloc] init];
-//    req.partnerId           = @"1459224702";
-//    req.prepayId            = @"wx20170518185901c6c2de300b0896178134";
-//    req.nonceStr            = @"jsnPeYgXZCenKVYKVRIOwRHHGfKIDIBj";
-//    req.timeStamp           = 1495105141;
-//    req.package             = @"Sign=WXPay";
-//    req.sign                = @"5E9F0D1BD436ADE5248A0B2721AE4635";
-//    [WXApi sendReq:req];
+//    调起微信支付
+    PayReq* req = [[PayReq alloc] init];
+    req.partnerId           = @"1459224702";
+    req.prepayId            = @"wx20170518185901c6c2de300b0896178134";
+    req.nonceStr            = @"jsnPeYgXZCenKVYKVRIOwRHHGfKIDIBj";
+    req.timeStamp           = 1495105141;
+    req.package             = @"Sign=WXPay";
+    req.sign                = @"5E9F0D1BD436ADE5248A0B2721AE4635";
+    [WXApi sendReq:req];
   
     
 #pragma mark 支付宝支付
