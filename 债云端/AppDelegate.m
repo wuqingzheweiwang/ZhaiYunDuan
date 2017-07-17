@@ -322,7 +322,7 @@
     NSLog(@"%@",url.host);
     if ([url.host isEqualToString:@"pay"]) {
         // 微信
-        DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
+      return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     }else{
         // 支付宝
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -381,7 +381,9 @@
             case WXSuccess:
             {// 支付成功，向后台发送消息                    0
                 DLog(@"支付成功");
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_PaySuccess" object:nil];
+                NSString *result = @"支付成功";
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"wXinPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
             }
                 break;
             case WXErrCodeCommon:

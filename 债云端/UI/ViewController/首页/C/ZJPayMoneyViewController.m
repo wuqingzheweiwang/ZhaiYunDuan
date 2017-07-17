@@ -41,6 +41,9 @@
     NSNotificationCenter* notif = [NSNotificationCenter defaultCenter];
     [notif addObserver:self selector:@selector(apliyPayNotifAction:) name:@"apliyPay" object:nil];
     
+    NSNotificationCenter* notif1 = [NSNotificationCenter defaultCenter];
+    [notif1 addObserver:self selector:@selector(wXinPayNotifAction:) name:@"wXinPay" object:nil];
+    
     [self setPayUI];
   
     
@@ -49,6 +52,7 @@
 {
     //移除通知
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"apliyPay" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"wXinPay" object:nil];
 }
 
 -(void)setPayUI
@@ -107,7 +111,7 @@
     if (_tableViewdataSource == nil) {
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
         @[@"ALI-Pay",@"支付宝支付",@"flagimagred",],
-        @[@"Union-Pay",@"微信支付",@"flagimaggray",]]
+        @[@"WinxinPay",@"微信支付",@"flagimaggray",]]
                                ,nil];
         
     }
@@ -185,7 +189,7 @@
     if (sender.tag == 1001) {
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
         @[@"ALI-Pay",@"支付宝支付",@"flagimagred",],
-        @[@"Union-Pay",@"微信支付",@"flagimaggray",]]
+        @[@"WinxinPay",@"微信支付",@"flagimaggray",]]
                                ,nil];
         payType=@"payTypeZhifubao";
         [_tableView reloadData];
@@ -193,7 +197,7 @@
     }else if (sender.tag == 1002){
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
         @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",],
-        @[@"Union-Pay",@"微信支付",@"flagimagred",]]
+        @[@"WinxinPay",@"微信支付",@"flagimagred",]]
                                ,nil];
         payType=@"payTypeWeixin";
         [_tableView reloadData];
@@ -242,23 +246,42 @@
         }];
 
     }else if ([payType isEqualToString:@"payTypeWeixin"]){
-#pragma mark 微信支付
+       #pragma mark 微信支付
+        [self showProgress];
+        NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:self.orderid,@"prepayid",nil];
+        [ZJHomeRequest zjPostWeiXinDebtRequestWithParams:dict result:^(BOOL success, id responseData) {
+            [self dismissProgress];
+            if (success) {
+                
+                DLog(@"%@",responseData);
+                
+                if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                    NSDictionary * dataDic=[[responseData objectForKey:@"data"] objectForKey:@"callWx"];
+                    
+                    PayReq* req = [[PayReq alloc] init];
+                    req.partnerId           = [dataDic objectForKey:@"partnerid"];
+                    req.prepayId            = [dataDic objectForKey:@"prepayid"];
+                    req.nonceStr            = [dataDic objectForKey:@"noncestr"];
+                    req.timeStamp           = [[dataDic objectForKey:@"timestamp"] intValue];
+                    req.package             = [dataDic objectForKey:@"package"];
+                    req.sign                = [dataDic objectForKey:@"sign"];
+                    [WXApi sendReq:req];
+                    
+                }else{
+                    [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                }
+            }else{
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];
+            }
+        }];
         
-        //    调起微信支付
-        PayReq* req = [[PayReq alloc] init];
-        req.partnerId           = @"1459224702";
-        req.prepayId            = @"wx20170518185901c6c2de300b0896178134";
-        req.nonceStr            = @"jsnPeYgXZCenKVYKVRIOwRHHGfKIDIBj";
-        req.timeStamp           = 1495105141;
-        req.package             = @"Sign=WXPay";
-        req.sign                = @"5E9F0D1BD436ADE5248A0B2721AE4635";
-        [WXApi sendReq:req];
         
 
     }else{  //银联
     
     }
 }
+
 #pragma  mark  支付宝
 - (void)AlipayAction{
    
@@ -296,6 +319,16 @@
         }
     }
 }
+- (void)wXinPayNotifAction:(NSNotification *)noti {
+    NSString *notiString = [noti.userInfo objectForKey:@"errCode"];
+    if (![notiString isEqualToString:@""] && notiString != nil) {
+        if ([notiString isEqualToString:@"支付成功"]) {
+            ZJPaySuccessViewController * paySuccVC=[[ZJPaySuccessViewController alloc]initWithNibName:@"ZJPaySuccessViewController" bundle:nil];
+            [self.navigationController pushViewController:paySuccVC animated:YES];
+        }
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

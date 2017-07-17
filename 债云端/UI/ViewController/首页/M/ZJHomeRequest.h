@@ -42,5 +42,8 @@ typedef void(^result)(BOOL success, id responseData);
  * 更新版本
  */
 +(void)zjgetAppapiVersionresult:(result)result;
-
+/*
+ *微信支付
+ */
++(void)zjPostWeiXinDebtRequestWithParams:(NSDictionary *)params result:(result)result;
 @end
