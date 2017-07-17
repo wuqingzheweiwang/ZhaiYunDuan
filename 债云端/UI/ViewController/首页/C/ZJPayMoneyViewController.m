@@ -19,11 +19,6 @@
 #import "ZJHomeRequest.h"
 #import "ZJPaySuccessViewController.h"
 @interface ZJPayMoneyViewController ()<UITableViewDelegate,UITableViewDataSource>
-{
-    NSString *payWay;
-    UIAlertController *alertcon;
-    
-}
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *tableViewdataSource;
 @property (weak, nonatomic) IBOutlet UILabel *allPayLabel;
@@ -36,10 +31,13 @@
 {
     //支付宝
     NSString * _orderId;
+    UIAlertController *alertcon;
+    NSString *payType;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    payType=@"payTypeZhifubao";
     NSNotificationCenter* notif = [NSNotificationCenter defaultCenter];
     [notif addObserver:self selector:@selector(apliyPayNotifAction:) name:@"apliyPay" object:nil];
     
@@ -108,7 +106,8 @@
 {
     if (_tableViewdataSource == nil) {
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
-        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",]]
+        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",],
+        @[@"Union-Pay",@"微信支付",@"flagimaggray",]]
                                ,nil];
         
     }
@@ -185,14 +184,18 @@
 {
     if (sender.tag == 1001) {
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
-        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",]]
+        @[@"ALI-Pay",@"支付宝支付",@"flagimagred",],
+        @[@"Union-Pay",@"微信支付",@"flagimaggray",]]
                                ,nil];
+        payType=@"payTypeZhifubao";
         [_tableView reloadData];
         
     }else if (sender.tag == 1002){
         _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
-        @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",]]
+        @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",],
+        @[@"Union-Pay",@"微信支付",@"flagimagred",]]
                                ,nil];
+        payType=@"payTypeWeixin";
         [_tableView reloadData];
     }
     
@@ -208,54 +211,53 @@
 // 返回首页
 -(void)backHomePage
 {
-    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 // 支付
 -(void)gotoPayMoney
 {
-
-    
-#pragma mark 微信支付
-      
-//    调起微信支付
-    PayReq* req = [[PayReq alloc] init];
-    req.partnerId           = @"1459224702";
-    req.prepayId            = @"wx20170518185901c6c2de300b0896178134";
-    req.nonceStr            = @"jsnPeYgXZCenKVYKVRIOwRHHGfKIDIBj";
-    req.timeStamp           = 1495105141;
-    req.package             = @"Sign=WXPay";
-    req.sign                = @"5E9F0D1BD436ADE5248A0B2721AE4635";
-    [WXApi sendReq:req];
-  
-    
+    if ([payType isEqualToString:@"payTypeZhifubao"]) {
 #pragma mark 支付宝支付
-    [self showProgress];
-    NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:self.orderid,@"orderId",self.type,@"type",nil];
-    [ZJHomeRequest zjPostAlipayDebtRequestWithParams:dict result:^(BOOL success, id responseData) {
-        [self dismissProgress];
-        if (success) {
-            
-            DLog(@"%@",responseData);
-            
-            if ([[responseData objectForKey:@"code"]isEqualToString:@"ok"]) {
-
-                _orderId=[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]];
+        [self showProgress];
+        NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:self.orderid,@"orderId",self.type,@"type",nil];
+        [ZJHomeRequest zjPostAlipayDebtRequestWithParams:dict result:^(BOOL success, id responseData) {
+            [self dismissProgress];
+            if (success) {
                 
-                [self AlipayAction];
+                DLog(@"%@",responseData);
                 
+                if ([[responseData objectForKey:@"code"]isEqualToString:@"ok"]) {
+                    
+                    _orderId=[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]];
+                    
+                    [self AlipayAction];
+                    
+                }else{
+                    [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                }
             }else{
-                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];
             }
-        }else{
-            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];
-        }
-    }];
+        }];
 
+    }else if ([payType isEqualToString:@"payTypeWeixin"]){
+#pragma mark 微信支付
+        
+        //    调起微信支付
+        PayReq* req = [[PayReq alloc] init];
+        req.partnerId           = @"1459224702";
+        req.prepayId            = @"wx20170518185901c6c2de300b0896178134";
+        req.nonceStr            = @"jsnPeYgXZCenKVYKVRIOwRHHGfKIDIBj";
+        req.timeStamp           = 1495105141;
+        req.package             = @"Sign=WXPay";
+        req.sign                = @"5E9F0D1BD436ADE5248A0B2721AE4635";
+        [WXApi sendReq:req];
+        
 
-
+    }else{  //银联
     
+    }
 }
 #pragma  mark  支付宝
 - (void)AlipayAction{

@@ -33,3 +33,15 @@
 @interface ZJMakePayModel : NSObject
 
 @end
+
+//商学院
+@interface ZJBusinessSchoolModel : NSObject
+@property (nonatomic, strong) NSString *img;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *detailTitle;
+@property (nonatomic, strong) NSString *updateTime;
+@property (nonatomic, strong) NSString *url;
+
++ (ZJBusinessSchoolModel *)itemForDictionary:(NSDictionary *)dic;
+@end
+
