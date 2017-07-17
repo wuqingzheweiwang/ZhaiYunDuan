@@ -90,4 +90,18 @@
                                           resultSecret:YES
                                        resultWithBlock:result];
 }
+
+/*
+ * 更新版本
+ */
++(void)zjgetAppapiVersionresult:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"api/version/getVersion?type=iOS"
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+    
+}
 @end

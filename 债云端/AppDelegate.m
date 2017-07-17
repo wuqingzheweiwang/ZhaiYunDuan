@@ -17,9 +17,10 @@
 #import "ZJPaySuccessViewController.h"
 #define USHARE_DEMO_APPKEY  @""
 
-@interface AppDelegate ()<UITabBarControllerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,UIAlertViewDelegate>
 {
     ZJTabbarViewController *tabBar;
+    NSString * jumpUrl;
 }
 @end
 
@@ -84,6 +85,45 @@
         }
     }];
 
+    
+    [ZJHomeRequest zjgetAppapiVersionresult:^(BOOL success, id responseData) {
+        if (success) {
+            NSLog(@"%@",responseData);
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                NSDictionary * dataDic=[responseData objectForKey:@"data"];
+                jumpUrl = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"downUrl"]];
+                NSString *serverVersion = [dataDic objectForKey:@"versionNum"];
+                
+                if ([ZJAPP_VERSION compare:serverVersion options:NSNumericSearch] == NSOrderedAscending) {//升序  需要升级
+                    NSString * isForceString=[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForce"]];
+                    if ([isForceString isEqualToString:@"1"]) {
+
+                        UIAlertController * alertcon = [UIAlertController alertControllerWithTitle:@"升级提示" message:[dataDic objectForKey:@"updateItems"] preferredStyle:UIAlertControllerStyleAlert];
+                        // 添加按钮
+                        [alertcon addAction:[UIAlertAction actionWithTitle:@"升级" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:jumpUrl]];
+                        }]];
+                        
+                        [self.window.rootViewController presentViewController:alertcon animated:YES completion:nil];
+
+                    } else {
+                        UIAlertController * alertcon = [UIAlertController alertControllerWithTitle:@"升级提示" message:[dataDic objectForKey:@"updateItems"] preferredStyle:UIAlertControllerStyleAlert];
+                        // 添加按钮
+                        [alertcon addAction:[UIAlertAction actionWithTitle:@"马上就去" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                            
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:jumpUrl]];
+                        }]];
+                        [alertcon addAction:[UIAlertAction actionWithTitle:@"以后再说" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                            
+        
+                        }]];
+                        [self.window.rootViewController presentViewController:alertcon animated:YES completion:nil];
+                    }
+                }
+            }
+        }
+    }];
 
     sleep(1);
     
@@ -103,6 +143,11 @@
     [self.window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
+    /************** 更新版本 *****************/
+    
+    
+    
     /************** 支付 *****************/
     [WXApi registerApp:@"wx92b0f09429075038" withDescription:@"demo 2.0"];
     /************** 分享 *****************/
@@ -320,5 +365,17 @@
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==8766) {
+        if (buttonIndex==0) {
+            
+        }
+    }else if (alertView.tag==8767){
+        if (buttonIndex==0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:jumpUrl]];
+        }
+    }
+}
 
 @end
