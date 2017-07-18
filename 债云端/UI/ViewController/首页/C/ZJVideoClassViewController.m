@@ -28,6 +28,7 @@ static NSString *identifierId=@"zz";
     BOOL SearchYES;
     UIView * seachview;
     NSMutableArray *collectionDataSource;
+    NSString *action;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +43,7 @@ static NSString *identifierId=@"zz";
 
 - (void)createSerach
 {
-    seachview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 40)];
+    seachview=[[UIView alloc]initWithFrame:CGRectMake(0, 64+headerScrollview.height, ZJAPPWidth, 40)];
     seachview.backgroundColor=[UIColor whiteColor];
     UISearchBar * searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(15, 10, ZJAPPWidth-30, 30)];
     searchBar.searchBarStyle=UISearchBarStyleMinimal;
@@ -57,18 +58,48 @@ static NSString *identifierId=@"zz";
     searchBar.layer.masksToBounds = YES;
     searchBar.showsCancelButton=YES;
     [seachview addSubview:searchBar];
+    [self.view addSubview:seachview];
     seachview.hidden=YES;
 }
 
+#pragma maek  UISearchBarDelegate
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
+    NSString * action1=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
+    NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
+        DLog(@"%@",responseData);
+        if (success) {
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                
+                [_dataSource removeAllObjects];
+                //                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                //                for (int i=0; i<itemarray.count; i++) {
+                //                    ZJDebtPersonMangerHomeItem * item=[ZJDebtPersonMangerHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
+                //                    [_dataSource addObject:item];
+                //                }
+                [self.collectionView reloadData];
+            }else{
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+            }
+        }else{
+            [ZJUtil showBottomToastWithMsg:responseData];
+        }
+    }];
+    
+}
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
+    self.collectionView.top = headerScrollview.bottom+64;
+    self.collectionView.height = ZJAPPHeight - headerScrollview.bottom - 64;
     SearchYES=NO;
     seachview.hidden=YES;
     searchBar.text=@"";
     _page=1;
-//    [self requestTeacherClassInfo];
+    [self requestVideoRequestData];
     
 }
 
@@ -110,7 +141,31 @@ static NSString *identifierId=@"zz";
     }
 
     [self.view addSubview:self.collectionView];
+    //刷新
+    __weak ZJVideoClassViewController *weakSelf = self;
+    self.collectionView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf reloadFirstData];
+    }];
+    
+    //加载
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
 
+}
+
+-(void)reloadFirstData
+{
+    //@weakify(self) 防止循环引用
+    //@strongify(self) 防止指针消失
+    _page=1;
+    [self requestVideoRequestData];
+    
+}
+-(void)loadMoreData
+{
+    _page+=1;
+    [self requestVideoRequestData];
 }
 
 -(UICollectionView *)collectionView
@@ -118,12 +173,13 @@ static NSString *identifierId=@"zz";
     UICollectionViewFlowLayout *flowLayout= [[UICollectionViewFlowLayout alloc]init];
     
     if (_collectionView == nil) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, headerScrollview.bottom, ZJAPPWidth,ZJAPPHeight - headerScrollview.bottom) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, headerScrollview.bottom+64, ZJAPPWidth,ZJAPPHeight - headerScrollview.bottom-64) collectionViewLayout:flowLayout];
     }
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    
+    _collectionView.showsVerticalScrollIndicator = NO;
+
     //  cell间的行距
     flowLayout.minimumLineSpacing = TRUE_1(5);
     //  cell间的列距
@@ -131,15 +187,15 @@ static NSString *identifierId=@"zz";
     flowLayout.sectionInset=UIEdgeInsetsMake(TRUE_1(-5), TRUE_1(10), 0, TRUE_1(10));
     
     //  注册类
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:identifierId];
-    _collectionView.scrollEnabled = NO;
+    [_collectionView registerClass:[ZJVideoCollectionViewCell class] forCellWithReuseIdentifier:identifierId];
+    _collectionView.scrollEnabled = YES;
     return _collectionView;
 }
 
 // 设置单元格大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize itemSize=CGSizeMake(ZJAPPWidth/6, TRUE_1(190/2));
+    CGSize itemSize=CGSizeMake((ZJAPPWidth - TRUE_1(15)*3)/2, TRUE_1(350/2));
     return itemSize;
 }
 
@@ -148,18 +204,17 @@ static NSString *identifierId=@"zz";
 
 //  设置分区中的单元格cell数量
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    return collectionDataSource.count;
 }
 //  设置cell内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-   
+
     ZJVideoCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:identifierId forIndexPath:indexPath];
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJVideoCollectionViewCell" owner:self options:nil]firstObject];
     }
        
-    [cell setitem:[collectionDataSource objectAtIndex:indexPath.row]];
+    [cell setitem:[collectionDataSource objectAtIndex:indexPath.item]];
     return cell;
 }
 
@@ -170,16 +225,18 @@ static NSString *identifierId=@"zz";
     ZJVideoCollectionModel * moder=[_dataSource objectAtIndex:indexPath.row];
     videoPlayVC.movieUrl=moder.url;
     [self.navigationController pushViewController:videoPlayVC animated:YES];
-
 }
 
 //搜索
 -(void)searchInfoAction
 {
     SearchYES=YES;
-//    [self.ta reloadData];
+    [self.collectionView reloadData];
     if (SearchYES) {
         seachview.hidden=NO;
+        self.collectionView.top = headerScrollview.bottom+64+TRUE_1(40);
+        self.collectionView.height = ZJAPPHeight - headerScrollview.bottom - 64 - TRUE_1(40);
+
     }else{
         seachview.hidden=YES;
         _page=1;
@@ -216,7 +273,7 @@ static NSString *identifierId=@"zz";
     }
     if ([BtnType isEqualToString:@"名师讲堂"]) {
         _page=1;
-//        [Infotabel reloadData];
+        [self.collectionView reloadData];
     }else if ([BtnType isEqualToString:@"解债案例"]){
         _page=1;
         [self requestVideoRequestData];
@@ -231,40 +288,53 @@ static NSString *identifierId=@"zz";
         _page=1;
         [self requestVideoRequestData];
     }
-//    [Infotabel reloadData];
+    [self.collectionView reloadData];
 }
 
 
 #pragma mark--请求债事信息
 - (void)requestVideoRequestData
 {
-//    NSString * action=[NSString stringWithFormat:@"api/debtrelation/debtinfo?debtId=%@&ps=8&pn=%ld",self.companyId,(long)_page];
-//    [self showProgress];
-//    [ZJDebtPersonRequest GetDebtPersondebtInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
-//        DLog(@"%@",responseData);
-//        [self dismissProgress];
-//        if (success) {
-//            
-//            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-//                if (_page==1) {
-//                    [_dataSource removeAllObjects];
-//                }
-//                NSArray * dicArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-//                for (int i=0; i<dicArray.count; i++) {
-////                    ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:[dicArray objectAtIndex:i]];
-//                    [collectionDataSource addObject:item];
-//                }
-//                [Infotabel reloadData];
-//            }else{
-//                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-//            }
-//        }else{
-//            [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
-//        }
-//        [Infotabel.mj_header endRefreshing];
-//        [Infotabel.mj_footer endRefreshing];
+    if ([BtnType isEqualToString:@"名师讲堂"]) {
+            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        }else if ([BtnType isEqualToString:@"解债案例"]){
+            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        }else if ([BtnType isEqualToString:@"答疑解惑"]){
+            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        }else if ([BtnType isEqualToString:@"法律咨询"]){
+            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        }else if ([BtnType isEqualToString:@"名师风采"]){
+            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        }
         
-//    }];
+        //    [self showProgress];
+        //    [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
+        //        [self dismissProgress];
+        //        DLog(@"%@",responseData);
+        if (_page==1) {
+            [collectionDataSource removeAllObjects];
+            [self.collectionView reloadData];
+        }
+        //        if (success) {
+        //
+        //            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+        
+        //                NSArray * dicArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+        //                for (int i=0; i<dicArray.count; i++) {
+        //                    ZJCapitalInfoItem * item=[ZJCapitalInfoItem itemForDictionary:[dicArray objectAtIndex:i]];
+        //                    [_dataSource addObject:item];
+        //                }
+        [self.collectionView reloadData];
+        //            }else{
+        //                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+        //            }
+        //        }else{
+        //            [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
+        //        }
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+        
+        //    }];
 }
 
 

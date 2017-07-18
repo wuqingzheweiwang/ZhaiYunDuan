@@ -29,7 +29,7 @@
 @implementation ZJVideoPlayViewController
 {
     NSInteger _page;
-
+    UIButton *leftBackBut;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,6 +46,7 @@
 {
     self.navigationController.navigationBar.hidden = NO;
     self.tableView.hidden = NO;
+    leftBackBut.enabled = YES;
     [self.tableView reloadData];
 }
 
@@ -53,6 +54,7 @@
 {
     self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = YES;
+    leftBackBut.enabled = NO;
     [self.tableView reloadData];
 }
 
@@ -80,13 +82,14 @@
 
 -(void)setNavcaition
 {
-    [ZJNavigationPublic setOpenBackgroundImageOnTargetNav:self];
-    [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(leftAction) With:[UIImage imageNamed:@"back"]];
+    self.navigationController.navigationBar.alpha=0;
+
 }
 
 -(void)leftAction
 {
     [self.navigationController popViewControllerAnimated:YES];
+    self.navigationController.navigationBar.alpha=1;
 }
 
 -(void)creatVideoPlayer
@@ -94,6 +97,14 @@
     
     self.player = [[ZGLVideoPlyer alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(200))];
     self.player.videoUrlStr = self.movieUrl;
+    leftBackBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBackBut.top = TRUE_1(25/2);
+    leftBackBut.left = 0;
+    leftBackBut.width = TRUE_1(50);
+    leftBackBut.height = leftBackBut.width;
+    [leftBackBut setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftBackBut addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.player addSubview:leftBackBut];
     [self.view addSubview:self.player];
     
     [self.view addSubview:self.tableView];
@@ -155,7 +166,7 @@
 -(UITableView *)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.player.bottom, ZJAPPWidth, ZJAPPHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.player.bottom, ZJAPPWidth, ZJAPPHeight-self.player.bottom) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
