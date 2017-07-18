@@ -33,16 +33,16 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2c-83-Zcc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-8Y-Rh0">
-                            <rect key="frame" x="8" y="8" width="153" height="105"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-8Y-Rh0">
+                            <rect key="frame" x="29" y="8" width="321" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="video"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-Jh-ftF">
-                            <rect key="frame" x="214" y="8" width="153" height="105"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-Jh-ftF">
+                            <rect key="frame" x="29" y="93" width="321" height="74"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="graphic"/>
                         </button>
@@ -55,7 +55,7 @@
         </view>
     </objects>
     <resources>
-        <image name="graphic" width="386" height="222"/>
-        <image name="video" width="386" height="222"/>
+        <image name="graphic" width="300" height="95"/>
+        <image name="video" width="300" height="95"/>
     </resources>
 </document>

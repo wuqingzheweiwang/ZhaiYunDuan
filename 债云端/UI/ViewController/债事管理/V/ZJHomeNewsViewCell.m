@@ -17,13 +17,13 @@
 
 -(void)setitem:(ZJHomeNewsModel *)item
 {
-    [self.ImageFlag sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
     
     _ImageFlag.top = TRUE_1(40/2);
     _ImageFlag.left = TRUE_1(45/2);
     _ImageFlag.width = TRUE_1(50);
     _ImageFlag.height =  _ImageFlag.width;
-    
+    [self.ImageFlag sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
+
     _ImageFlagLabel.top = _ImageFlag.top;
     _ImageFlagLabel.left = _ImageFlag.right + TRUE_1(25/2);
     _ImageFlagLabel.font=ZJ_TRUE_FONT(15);

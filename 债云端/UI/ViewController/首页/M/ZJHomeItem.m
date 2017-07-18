@@ -67,8 +67,8 @@
     if ([dic objectForKey:@"Title"]) {
         item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"Title"]];
     }
-    if ([dic objectForKey:@"detailTitle"]) {
-        item.detailTitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"detailTitle"]];
+    if ([dic objectForKey:@"detialtitle"]) {
+        item.detialtitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"detialtitle"]];
     }
     if ([dic objectForKey:@"updateTime"]) {
         item.updateTime=[NSString stringWithFormat:@"%@",[dic objectForKey:@"updateTime"]];
