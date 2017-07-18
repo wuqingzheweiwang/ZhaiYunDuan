@@ -238,6 +238,8 @@
 		528DF2A11F1DB0C30098BFA4 /* ZJVideoClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528DF29F1F1DB0C30098BFA4 /* ZJVideoClassViewController.xib */; };
 		528DF2A51F1DB0DC0098BFA4 /* ZJImageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */; };
 		528DF2A61F1DB0DC0098BFA4 /* ZJImageTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */; };
+		528DF2AC1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 528DF2AA1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.m */; };
+		528DF2AD1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528DF2AB1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.xib */; };
 		52A78A561EAC6073005BABF7 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4C1EAC6073005BABF7 /* libAFNetworking.a */; };
 		52A78A571EAC6073005BABF7 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4D1EAC6073005BABF7 /* libBase64.a */; };
 		52A78A581EAC6073005BABF7 /* libFileMD5Hash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4E1EAC6073005BABF7 /* libFileMD5Hash.a */; };
@@ -688,6 +690,9 @@
 		528DF2A21F1DB0DC0098BFA4 /* ZJImageTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJImageTextViewController.h; sourceTree = "<group>"; };
 		528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJImageTextViewController.m; sourceTree = "<group>"; };
 		528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJImageTextViewController.xib; sourceTree = "<group>"; };
+		528DF2A91F1DBB280098BFA4 /* ZJVideoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoCollectionViewCell.h; sourceTree = "<group>"; };
+		528DF2AA1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVideoCollectionViewCell.m; sourceTree = "<group>"; };
+		528DF2AB1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		52A78A4C1EAC6073005BABF7 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		52A78A4D1EAC6073005BABF7 /* libBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBase64.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/Base64/libBase64.a"; sourceTree = "<group>"; };
 		52A78A4E1EAC6073005BABF7 /* libFileMD5Hash.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFileMD5Hash.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/FileMD5Hash/libFileMD5Hash.a"; sourceTree = "<group>"; };
@@ -1362,6 +1367,7 @@
 				18263CFD1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.h */,
 				18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */,
 				18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */,
+				528DF2A81F1DBAE00098BFA4 /* 视频课程 */,
 			);
 			name = "商学院";
 			sourceTree = "<group>";
@@ -2232,6 +2238,16 @@
 			name = "视频课程";
 			sourceTree = "<group>";
 		};
+		528DF2A81F1DBAE00098BFA4 /* 视频课程 */ = {
+			isa = PBXGroup;
+			children = (
+				528DF2A91F1DBB280098BFA4 /* ZJVideoCollectionViewCell.h */,
+				528DF2AA1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.m */,
+				528DF2AB1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.xib */,
+			);
+			name = "视频课程";
+			sourceTree = "<group>";
+		};
 		52A78A7A1EADCE0E005BABF7 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2651,6 +2667,7 @@
 				524E5F9F1ECEE55B00356B0B /* ZJHomeNewsViewCell.xib in Resources */,
 				528DF2A61F1DB0DC0098BFA4 /* ZJImageTextViewController.xib in Resources */,
 				52F6F2BC1EFD18A200623DA6 /* ZJMyMemberViewController.xib in Resources */,
+				528DF2AD1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.xib in Resources */,
 				1802345A1EBC1DD800DFA3F8 /* echarts.min.js in Resources */,
 				52155A0C1F07547B001F24D4 /* ShareSDK.bundle in Resources */,
 				181AFA301EB1F75C00B3FC7E /* ZJAllApplyViewController.xib in Resources */,
@@ -2954,6 +2971,7 @@
 				52233BA51EB2009B003D6BC0 /* ZJRegistItem.m in Sources */,
 				185C70C61EB88EF300BE9D17 /* QBImagePickerController.m in Sources */,
 				181AFA351EB1F75C00B3FC7E /* ZJDebtBankViewController.m in Sources */,
+				528DF2AC1F1DBB280098BFA4 /* ZJVideoCollectionViewCell.m in Sources */,
 				18238E841EBB2E5F0018C179 /* ZJPersonDebtInfomationViewController.m in Sources */,
 				520C47331EFE24CC00ADA007 /* ZJReCommandBankCell.m in Sources */,
 				524E5F9E1ECEE55B00356B0B /* ZJHomeNewsViewCell.m in Sources */,

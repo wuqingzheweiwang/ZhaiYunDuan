@@ -11,6 +11,8 @@
 #import "ZJNewsDetailsViewController.h"
 #import "ZJVideoPlayViewController.h"
 #import "ZJHomeItem.h"
+#import "ZJVideoClassViewController.h"
+#import "ZJImageTextViewController.h"
 @interface ZJBusinesscollegeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *hederImageView;
@@ -54,6 +56,8 @@
     _videoClassBut.left = TRUE_1(75/2);
     _videoClassBut.width = ZJAPPWidth - _videoClassBut.left*2;
     _videoClassBut.height = (TRUE_1(460/2) - TRUE_1(30/2)*2-TRUE_1(20/2))/2;
+    [_videoClassBut addTarget:self action:@selector(clickToVideoVC) forControlEvents:UIControlEventTouchUpInside];
+    
     _ImageTextClassBut.top =  _videoClassBut.bottom+TRUE_1(20/2);
     _ImageTextClassBut.left = _videoClassBut.left;
     _ImageTextClassBut.width = _videoClassBut.width;
@@ -96,7 +100,23 @@
     [self requestBussinesSchoolListInfo];
 }
 
+// 视频课程
+-(void)clickToVideoVC
+{
+    ZJVideoClassViewController *zjVideoClassVC =[[ZJVideoClassViewController alloc]initWithNibName:@"ZJVideoClassViewController" bundle:nil];
+    [self.navigationController pushViewController:zjVideoClassVC animated:YES];
+    
+}
 
+// 图文课程
+-(void)clickToImageTextVC
+{
+    ZJImageTextViewController *zjImageTextClassVC =[[ZJImageTextViewController alloc]initWithNibName:@"ZJImageTextViewController" bundle:nil];
+    [self.navigationController pushViewController:zjImageTextClassVC animated:YES];
+    
+}
+
+// 请求商学院
 - (void)requestBussinesSchoolListInfo
 {
    NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
