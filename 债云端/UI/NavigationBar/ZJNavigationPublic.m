@@ -67,7 +67,7 @@
 
 
 /***
- nav自定义左键
+ nav自定义左键   搜索、
  ***/
 + (void)setLeftButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgLeft{
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -108,7 +108,18 @@
 }
 
 
-
+/***
+ nav自定义右键  搜索、
+ ***/
++ (void)setRrightButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgRight{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn addTarget:controller action:action forControlEvents:UIControlEventTouchUpInside];
+    [backBtn.titleLabel setFont:ZJ_TRUE_FONT_1(17)];
+    [backBtn setImage:imgRight forState:UIControlStateNormal];
+    [backBtn sizeToFit];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [[controller navigationItem] setRightBarButtonItem:backItem];
+}
 
 
 + (void)setRightButtonOnTargetNav:(id)controller action:(SEL)action Withtitle:(NSString *)title withimage:(UIImage *)imgLeft{

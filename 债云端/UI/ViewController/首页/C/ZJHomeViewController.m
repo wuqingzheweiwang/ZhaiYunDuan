@@ -552,18 +552,19 @@ static NSString *identifierId=@"zz";
         self.tabBarController.selectedIndex=3;
         
     }else if (indexPath.row==9){  //全部应用
-        if (isOpen) {
-            ZJAllApplyViewController *addDebtVC = [[ZJAllApplyViewController alloc]init];
-            [addDebtVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:addDebtVC animated:YES];
-        }else{
-            [ZJUtil showBottomToastWithMsg:@"该功能正在开发中，敬请期待"];
-           
-        }
-//        ZJPayMoneyViewController * payVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
-//        payVC.orderid=@"145922470223";
-//        [payVC setHidesBottomBarWhenPushed:YES];
-//        [self.navigationController pushViewController:payVC animated:YES];
+//        if (isOpen) {
+//            ZJAllApplyViewController *addDebtVC = [[ZJAllApplyViewController alloc]init];
+//            [addDebtVC setHidesBottomBarWhenPushed:YES];
+//            [self.navigationController pushViewController:addDebtVC animated:YES];
+//        }else{
+//            [ZJUtil showBottomToastWithMsg:@"该功能正在开发中，敬请期待"];
+//           
+//        }
+        ZJPayMoneyViewController * payVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
+        payVC.orderid=@"20170718ef0ead9205584ade8ff469bd768d461b";
+        payVC.payAmount=@"0.01";
+        [payVC setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:payVC animated:YES];
     }
     
 }
