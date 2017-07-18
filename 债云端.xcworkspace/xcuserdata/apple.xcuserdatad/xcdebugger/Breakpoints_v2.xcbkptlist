@@ -109,12 +109,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x503a;&#x4e91;&#x7aef;/AppDelegate.m"
-            timestampString = "521984018.376613"
+            filePath = "&#x503a;&#x4e91;&#x7aef;/Lib/WechatPay/WXApiManager.m"
+            timestampString = "522070529.542623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-onResp:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x503a;&#x4e91;&#x7aef;/Lib/WechatPay/WXApiManager.m"
+            timestampString = "522070531.725154"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "-onResp:"
             landmarkType = "7">
          </BreakpointContent>

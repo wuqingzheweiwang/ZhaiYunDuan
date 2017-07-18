@@ -276,41 +276,43 @@
 #pragma mark iOS 9.0以上会调用此url回调  支付
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
-    
+  
 //  微信
-    DLog(@"%d",[WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]]);
-    
-//  支付宝
-//  跳转支付宝钱包进行支付，处理支付结果
-    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-        
+    if ([url.host isEqualToString:@"pay"]) {
+        // 微信
+        return [WXApi handleOpenURL:url delegate:self];
+    }else if([url.host isEqualToString:@"safepay"]){
+        //  支付宝
+        //  跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
             DLog(@"result = %@",resultDic);
-        if ([resultDic[@"resultStatus"] intValue]==9000) {
-            
-            [ZJUtil showBottomToastWithMsg:@"支付成功"];
-            
-            NSString *result = @"支付成功";
-    
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
-            
-        }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
-            [ZJUtil showBottomToastWithMsg:@"正在处理中"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
-            [ZJUtil showBottomToastWithMsg:@"订单支付失败"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 6001) {
-            [ZJUtil showBottomToastWithMsg:@"用户中途取消"];
-        } else if ([resultDic[@"resultStatus"] intValue] == 6002) {
-            [ZJUtil showBottomToastWithMsg:@"网络连接出错"];
-        }
-        else {
-            
-            NSString *resultMes = resultDic[@"memo"];
-            resultMes = (resultMes.length<=0?@"支付失败":resultMes);
-            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",resultMes]];
-        }
-            }];
-    
-    
+            if ([resultDic[@"resultStatus"] intValue]==9000) {
+                
+                [ZJUtil showBottomToastWithMsg:@"支付成功"];
+                
+                NSString *result = @"支付成功";
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"apliyPay" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:result,@"errCode", nil]];
+                
+            }else if ([resultDic[@"resultStatus"] intValue] == 8000) {
+                [ZJUtil showBottomToastWithMsg:@"正在处理中"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 4000) {
+                [ZJUtil showBottomToastWithMsg:@"订单支付失败"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 6001) {
+                [ZJUtil showBottomToastWithMsg:@"用户中途取消"];
+            } else if ([resultDic[@"resultStatus"] intValue] == 6002) {
+                [ZJUtil showBottomToastWithMsg:@"网络连接出错"];
+            }
+            else {
+                
+                NSString *resultMes = resultDic[@"memo"];
+                resultMes = (resultMes.length<=0?@"支付失败":resultMes);
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",resultMes]];
+            }
+        }];
+    }
+   
     return YES;
 }
 
@@ -322,8 +324,8 @@
     NSLog(@"%@",url.host);
     if ([url.host isEqualToString:@"pay"]) {
         // 微信
-      return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-    }else{
+      return [WXApi handleOpenURL:url delegate:self];
+    }else if([url.host isEqualToString:@"safepay"]){
         // 支付宝
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             
@@ -371,7 +373,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    return  [WXApi handleOpenURL:url delegate:self];
     
 }
 -(void)onResp:(BaseResp *)resp {
