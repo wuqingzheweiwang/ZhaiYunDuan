@@ -104,4 +104,17 @@
                                        resultWithBlock:result];
     
 }
+/*
+ *微信支付
+ */
++(void)zjPostWeiXinDebtRequestWithParams:(NSDictionary *)params result:(result)result
+{
+    [[ZJDataRequest shareInstance]postDataWithURLString:@"api/pay/toPay"
+                                          andParameters:params
+                                              andIsJson:NO
+                                                timeOut:20
+                                          requestSecret:YES
+                                           resultSecret:YES
+                                        resultWithBlock:result];
+}
 @end
