@@ -278,7 +278,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJHomeNewsViewCell" owner:self options:nil]firstObject];
     }
     // 取消选中效果
-//    [cell setitem:[_dataSource objectAtIndex:indexPath.row]];
+    [cell setitem:[_dataSource objectAtIndex:indexPath.row]];
     
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     
