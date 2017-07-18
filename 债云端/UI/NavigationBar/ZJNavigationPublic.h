@@ -31,7 +31,10 @@
  ***/
 + (void)setRightButtonOnTargetNav:(id)controller action:(SEL)action image:(UIImage *)image HighImage:(UIImage *)high_img;
 + (void)setRightButtonOnTargetNav:(id)controller action:(SEL)action Withtitle:(NSString *)title withimage:(UIImage *)imgLeft;
-
+/***
+ nav自定义右键  搜索、
+ ***/
++ (void)setRrightButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgRight;
 //为了隐藏
 + (UIButton *)setHiddenRightButtonOnTargetNav:(id)controller action:(SEL)action Withtitle:(NSString *)title;
 /**

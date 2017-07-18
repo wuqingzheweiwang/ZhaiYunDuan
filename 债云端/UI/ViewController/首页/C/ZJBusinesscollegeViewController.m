@@ -62,6 +62,7 @@
     _ImageTextClassBut.left = _videoClassBut.left;
     _ImageTextClassBut.width = _videoClassBut.width;
     _ImageTextClassBut.height = _videoClassBut.height;
+    [_ImageTextClassBut addTarget:self action:@selector(clickToImageTextVC) forControlEvents:UIControlEventTouchUpInside];
     
     _bussinesscollegeTable.top=64;
     _bussinesscollegeTable.left=0;
