@@ -47,4 +47,9 @@
  ***/
 + (void)setHomeTitleOnTargetNav:(id)controller;
 
+/**
+ * nav的背景图
+ ***/
++ (void)setOpenBackgroundImageOnTargetNav:(id)controller;
+
 @end
