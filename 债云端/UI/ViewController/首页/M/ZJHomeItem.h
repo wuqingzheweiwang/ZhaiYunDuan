@@ -38,7 +38,7 @@
 @interface ZJBusinessSchoolModel : NSObject
 @property (nonatomic, strong) NSString *img;
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *detailTitle;
+@property (nonatomic, strong) NSString *detialtitle;
 @property (nonatomic, strong) NSString *updateTime;
 @property (nonatomic, strong) NSString *url;
 

@@ -234,6 +234,10 @@
 		528C97B91F13452B00C60743 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528C97B81F13452B00C60743 /* UMMobClick.framework */; };
 		528C97BB1F13457900C60743 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528C97BA1F13457900C60743 /* Security.framework */; };
 		528C97C11F138C4000C60743 /* province_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 528C97C01F138C4000C60743 /* province_data.json */; };
+		528DF2A01F1DB0C30098BFA4 /* ZJVideoClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528DF29E1F1DB0C30098BFA4 /* ZJVideoClassViewController.m */; };
+		528DF2A11F1DB0C30098BFA4 /* ZJVideoClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528DF29F1F1DB0C30098BFA4 /* ZJVideoClassViewController.xib */; };
+		528DF2A51F1DB0DC0098BFA4 /* ZJImageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */; };
+		528DF2A61F1DB0DC0098BFA4 /* ZJImageTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */; };
 		52A78A561EAC6073005BABF7 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4C1EAC6073005BABF7 /* libAFNetworking.a */; };
 		52A78A571EAC6073005BABF7 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4D1EAC6073005BABF7 /* libBase64.a */; };
 		52A78A581EAC6073005BABF7 /* libFileMD5Hash.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A78A4E1EAC6073005BABF7 /* libFileMD5Hash.a */; };
@@ -678,6 +682,12 @@
 		528C97B81F13452B00C60743 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		528C97BA1F13457900C60743 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		528C97C01F138C4000C60743 /* province_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province_data.json; sourceTree = "<group>"; };
+		528DF29D1F1DB0C30098BFA4 /* ZJVideoClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoClassViewController.h; sourceTree = "<group>"; };
+		528DF29E1F1DB0C30098BFA4 /* ZJVideoClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVideoClassViewController.m; sourceTree = "<group>"; };
+		528DF29F1F1DB0C30098BFA4 /* ZJVideoClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJVideoClassViewController.xib; sourceTree = "<group>"; };
+		528DF2A21F1DB0DC0098BFA4 /* ZJImageTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJImageTextViewController.h; sourceTree = "<group>"; };
+		528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJImageTextViewController.m; sourceTree = "<group>"; };
+		528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJImageTextViewController.xib; sourceTree = "<group>"; };
 		52A78A4C1EAC6073005BABF7 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
 		52A78A4D1EAC6073005BABF7 /* libBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBase64.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/Base64/libBase64.a"; sourceTree = "<group>"; };
 		52A78A4E1EAC6073005BABF7 /* libFileMD5Hash.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFileMD5Hash.a; path = "../../Library/Developer/Xcode/DerivedData/债云端-gffuwxwfmsbbptdsuaoodjmsrzvh/Build/Products/Debug-iphonesimulator/FileMD5Hash/libFileMD5Hash.a"; sourceTree = "<group>"; };
@@ -1770,6 +1780,8 @@
 				181AFA0D1EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.h */,
 				181AFA0E1EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.m */,
 				181AFA0F1EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.xib */,
+				528DF29C1F1DB0850098BFA4 /* 视频课程 */,
+				528DF29B1F1DB0730098BFA4 /* 图文课程 */,
 				522C55A11F1C7929001D81E4 /* 视频播放 */,
 			);
 			name = "商学院";
@@ -2200,6 +2212,26 @@
 			path = UMengMobClick;
 			sourceTree = "<group>";
 		};
+		528DF29B1F1DB0730098BFA4 /* 图文课程 */ = {
+			isa = PBXGroup;
+			children = (
+				528DF2A21F1DB0DC0098BFA4 /* ZJImageTextViewController.h */,
+				528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */,
+				528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */,
+			);
+			name = "图文课程";
+			sourceTree = "<group>";
+		};
+		528DF29C1F1DB0850098BFA4 /* 视频课程 */ = {
+			isa = PBXGroup;
+			children = (
+				528DF29D1F1DB0C30098BFA4 /* ZJVideoClassViewController.h */,
+				528DF29E1F1DB0C30098BFA4 /* ZJVideoClassViewController.m */,
+				528DF29F1F1DB0C30098BFA4 /* ZJVideoClassViewController.xib */,
+			);
+			name = "视频课程";
+			sourceTree = "<group>";
+		};
 		52A78A7A1EADCE0E005BABF7 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2578,6 +2610,7 @@
 				1854638F1EB364BB00AF025B /* ZJAddDebtPersonController.xib in Resources */,
 				181AFA561EB1F7BC00B3FC7E /* ZJDebtPersonMangerTableViewCell.xib in Resources */,
 				18971AF61EC05F1800A3E4A1 /* ZJAddEditCapitalTableViewCell.xib in Resources */,
+				528DF2A11F1DB0C30098BFA4 /* ZJVideoClassViewController.xib in Resources */,
 				1816B4C21EBABFDF00B591BE /* index.html in Resources */,
 				181AFA2C1EB1F75C00B3FC7E /* ZJAboutViewController.xib in Resources */,
 				18971ACC1EC0097F00A3E4A1 /* ZJDebtStockInfoTableViewCell.xib in Resources */,
@@ -2616,6 +2649,7 @@
 				52155A031F07547B001F24D4 /* ShareSDKUI.bundle in Resources */,
 				527B7AF21EBC85B90099763E /* ZJFoundPasswordController.xib in Resources */,
 				524E5F9F1ECEE55B00356B0B /* ZJHomeNewsViewCell.xib in Resources */,
+				528DF2A61F1DB0DC0098BFA4 /* ZJImageTextViewController.xib in Resources */,
 				52F6F2BC1EFD18A200623DA6 /* ZJMyMemberViewController.xib in Resources */,
 				1802345A1EBC1DD800DFA3F8 /* echarts.min.js in Resources */,
 				52155A0C1F07547B001F24D4 /* ShareSDK.bundle in Resources */,
@@ -2863,6 +2897,7 @@
 				18592B0F1EC1A575000CB4AD /* ZJUserInfo.m in Sources */,
 				18592B121EC1B5FB000CB4AD /* ZJDataRequest.m in Sources */,
 				182DF39A1EA9DD7C0086B9FC /* ZJDebtPersonViewController.m in Sources */,
+				528DF2A51F1DB0DC0098BFA4 /* ZJImageTextViewController.m in Sources */,
 				18971AE91EC04F8D00A3E4A1 /* ZJAddStockTableViewCell.m in Sources */,
 				5217AC401EB85C7000A1A39F /* ZJMakeToPAYViewController.m in Sources */,
 				18971AEF1EC059D400A3E4A1 /* ZJAddOperateTableViewCell.m in Sources */,
@@ -2871,6 +2906,7 @@
 				52F6F2BB1EFD18A200623DA6 /* ZJMyMemberViewController.m in Sources */,
 				1819C2F01EA9BB3D003C7C25 /* UIImage+ColorAtPixel.m in Sources */,
 				1844E0111EADD0550013E54A /* ZJDebtMangerTableViewCell.m in Sources */,
+				528DF2A01F1DB0C30098BFA4 /* ZJVideoClassViewController.m in Sources */,
 				18971B071EC0802200A3E4A1 /* ZJAddDemandViewController.m in Sources */,
 				18971AE31EC0496F00A3E4A1 /* ZJAddOperateInfoViewController.m in Sources */,
 				183149A41EC17DF100759D1A /* Reachability.m in Sources */,

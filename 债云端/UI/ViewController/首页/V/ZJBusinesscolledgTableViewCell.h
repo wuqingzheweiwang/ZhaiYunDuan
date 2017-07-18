@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZJHomeItem.h"
 @interface ZJBusinesscolledgTableViewCell : UITableViewCell
--(void)setitem:(NSString *)item;
+-(void)setitem:(ZJBusinessSchoolModel *)item;
 + (CGFloat)getCellHeight;
 @end
