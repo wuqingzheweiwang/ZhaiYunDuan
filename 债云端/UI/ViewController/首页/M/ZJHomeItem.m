@@ -80,3 +80,25 @@
 }
 
 @end
+
+@implementation ZJVideoCollectionModel
+
++ (ZJVideoCollectionModel *)itemForDictionary:(NSDictionary *)dic{
+    
+    ZJVideoCollectionModel * item=[[ZJVideoCollectionModel alloc]init];
+    if ([dic objectForKey:@"img"]) {
+        item.img=[NSString stringWithFormat:@"%@",[dic objectForKey:@"img"]];
+    }
+    if ([dic objectForKey:@"Title"]) {
+        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"Title"]];
+    }
+    if ([dic objectForKey:@"detialtitle"]) {
+        item.detialtitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"detialtitle"]];
+    }
+    if ([dic objectForKey:@"url"]) {
+        item.url=[NSString stringWithFormat:@"%@",[dic objectForKey:@"url"]];
+    }
+    return item;
+}
+
+@end

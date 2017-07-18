@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZJHomeItem.h"
 @interface ZJVideoCollectionViewCell : UICollectionViewCell
 {
     
@@ -18,4 +18,8 @@
     __weak IBOutlet UILabel *detialTextLabel;
     
 }
+-(void)setitem:(ZJVideoCollectionModel *)item;
++ (CGFloat)getCellHeight;
+
+
 @end

@@ -175,4 +175,16 @@
     [titleView addSubview:label];
     [[controller navigationItem] setTitleView:titleView];
 }
+
+// 透明背景图
++ (void)setOpenBackgroundImageOnTargetNav:(id)controller {
+    
+    UIView * titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 64)];
+    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 64)];
+    imageV.image = [UIImage imageNamed:@"transparent"];
+    [titleView addSubview:imageV];
+    
+    [[controller navigationItem] setTitleView:titleView];
+}
+
 @end

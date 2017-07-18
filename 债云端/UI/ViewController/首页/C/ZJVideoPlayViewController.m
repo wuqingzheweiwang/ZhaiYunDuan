@@ -9,10 +9,20 @@
 #import "ZJVideoPlayViewController.h"
 #import "ZGLVideoPlyer.h"
 #import "ZJBusinesscolledgTableViewCell.h"
+#import "ZJHomeItem.h"
 @interface ZJVideoPlayViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZGLVideoPlyer *player;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (weak, nonatomic) IBOutlet UIView *tableHeaderView;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleText;
+
+@property (weak, nonatomic) IBOutlet UILabel *detialText;
+
+@property (weak, nonatomic) IBOutlet UILabel *updataTimeText;
+
+@property (weak, nonatomic) IBOutlet UIView *bottomLine;
 
 @end
 
@@ -35,14 +45,18 @@
 -(void)showNav
 {
     self.navigationController.navigationBar.hidden = NO;
+    self.tableView.hidden = NO;
+    [self.tableView reloadData];
 }
 
 -(void)hideenNav
 {
     self.navigationController.navigationBar.hidden = YES;
+    self.tableView.hidden = YES;
+    [self.tableView reloadData];
 }
 
--(void)creaetUI
+-(void)creaetMjRefreshUI
 {
     //刷新
     __weak ZJVideoPlayViewController *weakSelf = self;
@@ -64,21 +78,9 @@
 
 }
 
--(void)creatVideoPlayer
-{
-    
-    CGFloat deviceWith = [UIScreen mainScreen].bounds.size.width;
-    
-    self.player = [[ZGLVideoPlyer alloc]initWithFrame:CGRectMake(0, 20, deviceWith, 300)];
-    self.player.videoUrlStr = self.movieUrl;
-    
-    [self.view addSubview:self.player];
-
-}
-
 -(void)setNavcaition
 {
-    [ZJNavigationPublic setTitleOnTargetNav:self title:self.navgationTitle];
+    [ZJNavigationPublic setOpenBackgroundImageOnTargetNav:self];
     [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(leftAction) With:[UIImage imageNamed:@"back"]];
 }
 
@@ -87,10 +89,73 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)creatVideoPlayer
+{
+    
+    self.player = [[ZGLVideoPlyer alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(200))];
+    self.player.videoUrlStr = self.movieUrl;
+    [self.view addSubview:self.player];
+    
+    [self.view addSubview:self.tableView];
+    [self creaetMjRefreshUI];
+    
+    _tableHeaderView.top = self.player.bottom;
+    _tableHeaderView.left = 0;
+    _tableHeaderView.width = ZJAPPWidth;
+    _tableHeaderView.height = TRUE_1(90);
+    _tableHeaderView.backgroundColor = [UIColor orangeColor];
+    
+    _titleText.top = TRUE_1(7);
+    _titleText.left = TRUE_1(15);
+    _titleText.width = ZJAPPWidth - _titleText.left*2;
+    _titleText.numberOfLines = 0;
+    NSMutableAttributedString * mastring_1 = [[NSMutableAttributedString alloc]initWithString:_titleText.text];
+    NSMutableParagraphStyle *paragraphStyle_1 = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle_1 setLineSpacing:3];//调整行间距
+    
+    [mastring_1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle_1 range:NSMakeRange(0, [_titleText.text length])];
+    [mastring_1 addAttribute:NSFontAttributeName value:_titleText.font range:NSMakeRange(0, mastring_1.length)];
+    _titleText.attributedText = mastring_1;
+    CGFloat width_1 = _titleText.width; // whatever your desired width is
+    CGRect rect_1 = [mastring_1 boundingRectWithSize:CGSizeMake(width_1, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    _titleText.height = rect_1.size.height;
+    _titleText.font = ZJ_TRUE_FONT(15);
+    
+    _detialText.top = _titleText.bottom+TRUE_1(5);
+    _detialText.left = _titleText.left;
+    _detialText.width = _titleText.width;
+    _detialText.numberOfLines = 0;
+    NSMutableAttributedString * mastring_2 = [[NSMutableAttributedString alloc]initWithString:_detialText.text];
+    NSMutableParagraphStyle *paragraphStyle_2 = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle_2 setLineSpacing:3];//调整行间距
+    
+    [mastring_2 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle_2 range:NSMakeRange(0, [_detialText.text length])];
+    [mastring_1 addAttribute:NSFontAttributeName value:_detialText.font range:NSMakeRange(0, mastring_2.length)];
+    _detialText.attributedText = mastring_2;
+    CGFloat width = _detialText.width; // whatever your desired width is
+    CGRect rect = [mastring_2 boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    _detialText.height = rect.size.height;
+    _detialText.font = ZJ_TRUE_FONT(9);
+    
+    _updataTimeText.top = _detialText.bottom+TRUE_1(10);
+    _updataTimeText.left = _detialText.left;
+    _updataTimeText.width = _detialText.width;
+    _updataTimeText.height = _tableHeaderView.height - _detialText.bottom;
+    _updataTimeText.font = ZJ_TRUE_FONT(9);
+    
+    _bottomLine.top = _tableHeaderView.bottom;
+    _bottomLine.left = 0;
+    _bottomLine.width = ZJAPPWidth;
+    _bottomLine.height = 1;
+    
+    self.tableView.tableHeaderView = self.tableHeaderView;
+}
+
+
 -(UITableView *)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, ZJAPPHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.player.bottom, ZJAPPWidth, ZJAPPHeight) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
@@ -121,9 +186,11 @@
     NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         DLog(@"%@",responseData);
         if (success) {
+
             if (_page==1) {
                 [_dataSource removeAllObjects];
             }
@@ -131,16 +198,14 @@
                 
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {
-//                    ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:[itemarray objectAtIndex:i]];
-//                    [_dataSource addObject:item];
+                    ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:[itemarray objectAtIndex:i]];
+                    [_dataSource addObject:item];
                 }
                 [self.tableView reloadData];
             }else{
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }else{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [ZJUtil showBottomToastWithMsg:@"请求失败"];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -188,18 +253,9 @@
     label.left = TRUE_1(30/2);
     label.width = TRUE_1(100);
     label.height = view.height;
-    label.text = @"课程推荐";
+    label.text = @"相关视频";
     label.font = ZJ_TRUE_FONT(15);
     [view addSubview:label];
-    
-    
-    UILabel *bottomlable = [[UILabel alloc]init];
-    bottomlable.top = view.bottom;
-    bottomlable.left = 0;
-    bottomlable.width = ZJAPPWidth;
-    bottomlable.height = 1;
-    bottomlable.backgroundColor = ZJColor_efefef;
-    [view addSubview:bottomlable];
     
     return view;
 }

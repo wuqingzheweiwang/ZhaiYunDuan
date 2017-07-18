@@ -45,3 +45,13 @@
 + (ZJBusinessSchoolModel *)itemForDictionary:(NSDictionary *)dic;
 @end
 
+//视频课程
+@interface ZJVideoCollectionModel : NSObject
+@property (nonatomic, strong) NSString *img;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *detialtitle;
+@property (nonatomic, strong) NSString *url;
+
++ (ZJVideoCollectionModel *)itemForDictionary:(NSDictionary *)dic;
+@end
+
