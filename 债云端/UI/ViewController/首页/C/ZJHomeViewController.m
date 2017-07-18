@@ -561,8 +561,9 @@ static NSString *identifierId=@"zz";
 //           
 //        }
         ZJPayMoneyViewController * payVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
-        payVC.orderid=@"20170718ef0ead9205584ade8ff469bd768d461b";
+        payVC.orderid=@"20170718e585b342b60f4c15a56104327f1bc726";
         payVC.payAmount=@"0.01";
+        payVC.type=@"1";
         [payVC setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:payVC animated:YES];
     }

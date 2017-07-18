@@ -248,7 +248,7 @@
     }else if ([payType isEqualToString:@"payTypeWeixin"]){
        #pragma mark 微信支付
         [self showProgress];
-        NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:self.orderid,@"prepayid",nil];
+        NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:self.orderid,@"prepayid",self.type,@"type",nil];
         [ZJHomeRequest zjPostWeiXinDebtRequestWithParams:dict result:^(BOOL success, id responseData) {
             [self dismissProgress];
             if (success) {
