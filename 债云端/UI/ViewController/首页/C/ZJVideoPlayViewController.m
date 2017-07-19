@@ -51,7 +51,7 @@
     
     self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = NO;
-    leftBackBut.enabled = YES;
+    leftBackBut.hidden = NO;
     [self.tableView reloadData];
 }
 
@@ -61,7 +61,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
     self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = YES;
-    leftBackBut.enabled = NO;
+    leftBackBut.hidden = YES;
     [self.tableView reloadData];
 }
 
@@ -111,7 +111,9 @@
     leftBackBut.left = 0;
     leftBackBut.width = TRUE_1(40);
     leftBackBut.height = leftBackBut.width;
+    leftBackBut.hidden = NO;
     [leftBackBut setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    leftBackBut.tag = 2000;
     [leftBackBut addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     [self.player addSubview:leftBackBut];
     [self.view addSubview:self.player];
