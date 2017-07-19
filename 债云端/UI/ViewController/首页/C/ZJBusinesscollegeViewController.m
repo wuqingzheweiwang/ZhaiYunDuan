@@ -185,33 +185,39 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(30))];
-    view.backgroundColor = [UIColor whiteColor];
+    if (_dataSource.count>0) {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(30))];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        UILabel * label=[[UILabel alloc]init];
+        label.top =0;
+        label.left = TRUE_1(30/2);
+        label.width = TRUE_1(100);
+        label.height = view.height;
+        label.text = @"课程推荐";
+        label.font = ZJ_TRUE_FONT(15);
+        [view addSubview:label];
+        
+        
+        UILabel *bottomlable = [[UILabel alloc]init];
+        bottomlable.top = view.bottom;
+        bottomlable.left = 0;
+        bottomlable.width = ZJAPPWidth;
+        bottomlable.height = 1;
+        bottomlable.backgroundColor = ZJColor_efefef;
+        [view addSubview:bottomlable];
+        
+        return view;
+    }else return nil;
     
-    UILabel * label=[[UILabel alloc]init];
-    label.top =0;
-    label.left = TRUE_1(30/2);
-    label.width = TRUE_1(100);
-    label.height = view.height;
-    label.text = @"课程推荐";
-    label.font = ZJ_TRUE_FONT(15);
-    [view addSubview:label];
-    
-       
-    UILabel *bottomlable = [[UILabel alloc]init];
-    bottomlable.top = view.bottom;
-    bottomlable.left = 0;
-    bottomlable.width = ZJAPPWidth;
-    bottomlable.height = 1;
-    bottomlable.backgroundColor = ZJColor_efefef;
-    [view addSubview:bottomlable];
-    
-    return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return TRUE_1(30);
+    if (_dataSource.count>0) {
+       return TRUE_1(30); 
+    }else return 0;
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
