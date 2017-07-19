@@ -132,4 +132,46 @@
                                        resultWithBlock:result];
     
 }
+
+/*
+ *视频课程
+ */
++(void)zjGetBussinessClassRequestWithActions:(NSString *)action result:(result)result
+
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+    
+}
+
+/*
+ *图文课程
+ */
++(void)zjGetImageandTextRequestWithActions:(NSString *)action result:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
+
+/*
+ *视频详情
+ */
++(void)zjGetVideoContentWithActions:(NSString *)action result:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
+
 @end
