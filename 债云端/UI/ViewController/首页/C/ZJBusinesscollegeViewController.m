@@ -124,9 +124,10 @@
 {
    NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
+    
+    [ZJHomeRequest zjGetBussinessSchoolRequestWithActions:action result:^(BOOL success, id responseData) {
         
-        DLog(@"%@",responseData);
+            DLog(@"%@",responseData);
         if (success) {
             if (_page==1) {
                 [_dataSource removeAllObjects];

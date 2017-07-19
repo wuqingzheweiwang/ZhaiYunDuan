@@ -117,4 +117,19 @@
                                            resultSecret:YES
                                         resultWithBlock:result];
 }
+
+/*
+ *商学院
+ */
++(void)zjGetBussinessSchoolRequestWithActions:(NSString *)action result:(result)result
+
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+    
+}
 @end

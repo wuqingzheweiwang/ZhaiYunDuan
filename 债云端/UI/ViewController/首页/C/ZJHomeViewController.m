@@ -526,11 +526,20 @@ static NSString *identifierId=@"zz";
         [self.navigationController pushViewController:addDebtVC animated:YES];
         
     }else if (indexPath.row==5){  //商学院
-        
+        if ([ZJUtil getUserLogin]) {
+
         ZJBusinesscollegeViewController *addDebtVC = [[ZJBusinesscollegeViewController alloc]init];
         [addDebtVC setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:addDebtVC animated:YES];
-        
+        }else{
+           
+            //跳到登录页面 CCPLoginVC
+            ZJLoginViewController *login = [[ZJLoginViewController alloc]initWithNibName:@"ZJLoginViewController" bundle:nil];;
+            login.hidesBottomBarWhenPushed =YES;
+            [login setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:login animated:YES];
+            
+        }
     }else if (indexPath.row==6){  //债事百科
         if (isOpen) {
             ZJDebtAllsubjectsViewController *addDebtVC = [[ZJDebtAllsubjectsViewController alloc]init];
