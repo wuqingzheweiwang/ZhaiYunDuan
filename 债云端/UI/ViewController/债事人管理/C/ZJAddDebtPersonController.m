@@ -11,6 +11,7 @@
 #import "ZJAddPhotosViewController.h"
 #import <objc/runtime.h>
 #import "JHPickView.h"
+#import "ZJDebtPersonAddPhotosViewController.h"
 @interface ZJAddDebtPersonController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,JHPickerDelegate>
 
 @end
@@ -114,7 +115,7 @@
             [ZJUtil showBottomToastWithMsg:@"请输入正确的联系电话"];
             return;
         }
-    }else if(_Btntype==ZJAddPhotosDebtPerson){
+    }else if(_Btntype==ZJDebtPersonPerson){
         if ([[valueArray2 objectAtIndex:0]isEqualToString:@""]) {
             [ZJUtil showBottomToastWithMsg:@"请输入身份证件号"];
             return;
@@ -168,13 +169,12 @@
         
     }
 
-
-    ZJAddPhotosViewController * addphotosVC=[[ZJAddPhotosViewController alloc]initWithNibName:@"ZJAddPhotosViewController" bundle:nil];
+    ZJDebtPersonAddPhotosViewController * addphotosVC=[[ZJDebtPersonAddPhotosViewController alloc]initWithNibName:@"ZJDebtPersonAddPhotosViewController" bundle:nil];
     if (_Btntype==ZJDebtPersonCompany) {
-        addphotosVC.Phototype=ZJAddPhotosDebtCompany;
+        addphotosVC.Phototype=ZJDebtPersonAddPhotosTypeDebtCompany;
         addphotosVC.debtCompanyDict=debtCompanyDic;
     }else if (_Btntype==ZJDebtPersonPerson){
-        addphotosVC.Phototype=ZJAddPhotosDebtPerson;
+        addphotosVC.Phototype=ZJDebtPersonAddPhotosTypeDebtPerson;
         addphotosVC.debtPersonDict=debtPersonDic;
     }
     addphotosVC.isower=self.isOwer;

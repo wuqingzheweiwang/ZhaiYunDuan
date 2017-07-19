@@ -1,16 +1,15 @@
 //
-//  ZJAddPhotosViewController.m
+//  ZJDebtPersonAddPhotosViewController.m
 //  债云端
 //
-//  Created by apple on 2017/4/25.
+//  Created by apple on 2017/7/19.
 //  Copyright © 2017年 ZhongJinZhaiShi. All rights reserved.
 //
 
-#import "ZJAddPhotosViewController.h"
+#import "ZJDebtPersonAddPhotosViewController.h"
 #import "TakePhoto.h"     //选取照片
 #import "NPPicPreviewController.h"   //图片预览
 #import "QBImagePickerController.h"
-#import "ZJPayMoneyViewController.h"
 #import "ZJDataRequest.h"
 #import "ZJAddDebtPersonController.h"
 #import "ZJPersonDebtInfomationViewController.h"
@@ -19,24 +18,21 @@
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
 #import <Photos/Photos.h>
+#import "ZJAddPhotosViewController.h"
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
-@interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate>
+@interface ZJDebtPersonAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *BigScrollview;
-
-
-
 @end
 
-@implementation ZJAddPhotosViewController
+@implementation ZJDebtPersonAddPhotosViewController
 {
     NSMutableArray * images;  //图片数组
     NSMutableArray * urlimages;  //图片url数组
     UIButton *selectPicForShineIV;
     UIButton *SaveBtn;
     
-    NSMutableDictionary * debtRelationVoDic; //债事备案总数据
-//    NSMutableDictionary * addDebtVoDic;   //增加债事人
+    NSMutableDictionary * addDebtVoDic;   //增加债事人
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,20 +42,9 @@
     images=[NSMutableArray array];
     urlimages=[NSMutableArray array];
     
-    debtRelationVoDic=[NSMutableDictionary dictionary];
-//    addDebtVoDic=[NSMutableDictionary dictionary];
+    addDebtVoDic=[NSMutableDictionary dictionary];
     [self createHeaderView];
-    if (_debtCapitalimageDic.count>0) {
-        for (NSString * string in _debtCapitalimageDic) {
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                UIImage *Capitalimage=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [images addObject:Capitalimage];
-                    [self createNineImageView:images];
-                });
-            });
-        }
-    }
+    
 }
 // 返回首页
 -(void)backHomePage
@@ -80,12 +65,12 @@
     selectPicForShineIV.frame=CGRectMake(15,20, kImageView_W, kImageView_W);
     [selectPicForShineIV addTarget:self action:@selector(selectPicForShineButtonAction) forControlEvents:UIControlEventTouchUpInside];
     selectPicForShineIV.tag = 1000;
-    if (_Phototype==1) {
-         [selectPicForShineIV setBackgroundImage:[UIImage imageNamed:@"ZJAddPhotosDebtRecord"] forState:UIControlStateNormal];
+    if (_Phototype==1){
+        [selectPicForShineIV setBackgroundImage:[UIImage imageNamed:@"ZJAddPhotosDebtPerson"] forState:UIControlStateNormal];
     }else if (_Phototype==2){
-         [selectPicForShineIV setBackgroundImage:[UIImage imageNamed:@"ZJAddPhotosDebtRecord"] forState:UIControlStateNormal];
+        [selectPicForShineIV setBackgroundImage:[UIImage imageNamed:@"ZJAddPhotosDebtCompany"] forState:UIControlStateNormal];
     }
-   
+    
     [_BigScrollview addSubview:selectPicForShineIV];
     
     
@@ -152,7 +137,7 @@
         SaveBtn.top=selectPicForShineIV.top+30;
     }else{
         selectPicForShineIV.hidden=NO;
-         _BigScrollview.contentSize=CGSizeMake(0, selectPicForShineIV.bottom+10);
+        _BigScrollview.contentSize=CGSizeMake(0, selectPicForShineIV.bottom+10);
         SaveBtn.top=selectPicForShineIV.bottom+50;
     }
     
@@ -215,7 +200,7 @@
 #pragma mark - QBImagePickerControllerDelegate
 //单张选取图片调用
 - (void)imagePickerController:(QBImagePickerController *)imagePickerController didSelectAsset:(ALAsset *)asset
-{    
+{
     [self dismissImagePickerController];
 }
 //多张选取图片回调
@@ -229,12 +214,12 @@
     }
     for (ALAsset * asset in assets) {
         //获取图片的路径
-//        NSString * nsALAssetPropertyAssetURL = [ asset    valueForProperty:ALAssetPropertyAssetURL ] ;
+        //        NSString * nsALAssetPropertyAssetURL = [ asset    valueForProperty:ALAssetPropertyAssetURL ] ;
         ALAssetRepresentation *assetRep = [asset defaultRepresentation];
         CGImageRef imgRef = [assetRep fullResolutionImage];   //获取高清图片
         UIImage *img = [UIImage imageWithCGImage:imgRef  scale:assetRep.scale                        orientation:(UIImageOrientation)assetRep.orientation];
         // 压缩图片
-//        UIImage * newiamge=[ZJUtil uploadStandardImage:img];
+        //        UIImage * newiamge=[ZJUtil uploadStandardImage:img];
         [images addObject:img];
     }
     [self createNineImageView:images];
@@ -268,202 +253,89 @@
 //保存
 - (void)savePhotosAction
 {
-     if (_Phototype==1) {//债事备案
-         if (images.count>0) {
-             [self showProgress];
-             [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
-                 [self dismissProgress];
-                 DLog(@"%@",responseData);
-                 if (success) {
-                     if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
-                         urlimages=[responseData objectForKey:@"data"];
-                         [self postInfoToSevise];
-                     }else{
-                         [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-                     }
-                 }else{
-                     [ZJUtil showBottomToastWithMsg:@"上传失败"];
-                 }
-             }];
-         }else{
-              [self postInfoToSevise];
-         }
-         
-         
-    }else if (_Phototype==2){
-        if (images.count>0) {
-            [self showProgress];
-            [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
-                [self dismissProgress];
-                if (success) {
-                    if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
-                        urlimages=[responseData objectForKey:@"data"];
-                        [self postinfoDebtCapital];
-                    }else{
-                        [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-                    }
-                }else{
-                    [ZJUtil showBottomToastWithMsg:@"上传失败"];
-                }
-            }];
-        }else{
-            [self postinfoDebtCapital];
-        }
-        
-        
-    }
-}
-//新增资产
--(void)postinfoDebtCapital
-{
-    //编辑
-    if ([self.debtCapitalDic objectForKey:@"id"]) {
+    if (images.count>0) {
         [self showProgress];
-        [self.debtCapitalDic setObject:urlimages forKey:@"picUrl"];
-        [ZJDebtPersonRequest postEditDebtPersonCapitalInfoRequestWithParms:self.debtCapitalDic result:^(BOOL success, id responseData) {
+        [[ZJDataRequest shareInstance]imagepostDataWithURLString:@"api/image" andParameters:nil imageArray:images timeOut:20 requestSecret:YES resultSecret:YES resultWithBlock:^(BOOL success, id responseData) {
             [self dismissProgress];
             if (success) {
-                if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                    //调到指定页面
-                    if ([self.debtCapitaltype isEqualToString:@"person"]) {
-                        ZJPersonDebtInfomationViewController * homeVC=[[ZJPersonDebtInfomationViewController alloc]init];
+                if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"] ) {
+                    urlimages=[responseData objectForKey:@"data"];
+                    [self postinfoDebtPerson];
+                }else{
+                    [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                }
+            }else{
+                [ZJUtil showBottomToastWithMsg:@"上传失败"];
+            }
+        }];
+    }else{
+        [self postinfoDebtPerson];
+    }
+}
+//添加债事人
+- (void)postinfoDebtPerson
+{
+    if (_Phototype==1) {
+        [self.debtPersonDict setObject:urlimages forKey:@"picList"];
+        [addDebtVoDic setObject:self.debtPersonDict forKey:@"debtPerson"];
+        [addDebtVoDic setObject:@"1" forKey:@"type"];
+        if ([_isower isEqualToString:@"1"]) {
+            [addDebtVoDic setObject:@"1" forKey:@"isOwer"];
+        }else{
+            [addDebtVoDic setObject:@"2" forKey:@"isOwer"];
+        }
+    }else if (_Phototype==2){
+        [self.debtCompanyDict setObject:urlimages forKey:@"picList"];
+        [addDebtVoDic setObject:self.debtCompanyDict forKey:@"debtCompany"];
+        [addDebtVoDic setObject:@"2" forKey:@"type"];
+        if ([_isower isEqualToString:@"1"]) {
+            [addDebtVoDic setObject:@"1" forKey:@"isOwer"];
+        }else{
+            [addDebtVoDic setObject:@"2" forKey:@"isOwer"];
+        }
+    }
+    [self showProgress];
+    [ZJDebtPersonRequest postAddDebtPersonInfoRequestWithParms:addDebtVoDic result:^(BOOL success, id responseData) {
+        [self dismissProgress];
+        if (success) {
+            DLog(@"%@",responseData);
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                //刷新债事人管理列表
+                NSNotification *notication=[NSNotification notificationWithName:@"AddDebtPerson" object:nil];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notication];
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                if ([self.fromWhereto isEqualToString:@"addDebtInfo"]) {
+                    [ZJUtil showBottomToastWithMsg:@"创建债事人成功，返回到债事备案"];
+                    
+                    if ([_isower isEqualToString:@"1"]) {
+                        ZJAddPhotosViewController * homeVC=[[ZJAddPhotosViewController alloc]init];
                         for (ZJBaseViewController * controller in self.navigationController.viewControllers) { //遍历
                             if ([controller isKindOfClass:[homeVC class]]) { //这里判断是否为你想要跳转的页面
-                                
-                                homeVC=controller;
-                                homeVC.isFresh=YES;
                                 [self.navigationController popToViewController:controller animated:YES]; //跳转
                             }
                         }
-                    }else if ([self.debtCapitaltype isEqualToString:@"company"]){
-                        ZJCompanyDebtInfomationViewController * homeVC=[[ZJCompanyDebtInfomationViewController alloc]init];
+                    }else{
+                        ZJAddDebtInformationViewController * homeVC=[[ZJAddDebtInformationViewController alloc]init];
                         for (ZJBaseViewController * controller in self.navigationController.viewControllers) { //遍历
                             if ([controller isKindOfClass:[homeVC class]]) { //这里判断是否为你想要跳转的页面
-                                
-                                homeVC=controller;
-                                homeVC.isFresh=YES;
                                 [self.navigationController popToViewController:controller animated:YES]; //跳转
                             }
                         }
                     }
                     
                 }else{
-                    [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
                 }
             }else{
-                [ZJUtil showBottomToastWithMsg:responseData];
-            }
-        }];
-    }else{//新增
-        [self.debtCapitalDic setObject:urlimages forKey:@"picUrl"];
-        [self showProgress];
-        [ZJDebtPersonRequest postAddDebtPersonCapitalInfoRequestWithParms:self.debtCapitalDic result:^(BOOL success, id responseData) {
-            [self dismissProgress];
-            if (success) {
-                if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                    //调到指定页面
-                    if ([self.debtCapitaltype isEqualToString:@"person"]) {  //债事人是个人
-                        ZJPersonDebtInfomationViewController * homeVC=[[ZJPersonDebtInfomationViewController alloc]init];
-                        for (ZJBaseViewController * controller in self.navigationController.viewControllers) { //遍历
-                            if ([controller isKindOfClass:[homeVC class]]) { //这里判断是否为你想要跳转的页面
-                                
-                                homeVC=controller;
-                                homeVC.isFresh=YES;
-                                [self.navigationController popToViewController:controller animated:YES]; //跳转
-                            }
-                        }
-                    }else if ([self.debtCapitaltype isEqualToString:@"company"]){
-                        ZJCompanyDebtInfomationViewController * homeVC=[[ZJCompanyDebtInfomationViewController alloc]init];
-                        for (ZJBaseViewController * controller in self.navigationController.viewControllers) { //遍历
-                            if ([controller isKindOfClass:[homeVC class]]) { //这里判断是否为你想要跳转的页面
-                                
-                                homeVC=controller;
-                                homeVC.isFresh=YES;
-                                [self.navigationController popToViewController:controller animated:YES]; //跳转
-                            }
-                        }
-                    }
-                }else{
-                    [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-                }
-            }else{
-                [ZJUtil showBottomToastWithMsg:responseData];
-            }
-        }];
-    }
-    
-}
-
-//债事备案
-- (void)postInfoToSevise
-{
-    [debtRelationVoDic setObject:urlimages forKey:@"picList"];
-    [debtRelationVoDic setObject:self.debtRelation1Vo forKey:@"debtRelation1Vo"];
-    [debtRelationVoDic setObject:self.debtRelation2Vo forKey:@"debtRelation2Vo"];
-    
-    [self showProgress];
-    [ZJDeBtManageRequest postAddDebtInfoRequestWithParms:debtRelationVoDic result:^(BOOL success, id responseData) {
-        [self dismissProgress];
-        DLog(@"%@",responseData);
-        if (success) {
-            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                //刷新债事管理列表
-                NSNotification *notication1=[NSNotification notificationWithName:@"DebtManger" object:nil];
-                //通过通知中心发送通知
-                [[NSNotificationCenter defaultCenter] postNotification:notication1];
-                
-                NSString * relationorderid=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"orderId"]];
-                NSString * payAmount=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"qianshu"]];
-                ZJPayMoneyViewController * zjDdVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
-                zjDdVC.isManager=ZJisBankManegerYes;
-                zjDdVC.orderid=relationorderid;
-                zjDdVC.type = @"1";
-                zjDdVC.payAmount = payAmount;
-                
-                [zjDdVC setHidesBottomBarWhenPushed:YES];
-                [self.navigationController pushViewController:zjDdVC animated:YES];
-            }else{
-                if ([[responseData objectForKey:@"message"]isEqualToString:@"您不是债事人，请添加您的证件信息"]) {
-                    UIAlertView * alteview=[[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"您不是债事人，请添加您的证件信息"] delegate:self cancelButtonTitle:@"现在创建" otherButtonTitles:@"再确认一下", nil];
-                    alteview.tag=501;
-                    [alteview show];
-                }else{
-                    [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-                }
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
         }else{
             [ZJUtil showBottomToastWithMsg:responseData];
         }
-        
     }];
 }
-#pragma mark-- 调到新增债事人
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag==501) {
-        if (buttonIndex==0) {
-            ZJAddDebtPersonController * addDebtVC=[[ZJAddDebtPersonController alloc]initWithNibName:@"ZJAddDebtPersonController" bundle:nil];
-            addDebtVC.formwhere=@"addDebtInfo";
-            addDebtVC.isOwer=@"1";
-            [addDebtVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:addDebtVC animated:YES];
-        }
-    }else if(alertView.tag==503){
-        if (buttonIndex==0) {
-            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                [[UIApplication sharedApplication] openURL:url];
-            }
-        }
-    }else{
-        if (buttonIndex==0) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
-    
-    }
-    
-    
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
