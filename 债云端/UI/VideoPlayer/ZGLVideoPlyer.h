@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ZGLVideoMaskView.h"
 /**记录当前屏幕的方向
  并没有真正的改变设备的旋转方向，项目中所有的界面都是竖屏，这里只是记录下当前的视频播放是否是全屏
  **/
@@ -42,7 +43,9 @@ typedef NS_ENUM(NSInteger, PlayerState) {
 
 @property (nonatomic, copy) void (^joinTheStudyPlan)();
 
+@property (nonatomic, assign) CurrentDeviceDirection currentDevDir;
 
+@property (nonatomic, strong) ZGLVideoMaskView *videoMaskView;
 //是否竖屏
 - (BOOL)isPortrait;
 
