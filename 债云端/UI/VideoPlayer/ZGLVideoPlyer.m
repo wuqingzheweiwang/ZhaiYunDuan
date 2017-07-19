@@ -368,14 +368,15 @@
                 
             } else if (self.player.status == AVPlayerStatusFailed){
                 [self.videoMaskView.activityView startAnimating];
-                NSLog(@"不能播放");
+                [ZJUtil showBottomToastWithMsg:@"视频编码有误"];
             }
         } else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
             NSTimeInterval timeInterval = [self availableDuration];// 计算缓冲进度
             CMTime duration             = self.playerItem.duration;
             CGFloat totalDuration       = CMTimeGetSeconds(duration);
-            [self.videoMaskView.progessView setProgress:timeInterval / totalDuration animated:NO];
-            
+            [self.videoMaskView.progessView setProgress:timeInterval / totalDuration animated:YES];
+            [self.videoMaskView.activityView stopAnimating];
+
         }else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
             [self.videoMaskView.activityView stopAnimating];
             

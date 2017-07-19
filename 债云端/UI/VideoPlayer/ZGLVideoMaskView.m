@@ -95,7 +95,7 @@
     [self.bottomBackgroundView addSubview:self.fullScreenBtn];
     
     self.videoSlider = [[UISlider alloc]init];
-    [self.videoSlider setThumbImage:[UIImage imageNamed:@"videoPlayerSlider"] forState:UIControlStateNormal];
+    [self.videoSlider setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
     self.videoSlider.minimumTrackTintColor = [UIColor whiteColor];
     self.videoSlider.maximumTrackTintColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
     [self.bottomBackgroundView addSubview:self.videoSlider];

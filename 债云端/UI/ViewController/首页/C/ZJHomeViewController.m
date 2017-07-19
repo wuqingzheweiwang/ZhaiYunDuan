@@ -374,7 +374,7 @@ static NSString *identifierId=@"zz";
         @[@"debtBank",@"开通债行"],
         @[@"addDebtPerson",@"添加债事人"],
 
-        @[@"debtShopping",@"债市商城"],
+        @[@"debtShopping",@"债事商城"],
         @[@"ZJstate",@"中金动态"],
         @[@"businesscollege",@"商学院"],
         @[@"debtAllsubjects",@"债事百科"],

@@ -37,14 +37,19 @@
     _page = 1;
     [self setNavcaition];
     [self creatVideoPlayer];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNav) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideenNav) name:@"hideen" object:nil];
 
 }
 
+
+
 -(void)showNav
 {
-    self.navigationController.navigationBar.hidden = NO;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
+    
+    self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = NO;
     leftBackBut.enabled = YES;
     [self.tableView reloadData];
@@ -52,11 +57,14 @@
 
 -(void)hideenNav
 {
+
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
     self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = YES;
     leftBackBut.enabled = NO;
     [self.tableView reloadData];
 }
+
 
 -(void)creaetMjRefreshUI
 {
@@ -90,17 +98,18 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
     self.navigationController.navigationBar.alpha=1;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.hidesBackButton = YES;
 }
 
 -(void)creatVideoPlayer
 {
-    
     self.player = [[ZGLVideoPlyer alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(200))];
     self.player.videoUrlStr = self.movieUrl;
     leftBackBut = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBackBut.top = TRUE_1(25/2);
     leftBackBut.left = 0;
-    leftBackBut.width = TRUE_1(50);
+    leftBackBut.width = TRUE_1(40);
     leftBackBut.height = leftBackBut.width;
     [leftBackBut setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [leftBackBut addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
