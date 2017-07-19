@@ -48,10 +48,8 @@
 -(void)showNav
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-    
     self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = NO;
-    leftBackBut.hidden = NO;
     [self.tableView reloadData];
 }
 
@@ -61,7 +59,6 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
     self.navigationController.navigationBar.hidden = YES;
     self.tableView.hidden = YES;
-    leftBackBut.hidden = YES;
     [self.tableView reloadData];
 }
 
@@ -96,10 +93,29 @@
 
 -(void)leftAction
 {
-    [self.navigationController popViewControllerAnimated:YES];
-    self.navigationController.navigationBar.alpha=1;
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.hidesBackButton = YES;
+    if (self.player.currentDevDir == Right) {
+        
+        self.player.videoMaskView.fullScreenBtn.selected=NO;
+        self.player.currentDevDir = Portrait;
+        
+        //刷新债事管理列表
+        NSNotification *notication1=[NSNotification notificationWithName:@"show" object:nil];
+        //通过通知中心发送通知
+        [[NSNotificationCenter defaultCenter] postNotification:notication1];
+        
+        
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.player.transform = CGAffineTransformMakeRotation(M_PI * 2);
+        } completion:nil];
+        self.player.frame = CGRectMake(0, 0, ZJAPPWidth, TRUE_1(200));
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+        self.navigationController.navigationBar.alpha=1;
+        self.navigationController.navigationBar.hidden = NO;
+        self.navigationItem.hidesBackButton = YES;
+    }
+    
 }
 
 -(void)creatVideoPlayer

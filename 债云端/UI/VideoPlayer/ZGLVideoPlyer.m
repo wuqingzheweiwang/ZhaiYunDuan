@@ -21,9 +21,9 @@
 
 @property (nonatomic, assign) CGRect bigFrame;
 
-@property (nonatomic, strong) ZGLVideoMaskView *videoMaskView;
+//@property (nonatomic, strong) ZGLVideoMaskView *videoMaskView;
 
-@property (nonatomic, assign) CurrentDeviceDirection currentDevDir;
+//@property (nonatomic, assign) CurrentDeviceDirection currentDevDir;
 
 @property (nonatomic, assign) BOOL isUserPause;//标记是否是用户暂停播放
 
