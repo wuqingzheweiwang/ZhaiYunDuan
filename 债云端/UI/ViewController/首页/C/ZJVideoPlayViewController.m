@@ -146,6 +146,7 @@
     _titleText.top = TRUE_1(7);
     _titleText.left = TRUE_1(15);
     _titleText.width = ZJAPPWidth - _titleText.left*2;
+    _titleText.text = self.mainTitle;
     _titleText.numberOfLines = 0;
     NSMutableAttributedString * mastring_1 = [[NSMutableAttributedString alloc]initWithString:_titleText.text];
     NSMutableParagraphStyle *paragraphStyle_1 = [[NSMutableParagraphStyle alloc] init];
@@ -162,6 +163,7 @@
     _detialText.top = _titleText.bottom+TRUE_1(5);
     _detialText.left = _titleText.left;
     _detialText.width = _titleText.width;
+    _detialText.text = self.detialTitle;
     _detialText.numberOfLines = 0;
     NSMutableAttributedString * mastring_2 = [[NSMutableAttributedString alloc]initWithString:_detialText.text];
     NSMutableParagraphStyle *paragraphStyle_2 = [[NSMutableParagraphStyle alloc] init];
@@ -179,6 +181,7 @@
     _updataTimeText.left = _detialText.left;
     _updataTimeText.width = _detialText.width;
     _updataTimeText.height = _tableHeaderView.height - _detialText.bottom;
+    _updataTimeText.text = self.updateTime;
     _updataTimeText.font = ZJ_TRUE_FONT(9);
     
     _bottomLine.top = _tableHeaderView.bottom;

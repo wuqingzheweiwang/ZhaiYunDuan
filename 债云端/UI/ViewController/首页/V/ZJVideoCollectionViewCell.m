@@ -16,13 +16,14 @@
    
 }
 
--(void)setitem:(ZJBusinessSchoolModel *)item
+-(void)setitem:(ZJVideoCollectionModel *)item
 {
     headerImageView.top = 0;
     headerImageView.left = TRUE_1(15);
     headerImageView.width = (ZJAPPWidth - TRUE_1(15)*3)/2;
     headerImageView.height = TRUE_1(100);
     [headerImageView sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
+    NSLog(@"%@",item.img);
     
     titleTextLabel.top = headerImageView.bottom+TRUE_1(10);
     titleTextLabel.left = headerImageView.left;
@@ -47,20 +48,20 @@
     detialTextLabel.left = titleTextLabel.left;
     detialTextLabel.width = titleTextLabel.width;
     detialTextLabel.numberOfLines =0;
-    NSMutableAttributedString * mastring_2 = [[NSMutableAttributedString alloc]initWithString:item.detialtitle];
-    NSMutableParagraphStyle *paragraphStyle_2 = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle_2 setLineSpacing:3];//调整行间距
-    
-    [mastring_2 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle_2 range:NSMakeRange(0, [item.detialtitle length])];
-    [mastring_2 addAttribute:NSFontAttributeName value:detialTextLabel.font range:NSMakeRange(0, mastring_2.length)];
-    detialTextLabel.attributedText = mastring_1;
-    
-    CGFloat width_2 = detialTextLabel.width; // whatever your desired width is
-    
-    CGRect rect_2 = [mastring_1 boundingRectWithSize:CGSizeMake(width_2, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-    
-    detialTextLabel.height = rect_2.size.height;
-    detialTextLabel.font = ZJ_TRUE_FONT(12);
+//    NSMutableAttributedString * mastring_2 = [[NSMutableAttributedString alloc]initWithString:item.detialtitle];
+//    NSMutableParagraphStyle *paragraphStyle_2 = [[NSMutableParagraphStyle alloc] init];
+//    [paragraphStyle_2 setLineSpacing:3];//调整行间距
+//    
+//    [mastring_2 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle_2 range:NSMakeRange(0, [item.detialtitle length])];
+//    [mastring_2 addAttribute:NSFontAttributeName value:detialTextLabel.font range:NSMakeRange(0, mastring_2.length)];
+//    detialTextLabel.attributedText = mastring_1;
+//    
+//    CGFloat width_2 = detialTextLabel.width; // whatever your desired width is
+//    
+//    CGRect rect_2 = [mastring_1 boundingRectWithSize:CGSizeMake(width_2, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+//    
+//    detialTextLabel.height = rect_2.size.height;
+//    detialTextLabel.font = ZJ_TRUE_FONT(12);
 
 }
 

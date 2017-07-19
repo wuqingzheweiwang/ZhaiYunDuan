@@ -74,11 +74,14 @@ static NSString *identifierId=@"zz";
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                 [_dataSource removeAllObjects];
-                //                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                //                for (int i=0; i<itemarray.count; i++) {
-                //                    ZJDebtPersonMangerHomeItem * item=[ZJDebtPersonMangerHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
-                //                    [_dataSource addObject:item];
-                //                }
+                
+                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                for (int i=0; i<itemarray.count; i++) {
+                
+                    ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:[itemarray objectAtIndex:i]];
+                    
+                    [_dataSource addObject:item];
+                                }
                 [self.collectionView reloadData];
             }else{
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
@@ -213,7 +216,7 @@ static NSString *identifierId=@"zz";
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJVideoCollectionViewCell" owner:self options:nil]firstObject];
     }
-       
+    
     [cell setitem:[collectionDataSource objectAtIndex:indexPath.item]];
     return cell;
 }
@@ -222,8 +225,11 @@ static NSString *identifierId=@"zz";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     ZJVideoPlayViewController * videoPlayVC=[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-    ZJVideoCollectionModel * moder=[_dataSource objectAtIndex:indexPath.row];
+    ZJVideoCollectionModel * moder=[collectionDataSource objectAtIndex:indexPath.row];
     videoPlayVC.movieUrl=moder.url;
+    videoPlayVC.mainTitle = moder.title;
+    videoPlayVC.detialTitle = moder.detialtitle;
+    videoPlayVC.updateTime = moder.updateTime;
     [self.navigationController pushViewController:videoPlayVC animated:YES];
 }
 
@@ -308,7 +314,10 @@ static NSString *identifierId=@"zz";
         }
         
     [self showProgress];
-     [ZJHomeRequest zjGetBussinessClassRequestWithActions:action result:^(BOOL success, id responseData) {
+    
+    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
+
+    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
          
     [self dismissProgress];
     DLog(@"%@",responseData);
@@ -316,22 +325,24 @@ static NSString *identifierId=@"zz";
             [collectionDataSource removeAllObjects];
             [self.collectionView reloadData];
         }
-        //        if (success) {
-        //
-        //            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+        if (success) {
         
-        //                NSArray * dicArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-        //                for (int i=0; i<dicArray.count; i++) {
-        //                    ZJCapitalInfoItem * item=[ZJCapitalInfoItem itemForDictionary:[dicArray objectAtIndex:i]];
-        //                    [_dataSource addObject:item];
-        //                }
-        [self.collectionView reloadData];
-        //            }else{
-        //                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-        //            }
-        //        }else{
-        //            [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
-        //        }
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+
+            for (int i=0; i<newArray.count; i++) {
+            
+            ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:[newArray objectAtIndex:i]];
+                [collectionDataSource addObject:item];
+                        }
+               [self.collectionView reloadData];
+                    }else{
+                
+            [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                    }
+                }else{
+                    [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
+                }
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         

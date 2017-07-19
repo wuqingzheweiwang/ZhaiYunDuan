@@ -51,6 +51,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *detialtitle;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *updateTime;
 
 + (ZJVideoCollectionModel *)itemForDictionary:(NSDictionary *)dic;
 @end

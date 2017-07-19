@@ -11,7 +11,7 @@
 @interface ZJVideoPlayViewController : UIViewController
 
 @property(nonatomic ,strong) NSString *movieUrl;
-@property(nonatomic ,strong) NSString *titleText;
+@property(nonatomic ,strong) NSString *mainTitle;
 @property(nonatomic ,strong) NSString *detialTitle;
 @property(nonatomic ,strong) NSString *updateTime;
 
