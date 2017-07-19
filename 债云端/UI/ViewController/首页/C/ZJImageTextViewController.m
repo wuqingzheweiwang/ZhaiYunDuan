@@ -59,34 +59,32 @@
       action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
     }
     
-//    [self showProgress];
-//    [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
-//        [self dismissProgress];
-//        DLog(@"%@",responseData);
-        if (_page==1) {
-            [_dataSource removeAllObjects];
-            [infoTable reloadData];
-        }
-//        if (success) {
-//            
-//            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
     
-//                NSArray * dicArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-//                for (int i=0; i<dicArray.count; i++) {
-//                    ZJCapitalInfoItem * item=[ZJCapitalInfoItem itemForDictionary:[dicArray objectAtIndex:i]];
-//                    [_dataSource addObject:item];
-//                }
+    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
+    // 菊花
+    [self showProgress];
+    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+        [self dismissProgress];
+        // 请求成功
+        if (success) {
+            if (_page==1) {
+                [_dataSource removeAllObjects];
                 [infoTable reloadData];
-//            }else{
-//                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-//            }
-//        }else{
-//            [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
-//        }
+            }
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                for (int i=0; i<newArray.count; i++) {
+                    NSDictionary * dict=[newArray objectAtIndex:i];
+                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
+                    [_dataSource addObject:item];
+                    [infoTable reloadData];
+                }
+            }
+        }
         [infoTable.mj_header endRefreshing];
         [infoTable.mj_footer endRefreshing];
-        
-//    }];
+    }];
+    
 }
 //UI布局
 -(void)resetUI{
@@ -126,7 +124,7 @@
     infoTable.height=ZJAPPHeight-44-64;
     infoTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     infoTable.showsVerticalScrollIndicator = NO;
-    [infoTable setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [infoTable setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 10)]];
     [infoTable setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
     //刷新
     __weak ZJImageTextViewController *weakSelf = self;
