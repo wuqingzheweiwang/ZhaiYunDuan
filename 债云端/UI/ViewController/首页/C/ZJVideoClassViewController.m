@@ -307,10 +307,11 @@ static NSString *identifierId=@"zz";
             action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
         }
         
-        //    [self showProgress];
-        //    [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
-        //        [self dismissProgress];
-        //        DLog(@"%@",responseData);
+    [self showProgress];
+     [ZJHomeRequest zjGetBussinessClassRequestWithActions:action result:^(BOOL success, id responseData) {
+         
+    [self dismissProgress];
+    DLog(@"%@",responseData);
         if (_page==1) {
             [collectionDataSource removeAllObjects];
             [self.collectionView reloadData];
@@ -334,7 +335,7 @@ static NSString *identifierId=@"zz";
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-        //    }];
+            }];
 }
 
 

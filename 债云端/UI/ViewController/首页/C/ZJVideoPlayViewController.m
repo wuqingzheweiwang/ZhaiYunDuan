@@ -223,7 +223,7 @@
 {
     NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetVideoContentWithActions:action result:^(BOOL success, id responseData) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         DLog(@"%@",responseData);

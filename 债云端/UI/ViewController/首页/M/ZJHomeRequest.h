@@ -52,4 +52,16 @@ typedef void(^result)(BOOL success, id responseData);
  *商学院
  */
 +(void)zjGetBussinessSchoolRequestWithActions:(NSString *)action result:(result)result;
+/*
+ *视频课程
+ */
++(void)zjGetBussinessClassRequestWithActions:(NSString *)action result:(result)result;
+/*
+ *图文课程
+ */
++(void)zjGetImageandTextRequestWithActions:(NSString *)action result:(result)result;
+/*
+ *视频详情
+ */
++(void)zjGetVideoContentWithActions:(NSString *)action result:(result)result;
 @end
