@@ -33,11 +33,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    _dataSource =[NSMutableArray array];
     _page = 1;
     [self setNavcaition];
     [self creatVideoPlayer];
-
+    [self requestBussinesSchoolListInfo];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNav) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideenNav) name:@"hideen" object:nil];
 
@@ -135,17 +135,18 @@
     [self.view addSubview:self.player];
     
     [self.view addSubview:self.tableView];
+    
     [self creaetMjRefreshUI];
     
     _tableHeaderView.top = self.player.bottom;
     _tableHeaderView.left = 0;
     _tableHeaderView.width = ZJAPPWidth;
-    _tableHeaderView.height = TRUE_1(90);
+    _tableHeaderView.height = TRUE_1(91);
     _tableHeaderView.backgroundColor = [UIColor orangeColor];
     
-    _titleText.top = TRUE_1(7);
+    _titleText.top = 0;
     _titleText.left = TRUE_1(15);
-    _titleText.width = ZJAPPWidth - _titleText.left*2;
+    _titleText.width = ZJAPPWidth - TRUE_1(30);
     _titleText.text = self.mainTitle;
     _titleText.numberOfLines = 0;
     NSMutableAttributedString * mastring_1 = [[NSMutableAttributedString alloc]initWithString:_titleText.text];
@@ -157,7 +158,8 @@
     _titleText.attributedText = mastring_1;
     CGFloat width_1 = _titleText.width; // whatever your desired width is
     CGRect rect_1 = [mastring_1 boundingRectWithSize:CGSizeMake(width_1, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-    _titleText.height = rect_1.size.height;
+    NSLog(@"%f",rect_1.size.height);
+    _titleText.height = 60;
     _titleText.font = ZJ_TRUE_FONT(15);
     
     _detialText.top = _titleText.bottom+TRUE_1(5);
@@ -184,7 +186,9 @@
     _updataTimeText.text = self.updateTime;
     _updataTimeText.font = ZJ_TRUE_FONT(9);
     
-    _bottomLine.top = _tableHeaderView.bottom;
+    NSLog(@"%f",_updataTimeText.bottom);
+    NSLog(@"%f",_tableHeaderView.bottom);
+    _bottomLine.top = _updataTimeText.bottom;
     _bottomLine.left = 0;
     _bottomLine.width = ZJAPPWidth;
     _bottomLine.height = 1;
@@ -225,9 +229,12 @@
 - (void)requestBussinesSchoolListInfo
 {
     NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
+    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ZJHomeRequest zjGetVideoContentWithActions:action result:^(BOOL success, id responseData) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//  [ZJHomeRequest zjGetVideoContentWithActions
+    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         DLog(@"%@",responseData);
         if (success) {
@@ -236,12 +243,13 @@
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                
-                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                for (int i=0; i<itemarray.count; i++) {
-                    ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:[itemarray objectAtIndex:i]];
-                    [_dataSource addObject:item];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+
+                for (int i=0; i<newArray.count; i++) {
+                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[newArray objectAtIndex:i]];
+                    [self.dataSource addObject:item];
                 }
+                NSLog(@"%@",self.dataSource);
                 [self.tableView reloadData];
             }else{
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
@@ -273,7 +281,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJBusinesscolledgTableViewCell" owner:self options:nil]firstObject];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setitem:[self.dataSource objectAtIndex:indexPath.row]];
+    [cell setitem:[_dataSource objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -286,6 +294,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if (_dataSource.count>0) {
+
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(30))];
     view.backgroundColor = [UIColor whiteColor];
     
@@ -297,15 +307,18 @@
     label.text = @"相关视频";
     label.font = ZJ_TRUE_FONT(15);
     [view addSubview:label];
-    
-    return view;
+        return view;
+
+    }else return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return TRUE_1(30);
+    if (_dataSource.count>0) {
+        return TRUE_1(30);
+    }else return 0;
+    
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ZJHomeItem.h"
 @interface ZJBusinesscolledgTableViewCell : UITableViewCell
--(void)setitem:(ZJBusinessSchoolModel *)item;
+-(void)setitem:(ZJHomeNewsModel *)item;
 + (CGFloat)getCellHeight;
 @end

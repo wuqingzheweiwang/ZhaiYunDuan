@@ -103,12 +103,12 @@
 // 视频课程
 -(void)clickToVideoVC
 {
-    ZJVideoClassViewController *zjVideoClassVC =[[ZJVideoClassViewController alloc]initWithNibName:@"ZJVideoClassViewController" bundle:nil];
-    [self.navigationController pushViewController:zjVideoClassVC animated:YES];
+//    ZJVideoClassViewController *zjVideoClassVC =[[ZJVideoClassViewController alloc]initWithNibName:@"ZJVideoClassViewController" bundle:nil];
+//    [self.navigationController pushViewController:zjVideoClassVC animated:YES];
     
-//        ZJVideoPlayViewController *zjVideoClassVC =[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-//        zjVideoClassVC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
-//        [self.navigationController pushViewController:zjVideoClassVC animated:YES];
+        ZJVideoPlayViewController *zjVideoClassVC =[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
+        zjVideoClassVC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
+        [self.navigationController pushViewController:zjVideoClassVC animated:YES];
 }
 
 // 图文课程
@@ -123,9 +123,11 @@
 - (void)requestBussinesSchoolListInfo
 {
    NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
+    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
+
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [ZJHomeRequest zjGetBussinessSchoolRequestWithActions:action result:^(BOOL success, id responseData) {
+//    [ZJHomeRequest zjGetBussinessSchoolRequestWithActions
+    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
         
             DLog(@"%@",responseData);
         if (success) {
@@ -133,10 +135,10 @@
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                
-                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                for (int i=0; i<itemarray.count; i++) {
-                    ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:[itemarray objectAtIndex:i]];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                for (int i=0; i<newArray.count; i++) {
+                    NSDictionary * dict=[newArray objectAtIndex:i];
+                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
                     [_dataSource addObject:item];
                 }
                 [_bussinesscollegeTable reloadData];
@@ -180,6 +182,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZJVideoPlayViewController *videoPlayerVC = [[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
+    ZJHomeNewsModel * item=[_dataSource objectAtIndex:indexPath.row];
+    videoPlayerVC.mainTitle = item.title;
+    videoPlayerVC.detialTitle = item.title;
+    videoPlayerVC.updateTime = item.updateTime;
+//    videoPlayerVC.movieUrl = item.movieUrl;
     [self.navigationController pushViewController:videoPlayerVC animated:YES];
 }
 

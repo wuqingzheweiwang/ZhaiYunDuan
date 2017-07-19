@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZJVideoPlayViewController">
             <connections>
-                <outlet property="bottomLine" destination="UgU-VM-Jwu" id="HeW-Nu-6N3"/>
+                <outlet property="bottomLine" destination="iJy-Wp-mP3" id="JGV-Uo-E3Q"/>
                 <outlet property="detialText" destination="bR9-lY-MDd" id="ZIS-cq-8bN"/>
                 <outlet property="tableHeaderView" destination="icb-Bv-EOQ" id="cKn-kT-gjP"/>
                 <outlet property="titleText" destination="Ox0-CX-DZV" id="sk5-0H-4Nk"/>
@@ -49,13 +49,13 @@
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJy-Wp-mP3">
+                            <rect key="frame" x="0.0" y="142" width="375" height="9"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UgU-VM-Jwu">
-                    <rect key="frame" x="0.0" y="151" width="375" height="8"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
