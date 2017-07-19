@@ -21,6 +21,8 @@
 		181013A91EAF5B04009C1DAD /* ZJAddPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181013A71EAF5B04009C1DAD /* ZJAddPhotosViewController.m */; };
 		181013AA1EAF5B04009C1DAD /* ZJAddPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181013A81EAF5B04009C1DAD /* ZJAddPhotosViewController.xib */; };
 		181013AE1EAF5CAD009C1DAD /* TakePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 181013AD1EAF5CAD009C1DAD /* TakePhoto.m */; };
+		1815FBE11F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1815FBDF1F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.m */; };
+		1815FBE21F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1815FBE01F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.xib */; };
 		1816B4C21EBABFDF00B591BE /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1816B4C01EBABFDF00B591BE /* index.html */; };
 		1819C2D21EA9B101003C7C25 /* ZJTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819C2D11EA9B101003C7C25 /* ZJTabbarViewController.m */; };
 		1819C2DE1EA9B8EE003C7C25 /* ZJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819C2DD1EA9B8EE003C7C25 /* ZJUtil.m */; };
@@ -326,6 +328,9 @@
 		181013A81EAF5B04009C1DAD /* ZJAddPhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJAddPhotosViewController.xib; sourceTree = "<group>"; };
 		181013AC1EAF5CAD009C1DAD /* TakePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePhoto.h; sourceTree = "<group>"; };
 		181013AD1EAF5CAD009C1DAD /* TakePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePhoto.m; sourceTree = "<group>"; };
+		1815FBDE1F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDebtPersonAddPhotosViewController.h; sourceTree = "<group>"; };
+		1815FBDF1F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDebtPersonAddPhotosViewController.m; sourceTree = "<group>"; };
+		1815FBE01F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJDebtPersonAddPhotosViewController.xib; sourceTree = "<group>"; };
 		1816B4C01EBABFDF00B591BE /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		1819C2D01EA9B101003C7C25 /* ZJTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJTabbarViewController.h; sourceTree = "<group>"; };
 		1819C2D11EA9B101003C7C25 /* ZJTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJTabbarViewController.m; sourceTree = "<group>"; };
@@ -1005,14 +1010,14 @@
 			path = PicturesManger;
 			sourceTree = "<group>";
 		};
-		181013A51EAF5ACE009C1DAD /* 添加照片 */ = {
+		181013A51EAF5ACE009C1DAD /* 备案添加照片(新增资产) */ = {
 			isa = PBXGroup;
 			children = (
 				181013A61EAF5B04009C1DAD /* ZJAddPhotosViewController.h */,
 				181013A71EAF5B04009C1DAD /* ZJAddPhotosViewController.m */,
 				181013A81EAF5B04009C1DAD /* ZJAddPhotosViewController.xib */,
 			);
-			name = "添加照片";
+			name = "备案添加照片(新增资产)";
 			sourceTree = "<group>";
 		};
 		181013AB1EAF5CAD009C1DAD /* AddPhotos */ = {
@@ -1022,6 +1027,16 @@
 				181013AD1EAF5CAD009C1DAD /* TakePhoto.m */,
 			);
 			path = AddPhotos;
+			sourceTree = "<group>";
+		};
+		1815FBDD1F1EFBB900B37198 /* 新增债事人添加照片 */ = {
+			isa = PBXGroup;
+			children = (
+				1815FBDE1F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.h */,
+				1815FBDF1F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.m */,
+				1815FBE01F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.xib */,
+			);
+			name = "新增债事人添加照片";
 			sourceTree = "<group>";
 		};
 		1816B4BE1EBABFDF00B591BE /* JS */ = {
@@ -1353,7 +1368,7 @@
 				1854637D1EB35CD600AF025B /* ZJDebtMangerViewController.xib */,
 				1844E0231EAE0EBC0013E54A /* 债事备案1 */,
 				1854636F1EB35BF100AF025B /* 债事备案2 */,
-				181013A51EAF5ACE009C1DAD /* 添加照片 */,
+				181013A51EAF5ACE009C1DAD /* 备案添加照片(新增资产) */,
 				182B529B1F1718400058A37F /* 支付成功 */,
 				185463701EB35C3600AF025B /* 债事详情 */,
 				18238E741EBAD7A50018C179 /* ZJWebview */,
@@ -1424,6 +1439,7 @@
 				182DF3981EA9DD7C0086B9FC /* ZJDebtPersonViewController.m */,
 				182DF3991EA9DD7C0086B9FC /* ZJDebtPersonViewController.xib */,
 				185463851EB3646500AF025B /* 新增债事人 */,
+				1815FBDD1F1EFBB900B37198 /* 新增债事人添加照片 */,
 				18238E7A1EBB2DE70018C179 /* 企业债事人详细信息 */,
 				18238E7B1EBB2E150018C179 /* 自然人债事人详细信息 */,
 				18971AF71EC0791600A3E4A1 /* 资产，需求信息详细 */,
@@ -2596,6 +2612,7 @@
 				182DF3A01EA9DD920086B9FC /* ZJMyPageViewController.xib in Resources */,
 				18971B0E1EC0826000A3E4A1 /* ZJAddDemandTableViewCell.xib in Resources */,
 				527B7AF71EBC924F0099763E /* ZJPayMoneyViewController.xib in Resources */,
+				1815FBE21F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.xib in Resources */,
 				520C47341EFE24CC00ADA007 /* ZJReCommandBankCell.xib in Resources */,
 				1854637A1EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.xib in Resources */,
 				181AFA401EB1F75C00B3FC7E /* ZJMemberCenterViewController.xib in Resources */,
@@ -2882,6 +2899,7 @@
 				18263D001F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m in Sources */,
 				52D2A74D1EB3551900C43247 /* NSDataEx.m in Sources */,
 				18238E7F1EBB2E4B0018C179 /* ZJCompanyDebtInfomationViewController.m in Sources */,
+				1815FBE11F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.m in Sources */,
 				180234731EBC58F600DFA3F8 /* ZJPersonBaseInfoTableViewCell.m in Sources */,
 				180234791EBC5C6300DFA3F8 /* ZJCapitalAndDemandInfoTableViewCell.m in Sources */,
 				182544E01EA8AB0600A29FB6 /* AppDelegate.m in Sources */,
