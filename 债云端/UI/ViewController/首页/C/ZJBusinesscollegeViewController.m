@@ -103,12 +103,12 @@
 // 视频课程
 -(void)clickToVideoVC
 {
-//    ZJVideoClassViewController *zjVideoClassVC =[[ZJVideoClassViewController alloc]initWithNibName:@"ZJVideoClassViewController" bundle:nil];
-//    [self.navigationController pushViewController:zjVideoClassVC animated:YES];
+    ZJVideoClassViewController *zjVideoClassVC =[[ZJVideoClassViewController alloc]initWithNibName:@"ZJVideoClassViewController" bundle:nil];
+    [self.navigationController pushViewController:zjVideoClassVC animated:YES];
     
-        ZJVideoPlayViewController *zjVideoClassVC =[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-        zjVideoClassVC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
-        [self.navigationController pushViewController:zjVideoClassVC animated:YES];
+//        ZJVideoPlayViewController *zjVideoClassVC =[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
+//        zjVideoClassVC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
+//        [self.navigationController pushViewController:zjVideoClassVC animated:YES];
 }
 
 // 图文课程

@@ -217,7 +217,7 @@ static NSString *identifierId=@"zz";
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJVideoCollectionViewCell" owner:self options:nil]firstObject];
     }
     
-    [cell setitem:[collectionDataSource objectAtIndex:indexPath.item]];
+//    [cell setitem:[collectionDataSource objectAtIndex:indexPath.item]];
     return cell;
 }
 
@@ -329,24 +329,23 @@ static NSString *identifierId=@"zz";
         
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
-
-            for (int i=0; i<newArray.count; i++) {
-            
-            ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:[newArray objectAtIndex:i]];
-                [collectionDataSource addObject:item];
-                        }
-               [self.collectionView reloadData];
-                    }else{
-                
-            [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-                    }
-                }else{
-                    [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
+                for (int i=0; i<newArray.count; i++) {
+                    NSDictionary * dict=[newArray objectAtIndex:i];
+                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
+                    [collectionDataSource addObject:item];
                 }
+                [self.collectionView reloadData];
+            }else{
+                
+                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+            }
+        }else{
+            [ZJUtil showBottomToastWithMsg:@"网络请求错误"];
+        }
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
         
-            }];
+    }];
 }
 
 
