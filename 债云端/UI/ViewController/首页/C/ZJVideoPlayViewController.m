@@ -129,7 +129,7 @@
     leftBackBut.width = TRUE_1(40);
     leftBackBut.height = leftBackBut.width;
     leftBackBut.hidden = NO;
-    [leftBackBut setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftBackBut setImage:[UIImage imageNamed:@"video-back"] forState:UIControlStateNormal];
     leftBackBut.tag = 2000;
     [leftBackBut addTarget:self action:@selector(leftAction) forControlEvents:UIControlEventTouchUpInside];
     [self.player addSubview:leftBackBut];
@@ -149,20 +149,27 @@
     _titleText.width = ZJAPPWidth - TRUE_1(30);
     _titleText.numberOfLines = 0;
     _titleText.font=ZJ_TRUE_FONT(15);
-    NSMutableAttributedString * mastring = [[NSMutableAttributedString alloc]initWithString:self.mainTitle];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:3];//调整行间距
     
-    [mastring addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [mastring length])];
-    [mastring addAttribute:NSFontAttributeName value:_titleText.font range:NSMakeRange(0, mastring.length)];
-    _titleText.attributedText = mastring;
-    
-    CGFloat width = _titleText.width;
-    
-    CGRect rect = [mastring boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-    
-    _titleText.height = rect.size.height;
+    NSLog(@"%@",self.mainTitle);
+    if ([_titleText.text isEqualToString:@""]) {
+        NSMutableAttributedString * mastring = [[NSMutableAttributedString alloc]initWithString:self.mainTitle];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:3];//调整行间距
+        
+        [mastring addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [mastring length])];
+        [mastring addAttribute:NSFontAttributeName value:_titleText.font range:NSMakeRange(0, mastring.length)];
+        _titleText.attributedText = mastring;
+        
+        CGFloat width = _titleText.width;
+        
+        CGRect rect = [mastring boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+        
+        _titleText.height = rect.size.height;
 
+    }else{
+        _titleText.height = TRUE_1(20);
+    }
+    
     
     _detialText.top = _titleText.bottom+TRUE_1(5);
     _detialText.left = _titleText.left;
@@ -170,13 +177,14 @@
     _detialText.font=ZJ_TRUE_FONT(9);
     _detialText.numberOfLines = 0;
     
-    
+    if (![_titleText.text isEqualToString:@""]) {
+
     NSMutableAttributedString * mastring1 = [[NSMutableAttributedString alloc]initWithString:self.detialTitle];
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:3];//调整行间距
     
-    [mastring addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [mastring1 length])];
-    [mastring addAttribute:NSFontAttributeName value:_detialText.font range:NSMakeRange(0, mastring1.length)];
+    [mastring1 addAttribute:NSParagraphStyleAttributeName value:paragraphStyle1 range:NSMakeRange(0, [mastring1 length])];
+    [mastring1 addAttribute:NSFontAttributeName value:_detialText.font range:NSMakeRange(0, mastring1.length)];
     _detialText.attributedText = mastring1;
     
     CGFloat width1 = _detialText.width;
@@ -184,7 +192,11 @@
     CGRect rect1 = [mastring1 boundingRectWithSize:CGSizeMake(width1, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
     _detialText.height = rect1.size.height;
+    }else{
+        
+        _detialText.height = TRUE_1(20);
 
+    }
     
     _updataTimeText.top = _detialText.bottom+TRUE_1(10);
     _updataTimeText.left = _detialText.left;
@@ -197,7 +209,7 @@
     _bottomLine.left = 0;
     _bottomLine.width = ZJAPPWidth;
     _bottomLine.height = 1;
-    
+
     self.tableHeaderView.height=_bottomLine.bottom;
     
     self.tableView.tableHeaderView = self.tableHeaderView;
@@ -295,8 +307,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ZJVideoPlayViewController *videoPlayerVC = [[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-//    [self.navigationController pushViewController:videoPlayerVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    self.player.videoUrlStr = @"http://baobab.wdjcdn.com/1454467934808B(9).mp4";
+
+//    ZJHomeNewsModel * moder=[_dataSource objectAtIndex:indexPath.row];
+//    NSLog(@"%@",moder.url);
+
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

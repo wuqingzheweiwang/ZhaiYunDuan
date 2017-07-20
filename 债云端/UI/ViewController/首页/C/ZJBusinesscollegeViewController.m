@@ -104,6 +104,7 @@
 -(void)clickToVideoVC
 {
     ZJVideoClassViewController *zjVideoClassVC =[[ZJVideoClassViewController alloc]initWithNibName:@"ZJVideoClassViewController" bundle:nil];
+    
     [self.navigationController pushViewController:zjVideoClassVC animated:YES];
     
 //        ZJVideoPlayViewController *zjVideoClassVC =[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];

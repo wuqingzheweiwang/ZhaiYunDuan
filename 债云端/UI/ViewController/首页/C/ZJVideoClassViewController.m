@@ -96,8 +96,8 @@ static NSString *identifierId=@"zz";
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
-    self.collectionView.top = headerScrollview.bottom+64;
-    self.collectionView.height = ZJAPPHeight - headerScrollview.bottom - 64;
+    self.collectionView.top = headerScrollview.bottom+64+TRUE_1(15);
+    self.collectionView.height = ZJAPPHeight - headerScrollview.bottom - 64-TRUE_1(15);
     SearchYES=NO;
     seachview.hidden=YES;
     searchBar.text=@"";
@@ -176,21 +176,22 @@ static NSString *identifierId=@"zz";
     UICollectionViewFlowLayout *flowLayout= [[UICollectionViewFlowLayout alloc]init];
     
     if (_collectionView == nil) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, headerScrollview.bottom+64, ZJAPPWidth,ZJAPPHeight - headerScrollview.bottom-64) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, headerScrollview.bottom+64+TRUE_1(15), ZJAPPWidth,ZJAPPHeight - headerScrollview.bottom-64-TRUE_1(15)) collectionViewLayout:flowLayout];
     }
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.showsVerticalScrollIndicator = NO;
-
+ 
     //  cell间的行距
     flowLayout.minimumLineSpacing = TRUE_1(5);
     //  cell间的列距
     flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.sectionInset=UIEdgeInsetsMake(TRUE_1(-5), TRUE_1(10), 0, TRUE_1(10));
+    flowLayout.sectionInset=UIEdgeInsetsMake(TRUE_1(0), TRUE_1(15), 0, TRUE_1(15));
     
     //  注册类
     [_collectionView registerClass:[ZJVideoCollectionViewCell class] forCellWithReuseIdentifier:identifierId];
+    [_collectionView registerNib:[UINib nibWithNibName:@"ZJVideoCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:identifierId];
     _collectionView.scrollEnabled = YES;
     return _collectionView;
 }
@@ -213,11 +214,7 @@ static NSString *identifierId=@"zz";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     ZJVideoCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:identifierId forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJVideoCollectionViewCell" owner:self options:nil]firstObject];
-    }
-    
-//    [cell setitem:[collectionDataSource objectAtIndex:indexPath.item]];
+    [cell setitem:[collectionDataSource objectAtIndex:indexPath.item]];
     return cell;
 }
 
@@ -225,10 +222,10 @@ static NSString *identifierId=@"zz";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     ZJVideoPlayViewController * videoPlayVC=[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-    ZJVideoCollectionModel * moder=[collectionDataSource objectAtIndex:indexPath.row];
+    ZJHomeNewsModel * moder=[collectionDataSource objectAtIndex:indexPath.item];
     videoPlayVC.movieUrl=moder.url;
     videoPlayVC.mainTitle = moder.title;
-    videoPlayVC.detialTitle = moder.detialtitle;
+    videoPlayVC.detialTitle = moder.title;
     videoPlayVC.updateTime = moder.updateTime;
     [self.navigationController pushViewController:videoPlayVC animated:YES];
 }
@@ -279,19 +276,23 @@ static NSString *identifierId=@"zz";
     }
     if ([BtnType isEqualToString:@"名师讲堂"]) {
         _page=1;
+        [self.collectionView.mj_header beginRefreshing];
         [self.collectionView reloadData];
     }else if ([BtnType isEqualToString:@"解债案例"]){
         _page=1;
+        [self.collectionView.mj_header beginRefreshing];
         [self requestVideoRequestData];
     }else if ([BtnType isEqualToString:@"答疑解惑"]){
         _page=1;
+        [self.collectionView.mj_header beginRefreshing];
         [self requestVideoRequestData];
     }else if ([BtnType isEqualToString:@"法律咨询"]){
         _page=1;
+        [self.collectionView.mj_header beginRefreshing];
         [self requestVideoRequestData];
     }else if ([BtnType isEqualToString:@"名师风采"]){
-
         _page=1;
+        [self.collectionView.mj_header beginRefreshing];
         [self requestVideoRequestData];
     }
     [self.collectionView reloadData];
