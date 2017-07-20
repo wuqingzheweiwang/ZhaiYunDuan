@@ -247,12 +247,11 @@
 // 请求商学院
 - (void)requestBussinesSchoolListInfo
 {
-    NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
-    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
-
+    NSString *pageType = @"2";
+    NSString *action=[NSString stringWithFormat:@"api/video/getVideo?pageType=%@&ps=5&pn=%ld",pageType,(long)_page];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//  [ZJHomeRequest zjGetVideoContentWithActions
-    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+  
+    [ZJHomeRequest zjGetVideoContentWithActions:action result:^(BOOL success, id responseData) {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         DLog(@"%@",responseData);
@@ -263,10 +262,10 @@
                 [self.tableView reloadData];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                NSArray * newArray=[responseData objectForKey:@"data"];
 
                 for (int i=0; i<newArray.count; i++) {
-                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[newArray objectAtIndex:i]];
+                    ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:[newArray objectAtIndex:i]];
                     [self.dataSource addObject:item];
                 }
                 [self.tableView reloadData];
@@ -308,11 +307,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    self.player.videoUrlStr = @"http://baobab.wdjcdn.com/1454467934808B(9).mp4";
+    ZJBusinessSchoolModel * moder=[_dataSource objectAtIndex:indexPath.row];
+    self.player.videoUrlStr = moder.url;
 
-//    ZJHomeNewsModel * moder=[_dataSource objectAtIndex:indexPath.row];
-//    NSLog(@"%@",moder.url);
-
+//@"http://baobab.wdjcdn.com/1454467934808B(9).mp4"
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

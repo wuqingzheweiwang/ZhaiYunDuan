@@ -18,7 +18,7 @@
     __weak IBOutlet UILabel *detialTextLabel;
     
 }
--(void)setitem:(ZJHomeNewsModel *)item;
+-(void)setitem:(ZJVideoCollectionModel *)item;
 + (CGFloat)getCellHeight;
 
 

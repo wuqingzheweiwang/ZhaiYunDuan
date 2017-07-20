@@ -16,7 +16,7 @@
    
 }
 
--(void)setitem:(ZJHomeNewsModel *)item
+-(void)setitem:(ZJVideoCollectionModel *)item
 {
     headerImageView.top = 0;
     headerImageView.left = 0;

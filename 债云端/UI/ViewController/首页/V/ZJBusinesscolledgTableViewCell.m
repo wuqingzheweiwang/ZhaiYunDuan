@@ -25,7 +25,7 @@
     [super awakeFromNib];
     // Initialization code
 }
--(void)setitem:(ZJHomeNewsModel *)item
+-(void)setitem:(ZJBusinessSchoolModel *)item
 {
 
     backImage.top=TRUE_1(20);
