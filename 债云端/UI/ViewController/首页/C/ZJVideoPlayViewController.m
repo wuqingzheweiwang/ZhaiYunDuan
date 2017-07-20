@@ -342,6 +342,25 @@
     }else return 0;
     
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (_dataSource.count>0) {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(20))];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        return view;
+    }else return nil;
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (_dataSource.count>0) {
+        return TRUE_1(20);
+    }else return 0;
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

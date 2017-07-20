@@ -220,12 +220,31 @@
     
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (_dataSource.count>0) {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(20))];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        return view;
+    }else return nil;
+    
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (_dataSource.count>0) {
        return TRUE_1(30); 
     }else return 0;
     
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (_dataSource.count>0) {
+        return TRUE_1(20);
+    }else return 0;
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
