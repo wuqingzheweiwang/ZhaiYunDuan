@@ -222,10 +222,10 @@ static NSString *identifierId=@"zz";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     ZJVideoPlayViewController * videoPlayVC=[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-    ZJHomeNewsModel * moder=[collectionDataSource objectAtIndex:indexPath.item];
+    ZJVideoCollectionModel * moder=[collectionDataSource objectAtIndex:indexPath.item];
     videoPlayVC.movieUrl=moder.url;
     videoPlayVC.mainTitle = moder.title;
-    videoPlayVC.detialTitle = moder.title;
+    videoPlayVC.detialTitle = moder.detialtitle;
     videoPlayVC.updateTime = moder.updateTime;
     [self.navigationController pushViewController:videoPlayVC animated:YES];
 }
@@ -303,22 +303,20 @@ static NSString *identifierId=@"zz";
 - (void)requestVideoRequestData
 {
     if ([BtnType isEqualToString:@"名师讲堂"]) {
-            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
         }else if ([BtnType isEqualToString:@"解债案例"]){
-            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"解债案例",_page];
         }else if ([BtnType isEqualToString:@"答疑解惑"]){
-            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"答疑解惑",_page];
         }else if ([BtnType isEqualToString:@"法律咨询"]){
-            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"法律咨询",_page];
         }else if ([BtnType isEqualToString:@"名师风采"]){
-            action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"名师风采",_page];
         }
         
     [self showProgress];
-    
-    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
-
-    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+        
+    [ZJHomeRequest zjGetBussinessClassRequestWithActions:action result:^(BOOL success, id responseData) {
          
     [self dismissProgress];
     DLog(@"%@",responseData);
@@ -329,10 +327,10 @@ static NSString *identifierId=@"zz";
         if (success) {
         
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                NSArray * newArray=[responseData objectForKey:@"data"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
-                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
+                    ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:dict];
                     [collectionDataSource addObject:item];
                 }
                 [self.collectionView reloadData];

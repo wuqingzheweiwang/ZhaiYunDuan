@@ -64,14 +64,14 @@
     if ([dic objectForKey:@"img"]) {
         item.img=[NSString stringWithFormat:@"%@",[dic objectForKey:@"img"]];
     }
-    if ([dic objectForKey:@"Title"]) {
-        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"Title"]];
+    if ([dic objectForKey:@"subTitle"]) {
+        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subTitle"]];
     }
-    if ([dic objectForKey:@"detialtitle"]) {
-        item.detialtitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"detialtitle"]];
+    if ([dic objectForKey:@"title"]) {
+        item.detialtitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
     }
     if ([dic objectForKey:@"updateTime"]) {
-        item.updateTime=[NSString stringWithFormat:@"%@",[dic objectForKey:@"updateTime"]];
+        item.updateTime=[NSString stringWithFormat:@"时间：%@",[dic objectForKey:@"updateTime"]];
     }
     if ([dic objectForKey:@"url"]) {
         item.url=[NSString stringWithFormat:@"%@",[dic objectForKey:@"url"]];

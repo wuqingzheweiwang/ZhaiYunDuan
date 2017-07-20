@@ -123,12 +123,10 @@
 // 请求商学院
 - (void)requestBussinesSchoolListInfo
 {
-   NSString *action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
-    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
-
+    NSString *pageType = @"1";
+    NSString *action=[NSString stringWithFormat:@"api/video/getVideo?pageType=%@&ps=5&pn=%ld",pageType,(long)_page];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [ZJHomeRequest zjGetBussinessSchoolRequestWithActions
-    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetBussinessSchoolRequestWithActions:action result:^(BOOL success, id responseData) {
         
             DLog(@"%@",responseData);
         if (success) {
@@ -136,10 +134,10 @@
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                NSArray * newArray=[responseData objectForKey:@"data"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
-                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
+                    ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:dict];
                     [_dataSource addObject:item];
                 }
                 [_bussinesscollegeTable reloadData];
@@ -183,11 +181,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZJVideoPlayViewController *videoPlayerVC = [[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-    ZJHomeNewsModel * item=[_dataSource objectAtIndex:indexPath.row];
+    ZJBusinessSchoolModel * item=[_dataSource objectAtIndex:indexPath.row];
     videoPlayerVC.mainTitle = item.title;
-    videoPlayerVC.detialTitle = item.title;
+    videoPlayerVC.detialTitle = item.detialtitle;
     videoPlayerVC.updateTime = item.updateTime;
-//    videoPlayerVC.movieUrl = item.movieUrl;
+    videoPlayerVC.movieUrl = item.url;
+//    @"http://baobab.wdjcdn.com/1455782903700jy.mp4"
     [self.navigationController pushViewController:videoPlayerVC animated:YES];
 }
 
