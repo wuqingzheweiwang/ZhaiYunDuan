@@ -1946,14 +1946,14 @@
 			path = WechatPay;
 			sourceTree = "<group>";
 		};
-		520B1FC81F21FA2D00FD0157 /* 搜索页面 */ = {
+		520B1FC81F21FA2D00FD0157 /* 搜索视频课程 */ = {
 			isa = PBXGroup;
 			children = (
 				520B1FC91F21FA6100FD0157 /* ZJVideoSearchVController.h */,
 				520B1FCA1F21FA6100FD0157 /* ZJVideoSearchVController.m */,
 				520B1FCB1F21FA6100FD0157 /* ZJVideoSearchVController.xib */,
 			);
-			name = "搜索页面";
+			name = "搜索视频课程";
 			sourceTree = "<group>";
 		};
 		520C47291EFE242E00ADA007 /* 推荐行长 */ = {
@@ -2281,7 +2281,7 @@
 				528DF29D1F1DB0C30098BFA4 /* ZJVideoClassViewController.h */,
 				528DF29E1F1DB0C30098BFA4 /* ZJVideoClassViewController.m */,
 				528DF29F1F1DB0C30098BFA4 /* ZJVideoClassViewController.xib */,
-				520B1FC81F21FA2D00FD0157 /* 搜索页面 */,
+				520B1FC81F21FA2D00FD0157 /* 搜索视频课程 */,
 			);
 			name = "视频课程";
 			sourceTree = "<group>";
