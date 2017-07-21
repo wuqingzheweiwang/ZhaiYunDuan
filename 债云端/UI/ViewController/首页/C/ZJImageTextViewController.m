@@ -214,6 +214,7 @@
     }
 
     _page=1;
+    [infoTable.mj_header beginRefreshing];
     [self requestTeacherClassInfo];
 }
 #pragma mark  tableView的代理方法
@@ -267,14 +268,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
