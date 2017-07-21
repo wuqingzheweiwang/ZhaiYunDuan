@@ -50,7 +50,7 @@
     _page3=1;
     _page4=1;
     BtnType=@"基本信息";
-    [ZJNavigationPublic setTitleOnTargetNav:self title:[NSString stringWithFormat:@"%@自然人",self.personName]];
+    [ZJNavigationPublic setTitleOnTargetNav:self title:[NSString stringWithFormat:@"%@",self.personName]];
     rightBtn=[ZJNavigationPublic setHiddenRightButtonOnTargetNav:self action:@selector(AddInfoBtnAction:) Withtitle:@"新增"];
     rightBtn.hidden=YES;
     rightBtn.tag=5000;
@@ -405,6 +405,7 @@
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonBaseInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
+        NSLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSDictionary * dic=[responseData objectForKey:@"data"];

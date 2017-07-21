@@ -25,6 +25,9 @@
 
 #import "ZJPayMoneyViewController.h"
 #import "ZJPaySuccessViewController.h"
+
+
+#import "ZJAddPhotosViewController.h"
 @interface ZJHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UIScrollViewDelegate>
 {
     UIView *titleView;
@@ -569,12 +572,7 @@ static NSString *identifierId=@"zz";
             [ZJUtil showBottomToastWithMsg:@"该功能正在开发中，敬请期待"];
            
         }
-//        ZJPayMoneyViewController * payVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
-//        payVC.orderid=@"20170718e585b342b60f4c15a56104327f1bc726";
-//        payVC.payAmount=@"0.01";
-//        payVC.type=@"1";
-//        [payVC setHidesBottomBarWhenPushed:YES];
-//        [self.navigationController pushViewController:payVC animated:YES];
+
     }
     
 }

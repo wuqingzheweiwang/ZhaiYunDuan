@@ -21,7 +21,7 @@
 #import "ZJAddPhotosViewController.h"
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
-@interface ZJDebtPersonAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate>
+@interface ZJDebtPersonAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *BigScrollview;
 @end
 
@@ -165,19 +165,45 @@
 //添加照片
 -(void)selectPicForShineButtonAction
 {
-    if (![self isCanUsePhotos]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册权限受限" message:@"请在iPhone的\"设置->隐私->相册\"选项中,允许\"债云端\"访问您的相册." delegate:self cancelButtonTitle:@"好的" otherButtonTitles:@"取消",nil];
-        alert.tag=503;
-        [alert show];
-        return;
-    }
-    QBImagePickerController *imagePickerController = [[QBImagePickerController alloc] init];
-    imagePickerController.delegate = self;
-    imagePickerController.allowsMultipleSelection =YES;
-    imagePickerController.maximumNumberOfSelection = 9;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
-    [self presentViewController:navigationController animated:YES completion:NULL];
+    UIActionSheet * act =[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择相册",@"选择相机", nil];
+    
+    [act showInView:self.view];
 }
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        if (![self isCanUsePhotos]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册访问权限受限" message:@"请在iPhone的\"设置->隐私->相册\"选项中,允许\"债云端\"访问您的相册." delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:@"取消",nil];
+            [alert show];
+            return;
+        }else{
+            QBImagePickerController *imagePickerController = [[QBImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.allowsMultipleSelection =YES;
+            imagePickerController.maximumNumberOfSelection = 9;
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
+            [self presentViewController:navigationController animated:YES completion:NULL];
+        }
+        
+    }else if (buttonIndex==1){
+        if (![self isCanUsevideos]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相机访问权限受限" message:@"请在iPhone的\"设置->隐私->相机\"选项中,允许\"债云端\"访问您的相机." delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+            [alert show];
+            return;
+        }else{
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIImagePickerController * pickerImage=[[UIImagePickerController alloc]init];
+                pickerImage.delegate = self;
+                pickerImage.allowsEditing=NO;
+                pickerImage.sourceType=UIImagePickerControllerSourceTypeCamera;//指定使用相机
+                ;
+                
+                [self presentViewController:pickerImage animated:YES completion:nil];
+                
+            }
+        }
+    }
+}
+
 - (BOOL)isCanUsePhotos {
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
@@ -197,6 +223,47 @@
     }
     return YES;
 }
+- (BOOL)isCanUsevideos {
+    
+    AVAuthorizationStatus authorStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authorStatus == AVAuthorizationStatusRestricted ||authorStatus == AVAuthorizationStatusDenied){
+        //获取权限
+        return NO;
+    }
+    return YES;
+}
+#pragma mark - QBImagePickerControllerDelegate
+#pragma mark  该方法在调用相册选取照片、调用相机拍摄完照片或者视频点击use时都会执行
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    //获得拍摄或者通过相册选取的原始照片
+    UIImage * originalImage=[info valueForKey:UIImagePickerControllerOriginalImage];
+    //把原始或者经过编辑的照片存于相机胶卷册(if判断确保了不会把从相册里面拿出的照片再次保存到相册)
+    if (picker.sourceType==UIImagePickerControllerSourceTypeCamera) {
+        //保存照片
+        if ([[info valueForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString*)kUTTypeImage]) {
+            
+            UIImageWriteToSavedPhotosAlbum(originalImage,self , @selector(image:didFinishSavingWithError:contextInfo:), nil);//在你存入相册完成后不需要有任何操作时，后面三个参数可以为空,nil为可选参数，即contextInfo
+        }
+        
+    }
+    if (images.count>8) {
+        UIAlertView * alteview=[[UIAlertView alloc]initWithTitle:@"提示" message:@"最多只能添加九张图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alteview show];
+        return;
+    }
+    [images addObject:originalImage];
+    [self createNineImageView:images];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+}
+- (void)image:(UIImage *)image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+    
+    
+}
+
 #pragma mark - QBImagePickerControllerDelegate
 //单张选取图片调用
 - (void)imagePickerController:(QBImagePickerController *)imagePickerController didSelectAsset:(ALAsset *)asset
