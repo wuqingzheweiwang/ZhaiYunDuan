@@ -51,7 +51,7 @@ static NSString *identifierId=@"zz";
        forSearchBarIcon:UISearchBarIconSearch
                   state:UIControlStateNormal];
     searchBar.delegate = self;
-    searchBar.placeholder = @"请输入搜索的姓名或者身份证号";
+    searchBar.placeholder = @"请输入搜索的视频名称";
     searchBar.contentMode = UIViewContentModeLeft;
     searchBar.barTintColor = [UIColor clearColor];
     searchBar.layer.cornerRadius = 15;
