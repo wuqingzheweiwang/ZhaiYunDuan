@@ -51,5 +51,8 @@
  * nav的背景图
  ***/
 + (void)setOpenBackgroundImageOnTargetNav:(id)controller;
-
+/***
+ nav中间添加搜索事件
+ ***/
++ (UISearchBar *)setNavSearchViewOnTargetNav:(id)controller  With:(NSString *) str_text;
 @end
