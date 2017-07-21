@@ -9,7 +9,8 @@
 #import "ZJVideoSearchVController.h"
 #import "ZJVideoCollectionViewCell.h"
 #import "ZJVideoPlayViewController.h"
-@interface ZJVideoSearchVController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ZJVideoSearchVController ()<UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate,UIScrollViewDelegate>
+
 
 @property (nonatomic , strong) UICollectionView *collectionView;
 
@@ -25,12 +26,15 @@ static NSString *identifierId=@"zz";
     UIView * seachview;
     NSMutableArray *collectionDataSource;
     NSString *action;
+    NSString * searchBarTextString;
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     collectionDataSource = [NSMutableArray array];
     _page = 1;
+    searchBarTextString=@"";
     [self creatUI];
     [self requestVideoRequestData];
 }
@@ -38,7 +42,7 @@ static NSString *identifierId=@"zz";
 -(void)creatUI
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [ZJNavigationPublic setTitleOnTargetNav:self title:@"视频课程"];
+    [ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
     [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
     
         
@@ -204,6 +208,15 @@ static NSString *identifierId=@"zz";
         
     }];
 }
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    _page=1;
+    searchBarTextString=searchBar.text;
+    [self requestVideoRequestData];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
