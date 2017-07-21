@@ -253,6 +253,14 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     //定义一个newPhoto，用来存放我们选择的图片。
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    if (picker.sourceType==UIImagePickerControllerSourceTypeCamera) {
+        //保存照片
+        if ([[info valueForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString*)kUTTypeImage]) {
+            
+            UIImageWriteToSavedPhotosAlbum(newPhoto,self , @selector(image:didFinishSavingWithError:contextInfo:), nil);//在你存入相册完成后不需要有任何操作时，后面三个参数可以为空,nil为可选参数，即contextInfo
+        }
+        
+    }
     NSData *dataImage = UIImagePNGRepresentation(newPhoto);
     [UserDeafult setObject:dataImage forKey:@"userIcon"];
     // 压缩图片
@@ -276,7 +284,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+- (void)image:(UIImage *)image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+    
+    
+}
 // 手机号
 -(void)gotoTelephoneNumberView
 {
