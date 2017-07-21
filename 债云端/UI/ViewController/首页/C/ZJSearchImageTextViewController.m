@@ -59,6 +59,12 @@
 
 -(void)reloadFirstData
 {
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        [SearchTable.mj_header endRefreshing];
+        [SearchTable.mj_footer endRefreshing];
+        return;
+    }
     //@weakify(self) 防止循环引用
     //@strongify(self) 防止指针消失
     _page=1;
@@ -67,16 +73,17 @@
 }
 -(void)loadMoreData
 {
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        [SearchTable.mj_header endRefreshing];
+        [SearchTable.mj_footer endRefreshing];
+        return;
+    }
     _page+=1;
     [self requestTeacherClassInfo];
 }
 -(void)requestTeacherClassInfo
 {
-    if ([ZJUtil isKGEmpty:searchBarTextString]) {
-        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
-        return;
-    }
-    [self.view endEditing:YES];
     [searchheBar resignFirstResponder];
     NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@",(long)_page,searchBarTextString];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -105,9 +112,13 @@
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    
-    _page=1;
     searchBarTextString=searchBar.text;
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        return;
+    }
+    _page=1;
+    
     [self requestTeacherClassInfo];
 }
 #pragma mark  tableView的代理方法

@@ -37,7 +37,6 @@ static NSString *identifierId=@"zz";
     _page = 1;
     searchBarTextString=@"";
     [self creatUI];
-    [self requestVideoRequestData];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -49,7 +48,7 @@ static NSString *identifierId=@"zz";
 -(void)creatUI
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
+    searcherBar=[ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
     [self.view addSubview:self.collectionView];
     //刷新
     __weak ZJVideoSearchVController *weakSelf = self;
@@ -66,12 +65,24 @@ static NSString *identifierId=@"zz";
 
 -(void)reloadFirstData
 {
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+        return;
+    }
     _page=1;
     [self requestVideoRequestData];
     
 }
 -(void)loadMoreData
 {
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+        return;
+    }
     _page+=1;
     [self requestVideoRequestData];
 }
@@ -135,43 +146,14 @@ static NSString *identifierId=@"zz";
     [self.navigationController pushViewController:videoPlayVC animated:YES];
 }
 
-//button的点击事件
--(void)infoBtnAction:(UIButton *)sender
-{
-        [sender setTitleColor:ZJColor_red forState:UIControlStateNormal];
-    for (UIButton *subView in headerScrollview.subviews) {
-        if ([subView isKindOfClass:[UIButton class]] && subView.tag != sender.tag) {
-            [subView setTitleColor:ZJColor_333333 forState:UIControlStateNormal];
-        }
-    }
-    //便利查找红线
-    for (UIView *subView in headerScrollview.subviews) {
-        if (![subView isKindOfClass:[UIButton class]] && subView.tag == sender.tag+1000) {
-            subView.hidden=NO;
-        }
-        if (![subView isKindOfClass:[UIButton class]] && subView.tag != sender.tag+1000) {
-            subView.hidden=YES;
-        }
-    }
-    
-        _page=1;
-        [self.collectionView.mj_header beginRefreshing];
-        [self.collectionView reloadData];
-   
-}
 
 
-#pragma mark--请求债事信息
+#pragma mark
 - (void)requestVideoRequestData
 {
-    
-    if ([ZJUtil isKGEmpty:searchBarTextString]) {
-        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
-        return;
-    }
-    action=[NSString stringWithFormat:@"api/video/getVideoSearch?pn=%ld&ps=8&wd=%@",_page,searchBarTextString];
-    [self.view endEditing:YES];
     [searcherBar resignFirstResponder];
+    action=[NSString stringWithFormat:@"api/video/getVideoSearch?pn=%ld&ps=8&wd=%@",(long)_page,searchBarTextString];
+    
 
     [self showProgress];
     NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -179,12 +161,12 @@ static NSString *identifierId=@"zz";
         
         [self dismissProgress];
         DLog(@"%@",responseData);
-        if (_page==1) {
-            [collectionDataSource removeAllObjects];
-            [self.collectionView reloadData];
-        }
+        
         if (success) {
-            
+            if (_page==1) {
+                [collectionDataSource removeAllObjects];
+                [self.collectionView reloadData];
+            }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSArray * newArray=[[responseData objectForKey:@"data"]objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
@@ -208,14 +190,18 @@ static NSString *identifierId=@"zz";
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    _page=1;
     searchBarTextString=searchBar.text;
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        return;
+    }
+    _page=1;
+    
     [self requestVideoRequestData];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.view endEditing:YES];
     [searcherBar resignFirstResponder];
 }
 
