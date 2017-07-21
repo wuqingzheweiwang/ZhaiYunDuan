@@ -10,7 +10,8 @@
 #import "ZJVideoCollectionViewCell.h"
 #import "ZJHomeItem.h"
 #import "ZJVideoPlayViewController.h"
-@interface ZJVideoClassViewController ()<UISearchBarDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+#import "ZJVideoSearchVController.h"
+@interface ZJVideoClassViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic , strong) UICollectionView *collectionView;
 
@@ -21,11 +22,9 @@ static NSString *identifierId=@"zz";
 @implementation ZJVideoClassViewController
 {
     __weak IBOutlet UIView *HeaderView;
-//    NSMutableArray * _dataSource; 
     NSInteger _page;
     UIScrollView * headerScrollview;
     NSString * BtnType;   //直接赋值上面的按钮文字，根据他去判断显示什么布局
-    BOOL SearchYES;
     UIView * seachview;
     NSMutableArray *collectionDataSource;
     NSString *action;
@@ -37,75 +36,7 @@ static NSString *identifierId=@"zz";
     BtnType=@"名师讲堂";
     _page = 1;
     [self creatUI];
-    [self createSerach];
     [self requestVideoRequestData];
-}
-
-- (void)createSerach
-{
-    seachview=[[UIView alloc]initWithFrame:CGRectMake(0, 64+headerScrollview.height, ZJAPPWidth, 40)];
-    seachview.backgroundColor=[UIColor whiteColor];
-    UISearchBar * searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(15, 10, ZJAPPWidth-30, 30)];
-    searchBar.searchBarStyle=UISearchBarStyleMinimal;
-    [searchBar setImage:[UIImage imageNamed:@"searchBargrey"]
-       forSearchBarIcon:UISearchBarIconSearch
-                  state:UIControlStateNormal];
-    searchBar.delegate = self;
-    searchBar.placeholder = @"请输入搜索的视频名称";
-    searchBar.contentMode = UIViewContentModeLeft;
-    searchBar.barTintColor = [UIColor clearColor];
-    searchBar.layer.cornerRadius = 15;
-    searchBar.layer.masksToBounds = YES;
-    searchBar.showsCancelButton=YES;
-    [seachview addSubview:searchBar];
-    [self.view addSubview:seachview];
-    seachview.hidden=YES;
-}
-
-#pragma maek  UISearchBarDelegate
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self.view endEditing:YES];
-    
-    NSString * action1=[NSString stringWithFormat:@"api/video/getVideoSearch?ps=10&pn=1&wd=%@&videoId=%@",searchBar.text,BtnType];
-    NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
-        DLog(@"%@",responseData);
-        if (success) {
-            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                
-                [collectionDataSource removeAllObjects];
-                
-                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                for (int i=0; i<itemarray.count; i++) {
-                
-                    ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:[itemarray objectAtIndex:i]];
-                    
-                    [collectionDataSource addObject:item];
-                                }
-                [self.collectionView reloadData];
-            }else{
-                
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-            }
-        }else{
-            [ZJUtil showBottomToastWithMsg:@"请求失败"];
-        }
-    }];
-    
-}
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [self.view endEditing:YES];
-    self.collectionView.top = headerScrollview.bottom+64+TRUE_1(15);
-    self.collectionView.height = ZJAPPHeight - headerScrollview.bottom - 64-TRUE_1(15);
-    SearchYES=NO;
-    seachview.hidden=YES;
-    searchBar.text=@"";
-    _page=1;
-    [self requestVideoRequestData];
-    
 }
 
 -(void)creatUI
@@ -161,8 +92,6 @@ static NSString *identifierId=@"zz";
 
 -(void)reloadFirstData
 {
-    //@weakify(self) 防止循环引用
-    //@strongify(self) 防止指针消失
     _page=1;
     [self requestVideoRequestData];
     
@@ -235,19 +164,9 @@ static NSString *identifierId=@"zz";
 //搜索
 -(void)searchInfoAction
 {
-    SearchYES=YES;
-    [self.collectionView reloadData];
-    if (SearchYES) {
-        seachview.hidden=NO;
-        self.collectionView.top = headerScrollview.bottom+64+TRUE_1(40);
-        self.collectionView.height = ZJAPPHeight - headerScrollview.bottom - 64 - TRUE_1(40);
-
-    }else{
-        seachview.hidden=YES;
-        _page=1;
-        [collectionDataSource removeAllObjects];
-        [self requestInfo];
-    }
+    ZJVideoSearchVController *videoSearchVC = [[ZJVideoSearchVController alloc]initWithNibName:@"ZJVideoSearchVController" bundle:nil];
+    
+    [self.navigationController pushViewController:videoSearchVC animated:YES];
 }
 -(void)requestInfo
 {

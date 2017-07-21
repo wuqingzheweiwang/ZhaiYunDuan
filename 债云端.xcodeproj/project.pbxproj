@@ -176,6 +176,8 @@
 		520413271EF8B67E00B32537 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204131C1EF8B67E00B32537 /* NSString+MJExtension.m */; };
 		520A11451ECDADC4009903AE /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520A11411ECDADC4009903AE /* libWeChatSDK.a */; };
 		520A11471ECDAE1F009903AE /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 520A11461ECDAE1F009903AE /* libsqlite3.0.tbd */; };
+		520B1FCC1F21FA6100FD0157 /* ZJVideoSearchVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520B1FCA1F21FA6100FD0157 /* ZJVideoSearchVController.m */; };
+		520B1FCD1F21FA6100FD0157 /* ZJVideoSearchVController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520B1FCB1F21FA6100FD0157 /* ZJVideoSearchVController.xib */; };
 		520C472D1EFE246E00ADA007 /* ZJRecommendBankVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 520C472B1EFE246E00ADA007 /* ZJRecommendBankVC.m */; };
 		520C472E1EFE246E00ADA007 /* ZJRecommendBankVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520C472C1EFE246E00ADA007 /* ZJRecommendBankVC.xib */; };
 		520C47331EFE24CC00ADA007 /* ZJReCommandBankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 520C47311EFE24CC00ADA007 /* ZJReCommandBankCell.m */; };
@@ -589,6 +591,9 @@
 		520A11411ECDADC4009903AE /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		520A11421ECDADC4009903AE /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		520A11461ECDAE1F009903AE /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		520B1FC91F21FA6100FD0157 /* ZJVideoSearchVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJVideoSearchVController.h; sourceTree = "<group>"; };
+		520B1FCA1F21FA6100FD0157 /* ZJVideoSearchVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJVideoSearchVController.m; sourceTree = "<group>"; };
+		520B1FCB1F21FA6100FD0157 /* ZJVideoSearchVController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJVideoSearchVController.xib; sourceTree = "<group>"; };
 		520C472A1EFE246E00ADA007 /* ZJRecommendBankVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJRecommendBankVC.h; sourceTree = "<group>"; };
 		520C472B1EFE246E00ADA007 /* ZJRecommendBankVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJRecommendBankVC.m; sourceTree = "<group>"; };
 		520C472C1EFE246E00ADA007 /* ZJRecommendBankVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJRecommendBankVC.xib; sourceTree = "<group>"; };
@@ -1926,6 +1931,16 @@
 			path = WechatPay;
 			sourceTree = "<group>";
 		};
+		520B1FC81F21FA2D00FD0157 /* 搜索页面 */ = {
+			isa = PBXGroup;
+			children = (
+				520B1FC91F21FA6100FD0157 /* ZJVideoSearchVController.h */,
+				520B1FCA1F21FA6100FD0157 /* ZJVideoSearchVController.m */,
+				520B1FCB1F21FA6100FD0157 /* ZJVideoSearchVController.xib */,
+			);
+			name = "搜索页面";
+			sourceTree = "<group>";
+		};
 		520C47291EFE242E00ADA007 /* 推荐行长 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2250,6 +2265,7 @@
 				528DF29D1F1DB0C30098BFA4 /* ZJVideoClassViewController.h */,
 				528DF29E1F1DB0C30098BFA4 /* ZJVideoClassViewController.m */,
 				528DF29F1F1DB0C30098BFA4 /* ZJVideoClassViewController.xib */,
+				520B1FC81F21FA2D00FD0157 /* 搜索页面 */,
 			);
 			name = "视频课程";
 			sourceTree = "<group>";
@@ -2667,6 +2683,7 @@
 				18971AD81EC0420800A3E4A1 /* ZJAddEditCapitalViewController.xib in Resources */,
 				185C70C91EB88EF300BE9D17 /* QBImagePickerController.strings in Resources */,
 				1802347A1EBC5C6300DFA3F8 /* ZJCapitalAndDemandInfoTableViewCell.xib in Resources */,
+				520B1FCD1F21FA6100FD0157 /* ZJVideoSearchVController.xib in Resources */,
 				522C55A61F1C7963001D81E4 /* ZJVideoPlayViewController.xib in Resources */,
 				18971AE41EC0496F00A3E4A1 /* ZJAddOperateInfoViewController.xib in Resources */,
 				5217AC431EB86A2B00A1A39F /* Assets.xcassets in Resources */,
@@ -2854,6 +2871,7 @@
 			files = (
 				182544E91EA8AB0600A29FB6 /* ___.xcdatamodeld in Sources */,
 				183802D31EFA264800C74D05 /* ZJAddEditDemandViewController.m in Sources */,
+				520B1FCC1F21FA6100FD0157 /* ZJVideoSearchVController.m in Sources */,
 				5223362F1EFB771C00D05447 /* CityModelData.m in Sources */,
 				52CE8B4C1F14C26900C383EA /* ZJCardTextField.m in Sources */,
 				18238EA51EBB44420018C179 /* ZJchongMoneyViewController.m in Sources */,
