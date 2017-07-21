@@ -43,6 +43,7 @@ static id _publishContent;
 @property (weak, nonatomic) IBOutlet UIView *tableHeaderView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerBackGroundImage;
+@property (weak, nonatomic) IBOutlet UIView *bottomLine;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -150,7 +151,13 @@ static id _publishContent;
     _headerBackGroundImage.top =_tableHeaderView.top;
     _headerBackGroundImage.left =_tableHeaderView.left;
     _headerBackGroundImage.width =_tableHeaderView.width;
-    _headerBackGroundImage.height =_tableHeaderView.height;
+    _headerBackGroundImage.height =_tableHeaderView.height-TRUE_1(5);
+    
+    _bottomLine.top = _headerBackGroundImage.bottom;
+    _bottomLine.left = 0;
+    _bottomLine.width = ZJAPPWidth;
+    _bottomLine.height = TRUE_1(5);
+    
     // 标题
     _titleLabel.top = 20;
     _titleLabel.left = ZJAPPWidth/2 - 100;
@@ -716,6 +723,9 @@ static id _publishContent;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 0;
+    }
     return TRUE_1(5);
 }
 
