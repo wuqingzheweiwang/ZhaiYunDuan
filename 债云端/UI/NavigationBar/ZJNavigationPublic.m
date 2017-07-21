@@ -138,7 +138,6 @@
     searchBar.barTintColor = [UIColor clearColor];
     searchBar.layer.cornerRadius = 5;
     searchBar.layer.masksToBounds = YES;
-    searchBar.showsCancelButton=YES;
     [searchBar setImage:[UIImage imageNamed:@"searchBargrey"]
        forSearchBarIcon:UISearchBarIconSearch
                   state:UIControlStateNormal];

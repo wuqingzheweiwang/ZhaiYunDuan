@@ -19,11 +19,12 @@
     NSMutableArray * _dataSource;
     NSInteger _page;
     NSString * searchBarTextString;
+    UISearchBar * searchBar;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的内容"];
+    searchBar=[ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的内容"];
     _dataSource=[NSMutableArray array];
     searchBarTextString=@"";
     _page=1;
@@ -67,6 +68,7 @@
 -(void)requestTeacherClassInfo
 {
     [self.view endEditing:YES];
+    [searchBar resignFirstResponder];
     NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@",(long)_page,searchBarTextString];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
@@ -90,12 +92,6 @@
         [SearchTable.mj_header endRefreshing];
         [SearchTable.mj_footer endRefreshing];
     }];
-}
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    _page=1;
-    searchBarTextString=searchBar.text;
-    [self requestTeacherClassInfo];
 }
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
@@ -144,6 +140,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+    [searchBar resignFirstResponder];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
