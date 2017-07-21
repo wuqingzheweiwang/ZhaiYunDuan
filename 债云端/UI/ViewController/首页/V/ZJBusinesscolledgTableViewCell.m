@@ -32,6 +32,8 @@
     backImage.left=TRUE_1(15);
     backImage.width=TRUE_1(250/2);
     backImage.height=TRUE_1(70);
+    backImage.contentMode = UIViewContentModeScaleAspectFill;
+    backImage.clipsToBounds = YES;
     [backImage sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
 
     

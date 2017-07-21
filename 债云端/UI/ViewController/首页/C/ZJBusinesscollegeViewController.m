@@ -123,18 +123,20 @@
 // 请求商学院
 - (void)requestBussinesSchoolListInfo
 {
-    NSString *pageType = @"1";
-    NSString *action=[NSString stringWithFormat:@"api/video/getVideo?pageType=%@&ps=5&pn=%ld",pageType,(long)_page];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *type = @"1";
+    NSString *action=[NSString stringWithFormat:@"api/video/getVideo?ps=5&pn=%ld&type=%@",(long)_page,type];
+    [self showProgress];
     [ZJHomeRequest zjGetBussinessSchoolRequestWithActions:action result:^(BOOL success, id responseData) {
         
-            DLog(@"%@",responseData);
+    [self dismissProgress];
+    
+    DLog(@"%@",responseData);
         if (success) {
             if (_page==1) {
                 [_dataSource removeAllObjects];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[responseData objectForKey:@"data"];
+                NSArray * newArray=[[responseData objectForKey:@"data"]objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:dict];

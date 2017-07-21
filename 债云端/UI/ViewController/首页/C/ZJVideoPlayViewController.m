@@ -247,8 +247,8 @@
 // 请求商学院
 - (void)requestBussinesSchoolListInfo
 {
-    NSString *pageType = @"2";
-    NSString *action=[NSString stringWithFormat:@"api/video/getVideo?pageType=%@&ps=5&pn=%ld",pageType,(long)_page];
+    NSString *type = @"2";
+    NSString *action=[NSString stringWithFormat:@"api/video/getVideo?ps=5&pn=%ld&type=%@",(long)_page,type];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
   
     [ZJHomeRequest zjGetVideoContentWithActions:action result:^(BOOL success, id responseData) {
@@ -262,8 +262,7 @@
                 [self.tableView reloadData];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[responseData objectForKey:@"data"];
-
+                NSArray * newArray=[[responseData objectForKey:@"data"]objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
                     ZJBusinessSchoolModel * item=[ZJBusinessSchoolModel itemForDictionary:[newArray objectAtIndex:i]];
                     [self.dataSource addObject:item];

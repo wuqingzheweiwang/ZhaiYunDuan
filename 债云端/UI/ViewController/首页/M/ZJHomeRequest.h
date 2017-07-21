@@ -64,4 +64,9 @@ typedef void(^result)(BOOL success, id responseData);
  *视频详情
  */
 +(void)zjGetVideoContentWithActions:(NSString *)action result:(result)result;
+
+/*
+ *视频搜索
+ */
++(void)zjGetSearchVideoRequestWithActions:(NSString *)action result:(result)result;
 @end
