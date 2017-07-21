@@ -19,16 +19,21 @@
     NSMutableArray * _dataSource;
     NSInteger _page;
     NSString * searchBarTextString;
-    UISearchBar * searchBar;
+    UISearchBar * searchheBar;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    searchBar=[ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的内容"];
+    searchheBar=[ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
     _dataSource=[NSMutableArray array];
     searchBarTextString=@"";
     _page=1;
      [self resetUI];
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [searchheBar resignFirstResponder];
 }
 //UI布局
 -(void)resetUI{
@@ -67,16 +72,21 @@
 }
 -(void)requestTeacherClassInfo
 {
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        return;
+    }
     [self.view endEditing:YES];
-    [searchBar resignFirstResponder];
+    [searchheBar resignFirstResponder];
     NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@",(long)_page,searchBarTextString];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                
-                [_dataSource removeAllObjects];
+                if (_page==1) {
+                   [_dataSource removeAllObjects];
+                }
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {
                     ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[itemarray objectAtIndex:i]];
@@ -93,11 +103,12 @@
         [SearchTable.mj_footer endRefreshing];
     }];
 }
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self.view endEditing:YES];
     
-    searchBarTextString=@"";
+    _page=1;
+    searchBarTextString=searchBar.text;
+    [self requestTeacherClassInfo];
 }
 #pragma mark  tableView的代理方法
 
@@ -140,21 +151,12 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
-    [searchBar resignFirstResponder];
+    [searchheBar resignFirstResponder];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

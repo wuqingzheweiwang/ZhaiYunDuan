@@ -27,6 +27,7 @@ static NSString *identifierId=@"zz";
     NSMutableArray *collectionDataSource;
     NSString *action;
     NSString * searchBarTextString;
+    UISearchBar * searcherBar;
 
 }
 - (void)viewDidLoad {
@@ -39,13 +40,16 @@ static NSString *identifierId=@"zz";
     [self requestVideoRequestData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [searcherBar resignFirstResponder];
+}
+
 -(void)creatUI
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     [ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
-    [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
-    
-        
     [self.view addSubview:self.collectionView];
     //刷新
     __weak ZJVideoSearchVController *weakSelf = self;
@@ -131,20 +135,6 @@ static NSString *identifierId=@"zz";
     [self.navigationController pushViewController:videoPlayVC animated:YES];
 }
 
-//搜索
--(void)searchInfoAction
-{
-   
-    
-    
-}
--(void)requestInfo
-{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self requestVideoRequestData];
-}
-
-
 //button的点击事件
 -(void)infoBtnAction:(UIButton *)sender
 {
@@ -174,8 +164,15 @@ static NSString *identifierId=@"zz";
 #pragma mark--请求债事信息
 - (void)requestVideoRequestData
 {
-    action=[NSString stringWithFormat:@"api/video/getVideoList?pn=%ld&ps=8",_page];
     
+    if ([ZJUtil isKGEmpty:searchBarTextString]) {
+        [ZJUtil showBottomToastWithMsg:@"请输入您要搜索的标题/内容"];
+        return;
+    }
+    action=[NSString stringWithFormat:@"api/video/getVideoSearch?pn=%ld&ps=8&wd=%@",_page,searchBarTextString];
+    [self.view endEditing:YES];
+    [searcherBar resignFirstResponder];
+
     [self showProgress];
     NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJHomeRequest zjGetBussinessClassRequestWithActions:encoded result:^(BOOL success, id responseData) {
@@ -216,6 +213,11 @@ static NSString *identifierId=@"zz";
     [self requestVideoRequestData];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+    [searcherBar resignFirstResponder];
+}
 
 
 - (void)didReceiveMemoryWarning {
