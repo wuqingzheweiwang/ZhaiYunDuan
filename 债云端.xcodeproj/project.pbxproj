@@ -164,6 +164,8 @@
 		18D9D2DE1EC9694600E882FD /* LMWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9D2D91EC9694600E882FD /* LMWebProgressLayer.m */; };
 		18D9D2DF1EC9694600E882FD /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9D2DB1EC9694600E882FD /* NSTimer+Addition.m */; };
 		18D9D2E01EC9694600E882FD /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9D2DD1EC9694600E882FD /* UIView+Frame.m */; };
+		18F16F981F21FA30002D3DF4 /* ZJSearchImageTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F16F961F21FA30002D3DF4 /* ZJSearchImageTextViewController.m */; };
+		18F16F991F21FA30002D3DF4 /* ZJSearchImageTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F16F971F21FA30002D3DF4 /* ZJSearchImageTextViewController.xib */; };
 		5204131E1EF8B67E00B32537 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204130A1EF8B67E00B32537 /* MJExtensionConst.m */; };
 		5204131F1EF8B67E00B32537 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204130C1EF8B67E00B32537 /* MJFoundation.m */; };
 		520413201EF8B67E00B32537 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 5204130E1EF8B67E00B32537 /* MJProperty.m */; };
@@ -563,6 +565,9 @@
 		18D9D2DB1EC9694600E882FD /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
 		18D9D2DC1EC9694600E882FD /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		18D9D2DD1EC9694600E882FD /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		18F16F951F21FA30002D3DF4 /* ZJSearchImageTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSearchImageTextViewController.h; sourceTree = "<group>"; };
+		18F16F961F21FA30002D3DF4 /* ZJSearchImageTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSearchImageTextViewController.m; sourceTree = "<group>"; };
+		18F16F971F21FA30002D3DF4 /* ZJSearchImageTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJSearchImageTextViewController.xib; sourceTree = "<group>"; };
 		19B120F00D62888DD8563238 /* Pods-债云端.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-债云端.release.xcconfig"; path = "Pods/Target Support Files/Pods-债云端/Pods-债云端.release.xcconfig"; sourceTree = "<group>"; };
 		1C6DA2004A1DFA6F7993A35A /* libPods-债云端.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-债云端.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		520413081EF8B67E00B32537 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
@@ -1874,6 +1879,16 @@
 			path = ZJPrograssView;
 			sourceTree = "<group>";
 		};
+		18F16F941F21F9EC002D3DF4 /* 搜索图文课程 */ = {
+			isa = PBXGroup;
+			children = (
+				18F16F951F21FA30002D3DF4 /* ZJSearchImageTextViewController.h */,
+				18F16F961F21FA30002D3DF4 /* ZJSearchImageTextViewController.m */,
+				18F16F971F21FA30002D3DF4 /* ZJSearchImageTextViewController.xib */,
+			);
+			name = "搜索图文课程";
+			sourceTree = "<group>";
+		};
 		1CDA2C3C9535F94A1D640584 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2240,6 +2255,7 @@
 				528DF2A21F1DB0DC0098BFA4 /* ZJImageTextViewController.h */,
 				528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */,
 				528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */,
+				18F16F941F21F9EC002D3DF4 /* 搜索图文课程 */,
 			);
 			name = "图文课程";
 			sourceTree = "<group>";
@@ -2664,6 +2680,7 @@
 				18238E791EBAD82C0018C179 /* ZJBranchOfficeViewController.xib in Resources */,
 				182B52A01F1718810058A37F /* ZJPaySuccessViewController.xib in Resources */,
 				182F69D11EB9DDFD004A175B /* ZJWebViewController.xib in Resources */,
+				18F16F991F21FA30002D3DF4 /* ZJSearchImageTextViewController.xib in Resources */,
 				18971AD81EC0420800A3E4A1 /* ZJAddEditCapitalViewController.xib in Resources */,
 				185C70C91EB88EF300BE9D17 /* QBImagePickerController.strings in Resources */,
 				1802347A1EBC5C6300DFA3F8 /* ZJCapitalAndDemandInfoTableViewCell.xib in Resources */,
@@ -2937,6 +2954,7 @@
 				5217AC401EB85C7000A1A39F /* ZJMakeToPAYViewController.m in Sources */,
 				18971AEF1EC059D400A3E4A1 /* ZJAddOperateTableViewCell.m in Sources */,
 				181AFA2F1EB1F75C00B3FC7E /* ZJAllApplyViewController.m in Sources */,
+				18F16F981F21FA30002D3DF4 /* ZJSearchImageTextViewController.m in Sources */,
 				B1588B4A1EA8C8010047EEC7 /* ZJNavigationPublic.m in Sources */,
 				52F6F2BB1EFD18A200623DA6 /* ZJMyMemberViewController.m in Sources */,
 				1819C2F01EA9BB3D003C7C25 /* UIImage+ColorAtPixel.m in Sources */,

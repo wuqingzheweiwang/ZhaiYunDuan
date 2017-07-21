@@ -9,7 +9,8 @@
 #import "ZJImageTextViewController.h"
 #import "ZJNewsDetailsViewController.h"
 #import "ZJHomeNewsViewCell.h"
-@interface ZJImageTextViewController ()<UISearchBarDelegate>
+#import "ZJSearchImageTextViewController.h"
+@interface ZJImageTextViewController ()
 
 @end
 
@@ -26,9 +27,6 @@
     NSString * BtnType;   //直接赋值上面的按钮文字，根据他去判断显示什么布局
     UIScrollView * headerScrollview;
     
-    BOOL SearchYES;
-    UIView * seachview;
-    
     NSString * action;
 }
 - (void)viewDidLoad {
@@ -42,7 +40,6 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
    
     [self resetUI];
-    [self createSerach];
     [self requestTeacherClassInfo];
 }
 - (void)requestTeacherClassInfo
@@ -140,26 +137,6 @@
         [weakSelf loadMoreData];
     }];
 }
-- (void)createSerach
-{
-    seachview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 40)];
-    seachview.backgroundColor=[UIColor whiteColor];
-    UISearchBar * searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(15, 10, ZJAPPWidth-30, 30)];
-    searchBar.searchBarStyle=UISearchBarStyleMinimal;
-    [searchBar setImage:[UIImage imageNamed:@"searchBargrey"]
-       forSearchBarIcon:UISearchBarIconSearch
-                  state:UIControlStateNormal];
-    searchBar.delegate = self;
-    searchBar.placeholder = @"请输入搜索的视频名称";
-    searchBar.contentMode = UIViewContentModeLeft;
-    searchBar.barTintColor = [UIColor clearColor];
-    searchBar.layer.cornerRadius = 15;
-    searchBar.layer.masksToBounds = YES;
-    searchBar.showsCancelButton=YES;
-    [seachview addSubview:searchBar];
-    seachview.hidden=YES;
-    
-}
 -(void)reloadFirstData
 {
     //@weakify(self) 防止循环引用
@@ -176,53 +153,45 @@
 //搜索
 -(void)searchInfoAction
 {
-    SearchYES=YES;
-    [infoTable reloadData];
-    if (SearchYES) {
-        seachview.hidden=NO;
-    }else{
-        seachview.hidden=YES;
-        _page=1;
-        [_dataSource removeAllObjects];
-        [self requestTeacherClassInfo];
-    }
+    ZJSearchImageTextViewController * searchVC=[[ZJSearchImageTextViewController alloc]initWithNibName:@"ZJSearchImageTextViewController" bundle:nil];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self.view endEditing:YES];
-    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=1&wd=%@&videoId=%@",searchBar.text,BtnType];
-    NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
-        DLog(@"%@",responseData);
-        if (success) {
-            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-               
-                [_dataSource removeAllObjects];
-                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-                for (int i=0; i<itemarray.count; i++) {
-                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[itemarray objectAtIndex:i]];
-                    [_dataSource addObject:item];
-                }
-                [infoTable reloadData];
-            }else{
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
-            }
-        }else{
-            [ZJUtil showBottomToastWithMsg:responseData];
-        }
-    }];
-    
-}
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [self.view endEditing:YES];
-    SearchYES=NO;
-    seachview.hidden=YES;
-    searchBar.text=@"";
-    _page=1;
-    [self requestTeacherClassInfo];
-    
-}
+//-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//{
+//    [self.view endEditing:YES];
+//    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=1&wd=%@&videoId=%@",searchBar.text,BtnType];
+//    NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
+//        DLog(@"%@",responseData);
+//        if (success) {
+//            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+//               
+//                [_dataSource removeAllObjects];
+//                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+//                for (int i=0; i<itemarray.count; i++) {
+//                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[itemarray objectAtIndex:i]];
+//                    [_dataSource addObject:item];
+//                }
+//                [infoTable reloadData];
+//            }else{
+//                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+//            }
+//        }else{
+//            [ZJUtil showBottomToastWithMsg:responseData];
+//        }
+//    }];
+//    
+//}
+//-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+//{
+//    [self.view endEditing:YES];
+//    SearchYES=NO;
+//    seachview.hidden=YES;
+//    searchBar.text=@"";
+//    _page=1;
+//    [self requestTeacherClassInfo];
+//    
+//}
 //button的点击事件
 -(void)infoBtnAction:(UIButton *)sender
 {
@@ -250,15 +219,11 @@
 #pragma mark  tableView的代理方法
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (SearchYES) {
-        return 40;
-    }else return 0;
+    return 0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (SearchYES) {
-        return seachview;
-    }else return nil;
+    return nil;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -293,7 +258,7 @@
     ZJNewsDetailsViewController * newsVC=[[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
     ZJHomeNewsModel * moder=[_dataSource objectAtIndex:indexPath.row];
     newsVC.newsurl=moder.url;
-    newsVC.newstitle=@"新闻详情";
+    newsVC.newstitle=@"图文详情";
     [self.navigationController pushViewController:newsVC animated:YES];
 }
 
