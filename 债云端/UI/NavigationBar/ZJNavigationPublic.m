@@ -122,6 +122,44 @@
 }
 
 
+/***
+ nav中间添加搜索事件
+ ***/
++ (UISearchBar *)setNavSearchViewOnTargetNav:(id)controller  With:(NSString *) str_text {
+    //设置navbar上中间部分自定义
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJAPPWidth - 48*2, 44)];//allocate titleView
+//    titleView.backgroundColor=[UIColor whiteColor];
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.delegate = controller;
+    searchBar.frame = CGRectMake(0, 0, ZJAPPWidth - 48*2 , 30);
+    searchBar.placeholder = str_text;
+    searchBar.contentMode = UIViewContentModeLeft;
+    searchBar.barTintColor = [UIColor clearColor];
+    searchBar.layer.cornerRadius = 5;
+    searchBar.layer.masksToBounds = YES;
+    searchBar.showsCancelButton=YES;
+    [searchBar setImage:[UIImage imageNamed:@"searchBargrey"]
+       forSearchBarIcon:UISearchBarIconSearch
+                  state:UIControlStateNormal];
+    [titleView addSubview:searchBar];
+    searchBar.backgroundColor=[UIColor whiteColor];
+    
+    CGRect frame;
+    
+    frame = searchBar.frame;
+    
+    frame.size.width = ZJAPPWidth - 48*2;
+    
+    searchBar.frame = frame;
+    titleView.frame = frame;
+    
+    [[controller navigationItem] setTitleView:titleView];
+    return searchBar;
+}
+
+
+
 + (void)setRightButtonOnTargetNav:(id)controller action:(SEL)action Withtitle:(NSString *)title withimage:(UIImage *)imgLeft{
     
     

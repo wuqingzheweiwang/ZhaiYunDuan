@@ -9,7 +9,7 @@
 #import "ZJSearchImageTextViewController.h"
 #import "ZJHomeNewsViewCell.h"
 #import "ZJNewsDetailsViewController.h"
-@interface ZJSearchImageTextViewController ()<UISearchBarDelegate>
+@interface ZJSearchImageTextViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
 
 @end
 
@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的内容"];
     _dataSource=[NSMutableArray array];
     searchBarTextString=@"";
     _page=1;
@@ -49,26 +50,7 @@
         [weakSelf loadMoreData];
     }];
 }
-//- (void)createSerach
-//{
-//    seachview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 40)];
-//    seachview.backgroundColor=[UIColor whiteColor];
-//    UISearchBar * searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(15, 10, ZJAPPWidth-30, 30)];
-//    searchBar.searchBarStyle=UISearchBarStyleMinimal;
-//    [searchBar setImage:[UIImage imageNamed:@"searchBargrey"]
-//       forSearchBarIcon:UISearchBarIconSearch
-//                  state:UIControlStateNormal];
-//    searchBar.delegate = self;
-//    searchBar.placeholder = @"请输入搜索的视频名称";
-//    searchBar.contentMode = UIViewContentModeLeft;
-//    searchBar.barTintColor = [UIColor clearColor];
-//    searchBar.layer.cornerRadius = 15;
-//    searchBar.layer.masksToBounds = YES;
-//    searchBar.showsCancelButton=YES;
-//    [seachview addSubview:searchBar];
-//    seachview.hidden=YES;
-//
-//}
+
 -(void)reloadFirstData
 {
     //@weakify(self) 防止循环引用
@@ -105,6 +87,8 @@
         }else{
             [ZJUtil showBottomToastWithMsg:responseData];
         }
+        [SearchTable.mj_header endRefreshing];
+        [SearchTable.mj_footer endRefreshing];
     }];
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -112,6 +96,12 @@
     _page=1;
     searchBarTextString=searchBar.text;
     [self requestTeacherClassInfo];
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
+    
+    searchBarTextString=@"";
 }
 #pragma mark  tableView的代理方法
 
@@ -151,7 +141,10 @@
     newsVC.newstitle=@"图文详情";
     [self.navigationController pushViewController:newsVC animated:YES];
 }
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
