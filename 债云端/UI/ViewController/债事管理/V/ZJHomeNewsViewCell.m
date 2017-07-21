@@ -22,6 +22,8 @@
     _ImageFlag.left = TRUE_1(45/2);
     _ImageFlag.width = TRUE_1(50);
     _ImageFlag.height =  _ImageFlag.width;
+    _ImageFlag.contentMode = UIViewContentModeScaleAspectFill;
+    _ImageFlag.clipsToBounds = YES;
     [self.ImageFlag sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
 
     _ImageFlagLabel.top = _ImageFlag.top;
@@ -37,7 +39,7 @@
     [mastring addAttribute:NSFontAttributeName value:_ImageFlagLabel.font range:NSMakeRange(0, mastring.length)];
     _ImageFlagLabel.attributedText = mastring;
     
-    CGFloat width = _ImageFlagLabel.width; // whatever your desired width is
+    CGFloat width = _ImageFlagLabel.width; 
     
     CGRect rect = [mastring boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     

@@ -21,7 +21,7 @@ static NSString *identifierId=@"zz";
 @implementation ZJVideoClassViewController
 {
     __weak IBOutlet UIView *HeaderView;
-    NSMutableArray * _dataSource; 
+//    NSMutableArray * _dataSource; 
     NSInteger _page;
     UIScrollView * headerScrollview;
     NSString * BtnType;   //直接赋值上面的按钮文字，根据他去判断显示什么布局
@@ -66,28 +66,30 @@ static NSString *identifierId=@"zz";
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
-    NSString * action1=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
+    
+    NSString * action1=[NSString stringWithFormat:@"api/video/getVideoSearch?ps=10&pn=1&wd=%@&videoId=%@",searchBar.text,BtnType];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
-                [_dataSource removeAllObjects];
+                [collectionDataSource removeAllObjects];
                 
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {
                 
                     ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:[itemarray objectAtIndex:i]];
                     
-                    [_dataSource addObject:item];
+                    [collectionDataSource addObject:item];
                                 }
                 [self.collectionView reloadData];
             }else{
+                
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
         }else{
-            [ZJUtil showBottomToastWithMsg:responseData];
+            [ZJUtil showBottomToastWithMsg:@"请求失败"];
         }
     }];
     
@@ -243,7 +245,7 @@ static NSString *identifierId=@"zz";
     }else{
         seachview.hidden=YES;
         _page=1;
-        [_dataSource removeAllObjects];
+        [collectionDataSource removeAllObjects];
         [self requestInfo];
     }
 }
@@ -303,20 +305,20 @@ static NSString *identifierId=@"zz";
 - (void)requestVideoRequestData
 {
     if ([BtnType isEqualToString:@"名师讲堂"]) {
-            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideoList?videoId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
         }else if ([BtnType isEqualToString:@"解债案例"]){
-            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"解债案例",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideoList?videoId=%@&pn=%ld&ps=8",@"解债案例",_page];
         }else if ([BtnType isEqualToString:@"答疑解惑"]){
-            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"答疑解惑",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideoList?videoId=%@&pn=%ld&ps=8",@"答疑解惑",_page];
         }else if ([BtnType isEqualToString:@"法律咨询"]){
-            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"法律咨询",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideoList?videoId=%@&pn=%ld&ps=8",@"法律咨询",_page];
         }else if ([BtnType isEqualToString:@"名师风采"]){
-            action=[NSString stringWithFormat:@"api/video/getVideo?videoId=%@&pn=%ld&ps=8",@"名师风采",_page];
+            action=[NSString stringWithFormat:@"api/video/getVideoList?videoId=%@&pn=%ld&ps=8",@"名师风采",_page];
         }
         
     [self showProgress];
-        
-    [ZJHomeRequest zjGetBussinessClassRequestWithActions:action result:^(BOOL success, id responseData) {
+    NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [ZJHomeRequest zjGetBussinessClassRequestWithActions:encoded result:^(BOOL success, id responseData) {
          
     [self dismissProgress];
     DLog(@"%@",responseData);
@@ -327,7 +329,7 @@ static NSString *identifierId=@"zz";
         if (success) {
         
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[responseData objectForKey:@"data"];
+                NSArray * newArray=[[responseData objectForKey:@"data"]objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJVideoCollectionModel * item=[ZJVideoCollectionModel itemForDictionary:dict];

@@ -33,7 +33,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"图文课程"];
     [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
     _dataSource=[NSMutableArray array];
@@ -48,23 +48,22 @@
 - (void)requestTeacherClassInfo
 {
     if ([BtnType isEqualToString:@"名师讲堂"]) {
-        action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
     }else if ([BtnType isEqualToString:@"解债案例"]){
-        action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"解债案例",_page];
     }else if ([BtnType isEqualToString:@"答疑解惑"]){
-        action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"答疑解惑",_page];
     }else if ([BtnType isEqualToString:@"法律咨询"]){
-        action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"法律咨询",_page];
     }else if ([BtnType isEqualToString:@"名师风采"]){
-      action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",@"名师讲堂",_page];
+        action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"名师风采",_page];
     }
     
-    
-    action=[NSString stringWithFormat:@"resources/app/ep.news.json"];
-    // 菊花
     [self showProgress];
-    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+    NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [ZJHomeRequest zjGetImageandTextRequestWithActions:encoded result:^(BOOL success, id responseData) {
         [self dismissProgress];
+        DLog(@"%@",responseData);
         // 请求成功
         if (success) {
             if (_page==1) {
@@ -72,14 +71,18 @@
                 [infoTable reloadData];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:dict];
                     [_dataSource addObject:item];
                     [infoTable reloadData];
                 }
+            }else{
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
+        }else{
+            [ZJUtil showBottomToastWithMsg:@"请求失败"];
         }
         [infoTable.mj_header endRefreshing];
         [infoTable.mj_footer endRefreshing];
@@ -187,19 +190,19 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
-    NSString * action1=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
+    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=1&wd=%@&videoId=%@",searchBar.text,BtnType];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                
                 [_dataSource removeAllObjects];
-//                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
-//                for (int i=0; i<itemarray.count; i++) {
-//                    ZJDebtPersonMangerHomeItem * item=[ZJDebtPersonMangerHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
-//                    [_dataSource addObject:item];
-//                }
+                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                for (int i=0; i<itemarray.count; i++) {
+                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[itemarray objectAtIndex:i]];
+                    [_dataSource addObject:item];
+                }
                 [infoTable reloadData];
             }else{
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];

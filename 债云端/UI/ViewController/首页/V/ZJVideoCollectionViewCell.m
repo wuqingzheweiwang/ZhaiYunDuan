@@ -22,6 +22,8 @@
     headerImageView.left = 0;
     headerImageView.width = (ZJAPPWidth - TRUE_1(15)*3)/2;
     headerImageView.height = TRUE_1(100);
+    headerImageView.contentMode = UIViewContentModeScaleAspectFill;
+    headerImageView.clipsToBounds = YES;
     [headerImageView sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
     
     titleTextLabel.top = headerImageView.bottom+TRUE_1(5);

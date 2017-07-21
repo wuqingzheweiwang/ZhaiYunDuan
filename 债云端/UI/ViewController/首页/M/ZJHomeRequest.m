@@ -174,4 +174,18 @@
                                        resultWithBlock:result];
 }
 
+/*
+ *视频搜索
+ */
++(void)zjGetSearchVideoRequestWithActions:(NSString *)action result:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
+
+
 @end
