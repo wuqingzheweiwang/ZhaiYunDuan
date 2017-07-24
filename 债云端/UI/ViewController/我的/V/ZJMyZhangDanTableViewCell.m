@@ -47,7 +47,7 @@
     _detialTextLabel.width = TRUE_1(200);
     _detialTextLabel.height = _textLabelH.height;
     _detialTextLabel.font = ZJ_TRUE_FONT(24/2);
-    
+
     _speratyView.top = _detialTextLabel.bottom+TRUE_1(5);
     _speratyView.left = 0;
     _speratyView.width = ZJAPPWidth;
