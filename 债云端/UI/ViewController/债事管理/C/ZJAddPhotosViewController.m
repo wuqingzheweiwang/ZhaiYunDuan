@@ -180,7 +180,7 @@
 //添加照片
 -(void)selectPicForShineButtonAction
 {
-    UIActionSheet * act =[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"选择相册",@"选择相机", nil];
+    UIActionSheet * act =[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择",@"相机", nil];
     
     [act showInView:self.view];
     
@@ -452,7 +452,7 @@
                     [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
                 }
             }else{
-                [ZJUtil showBottomToastWithMsg:responseData];
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
             }
         }];
     }
