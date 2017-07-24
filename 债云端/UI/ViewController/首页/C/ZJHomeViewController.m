@@ -350,6 +350,7 @@ static NSString *identifierId=@"zz";
     }
     return _sdCyScroll;
 }
+
 #pragma mark  cycleScrollView代理
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
@@ -366,6 +367,7 @@ static NSString *identifierId=@"zz";
 /** 图片滚动回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index
 {
+    
 }
 
 -(NSMutableArray *)collectionViewdataSource

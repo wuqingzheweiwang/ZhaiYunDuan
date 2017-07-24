@@ -40,10 +40,14 @@
     [self requestBussinesSchoolListInfo];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNav) name:@"show" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideenNav) name:@"hideen" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 
 }
 
-
+-(void)applicationBecomeActive
+{
+    self.navigationController.navigationBar.alpha = 0;
+}
 
 -(void)showNav
 {
@@ -306,8 +310,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ZJBusinessSchoolModel * moder=[_dataSource objectAtIndex:indexPath.row];
-    self.player.videoUrlStr = moder.url;
+//    ZJBusinessSchoolModel * moder=[_dataSource objectAtIndex:indexPath.row];
+//    self.player.videoUrlStr = moder.url;
+    self.player.videoUrlStr = @"http://baobab.wdjcdn.com/1454467934808B(9).mp4";
+
 
 //@"http://baobab.wdjcdn.com/1454467934808B(9).mp4"
 }
