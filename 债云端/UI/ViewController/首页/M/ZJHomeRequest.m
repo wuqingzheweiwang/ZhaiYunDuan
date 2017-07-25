@@ -15,7 +15,7 @@
  */
 +(void)zjGetHomeRequestWithParams:(NSDictionary *)params result:(result)result
 {
-    [[ZJDataRequest shareInstance]getDataWithURLString:@"resources/app/ep.slider.json/"
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"/api/news/getFirstNews"
                                          andParameters:params
                                                timeOut:20
                                          requestSecret:YES
