@@ -23,19 +23,24 @@
 @end
 
 @implementation ZJBankCardViewController
+{
+    NSInteger  _page;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setNavcation];
     
+    _page = 1;
+    [self setNavcation];
+    [self setBottomAddUI];
+    [self setMyBankCardViewUI];
+    [self requestMyBankCardListInfo];
 }
 
 -(void)setNavcation
 {
     self.navigationItem.hidesBackButton = YES;
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"我的银行卡"];
-    [self setBottomAddUI];
 }
 
 -(void)setBottomAddUI
@@ -65,6 +70,77 @@
 
 }
 
+-(void)setMyBankCardViewUI
+{
+    //刷新
+    __weak ZJBankCardViewController *weakSelf = self;
+    self.DebtTable.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf reloadFirstData];
+    }];
+    
+    //加载
+    self.DebtTable.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+}
+
+-(void)reloadFirstData
+{
+    //@weakify(self) 防止循环引用
+    //@strongify(self) 防止指针消失
+    _page=1;
+    [self requestMyBankCardListInfo];
+}
+-(void)loadMoreData
+{
+    _page+=1;
+    [self requestMyBankCardListInfo];
+}
+
+// 我的银行卡网络请求
+- (void)requestMyBankCardListInfo
+{
+    NSString * action=[NSString stringWithFormat:@"api/my/tuijianhuiyuan?ps=10&pn=%ld",(long)_page];
+    
+    [ZJMyPageRequest GETMyMemberListRequestWithActions:action result:^(BOOL success, id responseData) {
+        
+        [self performSelectorOnMainThread:@selector(showProgress) withObject:self waitUntilDone:YES];
+        
+        if (success) {
+            
+            [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
+            
+            if (_page==1) {
+                
+                [self.tableViewdateSource removeAllObjects];
+                
+            }
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                
+                DLog(@"%@",responseData);
+                
+                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                for (int i=0; i<itemarray.count; i++) {
+                    ZJMyBankCardHomeItem * item=[ZJMyBankCardHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
+                    
+                    [self.tableViewdateSource addObject:item];
+                }
+                [self.DebtTable reloadData];
+                
+            }else{
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+            }
+            
+        }else{
+            [ZJUtil showBottomToastWithMsg:@"请求失败"];
+        }
+        [self.DebtTable.mj_header endRefreshing];
+        [self.DebtTable.mj_footer endRefreshing];
+        
+    }];
+    
+}
 
 //  跳转至添加银行卡页面
 -(void)addBankCard
@@ -77,13 +153,12 @@
 -(NSMutableArray *)tableViewdateSource
 {
     if (_tableViewdateSource == nil) {
-        _tableViewdateSource = [NSMutableArray arrayWithObjects:@[
-            @[@"merchantsbank",@"招商银行",@"储蓄卡",@"**** **** **** 0506"],
-            @[@"merchantsbank",@"招商银行",@"储蓄卡",@"**** **** **** 0506"],
-            @[@"merchantsbank",@"招商银行",@"储蓄卡",@"**** **** **** 0506"]], nil];
+        _tableViewdateSource = [NSMutableArray array];
+        
     }
     return _tableViewdateSource;
 }
+
 
 
 #pragma mark TableViewDelegate
@@ -105,17 +180,14 @@
         bankCardCell = [[[NSBundle mainBundle]loadNibNamed:@"ZJBankCardTableViewCell" owner:self options:nil]firstObject];
     }
     bankCardCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    bankCardCell.imageV.image = [UIImage imageNamed:self.tableViewdateSource[indexPath.section][indexPath.row][0]];
-    bankCardCell.bankNameL.text = self.tableViewdateSource[indexPath.section][indexPath.row][1];
-    bankCardCell.bankCardType.text = self.tableViewdateSource[indexPath.section][indexPath.row][2];
-    bankCardCell.cardNumber.text = self.tableViewdateSource[indexPath.section][indexPath.row][3];
+    [bankCardCell setitem:[self.tableViewdateSource objectAtIndex:indexPath.row]];
     return bankCardCell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return TRUE_1(240/2);
+    return [ZJBankCardTableViewCell getCellHeight];
 }
 
 @end

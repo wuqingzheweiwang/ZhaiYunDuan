@@ -17,9 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *accountBlance;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (nonatomic , strong) NSMutableArray *tableViewdataSource;
-
-
 @property (nonatomic,strong) UITableView *tableView;
+
 @end
 
 @implementation ZJMyBillViewController
@@ -34,8 +33,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [NSThread detachNewThreadSelector:@selector(postMyBillDataRequest) toTarget:self withObject:nil];
-
+    [self postMyBillDataRequest];
 }
 -(void)setNavcaition
 {
@@ -73,7 +71,6 @@
     _moneyLabel.height = TRUE_1(30);
     _moneyLabel.font = ZJ_TRUE_FONT(36);
     
-    
 }
 
 
@@ -81,13 +78,11 @@
 -(void)postMyBillDataRequest
 {
     NSMutableDictionary * dic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"",nil];
-    [self performSelectorOnMainThread:@selector(showProgress) withObject:self waitUntilDone:YES];
-    
+    [self showProgress];
     // 网络请求
     [ZJMyPageRequest zjPOSTMyBillRequestWithParams:dic result:^(BOOL success, id responseData) {
         
-        [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
-        
+    [self dismissProgress];
         // 成功
         if (success) {
             
@@ -95,7 +90,6 @@
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
                 
 //                self.accountBlance = [[responseData objectForKey:@"data"]objectForKey:@"balance"];
                 
@@ -113,15 +107,6 @@
     }];
        
 }
-
-
-// 刷新UI
--(void)reloadUI
-{
-    
-    
-}
-
 
 -(void)goback
 {
