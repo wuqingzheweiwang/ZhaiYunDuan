@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJMyPageItem.h"
 
 @interface ZJBankCardTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *backgroundV;
@@ -18,4 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *cardNumber;
 
+-(void)setitem:(ZJMyBankCardHomeItem *)item;
++ (CGFloat)getCellHeight;
 @end

@@ -175,7 +175,6 @@
     label.font = ZJ_TRUE_FONT(15);
     label.textColor = ZJColor_333333;
     return label;
-    
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

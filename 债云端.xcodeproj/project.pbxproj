@@ -975,7 +975,6 @@
 				1802345F1EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.h */,
 				180234601EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.m */,
 				180234611EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.xib */,
-				527B7AFD1EBEF7640099763E /* 我的银行卡 */,
 			);
 			name = "我的账单";
 			sourceTree = "<group>";
@@ -2164,6 +2163,7 @@
 				520C472F1EFE249B00ADA007 /* 推荐行长 */,
 				52F6F2BD1EFD1B6D00623DA6 /* 我的会员 */,
 				1802346A1EBC2E8000DFA3F8 /* 我的账单 */,
+				523716391F28B7E400584F76 /* 我的钱包 */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -2214,6 +2214,14 @@
 				522C55C51F1C7B8B001D81E4 /* ZGLVideoPlyer.m */,
 			);
 			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		523716391F28B7E400584F76 /* 我的钱包 */ = {
+			isa = PBXGroup;
+			children = (
+				527B7AFD1EBEF7640099763E /* 我的银行卡 */,
+			);
+			name = "我的钱包";
 			sourceTree = "<group>";
 		};
 		524E5F951ECEAC5F00356B0B /* 更换手机号 */ = {

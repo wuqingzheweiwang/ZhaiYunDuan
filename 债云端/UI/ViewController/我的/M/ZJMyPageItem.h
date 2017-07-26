@@ -49,6 +49,16 @@
 
 @end
 
+/**
+ *  我的银行卡主界面cell的model
+ */
+@interface ZJMyBankCardHomeItem : NSObject
+@property (nonatomic, strong) NSString *amount;
+@property (nonatomic, strong) NSString *phoneNumber;
+
++ (ZJMyBankCardHomeItem *)itemForDictionary:(NSDictionary *)dic;
+
+@end
 
 
 

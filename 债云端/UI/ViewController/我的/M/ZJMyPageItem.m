@@ -94,6 +94,24 @@
 
 @end
 
+@implementation ZJMyBankCardHomeItem
+
++ (ZJMyBankCardHomeItem *)itemForDictionary:(NSDictionary *)dic{
+    
+    
+    ZJMyBankCardHomeItem *item = [[ZJMyBankCardHomeItem alloc] init];
+    if ([dic objectForKey:@"name"]) {
+        item.amount=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
+    }
+    if ([dic objectForKey:@"phonenumber"]) {
+        item.phoneNumber=[NSString stringWithFormat:@"%@",[dic objectForKey:@"phonenumber"]];
+    }
+    
+    return item;
+}
+
+
+@end
 
 
 

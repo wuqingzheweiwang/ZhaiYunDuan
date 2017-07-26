@@ -91,9 +91,7 @@
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                 
-                
-                
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
+            [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
                 
                 //                self.accountBlance = [[responseData objectForKey:@"data"]objectForKey:@"balance"];
                 
