@@ -104,6 +104,19 @@
     return userRole;
 }
 
+//存储用户手机号
++ (void)saveUserInfoWithUserPhone:(NSString *)userRole
+{
+    [[NSUserDefaults standardUserDefaults] setObject:userRole forKey:@"userphone"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+//获得用户手机号
++ (NSString *)getUserRoleForUserPhone
+{
+    NSString * userRole = [[NSUserDefaults standardUserDefaults] objectForKey:@"userphone"];
+    return userRole;
+}
+
 //获得用户ID
 + (NSString *)getUserIDForUserInfo
 {

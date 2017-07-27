@@ -125,7 +125,8 @@ static id _publishContent;
     [ZJHomeRequest zjGetUserRoleRequestresult:^(BOOL success, id responseData) {
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"data"]]];
+                [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"userType"]]];
+                [ZJUserInfo saveUserInfoWithUserPhone:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"phoneNumber"]]];
             }
         }
     }];

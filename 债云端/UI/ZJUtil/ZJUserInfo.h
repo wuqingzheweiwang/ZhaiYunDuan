@@ -36,7 +36,10 @@
 + (void)saveUserInfoWithUserRole:(NSString *)userRole;
 //获得用户身份
 + (NSString *)getUserRoleForUserRole;
-
+//存储用户手机号
++ (void)saveUserInfoWithUserPhone:(NSString *)userRole;
+//获得用户手机号
++ (NSString *)getUserRoleForUserPhone;
 /**
  *  改变登录状态
  */
