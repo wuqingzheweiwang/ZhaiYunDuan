@@ -83,7 +83,7 @@
  */
 +(void)zjGetUserRoleRequestresult:(result)result
 {
-    [[ZJDataRequest shareInstance]getDataWithURLString:@"/api/usertype"
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"/api/provide"
                                          andParameters:nil
                                                timeOut:20
                                          requestSecret:YES
