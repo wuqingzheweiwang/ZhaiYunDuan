@@ -90,14 +90,8 @@
             // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
+                // self.accountBlance = [[responseData objectForKey:@"data"]objectForKey:@"balance"];
                 
-                
-                
-                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
-                
-                //                self.accountBlance = [[responseData objectForKey:@"data"]objectForKey:@"balance"];
-                
-                // 后台设定失败
             }else if ([[responseData objectForKey:@"state"]isEqualToString:@"warn"]) {
                 
                 [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
@@ -105,21 +99,12 @@
             
         }else{
             
-            [ZJUtil showBottomToastWithMsg:@"请求失败"];
+            [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
         }
         
     }];
     
 }
-
-
-// 刷新UI
--(void)reloadUI
-{
-    
-    
-}
-
 
 
 -(NSMutableArray *)tableViewdataSource

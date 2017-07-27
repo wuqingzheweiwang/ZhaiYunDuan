@@ -133,7 +133,7 @@
             }
             
         }else{
-            [ZJUtil showBottomToastWithMsg:@"请求失败"];
+            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
         }
         [self.DebtTable.mj_header endRefreshing];
         [self.DebtTable.mj_footer endRefreshing];
