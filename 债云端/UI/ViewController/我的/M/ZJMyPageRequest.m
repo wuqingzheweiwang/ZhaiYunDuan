@@ -165,5 +165,32 @@
     
 }
 
+/*
+ * 我的银行卡列表
+ */
++(void)GETMyBankCardListRequestWithActions:(NSString *)action result:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
+
+/*
+ * 我的佣金
+ */
++ (void)GETMyCommissRequestWithParams:(NSMutableDictionary *)params result:(result)result
+{
+    
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"api/my/my"
+                                         andParameters:params
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
+
 
 @end

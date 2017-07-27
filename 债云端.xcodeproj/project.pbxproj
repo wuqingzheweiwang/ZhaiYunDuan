@@ -2219,7 +2219,7 @@
 		523716391F28B7E400584F76 /* 我的钱包 */ = {
 			isa = PBXGroup;
 			children = (
-				527B7AFD1EBEF7640099763E /* 我的银行卡 */,
+				527B7AFD1EBEF7640099763E /* 银行卡 */,
 			);
 			name = "我的钱包";
 			sourceTree = "<group>";
@@ -2244,14 +2244,14 @@
 			name = "找回密码";
 			sourceTree = "<group>";
 		};
-		527B7AFD1EBEF7640099763E /* 我的银行卡 */ = {
+		527B7AFD1EBEF7640099763E /* 银行卡 */ = {
 			isa = PBXGroup;
 			children = (
 				527B7AFF1EBEF79B0099763E /* ZJBankCardTableViewCell.h */,
 				527B7B001EBEF79B0099763E /* ZJBankCardTableViewCell.m */,
 				527B7B011EBEF79B0099763E /* ZJBankCardTableViewCell.xib */,
 			);
-			name = "我的银行卡";
+			name = "银行卡";
 			sourceTree = "<group>";
 		};
 		527B7B041EBF1DD40099763E /* 添加银行卡 */ = {

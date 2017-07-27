@@ -103,7 +103,7 @@
 {
     NSString * action=[NSString stringWithFormat:@"api/my/tuijianhuiyuan?ps=10&pn=%ld",(long)_page];
     
-    [ZJMyPageRequest GETMyMemberListRequestWithActions:action result:^(BOOL success, id responseData) {
+    [ZJMyPageRequest GETMyBankCardListRequestWithActions:action result:^(BOOL success, id responseData) {
         
         [self performSelectorOnMainThread:@selector(showProgress) withObject:self waitUntilDone:YES];
         

@@ -54,4 +54,12 @@ typedef void(^result)(BOOL success, id responseData);
  * 提现POST
  */
 + (void)zjGetMoneyPOSTWithParams:(NSMutableDictionary *)params result:(result)result;
+/*
+ * 我的银行卡列表
+ */
++(void)GETMyBankCardListRequestWithActions:(NSString *)action result:(result)result;
+/*
+ * 我的佣金
+ */
++ (void)GETMyCommissRequestWithParams:(NSMutableDictionary *)params result:(result)result;
 @end

@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self setNavcaition];
     [self setMyCommissionUI];
     
@@ -79,7 +79,7 @@
     [self performSelectorOnMainThread:@selector(showProgress) withObject:self waitUntilDone:YES];
     
     // 网络请求
-    [ZJMyPageRequest zjPOSTMyBillRequestWithParams:dic result:^(BOOL success, id responseData) {
+    [ZJMyPageRequest GETMyCommissRequestWithParams:dic result:^(BOOL success, id responseData) {
         
         [self performSelectorOnMainThread:@selector(dismissProgress) withObject:self waitUntilDone:YES];
         
@@ -91,7 +91,9 @@
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                 
-            [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
+                
+                
+                [self performSelectorOnMainThread:@selector(reloadUI) withObject:nil waitUntilDone:YES];
                 
                 //                self.accountBlance = [[responseData objectForKey:@"data"]objectForKey:@"balance"];
                 
@@ -210,7 +212,7 @@
             
         }else if (indexPath.row == 1){
             
-
+            
         }
         else if (indexPath.row == 2){
             
@@ -223,7 +225,7 @@
 }
 
 
-    
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
