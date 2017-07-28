@@ -25,7 +25,8 @@
  ***/
 + (void)setLeftButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgLeft;
 + (void)setLeftButtonOnTargetNav:(id)controller action:(SEL)action Withtitle:(NSString *)title withimage:(UIImage *)imgLeft;
-
+//左 搜索
++ (UIButton *)setLeftSearchButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgLeft;
 /**
  * nav右键
  ***/

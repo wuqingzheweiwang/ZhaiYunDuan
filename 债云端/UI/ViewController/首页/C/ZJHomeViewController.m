@@ -358,7 +358,7 @@ static NSString *identifierId=@"zz";
     if (moder.openUrl.length>0) {
         ZJNewsDetailsViewController * newsVC=[[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
         newsVC.newsurl=moder.openUrl;
-        newsVC.newstitle=@"新闻详情";
+        newsVC.newstitle=moder.name;
         newsVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:newsVC animated:YES];
     }

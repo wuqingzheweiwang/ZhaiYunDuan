@@ -26,6 +26,7 @@
 
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *openUrl;
+@property (nonatomic, strong) NSString *name;
 + (ZJHomeScrollerModel *)itemForDictionary:(NSDictionary *)dic;
 @end
 

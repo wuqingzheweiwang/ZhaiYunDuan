@@ -51,6 +51,7 @@
     self.Lurushijian1.font=ZJ_TRUE_FONT(10);
     self.Lurushijian1.left=_ImageFlagLabel.left;
     self.Lurushijian1.height=TRUE_1(10);
+    self.Lurushijian1.width=ZJAPPWidth-TRUE_1(45/2)-TRUE_1(50)-TRUE_1(25/2);
 }
 
 + (CGFloat)getCellHeight

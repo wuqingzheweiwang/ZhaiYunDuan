@@ -24,6 +24,7 @@
     NSInteger  _page;
     BOOL SearchYES;
     UIView * seachview;
+    UIButton * leftBackButton;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -46,6 +47,11 @@
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"userType"]]];
                 [ZJUserInfo saveUserInfoWithUserPhone:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"phoneNumber"]]];
+                if ([ZJUtil getUserIsDebtBank]) {
+                    leftBackButton.hidden=NO;
+                }else{
+                    leftBackButton.hidden=YES;
+                }
             }
         }
     }];
@@ -65,7 +71,8 @@
         [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(backToVc) With:[UIImage imageNamed:@"back"]];
     }
     [ZJNavigationPublic setRightButtonOnTargetNav:self action:@selector(AddDebtManagerAction) image:[UIImage imageNamed:@"add-debt-person"] HighImage:[UIImage imageNamed:@"add-debt-person"]];
-    [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
+    leftBackButton = [ZJNavigationPublic setLeftSearchButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
+    leftBackButton.hidden=YES;
     [self createUI];
     [self createSerach];
     [self createNodataView];

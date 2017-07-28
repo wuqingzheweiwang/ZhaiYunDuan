@@ -48,6 +48,9 @@
     if ([dic objectForKey:@"openUrl"]) {
         item.openUrl=[NSString stringWithFormat:@"%@",[dic objectForKey:@"openUrl"]];
     }
+    if ([dic objectForKey:@"name"]) {
+        item.name=[NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
+    }
     return item;
 }
 

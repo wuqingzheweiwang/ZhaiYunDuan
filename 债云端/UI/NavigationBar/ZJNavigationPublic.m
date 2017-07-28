@@ -67,7 +67,7 @@
 
 
 /***
- nav自定义左键   搜索、
+ nav自定义左键  、
  ***/
 + (void)setLeftButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgLeft{
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -90,6 +90,17 @@
     [backBtn sizeToFit];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [[controller navigationItem] setLeftBarButtonItem:backItem];
+}
+//左 搜索
++ (UIButton *)setLeftSearchButtonOnTargetNav:(id)controller action:(SEL)action With:(UIImage *)imgLeft{
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn addTarget:controller action:action forControlEvents:UIControlEventTouchUpInside];
+    [backBtn.titleLabel setFont:ZJ_TRUE_FONT_1(17)];
+    [backBtn setImage:imgLeft forState:UIControlStateNormal];
+    [backBtn sizeToFit];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [[controller navigationItem] setLeftBarButtonItem:backItem];
+    return  backBtn;
 }
 /***
  nav右键
