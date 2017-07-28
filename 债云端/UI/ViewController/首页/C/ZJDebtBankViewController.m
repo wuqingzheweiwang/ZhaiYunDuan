@@ -286,7 +286,6 @@
         // 成功
         if (success) {
             
-            // 后台设定成功
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 
                
