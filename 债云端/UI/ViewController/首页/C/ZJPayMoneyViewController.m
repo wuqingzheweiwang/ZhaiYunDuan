@@ -237,7 +237,7 @@
                     [self AlipayAction];
                     
                 }else{
-                    [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
+                            [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
                 }
             }else{
                 [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"系统异常"]];
@@ -251,8 +251,8 @@
         [ZJHomeRequest zjPostWeiXinDebtRequestWithParams:dict result:^(BOOL success, id responseData) {
             [self dismissProgress];
             if (success) {
-                
-                DLog(@"%@",responseData);
+                NSLog(@"%@",self.orderid);
+                NSLog(@"%@",responseData);
                 
                 if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                     NSDictionary * dataDic=[[responseData objectForKey:@"data"] objectForKey:@"callWx"];
