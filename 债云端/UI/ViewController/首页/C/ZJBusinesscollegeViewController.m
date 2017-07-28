@@ -185,7 +185,6 @@
     videoPlayerVC.detialTitle = item.detialtitle;
     videoPlayerVC.updateTime = item.updateTime;
     videoPlayerVC.movieUrl = item.url;
-//    videoPlayerVC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
 
     [self.navigationController pushViewController:videoPlayerVC animated:YES];
 }

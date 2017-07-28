@@ -182,6 +182,27 @@
     return @"   选择支付方式:";
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==0) {
+        _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
+                                                                 @[@"ALI-Pay",@"支付宝支付",@"flagimagred",],
+                                                                 @[@"WinxinPay",@"微信支付",@"flagimaggray",]]
+                               ,nil];
+        payType=@"payTypeZhifubao";
+        [_tableView reloadData];
+        
+    }else if (indexPath.row == 1){
+        
+        _tableViewdataSource =[NSMutableArray arrayWithObjects:@[
+                                                                 @[@"ALI-Pay",@"支付宝支付",@"flagimaggray",],
+                                                                 @[@"WinxinPay",@"微信支付",@"flagimagred",]]
+                               ,nil];
+        payType=@"payTypeWeixin";
+        [_tableView reloadData];
+
+    }
+}
 //cell上btn的点击事件
 -(void)changPayWay:(UIButton *)sender
 {

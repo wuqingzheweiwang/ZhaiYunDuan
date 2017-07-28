@@ -236,8 +236,6 @@
 -(void)reloadFirstData
 {
     _page=1;
-    //@weakify(self) 防止循环引用
-    //@strongify(self) 防止指针消失
     [self requestBussinesSchoolListInfo];
     
 }
@@ -310,12 +308,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    ZJBusinessSchoolModel * moder=[_dataSource objectAtIndex:indexPath.row];
-//    self.player.videoUrlStr = moder.url;
-    self.player.videoUrlStr = @"http://baobab.wdjcdn.com/1454467934808B(9).mp4";
-
-
-//@"http://baobab.wdjcdn.com/1454467934808B(9).mp4"
+    ZJBusinessSchoolModel * moder=[_dataSource objectAtIndex:indexPath.row];
+    self.player.videoUrlStr = moder.url;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
