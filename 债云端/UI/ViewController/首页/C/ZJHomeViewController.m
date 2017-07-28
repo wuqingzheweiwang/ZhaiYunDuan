@@ -491,6 +491,7 @@ static NSString *identifierId=@"zz";
                 [self presentViewController:alertcon animated:YES completion:nil];
                 
             }else{
+                
             ZJDebtBankViewController *addDebtVC = [[ZJDebtBankViewController alloc]init];
             [addDebtVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:addDebtVC animated:YES];

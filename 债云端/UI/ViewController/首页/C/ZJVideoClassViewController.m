@@ -153,7 +153,6 @@ static NSString *identifierId=@"zz";
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     ZJVideoPlayViewController * videoPlayVC=[[ZJVideoPlayViewController alloc]initWithNibName:@"ZJVideoPlayViewController" bundle:nil];
-//    videoPlayVC.movieUrl = @"http://baobab.wdjcdn.com/1455782903700jy.mp4";
 
     ZJVideoCollectionModel * moder=[collectionDataSource objectAtIndex:indexPath.item];
     videoPlayVC.movieUrl=moder.url;
