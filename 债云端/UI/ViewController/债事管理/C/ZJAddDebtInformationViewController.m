@@ -360,6 +360,9 @@
     RefereeTF.placeholder=@"如未填写编码，默认隶属于总行";
     RefereeTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, RefereeTF.frame.size.height)];
     RefereeTF.leftViewMode = UITextFieldViewModeAlways;
+    if (self.Btntype==1) {
+        RefereeTF.text=[ZJUserInfo getUserRoleForUserPhone];
+    }
     
     NextBtn.top=Tenview.bottom+65;
     NextBtn.left=45;
