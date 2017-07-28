@@ -15,7 +15,7 @@
  */
 +(void)zjGetHomeRequestWithParams:(NSDictionary *)params result:(result)result
 {
-    [[ZJDataRequest shareInstance]getDataWithURLString:@"/api/news/getFirstNews"
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"api/news/getFirstNews"
                                          andParameters:params
                                                timeOut:20
                                          requestSecret:YES
@@ -70,7 +70,7 @@
  */
 +(void)zjPostAlipayDebtRequestWithParams:(NSDictionary *)params result:(result)result
 {
-    [[ZJDataRequest shareInstance]postDataWithURLString:@"/api/alipay/pay/createpay"
+    [[ZJDataRequest shareInstance]postDataWithURLString:@"api/alipay/pay/createpay"
                                          andParameters:params
                                              andIsJson:NO
                                                timeOut:20
@@ -83,7 +83,7 @@
  */
 +(void)zjGetUserRoleRequestresult:(result)result
 {
-    [[ZJDataRequest shareInstance]getDataWithURLString:@"/api/provide"
+    [[ZJDataRequest shareInstance]getDataWithURLString:@"api/provide"
                                          andParameters:nil
                                                timeOut:20
                                          requestSecret:YES

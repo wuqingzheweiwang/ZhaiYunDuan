@@ -38,7 +38,7 @@
 // 新闻详情页网络请求
 -(void)loadNewsRequestData
 {
-    NSString * action=[NSString stringWithFormat:@"/api/news/getNews?ps=10&pn=%ld",(long)_page];
+    NSString * action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page];
     // 菊花
     [self showProgress];
      [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {

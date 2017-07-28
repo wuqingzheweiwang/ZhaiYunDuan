@@ -610,7 +610,7 @@
 #pragma mark--请求资产信息
 - (void)requestCapitalInfo
 {
-    NSString * action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",self.companyId,_page2];
+    NSString * action=[NSString stringWithFormat:@"api/asset?debtId=%@&pn=%ld&ps=8",self.companyId,(long)_page2];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
@@ -642,7 +642,7 @@
 #pragma mark--请求需求信息
 - (void)requestDemandInfo
 {
-    NSString * action=[NSString stringWithFormat:@"api/demand?debtid=%@&pn=%ld&ps=8",self.companyId,_page3];
+    NSString * action=[NSString stringWithFormat:@"api/demand?debtid=%@&pn=%ld&ps=8",self.companyId,(long)_page3];
     [self showProgress];
     [ZJDebtPersonRequest GetDebtPersonCapitalInfomationRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
