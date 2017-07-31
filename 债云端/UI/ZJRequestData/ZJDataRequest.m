@@ -186,7 +186,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         _finishBlock(NO,@"网络请求数据错误");
     }];
-    
+     
 }
 
 
@@ -195,8 +195,8 @@
 - (NSString *)requestHttpURL:(NSString *)action
 {
 //    return [NSString stringWithFormat:@"http://test.api.zhongjinzhaishi.com/%@",action];
-//    return [NSString stringWithFormat:@"http://192.168.2.14:8056/%@",action];
-      return [NSString stringWithFormat:@"http://api.zhongjinzhaishi.com/%@",action];
+    return [NSString stringWithFormat:@"http://192.168.10.55:8056/%@",action];
+//      return [NSString stringWithFormat:@"http://api.zhongjinzhaishi.com/%@",action];
 }
 
 

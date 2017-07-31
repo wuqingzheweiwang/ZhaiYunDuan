@@ -89,11 +89,9 @@
             if (_page==1) {
                 
                 [self.tabledataSource removeAllObjects];
-                
+                [self.tableView reloadData];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                
-                DLog(@"%@",responseData);
                 
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {

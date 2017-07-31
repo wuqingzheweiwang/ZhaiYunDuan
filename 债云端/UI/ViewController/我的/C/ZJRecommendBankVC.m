@@ -93,7 +93,7 @@
             if (_page==1) {
                 
                 [self.tabledataSource removeAllObjects];
-                
+                [self.tableView reloadData];
             }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 

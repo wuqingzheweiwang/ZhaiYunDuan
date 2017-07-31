@@ -87,8 +87,6 @@ static id _publishContent;
     // 判断是否为行长
     [self getUserRoleWithToken];
     // 判断登录状态
-    _QRcodeView.hidden = YES;
-
     if ([ZJUtil getUserLogin]) {
         
          [self getMyPageData];
@@ -102,7 +100,6 @@ static id _publishContent;
         _vipImageView.hidden = YES;
         _isVIPImageView.hidden = YES;
         _isVIPLabel.hidden = YES;
-        _QRcodeView.hidden = YES;
         
         [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_1.enabled = YES;
@@ -110,10 +107,14 @@ static id _publishContent;
         zjMyMembercell.recommandLabel_2.enabled = YES;
         [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_3.enabled = YES;
-        // 推荐行长数
         [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_4.enabled = YES;
-
+        
+        zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
+        zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
+        zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
+        zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
+        
         [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请登录"]];
 
     }
@@ -238,7 +239,7 @@ static id _publishContent;
     _QRcodeView.centerX = _pushIcon.centerX;
     _QRcodeView.height = TRUE_1(15);
     _QRcodeView.width = _QRcodeView.height;
-    
+    _QRcodeView.hidden = YES;
     // 二维码按钮
     _onQRcodeBut.top = _pushIcon.bottom;
     _onQRcodeBut.centerX = _pushIcon.centerX;
@@ -401,24 +402,6 @@ static id _publishContent;
                     _isVIPLabel.hidden = NO;
                     _QRcodeView.hidden = YES;
                     
-                    
-                    // 推荐备案数
-                    [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
-
-//                    [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
-                    // 推荐行长
-                    [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
-                    
-//                    [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
-                    // 解债数
-                    [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
-                    
-//                    [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
-                    
-                    // 推荐行长数
-                    [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
-                    
-//                    [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
                     [self.tableView reloadData];
                 }else{
                     
@@ -512,8 +495,11 @@ static id _publishContent;
             zjMyMembercell.recommandLabel_3.enabled = YES;
             [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
             zjMyMembercell.recommandLabel_4.enabled = YES;
-
-
+            
+            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
+            zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
+            zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
+            zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
             //为了在债事人请求那里用
             [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtPersonRequest"];
             [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtMangerRequest"];
@@ -675,37 +661,39 @@ static id _publishContent;
         zjMyMembercell.selectionStyle = UITableViewCellSelectionStyleNone;
         zjMyMembercell.imageHeader.image = [UIImage imageNamed:self.tableViewdataSource[indexPath.section][indexPath.row][0]];
         
-        if ([ZJUtil getUserLogin]) {
-            // 推荐备案数
-            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
-//            [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
-            // 推荐行长
-            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
-
-//            [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
-            // 解债数
-            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
-            
-//            [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
-            
-            // 推荐会员数
-            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
-            
-//            [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
-            
-        }else{
-            
-            [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%d",0]];
-            zjMyMembercell.recommandLabel_1.enabled = YES;
-            [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%d",0]];
-            zjMyMembercell.recommandLabel_2.enabled = YES;
-            [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%d",0]];
-            zjMyMembercell.recommandLabel_3.enabled = YES;
-            [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
-            zjMyMembercell.recommandLabel_4.enabled = YES;
-        }
+        // 推荐备案数
+        [zjMyMembercell.recommandLabel_1 setText:[NSString stringWithFormat:@"%@",self.recommand_1]];
+        // 推荐行长
+        [zjMyMembercell.recommandLabel_2 setText:[NSString stringWithFormat:@"%@",self.recommand_2]];
+        // 解债数
+        [zjMyMembercell.recommandLabel_3 setText:[NSString stringWithFormat:@"%@",self.recommand_3]];
+        // 推荐会员数
+        [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
         
-    
+        [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
+        [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
+        [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
+        [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        if ([ZJUtil getUserIsDebtBank]) {
+            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=YES;
+            zjMyMembercell.recommandBankBut.userInteractionEnabled=YES;
+            zjMyMembercell.recomMemberBut.userInteractionEnabled=YES;
+            zjMyMembercell.dismissDebtBut.userInteractionEnabled=YES;
+        }else{
+            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
+            zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
+            zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
+            if ([ZJUtil getUserLogin]) {
+                zjMyMembercell.dismissDebtBut.userInteractionEnabled=YES;
+            }else{
+                zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
+            }
+            
+        }
+       
+        
      return zjMyMembercell;
         
     }else if (indexPath.section == 1){

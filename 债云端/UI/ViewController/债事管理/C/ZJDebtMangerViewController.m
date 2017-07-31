@@ -93,9 +93,9 @@
 - (void)requestDebtMangeListInfo
 {
     if (_Btntype==ZJDebtMangerUnsolved) {
-        action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
+        action=[NSString stringWithFormat:@"api/debtrelation/getalldebtRelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
     }else if (_Btntype==ZJDebtMangerResolved){
-        action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,1];
+        action=[NSString stringWithFormat:@"api/debtrelation/getalldebtRelation?ps=5&pn=%ld&issolution=%d",(long)_page,1];
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
