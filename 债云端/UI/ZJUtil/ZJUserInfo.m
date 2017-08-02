@@ -91,6 +91,7 @@
     NSString * usertoken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
     return usertoken;
 }
+
 //存储用户身份
 + (void)saveUserInfoWithUserRole:(NSString *)userRole
 {
@@ -103,6 +104,21 @@
     NSString * userRole = [[NSUserDefaults standardUserDefaults] objectForKey:@"isMember"];
     return userRole;
 }
+
+//存储用户角色
++ (void)saveUserInfoWithUserhangtype:(NSString *)hangtype
+{
+    [[NSUserDefaults standardUserDefaults] setObject:hangtype forKey:@"hangtype"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+//获得用户角色
++ (NSString *)getUserRoleForUserhangtype
+{
+    NSString * userRole = [[NSUserDefaults standardUserDefaults] objectForKey:@"hangtype"];
+    return userRole;
+}
+
+
 
 //存储用户手机号
 + (void)saveUserInfoWithUserPhone:(NSString *)userRole

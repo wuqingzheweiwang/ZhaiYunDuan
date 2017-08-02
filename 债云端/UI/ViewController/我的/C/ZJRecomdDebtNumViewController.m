@@ -70,7 +70,7 @@
 //请求债事列表
 - (void)requestDebtPersonMangeListInfo
 {
-    NSString * action=[NSString stringWithFormat:@"api/debtrelation/getalldebtRelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
+    NSString * action=[NSString stringWithFormat:@"api/debtrelation/getrecommenddebtRelation?ps=5&pn=%ld",(long)_page];
     [self showProgress];
     [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
         
