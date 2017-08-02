@@ -67,9 +67,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isfreshData) name:@"AddDebtPerson" object:nil];
     
-    if (_isPopVc) {
-        [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(backToVc) With:[UIImage imageNamed:@"back"]];
-    }
     [ZJNavigationPublic setRightButtonOnTargetNav:self action:@selector(AddDebtManagerAction) image:[UIImage imageNamed:@"add-debt-person"] HighImage:[UIImage imageNamed:@"add-debt-person"]];
     leftBackButton = [ZJNavigationPublic setLeftSearchButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
     leftBackButton.hidden=YES;
@@ -187,11 +184,6 @@
     [DebtMangerRersonTable reloadData];
     if (SearchYES) {
         seachview.hidden=NO;
-    }else{
-        seachview.hidden=YES;
-        _page=1;
-        [_dataSource removeAllObjects];
-        [self requestInfo];
     }
 }
 
@@ -246,12 +238,8 @@
     DebtMangerRersonTable.top=64;
     DebtMangerRersonTable.left=0;
     DebtMangerRersonTable.width=ZJAPPWidth;
-    if (_isPopVc) {
-        DebtMangerRersonTable.height=ZJAPPHeight-64;
-    }else{
-        DebtMangerRersonTable.height=ZJAPPHeight-64-49;
-    }
-    
+    DebtMangerRersonTable.height=ZJAPPHeight-64-49;
+   
     DebtMangerRersonTable.showsVerticalScrollIndicator = NO;
     DebtMangerRersonTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [DebtMangerRersonTable setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];

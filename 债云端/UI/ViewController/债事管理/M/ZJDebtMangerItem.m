@@ -49,6 +49,9 @@
     if ([dic objectForKey:@"qianshu"]) {
         item.qianshu=[NSString stringWithFormat:@"%@",[dic objectForKey:@"qianshu"]];
     }
+    if ([dic objectForKey:@"recommend"]) {
+        item.recommend=[NSString stringWithFormat:@"%@",[dic objectForKey:@"recommend"]];
+    }
     return item;
 }
 @end

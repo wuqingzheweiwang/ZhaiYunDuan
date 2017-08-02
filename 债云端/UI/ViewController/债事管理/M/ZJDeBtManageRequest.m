@@ -59,5 +59,16 @@
                                           resultSecret:YES
                                        resultWithBlock:result];
 }
-
+/*
+ *债事搜索
+ */
++(void)zjGetSearchDebtRequestWithActions:(NSString *)action result:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
 @end

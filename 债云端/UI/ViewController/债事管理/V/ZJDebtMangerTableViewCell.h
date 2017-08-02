@@ -26,11 +26,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *Zhaiquanren1;
 @property (weak, nonatomic) IBOutlet UILabel *Zhaiwuren1;
 @property (weak, nonatomic) IBOutlet UILabel *Zhutijine1;
+@property (weak, nonatomic) IBOutlet UILabel *tuijianbianma1;
 
 @property (weak, nonatomic) IBOutlet UILabel *LuruTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ZhaiquanrenTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ZhaiwurenTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *MoneyTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *TuijianbianmaTextLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *alreadPostLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alreadSolvedLabel;

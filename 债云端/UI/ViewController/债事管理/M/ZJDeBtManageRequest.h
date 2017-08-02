@@ -26,4 +26,8 @@ typedef void(^result)(BOOL success, id responseData);
  * 债事详情
  */
 +(void)GetDebtManageDetailInfoRequestWithActions:(NSString *)action result:(result)result;
+/*
+ *债事搜索
+ */
++(void)zjGetSearchDebtRequestWithActions:(NSString *)action result:(result)result;
 @end

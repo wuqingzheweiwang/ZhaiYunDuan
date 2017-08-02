@@ -9,7 +9,7 @@
 #import "ZJSearchImageTextViewController.h"
 #import "ZJHomeNewsViewCell.h"
 #import "ZJNewsDetailsViewController.h"
-@interface ZJSearchImageTextViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
+@interface ZJSearchImageTextViewController ()<UISearchBarDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @end
 

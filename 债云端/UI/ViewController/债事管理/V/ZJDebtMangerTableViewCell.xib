@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ZJDebtMangerTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DebtRersonInfoFlag" translatesAutoresizingMaskIntoConstraints="NO" id="mFC-Kd-wGs">
@@ -85,6 +85,20 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="推荐编码：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwf-ji-nVG">
+                        <rect key="frame" x="60" y="110" width="80" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OP-AG-iht">
+                        <rect key="frame" x="155" y="110" width="120" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已提交" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Go1-XU-qOG">
                         <rect key="frame" x="290" y="10" width="70" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,7 +145,7 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A0Q-wX-evA">
-                        <rect key="frame" x="0.0" y="109" width="375" height="1"/>
+                        <rect key="frame" x="0.0" y="129" width="375" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -145,6 +159,7 @@
                 <outlet property="MoneyTextLabel" destination="tU3-vU-Qzy" id="o9l-Pu-XUB"/>
                 <outlet property="PayBtn" destination="T0V-pM-OIH" id="gqN-Sx-R4A"/>
                 <outlet property="SeeDetailBtn" destination="vJO-4g-x7D" id="Xht-ix-7Fa"/>
+                <outlet property="TuijianbianmaTextLabel" destination="9OP-AG-iht" id="mFe-Nq-VMD"/>
                 <outlet property="Zhaiquanren1" destination="IIb-y2-8Zg" id="JUE-bL-OhG"/>
                 <outlet property="ZhaiquanrenTextLabel" destination="LtE-ka-fJ0" id="cZM-0H-XPj"/>
                 <outlet property="Zhaiwuren1" destination="89Q-Xt-xT1" id="QL8-OU-Gnc"/>
@@ -154,6 +169,7 @@
                 <outlet property="alreadPostLabel" destination="Go1-XU-qOG" id="1PP-P5-D28"/>
                 <outlet property="alreadSolvedLabel" destination="sga-QH-XvF" id="NyA-Vn-dFV"/>
                 <outlet property="lIneview" destination="A0Q-wX-evA" id="0w0-2Z-Uvd"/>
+                <outlet property="tuijianbianma1" destination="cwf-ji-nVG" id="Fr2-VX-ho9"/>
             </connections>
         </tableViewCell>
     </objects>

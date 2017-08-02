@@ -10,6 +10,4 @@
 
 @interface ZJDebtPersonViewController : UIViewController
 
-@property (nonatomic, assign)BOOL isPopVc;
-
 @end

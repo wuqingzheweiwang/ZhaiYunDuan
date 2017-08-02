@@ -26,6 +26,6 @@
 @property (nonatomic, strong) NSString *debtorderid;
 @property (nonatomic, strong) NSString *otherPerson;
 @property (nonatomic, strong) NSString *qianshu;
-
+@property (nonatomic, strong) NSString *recommend;
 + (ZJDebtMangerHomeItem *)itemForDictionary:(NSDictionary *)dic;
 @end

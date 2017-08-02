@@ -19,6 +19,7 @@
 #import "ZJShareAlertView.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+#import "ZJRecomdDebtNumViewController.h"
 static id _publishContent;
 
 @interface ZJMyPageViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UITextViewDelegate,UIScrollViewDelegate,ZJShareAlterViewDelegate>
@@ -985,9 +986,7 @@ static id _publishContent;
 //  推荐备案数
 -(void)touchRecoardBut
 {
-    ZJDebtMangerViewController *zjDebtVC = [[ZJDebtMangerViewController alloc]initWithNibName:@"ZJDebtMangerViewController" bundle:nil];
-    zjDebtVC.isPopVc=YES;
-    zjDebtVC.Btntype = ZJDebtMangerUnsolved;
+    ZJRecomdDebtNumViewController *zjDebtVC = [[ZJRecomdDebtNumViewController alloc]initWithNibName:@"ZJRecomdDebtNumViewController" bundle:nil];
     zjDebtVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:zjDebtVC animated:YES];
 }
@@ -1003,11 +1002,11 @@ static id _publishContent;
 //  解债数
 -(void)touchdismissDebtBut
 {
-    ZJDebtMangerViewController *zjDebtVC = [[ZJDebtMangerViewController alloc]initWithNibName:@"ZJDebtMangerViewController" bundle:nil];
-    zjDebtVC.isPopVc=YES;
-    zjDebtVC.Btntype = ZJDebtMangerResolved;
-    zjDebtVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:zjDebtVC animated:YES];
+//    ZJDebtMangerViewController *zjDebtVC = [[ZJDebtMangerViewController alloc]initWithNibName:@"ZJDebtMangerViewController" bundle:nil];
+//    zjDebtVC.isPopVc=YES;
+//    zjDebtVC.Btntype = ZJDebtMangerResolved;
+//    zjDebtVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:zjDebtVC animated:YES];
     
 }
 
