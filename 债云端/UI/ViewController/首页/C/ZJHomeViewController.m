@@ -101,6 +101,10 @@ static NSString *identifierId=@"zz";
              if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                  [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"userType"]]];
                  [ZJUserInfo saveUserInfoWithUserPhone:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"phoneNumber"]]];
+                 if ([[responseData objectForKey:@"data"] objectForKey:@"hangtype"]) {
+                     [ZJUserInfo saveUserInfoWithUserhangtype:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"hangtype"]]];
+                 }
+                 
              }
          }
      }];
