@@ -118,17 +118,6 @@
 #define COLUMS(y)         y
 
 
-#define ZJ_RONGYUN_APP_KEY_text     @""
-
-#define ZJ_RONGYUN_APP_KEY          @""
-
-
-#define ZJ_QQ_LANDING_SECRET        @""
-
-#define ZJ_WEIBO_LANDING_KEY        @""
-
-#define kRedirectURI                @"http://www.napai.cn"
-
 #define kZJ_NOTIF_LOCATION          @"notif_location"
 
 // 判断系统是否为iOS7
