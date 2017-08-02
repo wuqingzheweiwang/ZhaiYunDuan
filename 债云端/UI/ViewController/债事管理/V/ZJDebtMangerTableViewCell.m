@@ -51,6 +51,10 @@
     self.Zhutijine1.width=Kwidth1;
     self.Zhutijine1.height=Kheight;
     
+    self.tuijianbianma1.top=115;
+    self.tuijianbianma1.left=self.Lurushijian1.left;
+    self.tuijianbianma1.width=Kwidth1;
+    self.tuijianbianma1.height=Kheight;
     
     //第二排
     self.LuruTextLabel.top=self.Lurushijian1.top;
@@ -76,6 +80,12 @@
     self.MoneyTextLabel.width=Kwidth2;
     self.MoneyTextLabel.height=Kheight;
     self.MoneyTextLabel.text=item.debtamout;
+    
+    self.TuijianbianmaTextLabel.top=self.tuijianbianma1.top;
+    self.TuijianbianmaTextLabel.left=self.LuruTextLabel.left;
+    self.TuijianbianmaTextLabel.width=Kwidth2;
+    self.TuijianbianmaTextLabel.height=Kheight;
+    self.TuijianbianmaTextLabel.text=item.recommend;
     
     //第三排
     self.alreadPostLabel.top=self.Lurushijian1.top;
@@ -132,14 +142,14 @@
         }
     }
     
-    self.lIneview.top=119;
+    self.lIneview.top=144;
     self.lIneview.left=0;
     self.lIneview.height=1;
     self.lIneview.width=ZJAPPWidth;
 }
 + (CGFloat)getCellHeight
 {
-    return 120;
+    return 145;
 }
 - (IBAction)SeeDetailBtnAction:(id)sender {
     if ([self.delegate respondsToSelector:@selector(DebtMangerHomeSeeDetailActionWithItem:)]) {

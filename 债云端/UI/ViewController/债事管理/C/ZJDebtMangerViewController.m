@@ -14,6 +14,7 @@
 #import "ZJWebViewController.h"
 #import "ZJPayMoneyViewController.h"
 #import "ZJDeBtManageRequest.h"
+#import "ZJDebtSearchtextViewController.h"
 @interface ZJDebtMangerViewController ()<UITableViewDataSource,UITableViewDelegate,DebtMangerHomeDelegate> //查看详情的代理
 
 @end
@@ -70,12 +71,18 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"债事管理"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isfreshData) name:@"DebtManger" object:nil];
-    if (_isPopVc) {
-        [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(backToVc) With:[UIImage imageNamed:@"back"]];
-    }
+    
+    [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
+    
     [ZJNavigationPublic setRightButtonOnTargetNav:self action:@selector(AddDebtManagerAction) image:[UIImage imageNamed:@"DebtMangerAddPerson"] HighImage:[UIImage imageNamed:@"DebtMangerAddPerson"]];
     [self createUI];
     
+}
+//搜索
+- (void)searchInfoAction
+{
+    ZJDebtSearchtextViewController * searchVC=[[ZJDebtSearchtextViewController alloc]initWithNibName:@"ZJDebtSearchtextViewController" bundle:nil];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 //刷新数据
 -(void)dealloc
@@ -93,20 +100,19 @@
 - (void)requestDebtMangeListInfo
 {
     if (_Btntype==ZJDebtMangerUnsolved) {
-        action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
+        action=[NSString stringWithFormat:@"api/debtrelation/getalldebtRelation?ps=5&pn=%ld&issolution=%d",(long)_page,0];
     }else if (_Btntype==ZJDebtMangerResolved){
-        action=[NSString stringWithFormat:@"api/debtrelation?ps=5&pn=%ld&issolution=%d",(long)_page,1];
+        action=[NSString stringWithFormat:@"api/debtrelation/getalldebtRelation?ps=5&pn=%ld&issolution=%d",(long)_page,1];
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
         
         DLog(@"%@",responseData);
         if (success) {
-            if (_page==1) {
-                [_dataSource removeAllObjects];
-            }
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-            
+                if (_page==1) {
+                    [_dataSource removeAllObjects];
+                }
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {
                     ZJDebtMangerHomeItem * item=[ZJDebtMangerHomeItem itemForDictionary:[itemarray objectAtIndex:i]];
@@ -126,11 +132,7 @@
         [DebtMangerTable.mj_footer endRefreshing];
     }];
 }
-//返回页面
--(void)backToVc
-{
-    [self.navigationController popViewControllerAnimated:NO];
-}
+
 //新增债事
 - (void)AddDebtManagerAction
 {
@@ -184,11 +186,7 @@
     DebtMangerTable.top=64+45;
     DebtMangerTable.left=0;
     DebtMangerTable.width=ZJAPPWidth;
-    if (_isPopVc) {
-        DebtMangerTable.height=ZJAPPHeight-64-45;
-    }else{
-        DebtMangerTable.height=ZJAPPHeight-64-49-45;
-    }
+    DebtMangerTable.height=ZJAPPHeight-64-49-45;
     
     DebtMangerTable.showsVerticalScrollIndicator = NO;
     DebtMangerTable.separatorStyle = UITableViewCellSeparatorStyleNone;

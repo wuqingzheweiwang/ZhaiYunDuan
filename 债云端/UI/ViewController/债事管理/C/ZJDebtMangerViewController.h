@@ -13,5 +13,4 @@ typedef NS_ENUM(NSInteger, ZJDebtMangerType) {
 };
 @interface ZJDebtMangerViewController : UIViewController
 @property (nonatomic, assign)ZJDebtMangerType Btntype;
-@property (nonatomic, assign)BOOL isPopVc;
 @end

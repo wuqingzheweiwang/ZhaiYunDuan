@@ -107,6 +107,10 @@
 		1844E0121EADD0550013E54A /* ZJDebtMangerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1844E00F1EADD0550013E54A /* ZJDebtMangerTableViewCell.xib */; };
 		1844E01F1EADDF400013E54A /* ZJProtocolAlterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1844E01E1EADDF400013E54A /* ZJProtocolAlterView.m */; };
 		1844E0221EAE02910013E54A /* ANAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1844E0211EAE02910013E54A /* ANAlert.m */; };
+		1845D9C51F31823A00B94725 /* ZJDebtSearchtextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845D9C31F31823A00B94725 /* ZJDebtSearchtextViewController.m */; };
+		1845D9C61F31823A00B94725 /* ZJDebtSearchtextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1845D9C41F31823A00B94725 /* ZJDebtSearchtextViewController.xib */; };
+		1845D9CB1F31A16F00B94725 /* ZJRecomdDebtNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1845D9C91F31A16F00B94725 /* ZJRecomdDebtNumViewController.m */; };
+		1845D9CC1F31A16F00B94725 /* ZJRecomdDebtNumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1845D9CA1F31A16F00B94725 /* ZJRecomdDebtNumViewController.xib */; };
 		185463741EB35C4900AF025B /* ZJDebtDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185463721EB35C4900AF025B /* ZJDebtDetailViewController.m */; };
 		185463751EB35C4900AF025B /* ZJDebtDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185463731EB35C4900AF025B /* ZJDebtDetailViewController.xib */; };
 		185463791EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185463771EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.m */; };
@@ -472,6 +476,12 @@
 		1844E01E1EADDF400013E54A /* ZJProtocolAlterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJProtocolAlterView.m; sourceTree = "<group>"; };
 		1844E0201EAE02910013E54A /* ANAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANAlert.h; sourceTree = "<group>"; };
 		1844E0211EAE02910013E54A /* ANAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANAlert.m; sourceTree = "<group>"; };
+		1845D9C21F31823A00B94725 /* ZJDebtSearchtextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDebtSearchtextViewController.h; sourceTree = "<group>"; };
+		1845D9C31F31823A00B94725 /* ZJDebtSearchtextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDebtSearchtextViewController.m; sourceTree = "<group>"; };
+		1845D9C41F31823A00B94725 /* ZJDebtSearchtextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJDebtSearchtextViewController.xib; sourceTree = "<group>"; };
+		1845D9C81F31A16F00B94725 /* ZJRecomdDebtNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJRecomdDebtNumViewController.h; sourceTree = "<group>"; };
+		1845D9C91F31A16F00B94725 /* ZJRecomdDebtNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJRecomdDebtNumViewController.m; sourceTree = "<group>"; };
+		1845D9CA1F31A16F00B94725 /* ZJRecomdDebtNumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJRecomdDebtNumViewController.xib; sourceTree = "<group>"; };
 		185463711EB35C4900AF025B /* ZJDebtDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJDebtDetailViewController.h; sourceTree = "<group>"; };
 		185463721EB35C4900AF025B /* ZJDebtDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJDebtDetailViewController.m; sourceTree = "<group>"; };
 		185463731EB35C4900AF025B /* ZJDebtDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJDebtDetailViewController.xib; sourceTree = "<group>"; };
@@ -1375,6 +1385,7 @@
 				1854637B1EB35CD600AF025B /* ZJDebtMangerViewController.h */,
 				1854637C1EB35CD600AF025B /* ZJDebtMangerViewController.m */,
 				1854637D1EB35CD600AF025B /* ZJDebtMangerViewController.xib */,
+				1845D9C11F3181E600B94725 /* 债事搜索 */,
 				1844E0231EAE0EBC0013E54A /* 债事备案1 */,
 				1854636F1EB35BF100AF025B /* 债事备案2 */,
 				181013A51EAF5ACE009C1DAD /* 备案添加照片(新增资产) */,
@@ -1422,6 +1433,7 @@
 				182DF39C1EA9DD920086B9FC /* ZJMyPageViewController.h */,
 				182DF39D1EA9DD920086B9FC /* ZJMyPageViewController.m */,
 				182DF39E1EA9DD920086B9FC /* ZJMyPageViewController.xib */,
+				1845D9C71F31A13F00B94725 /* 推荐备案数 */,
 				5214A7A11ECAEF7700860133 /* 个人资料 */,
 				520C47291EFE242E00ADA007 /* 推荐行长 */,
 				52F6F2B71EFD187700623DA6 /* 我的会员 */,
@@ -1548,6 +1560,26 @@
 				185463821EB361FD00AF025B /* ZJAddDebtInformationViewController.xib */,
 			);
 			name = "债事备案1";
+			sourceTree = "<group>";
+		};
+		1845D9C11F3181E600B94725 /* 债事搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				1845D9C21F31823A00B94725 /* ZJDebtSearchtextViewController.h */,
+				1845D9C31F31823A00B94725 /* ZJDebtSearchtextViewController.m */,
+				1845D9C41F31823A00B94725 /* ZJDebtSearchtextViewController.xib */,
+			);
+			name = "债事搜索";
+			sourceTree = "<group>";
+		};
+		1845D9C71F31A13F00B94725 /* 推荐备案数 */ = {
+			isa = PBXGroup;
+			children = (
+				1845D9C81F31A16F00B94725 /* ZJRecomdDebtNumViewController.h */,
+				1845D9C91F31A16F00B94725 /* ZJRecomdDebtNumViewController.m */,
+				1845D9CA1F31A16F00B94725 /* ZJRecomdDebtNumViewController.xib */,
+			);
+			name = "推荐备案数";
 			sourceTree = "<group>";
 		};
 		1854636F1EB35BF100AF025B /* 债事备案2 */ = {
@@ -2674,6 +2706,7 @@
 				18D9D2D41EC958BD00E882FD /* ZJNewsDetailsViewController.xib in Resources */,
 				181013AA1EAF5B04009C1DAD /* ZJAddPhotosViewController.xib in Resources */,
 				182544EE1EA8AB0600A29FB6 /* LaunchScreen.storyboard in Resources */,
+				1845D9CC1F31A16F00B94725 /* ZJRecomdDebtNumViewController.xib in Resources */,
 				18971AD21EC019DA00A3E4A1 /* ZJDebtOperateTableViewCell.xib in Resources */,
 				18238E801EBB2E4B0018C179 /* ZJCompanyDebtInfomationViewController.xib in Resources */,
 				185463841EB361FD00AF025B /* ZJAddDebtInformationViewController.xib in Resources */,
@@ -2715,6 +2748,7 @@
 				181AFA3A1EB1F75C00B3FC7E /* ZJGodEyesViewController.xib in Resources */,
 				180234631EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.xib in Resources */,
 				52F6F2C21EFD1BA000623DA6 /* ZJMyMmberTableViewCell.xib in Resources */,
+				1845D9C61F31823A00B94725 /* ZJDebtSearchtextViewController.xib in Resources */,
 				182544E61EA8AB0600A29FB6 /* Main.storyboard in Resources */,
 				18263D011F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib in Resources */,
 				181AFA641EB1F86B00B3FC7E /* ZJRegistViewController.xib in Resources */,
@@ -2958,6 +2992,7 @@
 				520413221EF8B67E00B32537 /* MJPropertyType.m in Sources */,
 				5214A7A51ECAEFBC00860133 /* ZJOwnerDataController.m in Sources */,
 				181013A91EAF5B04009C1DAD /* ZJAddPhotosViewController.m in Sources */,
+				1845D9C51F31823A00B94725 /* ZJDebtSearchtextViewController.m in Sources */,
 				183802CD1EFA1A8700C74D05 /* ZJDebtpersonDemandTableViewCell.m in Sources */,
 				520413211EF8B67E00B32537 /* MJPropertyKey.m in Sources */,
 				185C70C71EB88EF300BE9D17 /* QBImagePickerGroupCell.m in Sources */,
@@ -2989,6 +3024,7 @@
 				18971B071EC0802200A3E4A1 /* ZJAddDemandViewController.m in Sources */,
 				18971AE31EC0496F00A3E4A1 /* ZJAddOperateInfoViewController.m in Sources */,
 				183149A41EC17DF100759D1A /* Reachability.m in Sources */,
+				1845D9CB1F31A16F00B94725 /* ZJRecomdDebtNumViewController.m in Sources */,
 				1804B00C1EB0B2660071329A /* NPPicPreviewController.m in Sources */,
 				52233BB41EB2DD7D003D6BC0 /* RegexKitLite.m in Sources */,
 				18971ADE1EC0491200A3E4A1 /* ZJAddStockInfoViewController.m in Sources */,

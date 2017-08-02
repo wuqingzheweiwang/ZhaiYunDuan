@@ -10,7 +10,7 @@
 #import "ZJNewsDetailsViewController.h"
 #import "ZJHomeNewsViewCell.h"
 #import "ZJSearchImageTextViewController.h"
-@interface ZJImageTextViewController ()
+@interface ZJImageTextViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
