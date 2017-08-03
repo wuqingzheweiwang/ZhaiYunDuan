@@ -9,7 +9,6 @@
 #import "ZJPayMoneyViewController.h"
 #import "ZJHomeViewController.h"
 #import "ZJPayWayTableViewCell.h"
-#import "ZJMakeToPAYViewController.h"
 #import "Order.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "RSADataSigner.h"
