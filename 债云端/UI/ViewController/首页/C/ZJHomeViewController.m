@@ -259,8 +259,8 @@ static NSString *identifierId=@"zz";
         cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJHomeNewsViewCell" owner:self options:nil]firstObject];
     }
     // 取消选中效果
-    cell.selectionStyle =UITableViewCellSelectionStyleNone;
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [cell setitem:[self.tableViewdataSource objectAtIndex:indexPath.row]];
     
     return cell;
