@@ -39,7 +39,7 @@
     detialTextLabel.numberOfLines =0;
     detialTextLabel.height = TRUE_1(150)-headerImageView.height - titleTextLabel.height;
     detialTextLabel.font = ZJ_TRUE_FONT(12);
-    detialTextLabel.text = item.title;
+    detialTextLabel.text = item.detialtitle;
 }
 
 + (CGFloat)getCellHeight
