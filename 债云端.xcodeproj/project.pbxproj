@@ -214,8 +214,6 @@
 		52155A281F075632001F24D4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 52155A271F075632001F24D4 /* libsqlite3.tbd */; };
 		52155A321F0782BA001F24D4 /* ZJShareAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52155A2F1F0782BA001F24D4 /* ZJShareAlertView.m */; };
 		52155A331F0782BA001F24D4 /* ZJShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52155A311F0782BA001F24D4 /* ZJShareManager.m */; };
-		5217AC401EB85C7000A1A39F /* ZJMakeToPAYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5217AC3E1EB85C7000A1A39F /* ZJMakeToPAYViewController.m */; };
-		5217AC411EB85C7000A1A39F /* ZJMakeToPAYViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5217AC3F1EB85C7000A1A39F /* ZJMakeToPAYViewController.xib */; };
 		5217AC431EB86A2B00A1A39F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5217AC421EB86A2B00A1A39F /* Assets.xcassets */; };
 		5223362F1EFB771C00D05447 /* CityModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 522336291EFB771C00D05447 /* CityModelData.m */; };
 		522336301EFB771C00D05447 /* JHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5223362B1EFB771C00D05447 /* JHPickView.m */; };
@@ -662,9 +660,6 @@
 		52155A2F1F0782BA001F24D4 /* ZJShareAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJShareAlertView.m; sourceTree = "<group>"; };
 		52155A301F0782BA001F24D4 /* ZJShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJShareManager.h; sourceTree = "<group>"; };
 		52155A311F0782BA001F24D4 /* ZJShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJShareManager.m; sourceTree = "<group>"; };
-		5217AC3D1EB85C7000A1A39F /* ZJMakeToPAYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMakeToPAYViewController.h; sourceTree = "<group>"; };
-		5217AC3E1EB85C7000A1A39F /* ZJMakeToPAYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMakeToPAYViewController.m; sourceTree = "<group>"; };
-		5217AC3F1EB85C7000A1A39F /* ZJMakeToPAYViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJMakeToPAYViewController.xib; sourceTree = "<group>"; };
 		5217AC421EB86A2B00A1A39F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		522336281EFB771C00D05447 /* CityModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModelData.h; sourceTree = "<group>"; };
 		522336291EFB771C00D05447 /* CityModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityModelData.m; sourceTree = "<group>"; };
@@ -2153,23 +2148,12 @@
 			path = ShareAlertView;
 			sourceTree = "<group>";
 		};
-		5217AC2D1EB8546800A1A39F /* 支付页面 */ = {
-			isa = PBXGroup;
-			children = (
-				5217AC3D1EB85C7000A1A39F /* ZJMakeToPAYViewController.h */,
-				5217AC3E1EB85C7000A1A39F /* ZJMakeToPAYViewController.m */,
-				5217AC3F1EB85C7000A1A39F /* ZJMakeToPAYViewController.xib */,
-			);
-			name = "支付页面";
-			sourceTree = "<group>";
-		};
 		52233B991EB1FE84003D6BC0 /* 支付 */ = {
 			isa = PBXGroup;
 			children = (
 				527B7AF31EBC924F0099763E /* ZJPayMoneyViewController.h */,
 				527B7AF41EBC924F0099763E /* ZJPayMoneyViewController.m */,
 				527B7AF51EBC924F0099763E /* ZJPayMoneyViewController.xib */,
-				5217AC2D1EB8546800A1A39F /* 支付页面 */,
 			);
 			name = "支付";
 			sourceTree = "<group>";
@@ -2752,7 +2736,6 @@
 				182544E61EA8AB0600A29FB6 /* Main.storyboard in Resources */,
 				18263D011F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib in Resources */,
 				181AFA641EB1F86B00B3FC7E /* ZJRegistViewController.xib in Resources */,
-				5217AC411EB85C7000A1A39F /* ZJMakeToPAYViewController.xib in Resources */,
 				5214A7A61ECAEFBC00860133 /* ZJOwnerDataController.xib in Resources */,
 				18971ADF1EC0491200A3E4A1 /* ZJAddStockInfoViewController.xib in Resources */,
 				52155A031F07547B001F24D4 /* ShareSDKUI.bundle in Resources */,
@@ -3012,7 +2995,6 @@
 				182DF39A1EA9DD7C0086B9FC /* ZJDebtPersonViewController.m in Sources */,
 				528DF2A51F1DB0DC0098BFA4 /* ZJImageTextViewController.m in Sources */,
 				18971AE91EC04F8D00A3E4A1 /* ZJAddStockTableViewCell.m in Sources */,
-				5217AC401EB85C7000A1A39F /* ZJMakeToPAYViewController.m in Sources */,
 				18971AEF1EC059D400A3E4A1 /* ZJAddOperateTableViewCell.m in Sources */,
 				181AFA2F1EB1F75C00B3FC7E /* ZJAllApplyViewController.m in Sources */,
 				18F16F981F21FA30002D3DF4 /* ZJSearchImageTextViewController.m in Sources */,

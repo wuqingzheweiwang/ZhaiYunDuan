@@ -674,23 +674,30 @@ static id _publishContent;
         // 推荐会员数
         [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%@",self.recommand_4]];
         
+        
+        
+        // 推荐备案数
         [zjMyMembercell.recommandRecoardBut addTarget:self action:@selector(touchRecoardBut) forControlEvents:UIControlEventTouchUpInside];
+        //  推荐行长数
         [zjMyMembercell.recommandBankBut addTarget:self action:@selector(touchBankBut) forControlEvents:UIControlEventTouchUpInside];
-        [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
+        // 解债数
         [zjMyMembercell.dismissDebtBut addTarget:self action:@selector(touchdismissDebtBut) forControlEvents:UIControlEventTouchUpInside];
+        // 推荐会员数
+        [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
+        
         
         
         if ([ZJUtil getUserIsDebtBank]) {
-            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=YES;
-            zjMyMembercell.recommandBankBut.userInteractionEnabled=YES;
-            zjMyMembercell.recomMemberBut.userInteractionEnabled=YES;
-            zjMyMembercell.dismissDebtBut.userInteractionEnabled=YES;
+            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
+            zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
+            zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
+            zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
         }else{
             zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
             zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
             zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
             if ([ZJUtil getUserLogin]) {
-                zjMyMembercell.dismissDebtBut.userInteractionEnabled=YES;
+                zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
             }else{
                 zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
             }
