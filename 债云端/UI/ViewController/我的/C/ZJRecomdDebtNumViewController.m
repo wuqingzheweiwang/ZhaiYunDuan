@@ -115,12 +115,15 @@
 
 - (void)searchInfoTextRequest
 {
-    NSString * action1=[NSString stringWithFormat:@"api/debtrelation/searchdebtrelation?ps=10&pn=%ld&condition=%@",(long)_page,seachBarTextString];
-    NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ZJDeBtManageRequest zjGetSearchDebtRequestWithActions:utf result:^(BOOL success, id responseData) {
-        DLog(@"%@",responseData);
+    
+    NSString * action=[NSString stringWithFormat:@"api/debtrelation/searchdebtRelation?ps=5&pn=%ld&condition=%@",(long)_page,seachBarTextString];
+    [self showProgress];
+    [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
+        
         if (success) {
+            
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                DLog(@"%@",responseData);
                 if (_page==1) {
                     [_dataSource removeAllObjects];
                 }
@@ -130,15 +133,20 @@
                     [_dataSource addObject:item];
                 }
                 [RecomdTable reloadData];
+                
             }else{
-                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+                [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"%@",[responseData objectForKey:@"message"]]];
             }
+            [self dismissProgress];
         }else{
-            [ZJUtil showBottomToastWithMsg:responseData];
+            [ZJUtil showBottomToastWithMsg:@"请求失败"];
+            [self dismissProgress];
         }
+        [self dismissProgress];
         [RecomdTable.mj_header endRefreshing];
         [RecomdTable.mj_footer endRefreshing];
     }];
+    
 }
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
