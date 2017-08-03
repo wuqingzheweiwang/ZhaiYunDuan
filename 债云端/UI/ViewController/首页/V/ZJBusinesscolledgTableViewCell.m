@@ -35,15 +35,6 @@
     backImage.contentMode = UIViewContentModeScaleAspectFill;
     backImage.clipsToBounds = YES;
     [backImage sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
-
-    
-    detialText.top = titileText.bottom;
-    detialText.left = titileText.left;
-    detialText.width = titileText.width;
-    detialText.height = TRUE_1(25);
-    detialText.numberOfLines =2;
-    detialText.text = item.title;
-    detialText.font = ZJ_TRUE_FONT(10);
     
     titileText.top = TRUE_1(20);
     titileText.left = backImage.right+TRUE_1(15);
@@ -57,7 +48,7 @@
     detialText.width = titileText.width;
     detialText.font=ZJ_TRUE_FONT(10);
     detialText.numberOfLines = 0;
-    detialText.text=item.title;
+    detialText.text=item.detialtitle;
     detialText.height = TRUE_1(30);
     
     timeText.top = TRUE_1(80);
