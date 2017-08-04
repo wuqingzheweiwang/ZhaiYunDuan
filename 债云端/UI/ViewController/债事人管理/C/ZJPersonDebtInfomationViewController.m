@@ -145,8 +145,6 @@
 }
 -(void)reloadFirstData
 {
-    //@weakify(self) 防止循环引用
-    //@strongify(self) 防止指针消失
     if ([BtnType isEqualToString:@"基本信息"]){
         [Infotabel.mj_header endRefreshing];
         [Infotabel.mj_footer endRefreshing];

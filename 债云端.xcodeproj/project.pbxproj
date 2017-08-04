@@ -227,6 +227,18 @@
 		522C55A61F1C7963001D81E4 /* ZJVideoPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 522C55A41F1C7963001D81E4 /* ZJVideoPlayViewController.xib */; };
 		522C55C61F1C7B8B001D81E4 /* ZGLVideoMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 522C55C31F1C7B8B001D81E4 /* ZGLVideoMaskView.m */; };
 		522C55C71F1C7B8B001D81E4 /* ZGLVideoPlyer.m in Sources */ = {isa = PBXBuildFile; fileRef = 522C55C51F1C7B8B001D81E4 /* ZGLVideoPlyer.m */; };
+		52445B461F342A7D00B6F751 /* ZJTeacherGraceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B441F342A7D00B6F751 /* ZJTeacherGraceTableCell.m */; };
+		52445B471F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B451F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib */; };
+		52445B4B1F343E2800B6F751 /* ZJAnswerQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B491F343E2800B6F751 /* ZJAnswerQuestionCell.m */; };
+		52445B4C1F343E2800B6F751 /* ZJTeacherGraceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B4A1F343E2800B6F751 /* ZJTeacherGraceCell.xib */; };
+		52445B511F3463BF00B6F751 /* ZJSecondAnswerquestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B4F1F3463BF00B6F751 /* ZJSecondAnswerquestionController.m */; };
+		52445B521F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B501F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib */; };
+		52445B571F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B551F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m */; };
+		52445B581F34690B00B6F751 /* ZJSecondAnswerQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B561F34690B00B6F751 /* ZJSecondAnswerQuestionCell.xib */; };
+		52445B5E1F347E6300B6F751 /* ZJSearchAnswerQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B5C1F347E6300B6F751 /* ZJSearchAnswerQuestionController.m */; };
+		52445B5F1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B5D1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib */; };
+		52445B631F347E8600B6F751 /* ZJSearchTeacherGraceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B611F347E8600B6F751 /* ZJSearchTeacherGraceController.m */; };
+		52445B641F347E8600B6F751 /* ZJSearchTeacherGraceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B621F347E8600B6F751 /* ZJSearchTeacherGraceController.xib */; };
 		524E5F991ECEACE400356B0B /* ZJChangeTelNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */; };
 		524E5F9A1ECEACE400356B0B /* ZJChangeTelNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */; };
 		524E5F9E1ECEE55B00356B0B /* ZJHomeNewsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 524E5F9C1ECEE55B00356B0B /* ZJHomeNewsViewCell.m */; };
@@ -683,6 +695,24 @@
 		522C55C31F1C7B8B001D81E4 /* ZGLVideoMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGLVideoMaskView.m; sourceTree = "<group>"; };
 		522C55C41F1C7B8B001D81E4 /* ZGLVideoPlyer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGLVideoPlyer.h; sourceTree = "<group>"; };
 		522C55C51F1C7B8B001D81E4 /* ZGLVideoPlyer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGLVideoPlyer.m; sourceTree = "<group>"; };
+		52445B431F342A7D00B6F751 /* ZJTeacherGraceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJTeacherGraceTableCell.h; sourceTree = "<group>"; };
+		52445B441F342A7D00B6F751 /* ZJTeacherGraceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJTeacherGraceTableCell.m; sourceTree = "<group>"; };
+		52445B451F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJTeacherGraceTableCell.xib; sourceTree = "<group>"; };
+		52445B481F343E2800B6F751 /* ZJAnswerQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAnswerQuestionCell.h; sourceTree = "<group>"; };
+		52445B491F343E2800B6F751 /* ZJAnswerQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAnswerQuestionCell.m; sourceTree = "<group>"; };
+		52445B4A1F343E2800B6F751 /* ZJTeacherGraceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJTeacherGraceCell.xib; sourceTree = "<group>"; };
+		52445B4E1F3463BF00B6F751 /* ZJSecondAnswerquestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSecondAnswerquestionController.h; sourceTree = "<group>"; };
+		52445B4F1F3463BF00B6F751 /* ZJSecondAnswerquestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSecondAnswerquestionController.m; sourceTree = "<group>"; };
+		52445B501F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJSecondAnswerquestionController.xib; sourceTree = "<group>"; };
+		52445B541F34690B00B6F751 /* ZJSecondAnswerQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSecondAnswerQuestionCell.h; sourceTree = "<group>"; };
+		52445B551F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSecondAnswerQuestionCell.m; sourceTree = "<group>"; };
+		52445B561F34690B00B6F751 /* ZJSecondAnswerQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJSecondAnswerQuestionCell.xib; sourceTree = "<group>"; };
+		52445B5B1F347E6300B6F751 /* ZJSearchAnswerQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSearchAnswerQuestionController.h; sourceTree = "<group>"; };
+		52445B5C1F347E6300B6F751 /* ZJSearchAnswerQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSearchAnswerQuestionController.m; sourceTree = "<group>"; };
+		52445B5D1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJSearchAnswerQuestionController.xib; sourceTree = "<group>"; };
+		52445B601F347E8600B6F751 /* ZJSearchTeacherGraceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSearchTeacherGraceController.h; sourceTree = "<group>"; };
+		52445B611F347E8600B6F751 /* ZJSearchTeacherGraceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSearchTeacherGraceController.m; sourceTree = "<group>"; };
+		52445B621F347E8600B6F751 /* ZJSearchTeacherGraceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJSearchTeacherGraceController.xib; sourceTree = "<group>"; };
 		524E5F961ECEACE400356B0B /* ZJChangeTelNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJChangeTelNumberController.h; sourceTree = "<group>"; };
 		524E5F971ECEACE400356B0B /* ZJChangeTelNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJChangeTelNumberController.m; sourceTree = "<group>"; };
 		524E5F981ECEACE400356B0B /* ZJChangeTelNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJChangeTelNumberController.xib; sourceTree = "<group>"; };
@@ -1398,6 +1428,7 @@
 				18263CFE1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.m */,
 				18263CFF1F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib */,
 				528DF2A81F1DBAE00098BFA4 /* 视频课程 */,
+				52445B401F34299B00B6F751 /* 图文课程 */,
 			);
 			name = "商学院";
 			sourceTree = "<group>";
@@ -1910,14 +1941,14 @@
 			path = ZJPrograssView;
 			sourceTree = "<group>";
 		};
-		18F16F941F21F9EC002D3DF4 /* 搜索图文课程 */ = {
+		18F16F941F21F9EC002D3DF4 /* 搜索名师课堂、解债案例、法律咨询 */ = {
 			isa = PBXGroup;
 			children = (
 				18F16F951F21FA30002D3DF4 /* ZJSearchImageTextViewController.h */,
 				18F16F961F21FA30002D3DF4 /* ZJSearchImageTextViewController.m */,
 				18F16F971F21FA30002D3DF4 /* ZJSearchImageTextViewController.xib */,
 			);
-			name = "搜索图文课程";
+			name = "搜索名师课堂、解债案例、法律咨询";
 			sourceTree = "<group>";
 		};
 		1CDA2C3C9535F94A1D640584 /* Pods */ = {
@@ -2240,6 +2271,76 @@
 			name = "我的钱包";
 			sourceTree = "<group>";
 		};
+		52445B401F34299B00B6F751 /* 图文课程 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B411F3429AB00B6F751 /* 答疑解惑第一页 */,
+				52445B531F3468D400B6F751 /* 答疑解惑第二页 */,
+				52445B421F3429B900B6F751 /* 名师风采 */,
+			);
+			name = "图文课程";
+			sourceTree = "<group>";
+		};
+		52445B411F3429AB00B6F751 /* 答疑解惑第一页 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B481F343E2800B6F751 /* ZJAnswerQuestionCell.h */,
+				52445B491F343E2800B6F751 /* ZJAnswerQuestionCell.m */,
+				52445B4A1F343E2800B6F751 /* ZJTeacherGraceCell.xib */,
+			);
+			name = "答疑解惑第一页";
+			sourceTree = "<group>";
+		};
+		52445B421F3429B900B6F751 /* 名师风采 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B431F342A7D00B6F751 /* ZJTeacherGraceTableCell.h */,
+				52445B441F342A7D00B6F751 /* ZJTeacherGraceTableCell.m */,
+				52445B451F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib */,
+			);
+			name = "名师风采";
+			sourceTree = "<group>";
+		};
+		52445B4D1F34637A00B6F751 /* 答疑解惑 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B4E1F3463BF00B6F751 /* ZJSecondAnswerquestionController.h */,
+				52445B4F1F3463BF00B6F751 /* ZJSecondAnswerquestionController.m */,
+				52445B501F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib */,
+			);
+			name = "答疑解惑";
+			sourceTree = "<group>";
+		};
+		52445B531F3468D400B6F751 /* 答疑解惑第二页 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B541F34690B00B6F751 /* ZJSecondAnswerQuestionCell.h */,
+				52445B551F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m */,
+				52445B561F34690B00B6F751 /* ZJSecondAnswerQuestionCell.xib */,
+			);
+			name = "答疑解惑第二页";
+			sourceTree = "<group>";
+		};
+		52445B591F347D0400B6F751 /* 搜索答疑解惑 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B5B1F347E6300B6F751 /* ZJSearchAnswerQuestionController.h */,
+				52445B5C1F347E6300B6F751 /* ZJSearchAnswerQuestionController.m */,
+				52445B5D1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib */,
+			);
+			name = "搜索答疑解惑";
+			sourceTree = "<group>";
+		};
+		52445B5A1F347D3400B6F751 /* 搜索名师风采 */ = {
+			isa = PBXGroup;
+			children = (
+				52445B601F347E8600B6F751 /* ZJSearchTeacherGraceController.h */,
+				52445B611F347E8600B6F751 /* ZJSearchTeacherGraceController.m */,
+				52445B621F347E8600B6F751 /* ZJSearchTeacherGraceController.xib */,
+			);
+			name = "搜索名师风采";
+			sourceTree = "<group>";
+		};
 		524E5F951ECEAC5F00356B0B /* 更换手机号 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2294,7 +2395,10 @@
 				528DF2A21F1DB0DC0098BFA4 /* ZJImageTextViewController.h */,
 				528DF2A31F1DB0DC0098BFA4 /* ZJImageTextViewController.m */,
 				528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */,
-				18F16F941F21F9EC002D3DF4 /* 搜索图文课程 */,
+				52445B4D1F34637A00B6F751 /* 答疑解惑 */,
+				18F16F941F21F9EC002D3DF4 /* 搜索名师课堂、解债案例、法律咨询 */,
+				52445B591F347D0400B6F751 /* 搜索答疑解惑 */,
+				52445B5A1F347D3400B6F751 /* 搜索名师风采 */,
 			);
 			name = "图文课程";
 			sourceTree = "<group>";
@@ -2671,7 +2775,9 @@
 				1815FBE21F1EFC0600B37198 /* ZJDebtPersonAddPhotosViewController.xib in Resources */,
 				520C47341EFE24CC00ADA007 /* ZJReCommandBankCell.xib in Resources */,
 				1854637A1EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.xib in Resources */,
+				52445B5F1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib in Resources */,
 				181AFA401EB1F75C00B3FC7E /* ZJMemberCenterViewController.xib in Resources */,
+				52445B4C1F343E2800B6F751 /* ZJTeacherGraceCell.xib in Resources */,
 				18238E8F1EBB437D0018C179 /* ZJMyMemberTableViewCell.xib in Resources */,
 				185C70CF1EB8977400BE9D17 /* ZJDebtPersonInfoTableViewCell.xib in Resources */,
 				52155A0A1F07547B001F24D4 /* README.txt in Resources */,
@@ -2725,6 +2831,7 @@
 				18971AD81EC0420800A3E4A1 /* ZJAddEditCapitalViewController.xib in Resources */,
 				185C70C91EB88EF300BE9D17 /* QBImagePickerController.strings in Resources */,
 				1802347A1EBC5C6300DFA3F8 /* ZJCapitalAndDemandInfoTableViewCell.xib in Resources */,
+				52445B521F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib in Resources */,
 				520B1FCD1F21FA6100FD0157 /* ZJVideoSearchVController.xib in Resources */,
 				522C55A61F1C7963001D81E4 /* ZJVideoPlayViewController.xib in Resources */,
 				18971AE41EC0496F00A3E4A1 /* ZJAddOperateInfoViewController.xib in Resources */,
@@ -2732,11 +2839,14 @@
 				181AFA3A1EB1F75C00B3FC7E /* ZJGodEyesViewController.xib in Resources */,
 				180234631EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.xib in Resources */,
 				52F6F2C21EFD1BA000623DA6 /* ZJMyMmberTableViewCell.xib in Resources */,
+				52445B471F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib in Resources */,
 				1845D9C61F31823A00B94725 /* ZJDebtSearchtextViewController.xib in Resources */,
 				182544E61EA8AB0600A29FB6 /* Main.storyboard in Resources */,
 				18263D011F0CE64000C6A98C /* ZJBusinesscolledgTableViewCell.xib in Resources */,
+				52445B581F34690B00B6F751 /* ZJSecondAnswerQuestionCell.xib in Resources */,
 				181AFA641EB1F86B00B3FC7E /* ZJRegistViewController.xib in Resources */,
 				5214A7A61ECAEFBC00860133 /* ZJOwnerDataController.xib in Resources */,
+				52445B641F347E8600B6F751 /* ZJSearchTeacherGraceController.xib in Resources */,
 				18971ADF1EC0491200A3E4A1 /* ZJAddStockInfoViewController.xib in Resources */,
 				52155A031F07547B001F24D4 /* ShareSDKUI.bundle in Resources */,
 				527B7AF21EBC85B90099763E /* ZJFoundPasswordController.xib in Resources */,
@@ -2934,9 +3044,11 @@
 				18238EA31EBB44420018C179 /* ZJBankCardViewController.m in Sources */,
 				52F6F2C11EFD1BA000623DA6 /* ZJMyMmberTableViewCell.m in Sources */,
 				18D9D2DE1EC9694600E882FD /* LMWebProgressLayer.m in Sources */,
+				52445B571F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m in Sources */,
 				185C70C31EB88EF300BE9D17 /* QBAssetsCollectionViewCell.m in Sources */,
 				181AFA001EB1F6BB00B3FC7E /* ZJHomeItem.m in Sources */,
 				52155A321F0782BA001F24D4 /* ZJShareAlertView.m in Sources */,
+				52445B631F347E8600B6F751 /* ZJSearchTeacherGraceController.m in Sources */,
 				185C70C81EB88EF300BE9D17 /* QBImagePickerThumbnailView.m in Sources */,
 				1854638E1EB364BB00AF025B /* ZJAddDebtPersonController.m in Sources */,
 				18592B221EC1D4E7000CB4AD /* ZJMyPageRequest.m in Sources */,
@@ -2964,6 +3076,7 @@
 				180234791EBC5C6300DFA3F8 /* ZJCapitalAndDemandInfoTableViewCell.m in Sources */,
 				182544E01EA8AB0600A29FB6 /* AppDelegate.m in Sources */,
 				520413251EF8B67E00B32537 /* NSObject+MJKeyValue.m in Sources */,
+				52445B4B1F343E2800B6F751 /* ZJAnswerQuestionCell.m in Sources */,
 				522336301EFB771C00D05447 /* JHPickView.m in Sources */,
 				1819C2F41EA9BB3D003C7C25 /* UIWebView+UserAgent.m in Sources */,
 				18D9D2E01EC9694600E882FD /* UIView+Frame.m in Sources */,
@@ -2977,6 +3090,7 @@
 				181013A91EAF5B04009C1DAD /* ZJAddPhotosViewController.m in Sources */,
 				1845D9C51F31823A00B94725 /* ZJDebtSearchtextViewController.m in Sources */,
 				183802CD1EFA1A8700C74D05 /* ZJDebtpersonDemandTableViewCell.m in Sources */,
+				52445B461F342A7D00B6F751 /* ZJTeacherGraceTableCell.m in Sources */,
 				520413211EF8B67E00B32537 /* MJPropertyKey.m in Sources */,
 				185C70C71EB88EF300BE9D17 /* QBImagePickerGroupCell.m in Sources */,
 				52155A331F0782BA001F24D4 /* ZJShareManager.m in Sources */,
@@ -3014,6 +3128,7 @@
 				180234621EBC2D3A00DFA3F8 /* ZJMyZhangDanTableViewCell.m in Sources */,
 				181AFA311EB1F75C00B3FC7E /* ZJBusinesscollegeViewController.m in Sources */,
 				18592B1F1EC1D4B0000CB4AD /* ZJDebtPersonRequest.m in Sources */,
+				52445B511F3463BF00B6F751 /* ZJSecondAnswerquestionController.m in Sources */,
 				1819C2EF1EA9BB3D003C7C25 /* UIColor+HexColor.m in Sources */,
 				520C472D1EFE246E00ADA007 /* ZJRecommendBankVC.m in Sources */,
 				520413241EF8B67E00B32537 /* NSObject+MJCoding.m in Sources */,
@@ -3045,6 +3160,7 @@
 				18238E781EBAD82C0018C179 /* ZJBranchOfficeViewController.m in Sources */,
 				18238EA71EBB44420018C179 /* ZJMyBillViewController.m in Sources */,
 				52D2A74C1EB3551900C43247 /* base64.m in Sources */,
+				52445B5E1F347E6300B6F751 /* ZJSearchAnswerQuestionController.m in Sources */,
 				1802346E1EBC2F9D00DFA3F8 /* ZJActionSheet.m in Sources */,
 				52D2A7501EB3551900C43247 /* RSADataVerifier.m in Sources */,
 				182DF3851EA9DC1F0086B9FC /* ZJBaseViewController.m in Sources */,

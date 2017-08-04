@@ -105,3 +105,44 @@
 }
 
 @end
+
+@implementation ZJTeacherGraceModel
+
++ (ZJTeacherGraceModel *)itemForDictionary:(NSDictionary *)dic{
+    
+    ZJTeacherGraceModel * item=[[ZJTeacherGraceModel alloc]init];
+    if ([dic objectForKey:@"img"]) {
+        item.img=[NSString stringWithFormat:@"%@",[dic objectForKey:@"img"]];
+    }
+    if ([dic objectForKey:@"title"]) {
+        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+    }
+    if ([dic objectForKey:@"subTitle"]) {
+        item.detialtitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subTitle"]];
+    }
+    if ([dic objectForKey:@"introduceText"]) {
+        item.introduceText=[NSString stringWithFormat:@"%@",[dic objectForKey:@"introduceText"]];
+    }
+    return item;
+}
+
+@end
+
+@implementation ZJAnswerQuestionModel
+
++ (ZJAnswerQuestionModel *)itemForDictionary:(NSDictionary *)dic{
+    
+    ZJAnswerQuestionModel * item=[[ZJAnswerQuestionModel alloc]init];
+    if ([dic objectForKey:@"subTitle"]) {
+        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subTitle"]];
+    }
+    if ([dic objectForKey:@"title"]) {
+        item.detialTitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+    }
+    if ([dic objectForKey:@"url"]) {
+        item.url=[NSString stringWithFormat:@"%@",[dic objectForKey:@"url"]];
+    }
+    return item;
+}
+
+@end

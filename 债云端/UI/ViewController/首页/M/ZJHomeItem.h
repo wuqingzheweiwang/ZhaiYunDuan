@@ -57,3 +57,23 @@
 + (ZJVideoCollectionModel *)itemForDictionary:(NSDictionary *)dic;
 @end
 
+//名师风采
+@interface ZJTeacherGraceModel : NSObject
+@property (nonatomic, strong) NSString *img;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *detialtitle;
+@property (nonatomic, strong) NSString *introduceText;
+
++ (ZJTeacherGraceModel *)itemForDictionary:(NSDictionary *)dic;
+@end
+
+//答疑解惑
+@interface ZJAnswerQuestionModel : NSObject
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *detialTitle;
+@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *updateTime;
+
++ (ZJAnswerQuestionModel *)itemForDictionary:(NSDictionary *)dic;
+@end
+

@@ -89,8 +89,6 @@
 -(void)reloadFirstData
 {
     _page=1;
-    //@weakify(self) 防止循环引用
-    //@strongify(self) 防止指针消失
     [self requestBussinesSchoolListInfo];
     
 }

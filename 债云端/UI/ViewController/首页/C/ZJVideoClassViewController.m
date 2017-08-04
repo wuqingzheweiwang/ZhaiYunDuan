@@ -38,7 +38,7 @@ static NSString *identifierId=@"zz";
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"视频课程"];
-    [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
+//    [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
 
     [self.view addSubview:self.collectionView];
     //刷新
