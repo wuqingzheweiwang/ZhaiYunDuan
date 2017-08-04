@@ -195,8 +195,8 @@ static id _publishContent;
     // 用户名
     _userName.top = _headerImage.top;
     _userName.left = _headerImage.right+TRUE_1(10);
-    _userName.width =  TRUE_1(94/2);
-    _userName.height = TRUE_1(30/2);
+    _userName.width =  TRUE_1(150);
+    _userName.height = TRUE_1(32/2);
     _userName.font= ZJ_TRUE_FONT(15);
 
     // vip  vip图片的hideen与是否是行长有关
