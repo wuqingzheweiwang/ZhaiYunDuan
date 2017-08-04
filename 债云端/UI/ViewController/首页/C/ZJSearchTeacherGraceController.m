@@ -1,19 +1,19 @@
 //
-//  ZJSearchImageTextViewController.m
+//  ZJTeacherGraceController.m
 //  债云端
 //
-//  Created by apple on 2017/7/21.
+//  Created by 赵凯强 on 2017/8/4.
 //  Copyright © 2017年 ZhongJinZhaiShi. All rights reserved.
 //
 
-#import "ZJSearchImageTextViewController.h"
-#import "ZJHomeNewsViewCell.h"
-#import "ZJNewsDetailsViewController.h"
-@interface ZJSearchImageTextViewController ()<UISearchBarDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "ZJSearchTeacherGraceController.h"
+#import "ZJTeacherGraceTableCell.h"
+
+@interface ZJSearchTeacherGraceController ()<UISearchBarDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @end
 
-@implementation ZJSearchImageTextViewController
+@implementation ZJSearchTeacherGraceController
 {
     __weak IBOutlet UITableView *SearchTable;
     NSMutableArray * _dataSource;
@@ -21,14 +21,16 @@
     NSString * searchBarTextString;
     UISearchBar * searchheBar;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     searchheBar=[ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
     _dataSource=[NSMutableArray array];
     searchBarTextString=@"";
     _page=1;
-     [self resetUI];
+    [self resetUI];
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -41,12 +43,14 @@
     SearchTable.left=0;
     SearchTable.width=ZJAPPWidth;
     SearchTable.height=ZJAPPHeight;
+    SearchTable.delegate = self;
+    SearchTable.dataSource = self;
     SearchTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     SearchTable.showsVerticalScrollIndicator = NO;
     [SearchTable setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 10)]];
     [SearchTable setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
     //刷新
-    __weak ZJSearchImageTextViewController *weakSelf = self;
+    __weak ZJSearchTeacherGraceController *weakSelf = self;
     SearchTable.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf reloadFirstData];
     }];
@@ -65,8 +69,7 @@
         [SearchTable.mj_footer endRefreshing];
         return;
     }
-    //@weakify(self) 防止循环引用
-    //@strongify(self) 防止指针消失
+    
     _page=1;
     [self requestTeacherClassInfo];
     
@@ -92,11 +95,11 @@
         if (success) {
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 if (_page==1) {
-                   [_dataSource removeAllObjects];
+                    [_dataSource removeAllObjects];
                 }
                 NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<itemarray.count; i++) {
-                    ZJHomeNewsModel * item=[ZJHomeNewsModel itemForDictionary:[itemarray objectAtIndex:i]];
+                    ZJTeacherGraceModel * item=[ZJTeacherGraceModel itemForDictionary:[itemarray objectAtIndex:i]];
                     [_dataSource addObject:item];
                 }
                 [SearchTable reloadData];
@@ -130,16 +133,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return [ZJHomeNewsViewCell getCellHeight];
+    return [ZJTeacherGraceTableCell getCellHeight];
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *str  =@"vsd";
-    ZJHomeNewsViewCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
+    ZJTeacherGraceTableCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJHomeNewsViewCell" owner:self options:nil]firstObject];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJAnswerQuestionCell" owner:self options:nil]firstObject];
     }
     // 取消选中效果
     [cell setitem:[_dataSource objectAtIndex:indexPath.row]];
@@ -151,14 +154,6 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ZJNewsDetailsViewController * newsVC=[[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
-    ZJHomeNewsModel * moder=[_dataSource objectAtIndex:indexPath.row];
-    newsVC.newsurl=moder.url;
-    newsVC.newstitle=@"图文详情";
-    [self.navigationController pushViewController:newsVC animated:YES];
-}
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
@@ -171,3 +166,7 @@
 
 
 @end
+
+
+
+
