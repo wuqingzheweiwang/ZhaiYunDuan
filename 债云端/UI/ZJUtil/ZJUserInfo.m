@@ -106,6 +106,8 @@
 }
 
 //存储用户角色
+//用户类型 1 从业人员  2 会员  3普通用户  userType=3;
+//1总行2 省公司,3市公司 ,4 服务行,5拓展行,6云债行,7商学院 hangtype;
 + (void)saveUserInfoWithUserhangtype:(NSString *)hangtype
 {
     [[NSUserDefaults standardUserDefaults] setObject:hangtype forKey:@"hangtype"];

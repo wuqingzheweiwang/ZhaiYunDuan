@@ -24,6 +24,8 @@
     _ImageFlag.height =  _ImageFlag.width;
     _ImageFlag.contentMode = UIViewContentModeScaleAspectFill;
     _ImageFlag.clipsToBounds = YES;
+    _ImageFlag.layer.masksToBounds=YES;
+    _ImageFlag.layer.cornerRadius=4;
     [self.ImageFlag sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
 
     _ImageFlagLabel.top = _ImageFlag.top;

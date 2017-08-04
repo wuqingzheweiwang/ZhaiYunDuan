@@ -93,11 +93,13 @@ static NSString *identifierId=@"zz";
     _sdCyScroll.autoScroll = NO;
     
 }
+
 //获取用户角色
 - (void)getUserRoleWithToken
 {
      [ZJHomeRequest zjGetUserRoleRequestresult:^(BOOL success, id responseData) {
          if (success) {
+             NSLog(@"%@",responseData);
              if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                  [ZJUserInfo saveUserInfoWithUserRole:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"userType"]]];
                  [ZJUserInfo saveUserInfoWithUserPhone:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"phoneNumber"]]];
