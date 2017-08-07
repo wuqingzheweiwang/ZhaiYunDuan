@@ -199,7 +199,6 @@
 //      return [NSString stringWithFormat:@"http://api.zhongjinzhaishi.com/%@",action];
 }
 
-
 #pragma
 #pragma 参数编解码
 - (NSDictionary *)encoding:(NSDictionary *)dic
