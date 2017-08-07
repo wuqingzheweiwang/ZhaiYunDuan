@@ -290,7 +290,9 @@
         static NSString *str  =@"vvv";
         ZJAnswerQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
         if (cell == nil) {
+            
             cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJAnswerQuestionCell" owner:self options:nil]firstObject];
+
         }
         
         int testNum = (int)indexPath.row+1;
@@ -339,7 +341,7 @@
     }else if ([BtnType isEqualToString:@"答疑解惑"]){
         
         ZJSecondAnswerquestionController *secondAnswerVC = [[ZJSecondAnswerquestionController alloc]initWithNibName:@"ZJSecondAnswerquestionController" bundle:nil];
-        ZJAnswerQuestionModel *model = [[ZJAnswerQuestionModel alloc]init];
+        ZJAnswerQuestionModel *model = [_dataSource2 objectAtIndex:indexPath.row];
         secondAnswerVC.headerTitleText = model.title;
         secondAnswerVC.titleText = model.detialTitle;
         secondAnswerVC.url = model.url;
@@ -401,12 +403,10 @@
 -(void)requestAnswerQuestionsInfo
 {
     [self showProgress];
-    action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"答疑解惑",_page2];
-    
-    NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
-    [ZJHomeRequest zjGetAnswerQuestionsWithActions:encoded result:^(BOOL success, id responseData) {
+
+    action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page2];
+
+    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
         DLog(@"%@",responseData);
         // 请求成功
@@ -418,7 +418,7 @@
             }
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJAnswerQuestionModel * item=[ZJAnswerQuestionModel itemForDictionary:dict];

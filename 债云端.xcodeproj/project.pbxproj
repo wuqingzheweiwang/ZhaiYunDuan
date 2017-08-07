@@ -230,7 +230,7 @@
 		52445B461F342A7D00B6F751 /* ZJTeacherGraceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B441F342A7D00B6F751 /* ZJTeacherGraceTableCell.m */; };
 		52445B471F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B451F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib */; };
 		52445B4B1F343E2800B6F751 /* ZJAnswerQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B491F343E2800B6F751 /* ZJAnswerQuestionCell.m */; };
-		52445B4C1F343E2800B6F751 /* ZJTeacherGraceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B4A1F343E2800B6F751 /* ZJTeacherGraceCell.xib */; };
+		52445B4C1F343E2800B6F751 /* ZJAnswerQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B4A1F343E2800B6F751 /* ZJAnswerQuestionCell.xib */; };
 		52445B511F3463BF00B6F751 /* ZJSecondAnswerquestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B4F1F3463BF00B6F751 /* ZJSecondAnswerquestionController.m */; };
 		52445B521F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52445B501F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib */; };
 		52445B571F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52445B551F34690B00B6F751 /* ZJSecondAnswerQuestionCell.m */; };
@@ -700,7 +700,7 @@
 		52445B451F342A7D00B6F751 /* ZJTeacherGraceTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJTeacherGraceTableCell.xib; sourceTree = "<group>"; };
 		52445B481F343E2800B6F751 /* ZJAnswerQuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAnswerQuestionCell.h; sourceTree = "<group>"; };
 		52445B491F343E2800B6F751 /* ZJAnswerQuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAnswerQuestionCell.m; sourceTree = "<group>"; };
-		52445B4A1F343E2800B6F751 /* ZJTeacherGraceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJTeacherGraceCell.xib; sourceTree = "<group>"; };
+		52445B4A1F343E2800B6F751 /* ZJAnswerQuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJAnswerQuestionCell.xib; sourceTree = "<group>"; };
 		52445B4E1F3463BF00B6F751 /* ZJSecondAnswerquestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSecondAnswerquestionController.h; sourceTree = "<group>"; };
 		52445B4F1F3463BF00B6F751 /* ZJSecondAnswerquestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSecondAnswerquestionController.m; sourceTree = "<group>"; };
 		52445B501F3463BF00B6F751 /* ZJSecondAnswerquestionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJSecondAnswerquestionController.xib; sourceTree = "<group>"; };
@@ -2286,7 +2286,7 @@
 			children = (
 				52445B481F343E2800B6F751 /* ZJAnswerQuestionCell.h */,
 				52445B491F343E2800B6F751 /* ZJAnswerQuestionCell.m */,
-				52445B4A1F343E2800B6F751 /* ZJTeacherGraceCell.xib */,
+				52445B4A1F343E2800B6F751 /* ZJAnswerQuestionCell.xib */,
 			);
 			name = "答疑解惑第一页";
 			sourceTree = "<group>";
@@ -2777,7 +2777,7 @@
 				1854637A1EB35C5300AF025B /* ZJAddDebtInformationViewTwoController.xib in Resources */,
 				52445B5F1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib in Resources */,
 				181AFA401EB1F75C00B3FC7E /* ZJMemberCenterViewController.xib in Resources */,
-				52445B4C1F343E2800B6F751 /* ZJTeacherGraceCell.xib in Resources */,
+				52445B4C1F343E2800B6F751 /* ZJAnswerQuestionCell.xib in Resources */,
 				18238E8F1EBB437D0018C179 /* ZJMyMemberTableViewCell.xib in Resources */,
 				185C70CF1EB8977400BE9D17 /* ZJDebtPersonInfoTableViewCell.xib in Resources */,
 				52155A0A1F07547B001F24D4 /* README.txt in Resources */,
