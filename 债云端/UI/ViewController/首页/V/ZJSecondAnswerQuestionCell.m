@@ -21,19 +21,21 @@
     
     self.textLanbel.top = TRUE_1(15);
     self.textLanbel.left = TRUE_1(15);
-    self.textLanbel.width = ZJAPPWidth - TRUE_1(30) - self.pushImageV.width;
+    self.textLanbel.width = ZJAPPWidth - TRUE_1(30);
     self.textLanbel.height = TRUE_1(15);
-    self.textLanbel.text = item.detialTitle;
+    self.textLanbel.text = item.title;
     
-    self.pushImageV.top = self.textLanbel.top;
-    self.pushImageV.right = TRUE_1(15);
-    self.pushImageV.width = TRUE_1(15);
-    self.pushImageV.height = TRUE_1(15);
     
-    self.bottomLine.top = self.bottom;
+    self.pushImageV.top = self.textLanbel.top+TRUE_1(2);
+    self.pushImageV.right =ZJAPPWidth- TRUE_1(15);
+    self.pushImageV.width = TRUE_1(6);
+    self.pushImageV.height = TRUE_1(11);
+    
+    self.bottomLine.top = self.textLanbel.bottom+TRUE_1(15);
     self.bottomLine.left = 0;
     self.bottomLine.width = ZJAPPWidth;
     self.bottomLine.height = 1;
+
 }
 
 + (CGFloat)getCellHeight

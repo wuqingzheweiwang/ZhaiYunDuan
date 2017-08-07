@@ -58,7 +58,7 @@
 
 -(void)leftAction
 {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -66,7 +66,7 @@
 {
     seachview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, 40)];
     seachview.backgroundColor=[UIColor whiteColor];
-    searcherBar=[[UISearchBar alloc]initWithFrame:CGRectMake(15, 10, ZJAPPWidth-30, 30)];
+    searcherBar=[[UISearchBar alloc]initWithFrame:CGRectMake(15, 5, ZJAPPWidth-30, 30)];
     searcherBar.searchBarStyle=UISearchBarStyleMinimal;
     [searcherBar setImage:[UIImage imageNamed:@"searchBargrey"]
        forSearchBarIcon:UISearchBarIconSearch
@@ -80,33 +80,65 @@
     searcherBar.showsCancelButton=YES;
     [seachview addSubview:searcherBar];
     self.tableView.tableHeaderView = seachview;
-    seachview.hidden=YES;
-    self.tableView.tableHeaderView.hidden = YES;
+    self.tableView.tableHeaderView.height = 0;
+    
+}
 
+
+//搜索action
+-(void)searchInfoAction
+{
+    SearchYES=YES;
+    if (SearchYES) {
+        seachview.hidden=NO;
+        self.tableView.tableHeaderView.height = 40;
+         [self.tableView reloadData];
+    }
+}
+
+// 搜索request
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
+    NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
+    NSString *utf = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
+        DLog(@"%@",responseData);
+        if (success) {
+            if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
+                if (_page==1) {
+                    [self.tabledataSource removeAllObjects];
+                }
+                NSArray * itemarray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                for (int i=0; i<itemarray.count; i++) {
+                    ZJAnswerQuestionModel * item=[ZJAnswerQuestionModel itemForDictionary:[itemarray objectAtIndex:i]];
+                    [self.tabledataSource addObject:item];
+                }
+                [self.tableView reloadData];
+            }else{
+                [ZJUtil showBottomToastWithMsg:[responseData objectForKey:@"message"]];
+            }
+        }else{
+            [ZJUtil showBottomToastWithMsg:responseData];
+        }
+    }];
+    
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
     SearchYES=NO;
-    self.tableView.tableHeaderView.hidden = YES;
     searchBar.text=@"";
+    self.tableView.tableHeaderView.height = 0;
     _page=1;
     [self.tabledataSource removeAllObjects];
     [self requestAnswerQuestionsInfo];
     
 }
 
-//搜索
--(void)searchInfoAction
-{
-    SearchYES=YES;
-    self.tableView.tableHeaderView.hidden = NO;
-    [self.tableView reloadData];
-    if (SearchYES) {
-        seachview.hidden=NO;
-    }
-}
+
+
 
 
 -(void)reloadFirstData

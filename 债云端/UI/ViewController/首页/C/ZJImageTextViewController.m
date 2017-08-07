@@ -11,8 +11,10 @@
 #import "ZJHomeNewsViewCell.h"
 #import "ZJTeacherGraceTableCell.h"
 #import "ZJAnswerQuestionCell.h"
-#import "ZJSearchImageTextViewController.h"
 #import "ZJSecondAnswerquestionController.h"
+#import "ZJSearchImageTextViewController.h"
+#import "ZJSearchTeacherGraceController.h"
+#import "ZJSearchAnswerQuestionController.h"
 @interface ZJImageTextViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -48,8 +50,8 @@
     _dataSource3 =[NSMutableArray array];
 
     _page1=1;
-    _page1=2;
-    _page1=3;
+    _page2=1;
+    _page3=1;
 
     BtnType=@"名师讲堂";
     [self resetUI];
@@ -113,37 +115,38 @@
 -(void)reloadFirstData
 {
     if ([BtnType isEqualToString:@"名师讲堂"]){
+        _page1=1;
         [infoTable.mj_header endRefreshing];
         [infoTable.mj_footer endRefreshing];
+        [self requestTeacherClassInfo];
     }else if ([BtnType isEqualToString:@"解债案例"]){
-        _page1+=1;
+        _page1=1;
         [self requestTeacherClassInfo];
     }else if ([BtnType isEqualToString:@"法律咨询"]){
-        _page1+=1;
+        _page1=1;
         [self requestTeacherClassInfo];
-    }
-    else if ([BtnType isEqualToString:@"答疑解惑"]){
-        _page2+=1;
+    }else if ([BtnType isEqualToString:@"答疑解惑"]){
+        _page2=1;
         [self requestAnswerQuestionsInfo];
     }else if ([BtnType isEqualToString:@"名师风采"]){
-        _page3+=1;
+        _page3=1;
         [self requestTeacherGraceInfo];
     }
 }
 -(void)loadMoreData
 {
-    
     if ([BtnType isEqualToString:@"名师讲堂"]){
         [infoTable.mj_header endRefreshing];
         [infoTable.mj_footer endRefreshing];
+        _page1+=1;
+        [self requestTeacherClassInfo];
     }else if ([BtnType isEqualToString:@"解债案例"]){
         _page1+=1;
         [self requestTeacherClassInfo];
     }else if ([BtnType isEqualToString:@"法律咨询"]){
         _page1+=1;
         [self requestTeacherClassInfo];
-    }
-    else if ([BtnType isEqualToString:@"答疑解惑"]){
+    }else if ([BtnType isEqualToString:@"答疑解惑"]){
         _page2+=1;
         [self requestAnswerQuestionsInfo];
     }else if ([BtnType isEqualToString:@"名师风采"]){
@@ -155,9 +158,22 @@
 //搜索
 -(void)searchInfoAction
 {
-    
-    ZJSearchImageTextViewController * searchVC=[[ZJSearchImageTextViewController alloc]initWithNibName:@"ZJSearchImageTextViewController" bundle:nil];
-    [self.navigationController pushViewController:searchVC animated:YES];
+    if ([BtnType isEqualToString:@"名师讲堂"]||[BtnType isEqualToString:@"解债案例"]||[BtnType isEqualToString:@"法律咨询"]) {
+        
+        ZJSearchImageTextViewController * searchVC=[[ZJSearchImageTextViewController alloc]initWithNibName:@"ZJSearchImageTextViewController" bundle:nil];
+        [self.navigationController pushViewController:searchVC animated:YES];
+        
+    }else if ([BtnType isEqualToString:@"答疑解惑"]){
+        
+        ZJSearchAnswerQuestionController * searchVC=[[ZJSearchAnswerQuestionController alloc]initWithNibName:@"ZJSearchAnswerQuestionController" bundle:nil];
+        [self.navigationController pushViewController:searchVC animated:YES];
+        
+    }else if ([BtnType isEqualToString:@"名师风采"]){
+        ZJSearchTeacherGraceController * searchVC=[[ZJSearchTeacherGraceController alloc]initWithNibName:@"ZJSearchTeacherGraceController" bundle:nil];
+        [self.navigationController pushViewController:searchVC animated:YES];
+        
+    }
+   
 }
 
 //button的点击事件
@@ -182,19 +198,19 @@
     }
 
     if ([BtnType isEqualToString:@"名师讲堂"]){
+        [self requestTeacherClassInfo];
         [infoTable reloadData];
     }else if ([BtnType isEqualToString:@"解债案例"]){
-        _page1+=1;
+        _page1=1;
         [self requestTeacherClassInfo];
     }else if ([BtnType isEqualToString:@"法律咨询"]){
-        _page1+=1;
+        _page1=1;
         [self requestTeacherClassInfo];
-    }
-    else if ([BtnType isEqualToString:@"答疑解惑"]){
-        _page2+=1;
+    }else if ([BtnType isEqualToString:@"答疑解惑"]){
+        _page2=1;
         [self requestAnswerQuestionsInfo];
     }else if ([BtnType isEqualToString:@"名师风采"]){
-        _page3+=1;
+        _page3=1;
         [self requestTeacherGraceInfo];
     }
 
@@ -236,8 +252,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if ([BtnType isEqualToString:@"名师讲堂"]||[BtnType isEqualToString:@"解债案例"]||[BtnType isEqualToString:@"法律咨询"]){
+    if ([BtnType isEqualToString:@"名师讲堂"]){
 
+        return _dataSource1.count;
+    }else if ([BtnType isEqualToString:@"解债案例"]){
+        
+        return _dataSource1.count;
+    }else if ([BtnType isEqualToString:@"法律咨询"]){
+        
         return _dataSource1.count;
     }else if ([BtnType isEqualToString:@"答疑解惑"]){
 
@@ -253,10 +275,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     
-    if ([BtnType isEqualToString:@"名师讲堂"]||[BtnType isEqualToString:@"解债案例"]||[BtnType isEqualToString:@"法律咨询"]){
+    if ([BtnType isEqualToString:@"名师讲堂"]){
         
         return [ZJHomeNewsViewCell getCellHeight];
+    }else if ([BtnType isEqualToString:@"解债案例"]){
         
+        return [ZJHomeNewsViewCell getCellHeight];
+    }else if ([BtnType isEqualToString:@"法律咨询"]){
+        
+        return [ZJHomeNewsViewCell getCellHeight];
     }else if ([BtnType isEqualToString:@"答疑解惑"]){
         
         return [ZJAnswerQuestionCell getCellHeight];
@@ -406,7 +433,7 @@
 
     action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page2];
 
-    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetAnswerQuestionsInfoRequestWithParams:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
         DLog(@"%@",responseData);
         // 请求成功

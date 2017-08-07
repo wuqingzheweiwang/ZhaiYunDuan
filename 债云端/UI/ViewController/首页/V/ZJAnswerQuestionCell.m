@@ -22,7 +22,7 @@
    
     self.textlabel.top = TRUE_1(15);
     self.textlabel.left = TRUE_1(15);
-    self.textlabel.width = TRUE_1(55);
+    self.textlabel.width = TRUE_1(65);
     self.textlabel.height = TRUE_1(15);
     
     self.detialTextALabel.top = self.textlabel.top;
@@ -31,12 +31,13 @@
     self.detialTextALabel.height = self.textlabel.height;
     self.detialTextALabel.text = item.title;
     
-    self.pushImage.top = self.detailTextLabel.top;
-    self.pushImage.right = TRUE_1(15);
-    self.pushImage.width = TRUE_1(15);
-    self.pushImage.height = TRUE_1(15);
     
-    self.bottomLine.top = self.bottom;
+    self.pushImage.top = self.detialTextALabel.top+TRUE_1(2);
+    self.pushImage.right =ZJAPPWidth- TRUE_1(15);
+    self.pushImage.width = TRUE_1(6);
+    self.pushImage.height = TRUE_1(11);
+    
+    self.bottomLine.top = self.detialTextALabel.bottom+TRUE_1(15);
     self.bottomLine.left = 0;
     self.bottomLine.width = ZJAPPWidth;
     self.bottomLine.height = 1;

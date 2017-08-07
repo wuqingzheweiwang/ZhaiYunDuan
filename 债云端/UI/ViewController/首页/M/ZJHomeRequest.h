@@ -61,9 +61,9 @@ typedef void(^result)(BOOL success, id responseData);
  */
 +(void)zjGetImageandTextRequestWithActions:(NSString *)action result:(result)result;
 /*
- *图文课程  答疑解惑
+ * 答疑解惑 网络请求
  */
-+(void)zjGetAnswerQuestionsWithActions:(NSString *)action result:(result)result;
++(void)zjGetAnswerQuestionsInfoRequestWithParams:(NSString *)action result:(result)result;
 /*
  *图文课程  名师风采
  */
@@ -78,4 +78,5 @@ typedef void(^result)(BOOL success, id responseData);
  *视频搜索
  */
 +(void)zjGetSearchVideoRequestWithActions:(NSString *)action result:(result)result;
+
 @end

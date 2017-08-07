@@ -8,6 +8,7 @@
 
 #import "ZJSearchTeacherGraceController.h"
 #import "ZJTeacherGraceTableCell.h"
+#import "ZJHomeItem.h"
 
 @interface ZJSearchTeacherGraceController ()<UISearchBarDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
