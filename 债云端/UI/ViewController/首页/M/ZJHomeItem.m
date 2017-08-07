@@ -133,8 +133,8 @@
 + (ZJAnswerQuestionModel *)itemForDictionary:(NSDictionary *)dic{
     
     ZJAnswerQuestionModel * item=[[ZJAnswerQuestionModel alloc]init];
-    if ([dic objectForKey:@"subTitle"]) {
-        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"subTitle"]];
+    if ([dic objectForKey:@"title"]) {
+        item.title=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
     }
     if ([dic objectForKey:@"title"]) {
         item.detialTitle=[NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];

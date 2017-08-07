@@ -37,7 +37,7 @@
 
 -(void)setAnswerVCUI
 {
-    [ZJNavigationPublic setTitleOnTargetNav:self title:@"图文课程"];
+    [ZJNavigationPublic setTitleOnTargetNav:self title:@"答疑解惑"];
     [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
     
     [self.view addSubview:self.tableView];
@@ -73,8 +73,8 @@
     searcherBar.showsCancelButton=YES;
     [seachview addSubview:searcherBar];
     self.tableView.tableHeaderView = seachview;
-    seachview.hidden=YES;
-    
+    self.tableView.tableHeaderView.hidden = YES;
+//    seachview.hidden=YES;
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -126,11 +126,16 @@
 #pragma mark  tableView的代理方法
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (self.tabledataSource.count>0) {
+
     return TRUE_1(30);
+    }
+    return 0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    
+    if (self.tabledataSource.count>0) {
+
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ZJAPPWidth, TRUE_1(30))];
         view.backgroundColor = ZJColor_efefef;
         UILabel * label=[[UILabel alloc]init];
@@ -145,6 +150,8 @@
         [view addSubview:label];
         
         return view;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -187,12 +194,9 @@
 -(void)requestAnswerQuestionsInfo
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-   NSString * action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"答疑解惑",_page];
-    
-    NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
-    [ZJHomeRequest zjGetAnswerQuestionsWithActions:encoded result:^(BOOL success, id responseData) {
+    NSString * action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page];
+        
+    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         DLog(@"%@",responseData);
@@ -205,7 +209,7 @@
             }
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJAnswerQuestionModel * item=[ZJAnswerQuestionModel itemForDictionary:dict];
