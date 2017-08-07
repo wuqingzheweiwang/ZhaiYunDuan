@@ -35,8 +35,8 @@
     NSMutableArray * _dataSource;
     NSInteger  _page;
     NSString * action;
-    
-    
+    UIButton * leftBackButton;
+    UIView * backview;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -62,6 +62,18 @@
                 if ([[responseData objectForKey:@"data"] objectForKey:@"hangtype"]) {
                     [ZJUserInfo saveUserInfoWithUserhangtype:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"hangtype"]]];
                 }
+                if ([ZJUtil getUserIsDebtBank]) {
+                    if ([[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"7"]) {//商学院
+                        leftBackButton.hidden=YES;
+                        backview.hidden=NO;
+                    }else{
+                        leftBackButton.hidden=NO;
+                        backview.hidden=YES;
+                    }
+                }else{//普通用户和会员
+                    leftBackButton.hidden=YES;
+                    backview.hidden=YES;
+                }
             }
         }
     }];
@@ -75,11 +87,30 @@
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"债事管理"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isfreshData) name:@"DebtManger" object:nil];
     
-    [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
     
+    leftBackButton = [ZJNavigationPublic setLeftSearchButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
+    leftBackButton.hidden=YES;
     [ZJNavigationPublic setRightButtonOnTargetNav:self action:@selector(AddDebtManagerAction) image:[UIImage imageNamed:@"DebtMangerAddPerson"] HighImage:[UIImage imageNamed:@"DebtMangerAddPerson"]];
     [self createUI];
+    [self createNodataView];
     
+}
+//创建没有权限的界面
+-(void)createNodataView
+{
+    backview=[[UIView alloc]initWithFrame:CGRectMake(0, (ZJAPPHeight-TRUE_1(115))/2, ZJAPPWidth, TRUE_1(115))];
+    [self.view addSubview:backview];
+    backview.hidden=YES;
+    UIImageView * iconImageview=[[UIImageView alloc]initWithFrame:CGRectMake((ZJAPPWidth-TRUE_1(130))/2, 0, TRUE_1(130), TRUE_1(80))];
+    iconImageview.image=[UIImage imageNamed:@"nodataicon"];
+    [backview addSubview:iconImageview];
+    
+    UILabel * iconLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, TRUE_1(100), ZJAPPWidth, TRUE_1(15))];
+    iconLabel.text=@"权限不足";
+    iconLabel.textColor=ZJColor_999999;
+    iconLabel.textAlignment=NSTextAlignmentCenter;
+    iconLabel.font=ZJ_TRUE_FONT(14);
+    [backview addSubview:iconLabel];
 }
 //搜索
 - (void)searchInfoAction

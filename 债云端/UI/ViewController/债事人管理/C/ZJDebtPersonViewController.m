@@ -51,9 +51,16 @@
                     [ZJUserInfo saveUserInfoWithUserhangtype:[NSString stringWithFormat:@"%@",[[responseData objectForKey:@"data"] objectForKey:@"hangtype"]]];
                 }
                 if ([ZJUtil getUserIsDebtBank]) {
-                    leftBackButton.hidden=NO;
-                }else{
+                    if ([[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"7"]) {//商学院
+                        leftBackButton.hidden=YES;
+                        backview.hidden=NO;
+                    }else{
+                        leftBackButton.hidden=NO;
+                        backview.hidden=YES;
+                    }
+                }else{//普通用户和会员
                     leftBackButton.hidden=YES;
+                    backview.hidden=NO;
                 }
             }
         }

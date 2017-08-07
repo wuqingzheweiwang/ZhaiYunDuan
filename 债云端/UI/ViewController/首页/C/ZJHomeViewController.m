@@ -465,14 +465,30 @@ static NSString *identifierId=@"zz";
     
     if (indexPath.row==0) {   //债事备案
         if ([ZJUtil getUserLogin]) {
-            ZJAddDebtInformationViewController *addDebtVC = [[ZJAddDebtInformationViewController alloc]init];
+            
             if ([ZJUtil getUserIsDebtBank]) {
-                addDebtVC.Btntype=ZJDebtRecordTypeVip;
-            }else{
-                addDebtVC.Btntype=ZJDebtRecordTypeNoVip;
+                if ([[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"4"]||[[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"6"]) {//债行，云债行
+                    ZJAddDebtInformationViewController *addDebtVC = [[ZJAddDebtInformationViewController alloc]init];
+                    if ([ZJUtil getUserIsDebtBank]) {
+                        addDebtVC.Btntype=ZJDebtRecordTypeVip;
+                    }else{
+                        addDebtVC.Btntype=ZJDebtRecordTypeNoVip;
+                    }
+                    [addDebtVC setHidesBottomBarWhenPushed:YES];
+                    [self.navigationController pushViewController:addDebtVC animated:YES];
+                }else{
+                    [ZJUtil showBottomToastWithMsg:@"您没有权限债事备案"];
+                }
+            }else{//会员，普通用户
+                ZJAddDebtInformationViewController *addDebtVC = [[ZJAddDebtInformationViewController alloc]init];
+                if ([ZJUtil getUserIsDebtBank]) {
+                    addDebtVC.Btntype=ZJDebtRecordTypeVip;
+                }else{
+                    addDebtVC.Btntype=ZJDebtRecordTypeNoVip;
+                }
+                [addDebtVC setHidesBottomBarWhenPushed:YES];
+                [self.navigationController pushViewController:addDebtVC animated:YES];
             }
-            [addDebtVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:addDebtVC animated:YES];
         }else{
             //跳到登录页面 CCPLoginVC
             ZJLoginViewController *login = [[ZJLoginViewController alloc]initWithNibName:@"ZJLoginViewController" bundle:nil];;
@@ -511,10 +527,23 @@ static NSString *identifierId=@"zz";
             [self.navigationController pushViewController:login animated:YES];
         }
     }else if (indexPath.row==2){  //添加债事人
+        
         if ([ZJUtil getUserLogin]) {
-            ZJAddDebtPersonController *addDebtVC = [[ZJAddDebtPersonController alloc]init];
-            [addDebtVC setHidesBottomBarWhenPushed:YES];
-            [self.navigationController pushViewController:addDebtVC animated:YES];
+            
+            if ([ZJUtil getUserIsDebtBank]) {
+                if ([[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"4"]||[[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"6"]) {//债行，云债行
+                    ZJAddDebtPersonController *addDebtVC = [[ZJAddDebtPersonController alloc]init];
+                    [addDebtVC setHidesBottomBarWhenPushed:YES];
+                    [self.navigationController pushViewController:addDebtVC animated:YES];
+                }else{
+                    [ZJUtil showBottomToastWithMsg:@"您没有权限添加债事人"];
+                }
+            }else{//会员，普通用户
+                ZJAddDebtPersonController *addDebtVC = [[ZJAddDebtPersonController alloc]init];
+                [addDebtVC setHidesBottomBarWhenPushed:YES];
+                [self.navigationController pushViewController:addDebtVC animated:YES];
+            }
+            
         }else{
             //跳到登录页面 CCPLoginVC
             ZJLoginViewController *login = [[ZJLoginViewController alloc]initWithNibName:@"ZJLoginViewController" bundle:nil];;
