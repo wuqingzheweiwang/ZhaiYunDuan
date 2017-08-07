@@ -81,6 +81,8 @@
     [seachview addSubview:searcherBar];
     self.tableView.tableHeaderView = seachview;
     seachview.hidden=YES;
+    self.tableView.tableHeaderView.hidden = YES;
+
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
