@@ -10,4 +10,5 @@
 
 @interface ZJSearchImageTextViewController : ZJBaseViewController
 
+@property(nonatomic , strong) NSString *butType;
 @end

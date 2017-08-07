@@ -161,15 +161,23 @@
     if ([BtnType isEqualToString:@"名师讲堂"]||[BtnType isEqualToString:@"解债案例"]||[BtnType isEqualToString:@"法律咨询"]) {
         
         ZJSearchImageTextViewController * searchVC=[[ZJSearchImageTextViewController alloc]initWithNibName:@"ZJSearchImageTextViewController" bundle:nil];
+        searchVC.butType = BtnType;
         [self.navigationController pushViewController:searchVC animated:YES];
         
     }else if ([BtnType isEqualToString:@"答疑解惑"]){
         
         ZJSearchAnswerQuestionController * searchVC=[[ZJSearchAnswerQuestionController alloc]initWithNibName:@"ZJSearchAnswerQuestionController" bundle:nil];
+        
+        searchVC.butType = BtnType;
+        NSLog(@"%@",searchVC.butType);
+
         [self.navigationController pushViewController:searchVC animated:YES];
         
     }else if ([BtnType isEqualToString:@"名师风采"]){
         ZJSearchTeacherGraceController * searchVC=[[ZJSearchTeacherGraceController alloc]initWithNibName:@"ZJSearchTeacherGraceController" bundle:nil];
+        
+        searchVC.butType = BtnType;
+
         [self.navigationController pushViewController:searchVC animated:YES];
         
     }

@@ -10,4 +10,6 @@
 
 @interface ZJSearchAnswerQuestionController : ZJBaseViewController
 
+@property(nonatomic , strong) NSString *butType;
+
 @end

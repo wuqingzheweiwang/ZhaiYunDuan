@@ -10,4 +10,6 @@
 
 @interface ZJSearchTeacherGraceController: ZJBaseViewController
 
+@property(nonatomic , strong) NSString *butType;
+
 @end
