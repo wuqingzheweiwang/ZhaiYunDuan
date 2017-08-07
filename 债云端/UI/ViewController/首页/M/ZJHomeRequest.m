@@ -161,18 +161,6 @@
                                        resultWithBlock:result];
 }
 
-/*
- *图文课程  答疑解惑
- */
-+(void)zjGetAnswerQuestionsWithActions:(NSString *)action result:(result)result
-{
-    [[ZJDataRequest shareInstance]getDataWithURLString:action
-                                         andParameters:nil
-                                               timeOut:20
-                                         requestSecret:YES
-                                          resultSecret:YES
-                                       resultWithBlock:result];
-}
 
 /*
  *图文课程  名师风采
@@ -186,6 +174,20 @@
                                           resultSecret:YES
                                        resultWithBlock:result];
 }
+
+/*
+ * 答疑解惑 网络请求
+ */
++(void)zjGetAnswerQuestionsInfoRequestWithParams:(NSString *)action result:(result)result
+{
+    [[ZJDataRequest shareInstance]getDataWithURLString:action
+                                         andParameters:nil
+                                               timeOut:20
+                                         requestSecret:YES
+                                          resultSecret:YES
+                                       resultWithBlock:result];
+}
+
 
 /*
  *视频详情

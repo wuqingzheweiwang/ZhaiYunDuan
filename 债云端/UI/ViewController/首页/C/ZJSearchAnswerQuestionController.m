@@ -9,6 +9,7 @@
 #import "ZJSearchAnswerQuestionController.h"
 #import "ZJAnswerQuestionCell.h"
 #import "ZJNewsDetailsViewController.h"
+#import "ZJHomeItem.h"
 @interface ZJSearchAnswerQuestionController ()<UISearchBarDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -24,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     searchheBar=[ZJNavigationPublic setNavSearchViewOnTargetNav:self With:@"请输入您要搜索的标题/内容"];
     _dataSource=[NSMutableArray array];
     searchBarTextString=@"";

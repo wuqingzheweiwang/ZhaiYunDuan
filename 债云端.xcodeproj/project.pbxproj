@@ -2321,14 +2321,14 @@
 			name = "答疑解惑第二页";
 			sourceTree = "<group>";
 		};
-		52445B591F347D0400B6F751 /* 搜索答疑解惑 */ = {
+		52445B591F347D0400B6F751 /* 搜索答疑解惑全部 */ = {
 			isa = PBXGroup;
 			children = (
 				52445B5B1F347E6300B6F751 /* ZJSearchAnswerQuestionController.h */,
 				52445B5C1F347E6300B6F751 /* ZJSearchAnswerQuestionController.m */,
 				52445B5D1F347E6300B6F751 /* ZJSearchAnswerQuestionController.xib */,
 			);
-			name = "搜索答疑解惑";
+			name = "搜索答疑解惑全部";
 			sourceTree = "<group>";
 		};
 		52445B5A1F347D3400B6F751 /* 搜索名师风采 */ = {
@@ -2397,7 +2397,7 @@
 				528DF2A41F1DB0DC0098BFA4 /* ZJImageTextViewController.xib */,
 				52445B4D1F34637A00B6F751 /* 答疑解惑 */,
 				18F16F941F21F9EC002D3DF4 /* 搜索名师课堂、解债案例、法律咨询 */,
-				52445B591F347D0400B6F751 /* 搜索答疑解惑 */,
+				52445B591F347D0400B6F751 /* 搜索答疑解惑全部 */,
 				52445B5A1F347D3400B6F751 /* 搜索名师风采 */,
 			);
 			name = "图文课程";
