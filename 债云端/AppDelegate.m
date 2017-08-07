@@ -85,13 +85,13 @@
         }
     }];
 
-    /************** 更新版本 *****************/
+    /************** 更新 *****************/
     [ZJHomeRequest zjgetAppapiVersionresult:^(BOOL success, id responseData) {
         if (success) {
             NSLog(@"%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSDictionary * dataDic=[responseData objectForKey:@"data"];
-                jumpUrl = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"downUrl"]];
+                jumpUrl = @"https://itunes.apple.com/cn/app/%E5%80%BA%E4%BA%91%E7%AB%AF/id1210308421?mt=8";
                 NSString *serverVersion = [dataDic objectForKey:@"versionNum"];
                 
                 if ([ZJAPP_VERSION compare:serverVersion options:NSNumericSearch] == NSOrderedAscending) {//升序  需要升级
