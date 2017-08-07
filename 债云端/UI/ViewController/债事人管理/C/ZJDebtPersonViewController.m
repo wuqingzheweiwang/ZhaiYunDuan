@@ -238,9 +238,21 @@
 //新增债事人
 - (void)AddDebtManagerAction
 {
-    ZJAddDebtPersonController * addDebtVC=[[ZJAddDebtPersonController alloc]initWithNibName:@"ZJAddDebtPersonController" bundle:nil];
-    [addDebtVC setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:addDebtVC animated:YES];
+    
+    if ([ZJUtil getUserIsDebtBank]) {
+        if ([[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"4"]||[[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"6"]) {//债行，云债行
+            ZJAddDebtPersonController * addDebtVC=[[ZJAddDebtPersonController alloc]initWithNibName:@"ZJAddDebtPersonController" bundle:nil];
+            [addDebtVC setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:addDebtVC animated:YES];
+        }else{
+            [ZJUtil showBottomToastWithMsg:@"您没有权限添加债事人"];
+        }
+    }else{//会员，普通用户
+        ZJAddDebtPersonController * addDebtVC=[[ZJAddDebtPersonController alloc]initWithNibName:@"ZJAddDebtPersonController" bundle:nil];
+        [addDebtVC setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:addDebtVC animated:YES];
+    }
+    
 }
 //重设UI
 - (void)createUI{

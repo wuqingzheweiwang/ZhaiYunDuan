@@ -170,14 +170,30 @@
 //新增债事
 - (void)AddDebtManagerAction
 {
-    ZJAddDebtInformationViewController * addDebtVC=[[ZJAddDebtInformationViewController alloc]initWithNibName:@"ZJAddDebtInformationViewController" bundle:nil];
     if ([ZJUtil getUserIsDebtBank]) {
-        addDebtVC.Btntype=ZJDebtRecordTypeVip;
-    }else{
-        addDebtVC.Btntype=ZJDebtRecordTypeNoVip;
+        if ([[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"4"]||[[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"6"]) {//债行，云债行
+            ZJAddDebtInformationViewController * addDebtVC=[[ZJAddDebtInformationViewController alloc]initWithNibName:@"ZJAddDebtInformationViewController" bundle:nil];
+            if ([ZJUtil getUserIsDebtBank]) {
+                addDebtVC.Btntype=ZJDebtRecordTypeVip;
+            }else{
+                addDebtVC.Btntype=ZJDebtRecordTypeNoVip;
+            }
+            [addDebtVC setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:addDebtVC animated:YES];
+        }else{
+            [ZJUtil showBottomToastWithMsg:@"您没有权限债事备案"];
+        }
+    }else{//会员，普通用户
+        ZJAddDebtInformationViewController * addDebtVC=[[ZJAddDebtInformationViewController alloc]initWithNibName:@"ZJAddDebtInformationViewController" bundle:nil];
+        if ([ZJUtil getUserIsDebtBank]) {
+            addDebtVC.Btntype=ZJDebtRecordTypeVip;
+        }else{
+            addDebtVC.Btntype=ZJDebtRecordTypeNoVip;
+        }
+        [addDebtVC setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:addDebtVC animated:YES];
     }
-    [addDebtVC setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:addDebtVC animated:YES];
+    
 }
 //重设UI
 - (void)createUI{
