@@ -37,6 +37,7 @@
 
 -(void)setAnswerVCUI
 {
+    [ZJNavigationPublic setLeftButtonOnTargetNav:self action:@selector(leftAction) With:[UIImage imageNamed:@"back"]];
     [ZJNavigationPublic setTitleOnTargetNav:self title:@"答疑解惑"];
     [ZJNavigationPublic setRrightButtonOnTargetNav:self action:@selector(searchInfoAction) With:[UIImage imageNamed:@"searchBar"]];
     
@@ -53,6 +54,12 @@
         [weakSelf loadMoreData];
     }];
 
+}
+
+-(void)leftAction
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    
 }
 
 - (void)createSerach
@@ -73,21 +80,32 @@
     searcherBar.showsCancelButton=YES;
     [seachview addSubview:searcherBar];
     self.tableView.tableHeaderView = seachview;
-    self.tableView.tableHeaderView.hidden = YES;
-//    seachview.hidden=YES;
+    seachview.hidden=YES;
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
     SearchYES=NO;
-    seachview.hidden=YES;
+    self.tableView.tableHeaderView.hidden = YES;
     searchBar.text=@"";
     _page=1;
     [self.tabledataSource removeAllObjects];
     [self requestAnswerQuestionsInfo];
     
 }
+
+//搜索
+-(void)searchInfoAction
+{
+    SearchYES=YES;
+    self.tableView.tableHeaderView.hidden = NO;
+    [self.tableView reloadData];
+    if (SearchYES) {
+        seachview.hidden=NO;
+    }
+}
+
 
 -(void)reloadFirstData
 {
@@ -102,15 +120,6 @@
     
 }
 
-//搜索
--(void)searchInfoAction
-{
-    SearchYES=YES;
-    [self.tableView reloadData];
-    if (SearchYES) {
-        seachview.hidden=NO;
-    }
-}
 
 -(UITableView *)tableView
 {
