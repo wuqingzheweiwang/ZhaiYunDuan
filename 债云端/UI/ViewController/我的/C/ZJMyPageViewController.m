@@ -111,11 +111,6 @@ static id _publishContent;
         [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
         zjMyMembercell.recommandLabel_4.enabled = YES;
         
-        zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
-        zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
-        zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
-        zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
-        
         [ZJUtil showBottomToastWithMsg:[NSString stringWithFormat:@"请登录"]];
 
     }
@@ -500,10 +495,6 @@ static id _publishContent;
             [zjMyMembercell.recommandLabel_4 setText:[NSString stringWithFormat:@"%d",0]];
             zjMyMembercell.recommandLabel_4.enabled = YES;
             
-            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
-            zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
-            zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
-            zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
             //为了在债事人请求那里用
             [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtPersonRequest"];
             [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"DebtMangerRequest"];
@@ -685,25 +676,6 @@ static id _publishContent;
         // 推荐会员数
         [zjMyMembercell.recomMemberBut addTarget:self action:@selector(touchMyMemberBut) forControlEvents:UIControlEventTouchUpInside];
         
-        
-        
-        if ([ZJUtil getUserIsDebtBank]) {
-            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
-            zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
-            zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
-            zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
-        }else{
-            zjMyMembercell.recommandRecoardBut.userInteractionEnabled=NO;
-            zjMyMembercell.recommandBankBut.userInteractionEnabled=NO;
-            zjMyMembercell.recomMemberBut.userInteractionEnabled=NO;
-            if ([ZJUtil getUserLogin]) {
-                zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
-            }else{
-                zjMyMembercell.dismissDebtBut.userInteractionEnabled=NO;
-            }
-            
-        }
-       
         
      return zjMyMembercell;
         
@@ -996,17 +968,27 @@ static id _publishContent;
 //  推荐备案数
 -(void)touchRecoardBut
 {
-    ZJRecomdDebtNumViewController *zjDebtVC = [[ZJRecomdDebtNumViewController alloc]initWithNibName:@"ZJRecomdDebtNumViewController" bundle:nil];
-    zjDebtVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:zjDebtVC animated:YES];
+    if ([ZJUtil getUserLogin]) {//除了普通用户 会员 商学院
+        if (![[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"7"]) {
+            ZJRecomdDebtNumViewController *zjDebtVC = [[ZJRecomdDebtNumViewController alloc]initWithNibName:@"ZJRecomdDebtNumViewController" bundle:nil];
+            zjDebtVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:zjDebtVC animated:YES];
+        }
+    }
+
 }
 
 //  推荐行长数
 -(void)touchBankBut
 {
-    ZJRecommendBankVC *zjRecommangBankPersonVC = [[ZJRecommendBankVC alloc]initWithNibName:@"ZJRecommendBankVC" bundle:nil];
-    zjRecommangBankPersonVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:zjRecommangBankPersonVC animated:YES];
+    if ([ZJUtil getUserLogin]) {//除了普通用户 会员 商学院
+        if (![[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"7"]) {
+            ZJRecommendBankVC *zjRecommangBankPersonVC = [[ZJRecommendBankVC alloc]initWithNibName:@"ZJRecommendBankVC" bundle:nil];
+            zjRecommangBankPersonVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:zjRecommangBankPersonVC animated:YES];
+        }
+    }
+    
 }
 
 //  解债数
@@ -1023,9 +1005,13 @@ static id _publishContent;
 // 我的会员
 -(void)touchMyMemberBut
 {
-    ZJMyMemberViewController *zjMyMemberVC = [[ZJMyMemberViewController alloc]initWithNibName:@"ZJMyMemberViewController" bundle:nil];
-    zjMyMemberVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:zjMyMemberVC animated:YES];    
+    if ([ZJUtil getUserLogin]) {//除了普通用户 会员 商学院
+        if (![[ZJUserInfo getUserRoleForUserhangtype]isEqualToString:@"7"]) {
+            ZJMyMemberViewController *zjMyMemberVC = [[ZJMyMemberViewController alloc]initWithNibName:@"ZJMyMemberViewController" bundle:nil];
+            zjMyMemberVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:zjMyMemberVC animated:YES];
+        }
+    }
     
 }
 
