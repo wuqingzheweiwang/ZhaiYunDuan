@@ -86,7 +86,7 @@
 -(void)requestTeacherClassInfo
 {
     [searchheBar resignFirstResponder];
-    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@&btnType=%@",(long)_page,searchBarTextString,self.butType];
+    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@&videoId=%@",(long)_page,searchBarTextString,self.butType];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
