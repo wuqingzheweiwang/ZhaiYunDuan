@@ -19,6 +19,7 @@
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
 #import <Photos/Photos.h>
+#import "ZJDebtMangerViewController.h"
 #define kImageView_W   (ZJAPPWidth - 45 - 30) / 3
 #define kImageToImageWidth   45/2
 @interface ZJAddPhotosViewController ()<TakePhotoDelegate,QBImagePickerControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -479,6 +480,17 @@
                 
                 NSString * relationorderid=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"orderId"]];
                 NSString * payAmount=[NSString stringWithFormat:@"%@",[[[responseData objectForKey:@"data"] objectForKey:@"relation"] objectForKey:@"qianshu"]];
+                
+                DLog(@"%@",payAmount);
+                if ([payAmount isEqualToString:@"0.00"]) {
+                    
+                    ZJDebtMangerViewController * zjDdVC=[[ZJDebtMangerViewController alloc]initWithNibName:@"ZJDebtMangerViewController" bundle:nil];
+                    
+                    [zjDdVC setHidesBottomBarWhenPushed:NO];
+
+                    [self.navigationController pushViewController:zjDdVC animated:YES];
+                    
+                }else{
                 ZJPayMoneyViewController * zjDdVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
                 zjDdVC.isManager=ZJisBankManegerYes;
                 zjDdVC.orderid=relationorderid;
@@ -487,6 +499,8 @@
                 
                 [zjDdVC setHidesBottomBarWhenPushed:YES];
                 [self.navigationController pushViewController:zjDdVC animated:YES];
+                }
+                
             }else{
                 if ([[responseData objectForKey:@"message"]isEqualToString:@"您不是债事人，请添加您的证件信息"]) {
                     UIAlertView * alteview=[[UIAlertView alloc]initWithTitle:nil message:[NSString stringWithFormat:@"您不是债事人，请添加您的证件信息"] delegate:self cancelButtonTitle:@"现在创建" otherButtonTitles:@"再确认一下", nil];

@@ -7,9 +7,9 @@
 //
 
 #import "ZJTeacherGraceTableCell.h"
-#define  Kheight  15
-#define  Kwidth1  40
-#define  Kwidth2  ZJAPPWidth-50-30-40
+#define  Kheight  TRUE_1(15)
+#define  Kwidth1  TRUE_1(50)
+#define  Kwidth2  ZJAPPWidth-TRUE_1(150)-TRUE_1(30)-TRUE_1(50)
 
 @implementation ZJTeacherGraceTableCell
 
@@ -22,27 +22,24 @@
 {
     _item = item;
     //标志
-    self.ImageFlag.top=10;
-    self.ImageFlag.left=0;
-    self.ImageFlag.width=50;
-    self.ImageFlag.height=20;
-    self.ImageFlagLabel.top=10;
-    self.ImageFlagLabel.left=0;
-    self.ImageFlagLabel.width=40;
-    self.ImageFlagLabel.height=20;
-    
+    self.ImageFlag.top=TRUE_1(15);
+    self.ImageFlag.left=TRUE_1(15);
+    self.ImageFlag.width=TRUE_1(150);
+    self.ImageFlag.height=TRUE_1(350/2);
+    [self.ImageFlag sd_setImageWithURL:[NSURL URLWithString:item.img] placeholderImage:[UIImage imageNamed:@"backGroundDefault"]];
+
     //第一排
-    self.NameLabel.top=15;
-    self.NameLabel.left=self.ImageFlag.right+10;
-    self.NameLabel.width=Kwidth1;
-    self.NameLabel.height=Kheight;
+    self.NameLabel.top=self.ImageFlag.top;
+    self.NameLabel.left=self.ImageFlag.right+TRUE_1(15);
+    self.NameLabel.width=TRUE_1(40);
+    self.NameLabel.height=TRUE_1(15);
     
-    self.technicaltitleLabel.top=40;
+    self.technicaltitleLabel.top=TRUE_1(40);
     self.technicaltitleLabel.left=self.NameLabel.left;
     self.technicaltitleLabel.width=Kwidth1;
     self.technicaltitleLabel.height=Kheight;
     
-    self.introduceLabel.top=65;
+    self.introduceLabel.top=TRUE_1(65);
     self.introduceLabel.left=self.technicaltitleLabel.left;
     self.introduceLabel.width=Kwidth1;
     self.introduceLabel.height=Kheight;
@@ -62,16 +59,39 @@
 
     
     self.introduceTextLabel.top=self.introduceLabel.top;
-    self.introduceTextLabel.left=self.introduceLabel.left;
+    self.introduceTextLabel.left=self.technicaltitleLabelTextLabel.left;
     self.introduceTextLabel.width=Kwidth2;
-    self.introduceTextLabel.height=Kheight;
-    self.introduceTextLabel.text=item.introduceText;
+    self.introduceTextLabel.height=TRUE_1(100);
+    self.introduceTextLabel.numberOfLines = 0;
+    if (item.introduceText.length>0) {
+        
+        NSMutableAttributedString * mastring = [[NSMutableAttributedString alloc]initWithString:item.introduceText];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:3];//调整行间距
+        
+        [mastring addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [item.introduceText length])];
+        [mastring addAttribute:NSFontAttributeName value:self.introduceTextLabel
+         .font range:NSMakeRange(0, mastring.length)];
+        self.introduceTextLabel.attributedText = mastring;
+        
+        CGFloat width = self.introduceTextLabel.width;
+        
+        CGRect rect = [mastring boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+        
+        self.introduceTextLabel.height = rect.size.height;
+        self.introduceTextLabel.text=item.introduceText;
+
+        if (self.introduceTextLabel.height>self.ImageFlag.height) {
+            self.introduceTextLabel.height = self.ImageFlag.height;
+        }
+    }
+
     
 }
 
 + (CGFloat)getCellHeight
 {
-    return TRUE_1(105);
+    return TRUE_1(380/2);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
