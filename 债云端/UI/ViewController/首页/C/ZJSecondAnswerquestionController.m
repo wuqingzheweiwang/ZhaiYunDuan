@@ -79,6 +79,7 @@
     searcherBar.layer.masksToBounds = YES;
     searcherBar.showsCancelButton=YES;
     [seachview addSubview:searcherBar];
+    seachview.hidden=YES;
     self.tableView.tableHeaderView = seachview;
     self.tableView.tableHeaderView.height = 0;
     
@@ -100,7 +101,7 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
-    NSString * action=[NSString stringWithFormat:@"api/debt/byuser?ps=10&pn=1&condition=%@",searchBar.text];
+    NSString * action=[NSString stringWithFormat:@"api/question/searchSubtitle?ps=10&pn=1&wd=%@&id=%@",searchBar.text,self.secondId];
     NSString *utf = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
@@ -130,6 +131,7 @@
     [self.view endEditing:YES];
     SearchYES=NO;
     searchBar.text=@"";
+    seachview.hidden=YES;
     self.tableView.tableHeaderView.height = 0;
     _page=1;
     [self.tabledataSource removeAllObjects];

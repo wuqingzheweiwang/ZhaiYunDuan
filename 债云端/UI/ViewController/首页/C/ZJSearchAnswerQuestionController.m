@@ -7,7 +7,7 @@
 //
 
 #import "ZJSearchAnswerQuestionController.h"
-#import "ZJAnswerQuestionCell.h"
+#import "ZJSecondAnswerQuestionCell.h"
 #import "ZJNewsDetailsViewController.h"
 #import "ZJHomeItem.h"
 @interface ZJSearchAnswerQuestionController ()<UISearchBarDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -88,7 +88,7 @@
 -(void)requestTeacherClassInfo
 {
     [searchheBar resignFirstResponder];
-    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@&btnType=%@",(long)_page,searchBarTextString,self.butType];
+    NSString * action1=[NSString stringWithFormat:@"api/imagetext/getImageTextSearch?ps=10&pn=%ld&wd=%@&videoId=%@",(long)_page,searchBarTextString,self.butType];
     NSString *utf = [action1 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZJHomeRequest zjGetSearchVideoRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
@@ -133,17 +133,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return [ZJAnswerQuestionCell getCellHeight];
+    return [ZJSecondAnswerQuestionCell getCellHeight];
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *str  =@"vsd";
-    ZJAnswerQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
+    ZJSecondAnswerQuestionCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJAnswerQuestionCell" owner:self options:nil]firstObject];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"ZJSecondAnswerQuestionCell" owner:self options:nil]firstObject];
     }
+    
+   
     // 取消选中效果
     [cell setitem:[_dataSource objectAtIndex:indexPath.row]];
     
@@ -157,7 +159,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     ZJNewsDetailsViewController * newsVC=[[ZJNewsDetailsViewController alloc]initWithNibName:@"ZJNewsDetailsViewController" bundle:nil];
-    ZJHomeNewsModel * moder=[_dataSource objectAtIndex:indexPath.row];
+    ZJAnswerQuestionModel * moder=[_dataSource objectAtIndex:indexPath.row];
     newsVC.newsurl=moder.url;
     newsVC.newstitle=@"图文详情";
     [self.navigationController pushViewController:newsVC animated:YES];
