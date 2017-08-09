@@ -439,7 +439,7 @@
 {
     [self showProgress];
 
-    action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page2];
+    action=[NSString stringWithFormat:@"api/question/getquestion?ps=10&pn=%ld",(long)_page2];
 
     [ZJHomeRequest zjGetAnswerQuestionsInfoRequestWithParams:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
@@ -453,7 +453,7 @@
             }
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJAnswerQuestionModel * item=[ZJAnswerQuestionModel itemForDictionary:dict];
@@ -478,10 +478,9 @@
 {
     
     [self showProgress];
-    action=[NSString stringWithFormat:@"api/imagetext/getImageText?videoId=%@&pn=%ld&ps=8",@"名师风采",_page3];
+    action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page3];
     
-    NSString *encoded = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [ZJHomeRequest zjGetTeacherGraceRequestWithActions:encoded result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetTeacherGraceRequestWithActions:action result:^(BOOL success, id responseData) {
         [self dismissProgress];
         DLog(@"%@",responseData);
         // 请求成功
@@ -493,7 +492,7 @@
             }
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJTeacherGraceModel * item=[ZJTeacherGraceModel itemForDictionary:dict];

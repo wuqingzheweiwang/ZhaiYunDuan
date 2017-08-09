@@ -12,7 +12,6 @@
 @property (nonatomic, strong) ZJTeacherGraceModel *item;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ImageFlag;
-@property (weak, nonatomic) IBOutlet UILabel *ImageFlagLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *NameTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *technicaltitleLabel;

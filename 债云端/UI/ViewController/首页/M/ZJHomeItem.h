@@ -72,6 +72,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *detialTitle;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *ID;
 
 + (ZJAnswerQuestionModel *)itemForDictionary:(NSDictionary *)dic;
 @end
