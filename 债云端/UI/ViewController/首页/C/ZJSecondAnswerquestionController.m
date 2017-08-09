@@ -106,6 +106,7 @@
     [ZJDebtPersonRequest GetSearchDebtPersonRequestWithActions:utf result:^(BOOL success, id responseData) {
         DLog(@"%@",responseData);
         if (success) {
+            
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 if (_page==1) {
                     [self.tabledataSource removeAllObjects];
