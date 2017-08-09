@@ -378,8 +378,7 @@
         ZJSecondAnswerquestionController *secondAnswerVC = [[ZJSecondAnswerquestionController alloc]initWithNibName:@"ZJSecondAnswerquestionController" bundle:nil];
         ZJAnswerQuestionModel *model = [_dataSource2 objectAtIndex:indexPath.row];
         secondAnswerVC.headerTitleText = model.title;
-        secondAnswerVC.titleText = model.detialTitle;
-        secondAnswerVC.url = model.url;
+        secondAnswerVC.secondId = model.ID;
         [self.navigationController pushViewController:secondAnswerVC animated:YES];
 
     }else if ([BtnType isEqualToString:@"名师风采"]){
