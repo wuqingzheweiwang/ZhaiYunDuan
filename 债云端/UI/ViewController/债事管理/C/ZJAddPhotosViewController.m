@@ -484,21 +484,17 @@
                 DLog(@"%@",payAmount);
                 if ([payAmount isEqualToString:@"0.00"]) {
                     
-                    ZJDebtMangerViewController * zjDdVC=[[ZJDebtMangerViewController alloc]initWithNibName:@"ZJDebtMangerViewController" bundle:nil];
-                    
-                    [zjDdVC setHidesBottomBarWhenPushed:NO];
-
-                    [self.navigationController pushViewController:zjDdVC animated:YES];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
                     
                 }else{
-                ZJPayMoneyViewController * zjDdVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
-                zjDdVC.isManager=ZJisBankManegerYes;
-                zjDdVC.orderid=relationorderid;
-                zjDdVC.type = @"1";
-                zjDdVC.payAmount = payAmount;
-                
-                [zjDdVC setHidesBottomBarWhenPushed:YES];
-                [self.navigationController pushViewController:zjDdVC animated:YES];
+                    ZJPayMoneyViewController * zjDdVC=[[ZJPayMoneyViewController alloc]initWithNibName:@"ZJPayMoneyViewController" bundle:nil];
+                    zjDdVC.isManager=ZJisBankManegerYes;
+                    zjDdVC.orderid=relationorderid;
+                    zjDdVC.type = @"1";
+                    zjDdVC.payAmount = payAmount;
+                    
+                    [zjDdVC setHidesBottomBarWhenPushed:YES];
+                    [self.navigationController pushViewController:zjDdVC animated:YES];
                 }
                 
             }else{

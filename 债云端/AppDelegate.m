@@ -88,7 +88,7 @@
     /************** 更新 *****************/
     [ZJHomeRequest zjgetAppapiVersionresult:^(BOOL success, id responseData) {
         if (success) {
-            NSLog(@"%@",responseData);
+            DLog(@"%@",responseData);
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
                 NSDictionary * dataDic=[responseData objectForKey:@"data"];
                 jumpUrl = @"https://itunes.apple.com/cn/app/%E5%80%BA%E4%BA%91%E7%AB%AF/id1210308421?mt=8";
@@ -97,7 +97,7 @@
                 if ([ZJAPP_VERSION compare:serverVersion options:NSNumericSearch] == NSOrderedAscending) {//升序  需要升级
                     NSString * isForceString=[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForce"]];
                     if ([isForceString isEqualToString:@"1"]) {
-
+                        
                         UIAlertController * alertcon = [UIAlertController alertControllerWithTitle:@"升级提示" message:[dataDic objectForKey:@"updateItems"] preferredStyle:UIAlertControllerStyleAlert];
                         // 添加按钮
                         [alertcon addAction:[UIAlertAction actionWithTitle:@"升级" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -106,7 +106,7 @@
                         }]];
                         
                         [self.window.rootViewController presentViewController:alertcon animated:YES completion:nil];
-
+                        
                     } else {
                         UIAlertController * alertcon = [UIAlertController alertControllerWithTitle:@"升级提示" message:[dataDic objectForKey:@"updateItems"] preferredStyle:UIAlertControllerStyleAlert];
                         // 添加按钮
@@ -116,7 +116,7 @@
                         }]];
                         [alertcon addAction:[UIAlertAction actionWithTitle:@"以后再说" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                             
-        
+                            
                         }]];
                         [self.window.rootViewController presentViewController:alertcon animated:YES completion:nil];
                     }

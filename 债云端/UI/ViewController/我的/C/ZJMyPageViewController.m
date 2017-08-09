@@ -553,9 +553,9 @@ static id _publishContent;
                                @[@"purse",@"我的钱包",@""],
                               ],
                              @[
-                                @[@"update",@"版本更新",ZJAPP_VERSION],
                                 @[@"opinion",@"意见反馈",@""],
                                 @[@"contact",@"联系我们",@"400-068-9588"],
+                                @[@"update",@"版本号",ZJAPP_VERSION],
                               ],
                                 nil];
     }
@@ -742,18 +742,14 @@ static id _publishContent;
     }else if (indexPath.section == 2){
         
         if (indexPath.row == 0) {
-           
-           
-        }else if (indexPath.row == 1){
-            
             // 弹出意见反馈页面
             [self.view addSubview:smallProtrolView];
-            
-            
-        }else if (indexPath.row == 2){
-            
+           
+        }else if (indexPath.row == 1){
             [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"tel:4000689588"]];
-            
+    
+        }else if (indexPath.row == 2){
+
         }
 
         
