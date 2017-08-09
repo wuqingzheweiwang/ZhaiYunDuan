@@ -237,9 +237,9 @@
 -(void)requestAnswerQuestionsInfo
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSString * action=[NSString stringWithFormat:@"api/news/getNews?ps=10&pn=%ld",(long)_page];
+    NSString * action=[NSString stringWithFormat:@"api/question/getsubtitle?ps=10&pn=%ld&id=%@",(long)_page,self.secondId];
         
-    [ZJHomeRequest zjGetHomeNewsRequestWithParams:action result:^(BOOL success, id responseData) {
+    [ZJHomeRequest zjGetAnswerQuestionsInfoRequestWithParams:action result:^(BOOL success, id responseData) {
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         DLog(@"%@",responseData);
@@ -252,7 +252,7 @@
             }
             
             if ([[responseData objectForKey:@"state"]isEqualToString:@"ok"]) {
-                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"news"];
+                NSArray * newArray=[[responseData objectForKey:@"data"] objectForKey:@"items"];
                 for (int i=0; i<newArray.count; i++) {
                     NSDictionary * dict=[newArray objectAtIndex:i];
                     ZJAnswerQuestionModel * item=[ZJAnswerQuestionModel itemForDictionary:dict];

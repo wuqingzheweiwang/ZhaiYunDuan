@@ -11,7 +11,6 @@
 @interface ZJSecondAnswerquestionController : UIViewController
 
 @property (nonatomic ,strong) NSString *headerTitleText;
-@property (nonatomic ,strong) NSString *titleText;
-@property (nonatomic ,strong) NSString *url;
+@property (nonatomic ,strong) NSString *secondId;
 
 @end
