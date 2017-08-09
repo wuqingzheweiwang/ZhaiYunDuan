@@ -115,6 +115,7 @@
 
 - (void)searchInfoTextRequest
 {
+
     
     NSString * action=[NSString stringWithFormat:@"api/debtrelation/getrecommenddebtRelation?ps=5&pn=%ld&condition=%@",(long)_page,seachBarTextString];
     NSString *utf = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
