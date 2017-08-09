@@ -116,9 +116,10 @@
 - (void)searchInfoTextRequest
 {
     
-    NSString * action=[NSString stringWithFormat:@"api/debtrelation/searchdebtRelation?ps=5&pn=%ld&condition=%@",(long)_page,seachBarTextString];
+    NSString * action=[NSString stringWithFormat:@"api/debtrelation/getrecommenddebtRelation?ps=5&pn=%ld&condition=%@",(long)_page,seachBarTextString];
+    NSString *utf = [action stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [self showProgress];
-    [ZJDeBtManageRequest GetDebtManageListRequestWithActions:action result:^(BOOL success, id responseData) {
+    [ZJDeBtManageRequest GetDebtManageListRequestWithActions:utf result:^(BOOL success, id responseData) {
         
         if (success) {
             
